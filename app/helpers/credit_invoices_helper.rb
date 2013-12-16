@@ -1,0 +1,2 @@
+module CreditInvoicesHelper
+end

@@ -1,0 +1,17 @@
+<%= form_for(@credit_note) do |f| %>
+  <% if @credit_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@credit_note.errors.count, "error") %> prohibited this credit_note from being saved:</h2>
+
+      <ul>
+      <% @credit_note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

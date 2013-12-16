@@ -1,0 +1,25 @@
+<h1>Listing credit_notes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @credit_notes.each do |credit_note| %>
+      <tr>
+        <td><%= link_to 'Show', credit_note %></td>
+        <td><%= link_to 'Edit', edit_credit_note_path(credit_note) %></td>
+        <td><%= link_to 'Destroy', credit_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Credit note', new_credit_note_path %>
