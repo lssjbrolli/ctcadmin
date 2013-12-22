@@ -10,7 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.number_field :number %>
+  <%= f.text_field :start %>
+  <%= f.text_field :stop %>
+  <%= f.number_field :week %>
+  <%= f.text_field :value %>
+  <%= f.text_field :notes %>
+  <%= f.text_field :paid %>
   <div class="actions">
     <%= f.submit %>
   </div>
