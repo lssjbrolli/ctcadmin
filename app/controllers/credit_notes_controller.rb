@@ -42,7 +42,7 @@ class CreditNotesController < ApplicationController
   def update
     respond_to do |format|
       if @credit_note.update(credit_note_params)
-        format.html { redirect_to @credit_note, notice: 'Credit note was successfully updated.' }
+        format.html { redirect_to credit_notes_url, notice: 'Credit note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +69,6 @@ class CreditNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_note_params
-      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid)
+      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :notes, :file_cache, :file)
     end
 end

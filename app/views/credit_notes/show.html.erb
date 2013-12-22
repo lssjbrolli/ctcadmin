@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
+<%= image_tag @credit_note.file_url.to_s %>
 
-<%= link_to 'Edit', edit_credit_note_path(@credit_note) %> |
-<%= link_to 'Back', credit_notes_path %>
+<%= link_to 'Back', credit_notes_path, class: "button medium round" %>

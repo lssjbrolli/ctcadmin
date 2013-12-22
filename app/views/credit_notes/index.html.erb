@@ -16,6 +16,7 @@
       <th>Week</th>
       <th>Value</th>
       <th>Paid</th>
+      <th>Notes</th>
     </tr>
   </thead>
 
@@ -28,9 +29,10 @@
         <td><%= cn.week %></td>
         <td><%= cn.value %></td>
         <td><%= cn.paid %></td>
-        <td><%= link_to 'Show', cn %></td>
-        <td><%= link_to 'Edit', edit_credit_note_path(cn) %></td>
-        <td><%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= cn.notes %></td> 
+        <td><%= link_to 'Show', cn.file_url, class: "button tiny radius success" %></td>
+        <td><%= link_to 'Edit', edit_credit_note_path(cn), class: "button tiny radius success" %></td>
+        <td><%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
       </tr>
     <% end %>
   </tbody>

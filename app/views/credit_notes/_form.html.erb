@@ -1,21 +1,12 @@
-<%= simple_form_for(@credit_note) do |f| %>
-  <% if @credit_note.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@credit_note.errors.count, "error") %> prohibited this credit_note from being saved:</h2>
-
-      <ul>
-      <% @credit_note.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <%= f.input :number %>
-  <%= f.input :start %>
-  <%= f.input :stop %>
+<%= simple_form_for @credit_note, :html => {:multipart => true} do |f| %>
+  <%= f.input :number, :label => "Credit note number" %>
+  <%= f.input :start, :label => "Trip start location" %>
+  <%= f.input :stop, :label => "Trip finish location" %>
   <%= f.input :week %>
-  <%= f.input :value %>
+  <%= f.input :value, :label => "Value of trip" %>
   <%= f.input :notes %>
   <%= f.input :paid %>
+  <%= f.input :file, :label => "Select raport file" %>
+  <%= f.hidden_field :file_cache %>
   <%= f.button :submit %>
 <% end %>
