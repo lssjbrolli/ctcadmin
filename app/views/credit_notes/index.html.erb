@@ -1,20 +1,36 @@
-<h1>Listing credit_notes</h1>
+<% if notice %> 
+  <div data-alert class="alert-box.success">
+    <%= notice %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
+
+<h1>Listing Credit Notes</h1>
 
 <table>
   <thead>
     <tr>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Number</th>
+      <th>Start</th>
+      <th>Stop</th>
+      <th>Week</th>
+      <th>Value</th>
+      <th>Paid</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @credit_notes.each do |credit_note| %>
+    <% @credit_notes.each do |cn| %>
       <tr>
-        <td><%= link_to 'Show', credit_note %></td>
-        <td><%= link_to 'Edit', edit_credit_note_path(credit_note) %></td>
-        <td><%= link_to 'Destroy', credit_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= cn.number %></td>
+        <td><%= cn.start %></td>
+        <td><%= cn.stop %></td>
+        <td><%= cn.week %></td>
+        <td><%= cn.value %></td>
+        <td><%= cn.paid %></td>
+        <td><%= link_to 'Show', cn %></td>
+        <td><%= link_to 'Edit', edit_credit_note_path(cn) %></td>
+        <td><%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Credit note', new_credit_note_path %>
+<%= link_to 'New Credit note', new_credit_note_path, class: "button small round" %>

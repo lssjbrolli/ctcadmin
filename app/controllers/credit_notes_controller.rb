@@ -28,7 +28,7 @@ class CreditNotesController < ApplicationController
 
     respond_to do |format|
       if @credit_note.save
-        format.html { redirect_to @credit_note, notice: 'Credit note was successfully created.' }
+        format.html { redirect_to credit_notes_url, notice: 'Credit note was successfully created.' }
         format.json { render action: 'show', status: :created, location: @credit_note }
       else
         format.html { render action: 'new' }
@@ -69,6 +69,6 @@ class CreditNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_note_params
-      params[:credit_note]
+      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid)
     end
 end
