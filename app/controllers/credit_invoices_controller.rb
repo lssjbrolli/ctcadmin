@@ -15,10 +15,12 @@ class CreditInvoicesController < ApplicationController
   # GET /credit_invoices/new
   def new
     @credit_invoice = CreditInvoice.new
+    @companies = Company.all
   end
 
   # GET /credit_invoices/1/edit
   def edit
+    @companies = Company.all
   end
 
   # POST /credit_invoices
@@ -69,6 +71,6 @@ class CreditInvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_invoice_params
-      params[:credit_invoice]
+      params.require(:credit_invoice).permit(:number, :date, :seller_id, :buyer_id)
     end
 end

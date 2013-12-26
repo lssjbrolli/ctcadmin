@@ -11,11 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131222220045) do
+ActiveRecord::Schema.define(version: 20131226180355) do
+
+  create_table "companies", force: true do |t|
+    t.string   "name"
+    t.string   "registration"
+    t.string   "vat"
+    t.text     "address"
+    t.string   "acc_lei"
+    t.string   "acc_eur"
+    t.string   "bank"
+    t.string   "capital"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "credit_invoices", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "number"
+    t.date     "date"
+    t.decimal  "value",      precision: 8, scale: 2
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.string   "currency"
+    t.string   "tax_rate"
   end
 
   create_table "credit_notes", force: true do |t|
@@ -29,11 +50,13 @@ ActiveRecord::Schema.define(version: 20131222220045) do
     t.text     "notes"
     t.boolean  "paid"
     t.string   "file"
+    t.string   "currency"
   end
 
   create_table "debit_invoices", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "currency"
   end
 
 end

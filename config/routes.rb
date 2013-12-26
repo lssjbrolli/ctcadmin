@@ -1,4 +1,6 @@
 Ctcadmin::Application.routes.draw do
+  resources :companies
+
   resources :credit_invoices
 
   resources :debit_invoices

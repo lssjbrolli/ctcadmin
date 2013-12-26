@@ -5,6 +5,7 @@
   <%= f.input :week %>
   <%= f.input :value, :label => "Value of trip" %>
   <%= f.input :notes %>
+  <%= f.select :currency, CreditNote::CURRENCY %>
   <%= f.input :paid %>
   <%= f.input :file, :label => "Select raport file" %>
   <%= f.hidden_field :file_cache %>
