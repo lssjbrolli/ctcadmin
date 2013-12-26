@@ -15,8 +15,12 @@
       <th>Stop</th>
       <th>Week</th>
       <th>Value</th>
+      <th>Currency</th>
       <th>Paid</th>
       <th>Notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -28,6 +32,7 @@
         <td><%= cn.stop %></td>
         <td><%= cn.week %></td>
         <td><%= cn.value %></td>
+        <td><%= cn.currency %></td>
         <td><%= cn.paid %></td>
         <td><%= cn.notes %></td> 
         <td><%= link_to 'Show', cn.file_url, class: "button tiny radius success" %></td>
