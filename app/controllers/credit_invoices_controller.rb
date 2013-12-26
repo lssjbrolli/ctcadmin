@@ -10,12 +10,14 @@ class CreditInvoicesController < ApplicationController
   # GET /credit_invoices/1
   # GET /credit_invoices/1.json
   def show
+    @cn = CreditNote.all.where(credit_invoice_id: params[:id])
   end
 
   # GET /credit_invoices/new
   def new
     @credit_invoice = CreditInvoice.new
     @companies = Company.all
+    @cnotes = CreditNote.all.where(paid: false)
   end
 
   # GET /credit_invoices/1/edit
@@ -71,6 +73,6 @@ class CreditInvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_invoice_params
-      params.require(:credit_invoice).permit(:number, :date, :seller_id, :buyer_id)
+      params.require(:credit_invoice).permit(:number, :date, :seller_id, :buyer_id, :currency, :tax_rate, {:credit_note_ids => []} )
     end
 end

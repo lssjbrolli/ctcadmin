@@ -3,7 +3,7 @@
   <%= f.input :date %>
   <%= f.association :seller %>
   <%= f.association :buyer %>
-  <%= f.association :company, collection: CreditNotes.all.where(paid: false) %>
+  <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, :value_method => :id %>
   <%= f.select :currency, CreditInvoice::CURRENCY  %>
   <%= f.select :tax_rate, CreditInvoice::VAT_RATE  %>
   <%= f.button :submit %>

@@ -94,10 +94,16 @@
 			<th>Valoare TVA</th>
 		</tr>
 		<tr>
-			<td colspan="5">Produs:</td>
+			<td colspan="5">Transport conform contract:</td>
 		</tr>
-		<tr>
-			<td colspan="5"></td>
-		</tr>
+		<% @cn.each do |cn| %>
+			<tr>
+				<td>nr: <%= cn.number %></td>
+				<td class="middle">1</td>
+				<td class="aright"><%= sel_currency(cn.currency, cn.value) %></td>
+				<td class="aright"><%= sel_currency(cn.currency, cn.value) %></td>
+				<td class="aright"><%= sel_taxrate(@credit_invoice.tax_rate, cn.value) %></td>
+			</tr>
+		<% end %>
 	</tbody>	
 </table>
