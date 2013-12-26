@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226215351) do
+ActiveRecord::Schema.define(version: 20131226233458) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20131226215351) do
   create_table "credit_invoices", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "number"
+    t.string   "number"
     t.date     "date"
     t.decimal  "value",      precision: 8, scale: 2
     t.integer  "seller_id"
