@@ -82,7 +82,7 @@
 			<td colspan="4">Semnaturile</td>
 		</tr>
 		<tr>
-			<td colspan="4">Semnatura de primire...........   Total de plata <%= @credit_invoice.value %></td>
+			<td colspan="4">Semnatura de primire...........   Total de plata <%= sel_currency(@credit_invoice.currency, @credit_invoice.value) %></td>
 		</tr>
 	</tfoot>
 	<tbody>

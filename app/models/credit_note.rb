@@ -1,6 +1,6 @@
 class CreditNote < ActiveRecord::Base
 
-	before_save :set_paid
+	#before_update :set_paid
 
 	mount_uploader :file, FileUploader
 	

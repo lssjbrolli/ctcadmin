@@ -40,6 +40,8 @@ gem 'carrierwave'
 
 gem 'pry'
 
+gem 'pdfkit'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
