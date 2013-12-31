@@ -10,7 +10,15 @@ class CreditInvoicesController < ApplicationController
   # GET /credit_invoices/1
   # GET /credit_invoices/1.json
   def show
-    @cn = CreditNote.all.where(credit_invoice_id: params[:id])
+    @invoice = CreditInvoice.find(params[:id])
+    respond_to do |format|
+      format.pdf do 
+        pdf = CreditInvoicePdf.new(@invoice, view_context)
+        send_data pdf.render, filename: "#{@invoice.number}.pdf",
+                              type: "application/pdf",
+                              disposition: "inline"
+       end
+    end
   end
 
   # GET /credit_invoices/new
@@ -22,6 +30,7 @@ class CreditInvoicesController < ApplicationController
 
   # GET /credit_invoices/1/edit
   def edit
+    @cnotes = CreditInvoice.find(params[:id]).credit_notes
     @companies = Company.all
   end
 
@@ -32,7 +41,7 @@ class CreditInvoicesController < ApplicationController
 
     respond_to do |format|
       if @credit_invoice.save
-        format.html { redirect_to @credit_invoice, notice: 'Credit invoice was successfully created.' }
+        format.html { redirect_to credit_invoices_path, notice: 'Credit invoice was successfully created.' }
         format.json { render action: 'show', status: :created, location: @credit_invoice }
       else
         format.html { render action: 'new' }
@@ -46,7 +55,7 @@ class CreditInvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @credit_invoice.update(credit_invoice_params)
-        format.html { redirect_to @credit_invoice, notice: 'Credit invoice was successfully updated.' }
+        format.html { redirect_to credit_invoices_path, notice: 'Credit invoice was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -73,6 +82,6 @@ class CreditInvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_invoice_params
-      params.require(:credit_invoice).permit(:number, :date, :seller_id, :buyer_id, :currency, :tax_rate, {:credit_note_ids => []} )
+      params.require(:credit_invoice).permit(:number, :date, :seller_id, :buyer_id, :currency, :tax_rate, :delegat, :ci, :eliberat, :transport, {:credit_note_ids => []} )
     end
 end

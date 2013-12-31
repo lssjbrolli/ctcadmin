@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226233458) do
+ActiveRecord::Schema.define(version: 20131231233055) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -32,11 +32,17 @@ ActiveRecord::Schema.define(version: 20131226233458) do
     t.datetime "updated_at"
     t.string   "number"
     t.date     "date"
-    t.decimal  "value",      precision: 8, scale: 2
+    t.decimal  "total_value", precision: 8, scale: 2
     t.integer  "seller_id"
     t.integer  "buyer_id"
-    t.string   "currency"
     t.string   "tax_rate"
+    t.decimal  "net_value",   precision: 8, scale: 2
+    t.decimal  "tax_value",   precision: 8, scale: 2
+    t.string   "currency"
+    t.string   "delegat"
+    t.string   "ci"
+    t.string   "eliberat"
+    t.string   "transport"
   end
 
   create_table "credit_notes", force: true do |t|
@@ -58,6 +64,20 @@ ActiveRecord::Schema.define(version: 20131226233458) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "currency"
+  end
+
+  create_table "events", force: true do |t|
+    t.date     "date"
+    t.string   "km"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "trucks", force: true do |t|
+    t.string   "registration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

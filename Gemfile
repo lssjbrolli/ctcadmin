@@ -40,13 +40,13 @@ gem 'carrierwave'
 
 gem 'pry'
 
-gem 'pdfkit'
+gem 'prawn'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

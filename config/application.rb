@@ -30,5 +30,6 @@ module Ctcadmin
         require "rails/console/helpers"
         TOPLEVEL_BINDING.eval('self').extend ::Rails::ConsoleMethods
     end
+
   end
 end

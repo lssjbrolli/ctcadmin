@@ -15,22 +15,26 @@ class CreditInvoice < ActiveRecord::Base
 	protected
 
 	def set_number
-		self.number = CreditInvoice.last.number.to_i + 1
+		if self.number.empty?
+			if CreditInvoice.last.nil?
+				self.number = 1
+			else				
+				self.number = CreditInvoice.last.number.to_i + 1
+			end
+		end
 	end
 
 	def set_total
-		self.value = 0
-		if self.tax_rate == "24%"
-			self.credit_note_ids.each do |cn|
-				self.value += CreditNote.find(cn).value
-			end
-			self.value = self.value * 1.24
-		else
-			self.credit_note_ids.each do |cn|
-				self.value += CreditNote.find(cn).value
-			end
+		self.net_value = 0
+		self.credit_notes.map do |cn|
+			self.net_value += cn.value
 		end
-
+		if self.tax_rate == "24%"
+			self.tax_value = self.net_value * 0.24
+			self.total_value = self.net_value + self.tax_value
+		else
+			self.total_value = self.net_value
+		end
 	end
 
 	def set_paid
