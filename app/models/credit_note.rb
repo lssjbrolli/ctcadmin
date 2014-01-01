@@ -1,14 +1,10 @@
 class CreditNote < ActiveRecord::Base
 
-	#before_update :set_paid
+	belongs_to :truck
+	belongs_to :credit_invoice
 
 	mount_uploader :file, FileUploader
 	
 	CURRENCY = ["EUR", "RON"]
 
-	protected
-
-	def set_paid
-		self.paid = true	
-	end
 end

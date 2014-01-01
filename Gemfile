@@ -48,6 +48,8 @@ gem 'prawn'
 # Use unicorn as the app server
 gem 'unicorn'
 
+gem 'pg'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
