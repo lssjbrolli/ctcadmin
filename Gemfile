@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "2.0.0"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
@@ -49,6 +51,8 @@ gem 'prawn'
 gem 'unicorn'
 
 gem 'pg'
+
+gem 'rails_12factor', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

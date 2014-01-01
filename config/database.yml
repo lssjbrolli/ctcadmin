@@ -19,5 +19,3 @@ production:
   adapter: postgresql
   encoding: unicode
   database: ctcadmin
-  username: sega
-  host: localhost
