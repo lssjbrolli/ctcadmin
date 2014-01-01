@@ -31,5 +31,6 @@ module Ctcadmin
         TOPLEVEL_BINDING.eval('self').extend ::Rails::ConsoleMethods
     end
 
+    I18n.config.enforce_available_locales = false
   end
 end

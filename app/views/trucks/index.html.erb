@@ -14,9 +14,13 @@
     <% @trucks.each do |truck| %>
       <tr>
         <td><%= truck.registration %></td>
-        <td><%= link_to 'Show', truck %></td>
-        <td><%= link_to 'Edit', edit_truck_path(truck) %></td>
-        <td><%= link_to 'Destroy', truck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= minor_button_group do %>
+            <%= small_pill_button_link_to 'Show', truck %>
+            <%= small_edit_pill_button_link_to 'Edit', edit_truck_path(truck) %>
+            <%= small_remove_danger_pill_button_link_to 'Destroy', truck, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -24,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Truck', new_truck_path %>
+<%= add_pill_small_button_link_to 'New Truck', new_truck_path %>

@@ -34,7 +34,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'zurb-foundation'
+#gem 'zurb-foundation'
+
+gem "bootstrap-sass"
 
 gem 'simple_form'
 
@@ -55,6 +57,8 @@ gem "puma"
 gem 'pg'
 
 gem 'rails_12factor', group: :production
+
+#gem 'css3buttons'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

@@ -1,9 +1,9 @@
 <%= simple_form_for @credit_note, :html => {:multipart => true} do |f| %>
   <%= f.input :number, :label => "Credit note number" %>
+  <%= f.input :value, :label => "Value of trip" %>
   <%= f.input :start, :label => "Trip start location" %>
   <%= f.input :stop, :label => "Trip finish location" %>
   <%= f.input :week %>
-  <%= f.input :value, :label => "Value of trip" %>
   <%= f.input :notes %>
   <%= f.select :currency, CreditNote::CURRENCY %>
   <%= f.association :truck,:label_method => :registration %>
