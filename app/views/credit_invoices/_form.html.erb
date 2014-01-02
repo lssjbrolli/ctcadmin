@@ -3,12 +3,13 @@
   <%= f.input :date %>
   <%= f.association :seller %>
   <%= f.association :buyer %>
-  <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, :value_method => :id %>
-  <%= f.select :currency, CreditInvoice::CURRENCY  %>
-  <%= f.select :tax_rate, CreditInvoice::VAT_RATE  %>
+  <%= f.association :credit_notes, as: :check_boxes, :collection => CreditNote.where(paid: false), :label_method => :number, :value_method => :id, :input_html => { :multiple => true } %>
+  <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
+  <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
   <%= f.input :delegat %>
   <%= f.input :ci %>
   <%= f.input :eliberat %>
   <%= f.input :transport %>
-  <%= f.button :submit %>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"%>
 <% end %>

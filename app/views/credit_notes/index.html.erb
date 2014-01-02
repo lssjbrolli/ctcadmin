@@ -1,48 +1,51 @@
 <% if notice %> 
-  <div data-alert class="alert-box.success">
     <%= notice %>
-    <a href="#" class="close">&times;</a>
-  </div>
 <% end %>
 
 <h1>Listing Credit Notes</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Start</th>
-      <th>Stop</th>
-      <th>Week</th>
-      <th>Value</th>
-      <th>Currency</th>
-      <th>Paid</th>
-      <th>Notes</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @credit_notes.each do |cn| %>
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
       <tr>
-        <td><%= cn.number %></td>
-        <td><%= cn.start %></td>
-        <td><%= cn.stop %></td>
-        <td><%= cn.week %></td>
-        <td><%= "%0.2f" % cn.value %></td>
-        <td><%= cn.currency %></td>
-        <td><%= cn.paid %></td>
-        <td><%= cn.notes %></td> 
-        <td><%= link_to 'Show', cn.file_url, class: "button tiny radius success" %></td>
-        <td><%= link_to 'Edit', edit_credit_note_path(cn), class: "button tiny radius success" %></td>
-        <td><%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
+        <th>Number</th>
+        <th>Start</th>
+        <th>Stop</th>
+        <th>Week</th>
+        <th style="text-align: right">Value</th>
+        <th>Currency</th>
+        <th>Paid</th>
+        <th>Notes</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @cnotes.each do |cn| %>
+        <tr>
+          <td><%= cn.number %></td>
+          <td><%= cn.start %></td>
+          <td><%= cn.stop %></td>
+          <td><%= cn.week %></td>
+          <td style="text-align: right"><%= "%0.2f" % cn.value %></td>
+          <td><%= cn.currency %></td>
+          <td><%= cn.paid %></td>
+          <td><%= cn.notes %></td> 
+          <td class="btn-group btn-group-xs">
+            <%= link_to 'Show', cn.file_url, class: "btn btn-info" %>
+            <%= link_to 'Edit', edit_credit_note_path(cn), class: "btn btn-info" %>
+            <%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Credit note', new_credit_note_path, class: "button small round" %>
+  <br>
+
+  <%= will_paginate @cnotes %>
+
+  <br>
+
+  <%= link_to 'New Credit note', new_credit_note_path, class: "btn btn-primary" %>
+</div>

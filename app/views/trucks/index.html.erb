@@ -1,31 +1,30 @@
 <h1>Listing trucks</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Registration</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @trucks.each do |truck| %>
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
       <tr>
-        <td><%= truck.registration %></td>
-        <td>
-          <%= minor_button_group do %>
-            <%= small_pill_button_link_to 'Show', truck %>
-            <%= small_edit_pill_button_link_to 'Edit', edit_truck_path(truck) %>
-            <%= small_remove_danger_pill_button_link_to 'Destroy', truck, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-        </td>
+        <th>Registration</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @trucks.each do |truck| %>
+        <tr>
+          <td><%= truck.registration %></td>
+          <td class="btn-group btn-group-xs">
+            <%= link_to 'Show', truck, class: "btn btn-info" %>
+            <%= link_to 'Edit', edit_truck_path(truck), class: "btn btn-info" %>
+            <%= link_to 'Destroy', truck, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= add_pill_small_button_link_to 'New Truck', new_truck_path %>
+  <br>
+
+  <%= link_to 'New Truck', new_truck_path, class: "btn btn-primary" %>
+</div>
+
