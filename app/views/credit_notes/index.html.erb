@@ -1,12 +1,9 @@
-<% if notice %> 
-    <%= notice %>
-<% end %>
-
-<h1>Listing Credit Notes</h1>
-<p>access: <%= ENV['AWS_ACCESS_KEY_ID'] %></p>
-<p>secret: <%= ENV['AWS_SECRET_ACCESS_KEY'] %></p>
-
 <div class="container">
+  <% if notice %> 
+    <%= notice %>
+  <% end %>
+
+  <h1>Listing Credit Notes</h1>
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -17,6 +14,7 @@
         <th style="text-align: right">Value</th>
         <th>Currency</th>
         <th>Paid</th>
+        <th>Truck</th>
         <th>Notes</th>
         <th></th>
       </tr>
@@ -32,6 +30,7 @@
           <td style="text-align: right"><%= "%0.2f" % cn.value %></td>
           <td><%= cn.currency %></td>
           <td><%= cn.paid %></td>
+          <td><%= truck(cn) %></td>
           <td><%= cn.notes %></td> 
           <td class="btn-group btn-group-xs">
             <%= link_to 'Show', cn.file_url, class: "btn btn-info" %>
@@ -43,11 +42,7 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= will_paginate @cnotes %>
-
-  <br>
+  <%= will_paginate @cnotes, renderer: BootstrapPagination::Rails %>
 
   <%= link_to 'New Credit note', new_credit_note_path, class: "btn btn-primary" %>
 </div>
