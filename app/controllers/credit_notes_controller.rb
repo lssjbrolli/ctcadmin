@@ -70,6 +70,6 @@ class CreditNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_note_params
-      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :file_cache, :file)
+      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :file_cache, :file)
     end
 end

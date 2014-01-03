@@ -36,6 +36,7 @@ gem "bootstrap-sass", "~> 2.3.2.2"
 gem 'simple_form'
 
 gem 'carrierwave'
+gem 'carrierwave-aws'
 
 gem 'pry'
 
@@ -51,7 +52,10 @@ gem "puma"
 
 gem 'pg'
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+end
+
 
 gem 'will_paginate-bootstrap'
 

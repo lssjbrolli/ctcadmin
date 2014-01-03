@@ -12,6 +12,11 @@ class TrucksController < ApplicationController
   def show
   end
 
+  def cnotes
+    @cnotes = Truck.find(params[:id]).credit_notes
+    @cn = @cnotes.paginate(:page => params[:page], :per_page => 10)
+  end
+
   # GET /trucks/new
   def new
     @truck = Truck.new
