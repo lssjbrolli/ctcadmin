@@ -5,7 +5,7 @@ class CreditNotesController < ApplicationController
   # GET /credit_notes.json
   def index
     @credit_notes = CreditNote.all
-    @cnotes = @credit_notes.paginate(:page => params[:page], :per_page => 10)
+    @cnotes = @credit_notes.paginate(:page => params[:page], :per_page => 10).order('number ASC')
   end
 
   # GET /credit_notes/1
@@ -26,7 +26,6 @@ class CreditNotesController < ApplicationController
   # POST /credit_notes.json
   def create
     @credit_note = CreditNote.new(credit_note_params)
-
     respond_to do |format|
       if @credit_note.save
         format.html { redirect_to credit_notes_url, notice: 'Credit note was successfully created.' }
@@ -43,7 +42,7 @@ class CreditNotesController < ApplicationController
   def update
     respond_to do |format|
       if @credit_note.update(credit_note_params)
-        format.html { redirect_to credit_notes_url, notice: 'Credit note was successfully updated.' }
+        format.html { redirect_to session.delete(:sega), notice: 'Credit note was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -70,6 +69,6 @@ class CreditNotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def credit_note_params
-      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :file_cache, :file)
+      params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :order_nr, :file_cache, :file)
     end
 end

@@ -8,9 +8,10 @@
     <%= f.input :notes %>
     <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline' %>
     <%= f.association :truck,:label_method => :registration %>
+    <%= f.input :order_nr %>
     <%= f.input :paid %>
     <%= f.input :file, :label => "Select raport file" %>
     <%= f.hidden_field :file_cache %>
     <%= f.button :submit, class: 'btn-primary' %>
-    <%= link_to "Cancel", credit_notes_path, class: "btn btn-danger" %>
+    <%= link_to "Cancel", request.referer, class: "btn btn-danger" %>
   <% end %>

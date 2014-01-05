@@ -1,5 +1,7 @@
 class CreditNote < ActiveRecord::Base
 
+	before_destroy :remove_file
+
 	belongs_to :truck
 	belongs_to :credit_invoice
 
@@ -9,5 +11,9 @@ class CreditNote < ActiveRecord::Base
 	mount_uploader :file, FileUploader
 	
 	CURRENCY = ["EUR", "RON"]
+
+	def remove_file
+		self.remove_file!
+	end
 
 end
