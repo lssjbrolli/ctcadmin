@@ -1,36 +1,39 @@
-<% if notice %> 
-  <div data-alert class="alert-box.success">
-    <%= notice %>
-    <a href="#" class="close">&times;</a>
-  </div>
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th>Date</th>
-      <th>Value</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @credit_invoices.each do |ci| %>
+  <% if notice %> 
+    <div data-alert class="alert-box.success">
+      <%= notice %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+<div class="container">
+  <table class="table table-hover table-condensed">
+    <thead>
       <tr>
-        <td><%= ci.number %></td>
-        <td><%= ci.date %></td>
-        <td><%= "%0.2f" % ci.total_value %></td>
-        <td><%= link_to 'Show', credit_invoice_path(ci, format: "pdf"), class: "button tiny radius success" %></td>
-        <td><%= link_to 'Edit', edit_credit_invoice_path(ci), class: "button tiny radius success" %></td>
-        <td><%= link_to 'Destroy', ci, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
+        <th>Number</th>
+        <th>Date</th>
+        <th>Value</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @credit_invoices.each do |ci| %>
+        <tr>
+          <td><%= ci.number %></td>
+          <td><%= ci.date %></td>
+          <td><%= "%0.2f" % ci.total_value %></td>
+          <td><%= link_to 'Show', credit_invoice_path(ci, format: "pdf"), class: "button tiny radius success" %></td>
+          <td><%= link_to 'Edit', edit_credit_invoice_path(ci), class: "button tiny radius success" %></td>
+          <td><%= link_to 'Destroy', ci, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Credit invoice', new_credit_invoice_path, class: "button small round" %>
+  <br>
+
+  <%= will_paginate @cinvoices, renderer: BootstrapPagination::Rails %>
+
+  <%= link_to 'New Credit invoice', new_credit_invoice_path, class: "btn btn-primary" %>
+</div>

@@ -31,7 +31,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem "bootstrap-sass", "~> 2.3.2.2"
+gem "bootstrap-sass", '~> 2.3.2'
 
 gem 'simple_form'
 
@@ -45,9 +45,6 @@ gem 'prawn'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
-# Use unicorn as the app server
-#gem 'unicorn'
-
 gem "puma"
 
 gem 'pg'
@@ -57,7 +54,7 @@ group :production do
 end
 
 
-gem 'will_paginate-bootstrap'
+gem 'will_paginate-bootstrap', '~> 0.2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
