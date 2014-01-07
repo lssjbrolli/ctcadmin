@@ -21,7 +21,7 @@
     </thead>
 
     <tbody>
-      <% @cnotes.each do |cn| %>
+      <% @cn.each do |cn| %>
         <tr>
           <td><%= cn.order_nr %></td>
           <td><%= cn.number %></td>
@@ -44,5 +44,5 @@
 
   <br>
 
-  <%= will_paginate @cn %>
+  <%= will_paginate @cn, renderer: BootstrapPagination::Rails %>
 </div>
