@@ -1,4 +1,4 @@
-class CreditInvoice < ActiveRecord::Base
+class DebitInvoice < ActiveRecord::Base
 
 	mount_uploader :file, FileUploader
 

@@ -1,17 +1,11 @@
-<%= form_for(@debit_invoice) do |f| %>
-  <% if @debit_invoice.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@debit_invoice.errors.count, "error") %> prohibited this debit_invoice from being saved:</h2>
-
-      <ul>
-      <% @debit_invoice.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for @credit_invoice, :html => { class: 'form-horizontal' } do |f| %>
+  <%= f.input :number %>
+  <%= f.input :date %>
+  <%= f.input :net_value %>
+  <%= f.input :tax_value %>
+  <%= f.input :total_value %>
+  <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
+  <%= f.input :comment %>
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to "Cancel", debit_invoices_path, class: "btn btn-danger"%>
 <% end %>

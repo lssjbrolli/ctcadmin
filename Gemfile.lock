@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/bernat/best_in_place.git
+  revision: df178520bf9ba405baee9528d5dbb630d6ff760c
+  specs:
+    best_in_place (2.1.0)
+      jquery-rails
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -166,6 +174,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  best_in_place!
   better_errors
   binding_of_caller
   bootstrap-sass (~> 2.3.2)
