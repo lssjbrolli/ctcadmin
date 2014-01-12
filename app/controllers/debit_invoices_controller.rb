@@ -44,7 +44,7 @@ class DebitInvoicesController < ApplicationController
     respond_to do |format|
       if @debit_invoice.update(debit_invoice_params)
         format.html { redirect_to @debit_invoice, notice: 'Debit invoice was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@debit_invoice) }
       else
         format.html { render action: 'edit' }
         format.json { render json: @debit_invoice.errors, status: :unprocessable_entity }

@@ -57,7 +57,7 @@ class CreditInvoicesController < ApplicationController
     respond_to do |format|
       if @credit_invoice.update(credit_invoice_params)
         format.html { redirect_to credit_invoices_path, notice: 'Credit invoice was successfully updated.' }
-        format.json { head :no_content }
+        format.json { respond_with_bip(@debit_invoice) }
       else
         format.html { render action: 'edit' }
         format.json { render json: @credit_invoice.errors, status: :unprocessable_entity }
