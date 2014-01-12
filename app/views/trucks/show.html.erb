@@ -1,12 +1,14 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Registration:</strong>
-  <%= @truck.registration %>
-</p>
+	<p>
+	  <strong>Registration:</strong>
+	  <%= @truck.registration %>
+	</p>
 
-<p>
-	<%= link_to "Credit Notes", cnotes_url(@truck) %>
-</p>
-<%= link_to 'Edit', edit_truck_path(@truck) %> |
-<%= link_to 'Back', trucks_path %>
+	<p>
+		<%= link_to "Credit Notes", cnotes_url(@truck), class: "btn btn-info" %>
+	</p>
+	<%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-primary" %> |
+	<%= link_to 'Back', trucks_path, class: "btn btn-primary" %>
+</div>

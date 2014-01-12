@@ -1,6 +1,8 @@
-<h1>Editing truck</h1>
+<div class="container">
+	<h1>Editing truck</h1>
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @truck %> |
-<%= link_to 'Back', trucks_path %>
+	<%= link_to 'Show', @truck, class: "btn btn-primary" %> |
+	<%= link_to 'Back', trucks_path, class: "btn btn-primary" %>
+</div>
