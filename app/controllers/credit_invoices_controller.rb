@@ -5,7 +5,7 @@ class CreditInvoicesController < ApplicationController
   # GET /credit_invoices.json
   def index
     @credit_invoices = CreditInvoice.all
-    @cinvoices = @credit_invoices.paginate(:page => params[:page], :per_page => 10)
+    @cinvoices = @credit_invoices.paginate(:page => params[:page], :per_page => 10).order('number ASC')
   end
 
   # GET /credit_invoices/1
