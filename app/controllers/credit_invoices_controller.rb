@@ -26,12 +26,12 @@ class CreditInvoicesController < ApplicationController
   def new
     @credit_invoice = CreditInvoice.new
     @companies = Company.all
-    @cnotes = CreditNote.all.where(paid: false)
+    @cnotes = CreditNote.all.where(paid: false).order('number ASC')
   end
 
   # GET /credit_invoices/1/edit
   def edit
-    @cnotes = CreditInvoice.find(params[:id]).credit_notes
+    @cnotes = CreditInvoice.find(params[:id]).credit_notes + CreditNote.all.where(paid: false).order('number ASC')
     @companies = Company.all
   end
 
