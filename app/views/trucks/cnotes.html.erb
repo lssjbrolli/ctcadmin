@@ -23,7 +23,7 @@
     <tbody>
       <% @cn.each do |cn| %>
         <tr>
-          <td><%= best_in_place cn, :order_nr %></td>
+          <td><%= best_in_place cn, :order_nr, :nil => "Click me to add content!" %></td>
           <td><%= cn.number %></td>
           <td><%= cn.start %></td>
           <td><%= cn.stop %></td>
