@@ -1,31 +1,40 @@
-<h1>Listing events</h1>
+<div class="container">
+  <% if notice %> 
+    <div class="alert alert-success">
+      <%= notice %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Km</th>
-      <th>Comment</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+  <h1>Listing events</h1>
 
-  <tbody>
-    <% @events.each do |event| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= event.date %></td>
-        <td><%= event.km %></td>
-        <td><%= event.comment %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Date</th>
+        <th>Km</th>
+        <th>Comment</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= event.date %></td>
+          <td><%= event.km %></td>
+          <td><%= event.comment %></td>
+          <td><%= link_to 'Show', event %></td>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Event', new_event_path %>
+  <br>
+
+  <%= link_to 'New Event', new_event_path %>
+</div>
