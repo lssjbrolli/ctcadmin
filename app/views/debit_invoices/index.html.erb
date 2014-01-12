@@ -20,14 +20,16 @@
     </thead>
 
     <tbody>
-      <% @credit_invoices.each do |ci| %>
+      <% @dinvoices.each do |di| %>
         <tr>
-          <td><%= ci.number %></td>
-          <td><%= ci.date %></td>
-          <td><%= "%0.2f" % ci.total_value %></td>
-          <td><%= link_to 'Show', credit_invoice_path(ci, format: "pdf"), class: "button tiny radius success" %></td>
-          <td><%= link_to 'Edit', edit_credit_invoice_path(ci), class: "button tiny radius success" %></td>
-          <td><%= link_to 'Destroy', ci, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
+          <td><%= di.number %></td>
+          <td><%= di.date %></td>
+          <td><%= "%0.2f" % di.total_value %></td>
+          <td><%= di.currency %></td>
+          <td><%= di.comment %></td>
+          <td><%= link_to 'Show', debit_invoice_path(di, format: "pdf"), class: "button tiny radius success" %></td>
+          <td><%= link_to 'Edit', edit_debit_invoice_path(di), class: "button tiny radius success" %></td>
+          <td><%= link_to 'Destroy', di, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -35,7 +37,7 @@
 
   <br>
 
-  <%= will_paginate @cinvoices, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @dinvoices, renderer: BootstrapPagination::Rails %>
 
-  <%= link_to 'New Credit invoice', new_credit_invoice_path, class: "btn btn-primary" %>
+  <%= link_to 'New Debit invoice', new_debit_invoice_path, class: "btn btn-primary" %>
 </div>

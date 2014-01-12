@@ -60,7 +60,7 @@ end
 
 gem 'will_paginate-bootstrap', '~> 0.2.5'
 
-gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'best_in_place', github: 'aaronchi/best_in_place'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development

@@ -5,6 +5,7 @@ class DebitInvoicesController < ApplicationController
   # GET /debit_invoices.json
   def index
     @debit_invoices = DebitInvoice.all
+    @dinvoices = @debit_invoices.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /debit_invoices/1
