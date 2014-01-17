@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	before_save :username_downcase, :user_create
+	before_save :username_downcase
 	before_create :create_remember_token
 
 	has_many :credit_invoices
@@ -29,6 +29,11 @@ class User < ActiveRecord::Base
 
 		def create_remember_token
 			self.remember_token = User.encrypt(User.new_remember_token)
+		end
+
+		def proper_name
+			self.first_name = first_name.capitalize
+			self.last_name = last_name.capitalize
 		end
 
 end
