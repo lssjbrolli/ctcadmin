@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116105556) do
+ActiveRecord::Schema.define(version: 20140117111202) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20140116105556) do
     t.string   "ci"
     t.string   "eliberat"
     t.string   "transport"
+    t.integer  "user_id"
   end
 
   add_index "credit_invoices", ["number"], name: "index_credit_invoices_on_number", unique: true, using: :btree

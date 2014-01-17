@@ -95,7 +95,7 @@ class CreditInvoicePdf < Prawn::Document
 
 	def table5
 		table = make_table [
-            [{content: "Intocmit de:", colspan: 3},"Total Net: #{sel_currency(@ci.currency, @ci.net_value)}","Total Tva: #{sel_currency(@ci.currency, @ci.tax_value)}"]
+            [{content: "Intocmit de: #{@ci.user.first_name} #{@ci.user.last_name}, CNP: #{@ci.user.cnp} ", colspan: 3},"Total Net: #{sel_currency(@ci.currency, @ci.net_value)}","Total Tva: #{sel_currency(@ci.currency, @ci.tax_value)}"]
         ], width: 540, cell_style: {size: 12, font: "Times-Roman", character_spacing: 1}, column_widths: [100, 100, 65, 140, 135]
         table.draw
 	end

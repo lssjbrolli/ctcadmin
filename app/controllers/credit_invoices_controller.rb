@@ -27,6 +27,7 @@ class CreditInvoicesController < ApplicationController
   def new
     @credit_invoice = CreditInvoice.new
     @companies = Company.all
+    @cnotes = CreditNote.all.where(paid: false).order('number ASC')
   end
 
   # GET /credit_invoices/1/edit
@@ -39,6 +40,7 @@ class CreditInvoicesController < ApplicationController
   # POST /credit_invoices.json
   def create
     @credit_invoice = CreditInvoice.new(credit_invoice_params)
+    @credit_invoice.update_attributes(user_id: @current_user.id)
 
     respond_to do |format|
       if @credit_invoice.save

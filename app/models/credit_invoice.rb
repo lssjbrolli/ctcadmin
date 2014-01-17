@@ -4,6 +4,7 @@ class CreditInvoice < ActiveRecord::Base
 
 	belongs_to :buyer, :foreign_key => 'buyer_id', :class_name => 'Company'
 	belongs_to :seller, :foreign_key => 'seller_id', :class_name => 'Company'
+	belongs_to :user
 
 	has_many :credit_notes
 
@@ -21,7 +22,7 @@ class CreditInvoice < ActiveRecord::Base
 			if CreditInvoice.last.nil?
 				self.number = 1
 			else				
-				self.number = CreditInvoice.last.number.to_i + 1
+				self.number = (CreditInvoice.last.number.to_i + 1).to_s
 			end
 		end
 	end

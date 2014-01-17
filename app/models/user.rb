@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
-	before_save :username_downcase
+	before_save :username_downcase, :user_create
 	before_create :create_remember_token
+
+	has_many :credit_invoices
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true

@@ -3,7 +3,7 @@
   <%= f.input :date %>
   <%= f.association :seller %>
   <%= f.association :buyer %>
-  <%= f.association :credit_notes, as: :check_boxes, :collection => CreditNote.all.where(paid: false).order('number ASC'), :label_method => :number, value_method: :id %>
+  <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
   <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
   <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
   <%= f.input :delegat %>
