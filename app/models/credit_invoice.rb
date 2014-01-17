@@ -9,9 +9,7 @@ class CreditInvoice < ActiveRecord::Base
 
 	accepts_nested_attributes_for :credit_notes
 
-	validates :buyer, presence: true
-	validates :seller, presence: true
-	validates :credit_note_ids, presence: true
+	validates :buyer, :seller, :credit_note_ids, presence: true
 
 	CURRENCY = ["EUR", "RON"]
 	VAT_RATE = ["24%", "taxare inversa"]

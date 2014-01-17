@@ -1,5 +1,6 @@
 class CreditInvoicesController < ApplicationController
   before_action :set_credit_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
 
   # GET /credit_invoices
   # GET /credit_invoices.json
@@ -26,7 +27,6 @@ class CreditInvoicesController < ApplicationController
   def new
     @credit_invoice = CreditInvoice.new
     @companies = Company.all
-    @cnotes = CreditNote.all.where(paid: false).order('number ASC')
   end
 
   # GET /credit_invoices/1/edit

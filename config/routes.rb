@@ -1,4 +1,5 @@
 Ctcadmin::Application.routes.draw do
+
   resources :events
 
   resources :trucks
@@ -11,8 +12,16 @@ Ctcadmin::Application.routes.draw do
 
   resources :credit_notes
 
+  resources :users
+
+  resources :sessions, only: [:new, :create, :destroy]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
   # You can have the root of your site routed with "root"
   root 'trucks#index'

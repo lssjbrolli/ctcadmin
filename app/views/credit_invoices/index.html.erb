@@ -25,9 +25,11 @@
           <td><%= ci.number %></td>
           <td><%= ci.date %></td>
           <td><%= "%0.2f" % ci.total_value %></td>
-          <td><%= link_to 'Show', credit_invoice_path(ci, format: "pdf"), class: "button tiny radius success" %></td>
-          <td><%= link_to 'Edit', edit_credit_invoice_path(ci), class: "button tiny radius success" %></td>
-          <td><%= link_to 'Destroy', ci, method: :delete, data: { confirm: 'Are you sure?', class: "button tiny radius alert" } %></td>
+          <td class="btn-group btn-group-xs">
+            <%= link_to 'Show', credit_invoice_path(ci, format: "pdf"), class: "btn btn-info" %>
+            <%= link_to 'Edit', edit_credit_invoice_path(ci), class: "btn btn-info" %>
+            <%= link_to 'Destroy', ci, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          </td>
         </tr>
       <% end %>
     </tbody>

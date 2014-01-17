@@ -1,5 +1,6 @@
 class TrucksController < ApplicationController
   before_action :set_truck, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
 
   # GET /trucks
   # GET /trucks.json
@@ -77,4 +78,5 @@ class TrucksController < ApplicationController
     def truck_params
       params.require(:truck).permit(:registration)
     end
+
 end
