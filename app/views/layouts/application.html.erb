@@ -26,16 +26,21 @@
 
 <body>
   <div class="tabbable tabs-left">
+    <% if signed_in?%>
     <ul class="nav nav-tabs" id="myTab">
       <li class="<%= 'active' if current_page?(trucks_path) %>"><%= link_to "Trucks", trucks_path %></li>
       <li class="<%= 'active' if current_page?(credit_notes_path) %>"><%= link_to "Credit notes", credit_notes_path %></li>
       <li class="<%= 'active' if current_page?(credit_invoices_path) %>"><%= link_to "Credit invoices", credit_invoices_path %></li>
       <li class="<%= 'active' if current_page?(debit_invoices_path) %>"><%= link_to "Debit invoices", debit_invoices_path %></li>
       <li class="<%= 'active' if current_page?(companies_path) %>"><%= link_to "Companies", companies_path %></li>
+      <% if @current_user.admin? %>
+        <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "Users", users_path %></li>
+      <% end %>
       <form class="form-search">
         <input type="text" class="input-small search-query" placeholder="Search">
       </form>
     </ul>
+    <% end %>
     <div class="tab-content">
       <div class="tab-pane active" id="tab">
         <%= yield %>

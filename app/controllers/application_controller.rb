@@ -8,4 +8,12 @@ class ApplicationController < ActionController::Base
   def signed_in_user
     redirect_to signin_url, notice: "Please sign in." unless signed_in?
   end
+
+  def user_activated
+  	redirect_to signin_url, notice: "Please contact the administrator to activate your account." unless activated?
+  end
+
+  def admin
+  	redirect_to root_url, notice: "Only the administrator can reach that page." unless admin?
+  end
 end

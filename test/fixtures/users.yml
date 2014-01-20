@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: MyString
-  last_name: MyString
-  cnp: MyString
-  username: MyString
+  first_name: MyString1
+  last_name: MyString1
+  cnp: MyString1
+  username: MyString1
 
 two:
-  first_name: MyString
-  last_name: MyString
-  cnp: MyString
-  username: MyString
+  first_name: MyString1
+  last_name: MyString1
+  cnp: MyString1
+  username: MyString1
