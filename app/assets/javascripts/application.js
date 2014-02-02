@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require best_in_place.purr
 //= require best_in_place
-//= bootstrap-tab.js
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
 

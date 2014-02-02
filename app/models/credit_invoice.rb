@@ -22,7 +22,7 @@ class CreditInvoice < ActiveRecord::Base
 			if CreditInvoice.last.nil?
 				self.number = 1
 			else				
-				self.number = (CreditInvoice.last.number.to_i + 1).to_s
+				self.number = CreditInvoice.last.number.next
 			end
 		end
 	end

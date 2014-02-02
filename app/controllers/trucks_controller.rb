@@ -1,6 +1,7 @@
 class TrucksController < ApplicationController
   before_action :set_truck, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
+  #before_action :user_activated
 
   # GET /trucks
   # GET /trucks.json
@@ -35,7 +36,7 @@ class TrucksController < ApplicationController
 
     respond_to do |format|
       if @truck.save
-        format.html { redirect_to @truck, notice: 'Truck was successfully created.' }
+        format.html { redirect_to @truck, flash.now[:notice] = 'Truck was successfully created.' }
         format.json { render action: 'show', status: :created, location: @truck }
       else
         format.html { render action: 'new' }
@@ -49,7 +50,7 @@ class TrucksController < ApplicationController
   def update
     respond_to do |format|
       if @truck.update(truck_params)
-        format.html { redirect_to @truck, notice: 'Truck was successfully updated.' }
+        format.html { redirect_to @truck, flash.now[:notice] = 'Truck was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

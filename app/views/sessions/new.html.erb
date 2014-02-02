@@ -1,10 +1,11 @@
 <div class="container">
-  <% if notice %> 
-	  <div class="alert alert-success">
-	    <%= notice %>
-	    <a href="#" class="close">&times;</a>
-	  </div>
-  <% end %>
+
+	<% if flash %>
+	  <% flash.each do |k,v| %>
+	    <%= alert(k,v) %>
+	  <% end %>
+	<% end %>
+	
 	<h1>Sign in</h1>
 	<%= simple_form_for :session, url: sessions_path, :html => { class: 'form-horizontal' } do |f| %>
 		<%= f.input :username %>
@@ -12,5 +13,4 @@
 		<%= f.button :submit, "Sign In", class: "btn btn-success" %> |
 		<%= link_to 'Sign Up!', signup_path, class: "btn btn-info" %>
 	<% end %>
-
 </div>

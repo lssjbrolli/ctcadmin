@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
+  #before_action :user_activated
 
   # GET /events
   # GET /events.json
@@ -29,7 +30,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, flash.now[:notice] = 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -43,7 +44,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to @event, flash.now[:notice] = 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

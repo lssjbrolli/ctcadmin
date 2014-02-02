@@ -1,34 +1,28 @@
 <div class="container">
 
-  <% if notice %> 
-    <div class="alert alert-success">
-      <%= notice %>
-      <a href="#" class="close">&times;</a>
-    </div>
+  <% if flash %>
+    <% flash.each do |k,v| %>
+      <%= alert(k,v) %>
+    <% end %>
   <% end %>
   
-  <h1>Listing companies</h1>
-  
+  <h1>Listing users</h1>
+
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
         <th>Name</th>
-        <th></th>
+        <th>Status</th>
       </tr>
     </thead>
 
     <tbody>
       <% @users.each do |user| %>
         <tr>
-          <td><%= fullname(user) %></td>
-          <td><p class="btn btn-primary" data-toggle="button">activated</p></td>
+          <td><%= fullname user %></td>
+          <td><%= best_in_place user, :activated, type: :checkbox, collection: ["Desactivated", "Activated"], classes: [ act_toggle(user), "act_button"] %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
-  <%= link_to 'New Company', new_company_path, class: "btn btn-info" %>
-  
 </div>

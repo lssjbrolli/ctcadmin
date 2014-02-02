@@ -1,6 +1,7 @@
 class DebitInvoicesController < ApplicationController
   before_action :set_debit_invoice, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
+  #before_action :user_activated
 
   # GET /debit_invoices
   # GET /debit_invoices.json
@@ -30,7 +31,7 @@ class DebitInvoicesController < ApplicationController
 
     respond_to do |format|
       if @debit_invoice.save
-        format.html { redirect_to @debit_invoice, notice: 'Debit invoice was successfully created.' }
+        format.html { redirect_to @debit_invoice, flash.now[:notice] = 'Debit invoice was successfully created.' }
         format.json { render action: 'show', status: :created, location: @debit_invoice }
       else
         format.html { render action: 'new' }
@@ -44,7 +45,7 @@ class DebitInvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @debit_invoice.update(debit_invoice_params)
-        format.html { redirect_to @debit_invoice, notice: 'Debit invoice was successfully updated.' }
+        format.html { redirect_to @debit_invoice, flash.now[:notice] = 'Debit invoice was successfully updated.' }
         format.json { respond_with_bip(@debit_invoice) }
       else
         format.html { render action: 'edit' }

@@ -20,12 +20,8 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
-	def activated?
-		current_user.activated?
-	end
-
-	def admin?
-		current_user.admin?
+	def acc_activated?
+		params[:id].activated?
 	end
 
 	def sign_out
