@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   #before_action :admin, only: [:create, :update]
   before_action :signed_in_user, except: [:new, :create]
   before_action :correct_user, except: [:new, :create]
+  before_action :user_activated
 
   def index
     @users = User.all

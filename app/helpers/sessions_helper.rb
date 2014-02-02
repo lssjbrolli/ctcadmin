@@ -21,7 +21,7 @@ module SessionsHelper
 	end
 
 	def acc_activated?
-		params[:id].activated?
+		@current_user.activated?
 	end
 
 	def sign_out

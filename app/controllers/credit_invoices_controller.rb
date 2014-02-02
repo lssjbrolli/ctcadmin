@@ -1,7 +1,7 @@
 class CreditInvoicesController < ApplicationController
   before_action :set_credit_invoice, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
-  #before_action :user_activated
+  before_action :user_activated
 
   # GET /credit_invoices
   # GET /credit_invoices.json

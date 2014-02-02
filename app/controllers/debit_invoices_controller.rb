@@ -1,7 +1,7 @@
 class DebitInvoicesController < ApplicationController
   before_action :set_debit_invoice, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
-  #before_action :user_activated
+  before_action :user_activated
 
   # GET /debit_invoices
   # GET /debit_invoices.json

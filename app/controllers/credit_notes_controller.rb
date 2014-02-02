@@ -1,7 +1,7 @@
 class CreditNotesController < ApplicationController
   before_action :set_credit_note, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
-  #before_action :user_activated
+  before_action :user_activated
 
   # GET /credit_notes
   # GET /credit_notes.json

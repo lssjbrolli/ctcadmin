@@ -1,7 +1,7 @@
 class TrucksController < ApplicationController
   before_action :set_truck, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
-  #before_action :user_activated
+  before_action :user_activated
 
   # GET /trucks
   # GET /trucks.json

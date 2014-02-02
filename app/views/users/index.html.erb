@@ -20,7 +20,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= fullname user %></td>
-          <td><%= best_in_place user, :activated, type: :checkbox, collection: ["Desactivated", "Activated"], classes: [ act_toggle(user), "act_button"] %></td>
+          <td><%= best_in_place user, :activated, type: :checkbox, collection: ["Deactivated", "Activated"], classes: [ act_toggle(user), "act_button"] %></td>
         </tr>
       <% end %>
     </tbody>
