@@ -36,7 +36,7 @@ class TrucksController < ApplicationController
 
     respond_to do |format|
       if @truck.save
-        format.html { redirect_to @truck, flash.now[:notice] = 'Truck was successfully created.' }
+        format.html { redirect_to @truck, flash: {success:'Truck was successfully created.' }}
         format.json { render action: 'show', status: :created, location: @truck }
       else
         format.html { render action: 'new' }
@@ -50,7 +50,7 @@ class TrucksController < ApplicationController
   def update
     respond_to do |format|
       if @truck.update(truck_params)
-        format.html { redirect_to @truck, flash.now[:notice] = 'Truck was successfully updated.' }
+        format.html { redirect_to @truck, flash: { success: 'Truck was successfully updated.' }}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

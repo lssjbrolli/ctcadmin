@@ -1,5 +1,7 @@
 Ctcadmin::Application.routes.draw do
 
+  resources :expenses
+
   resources :events
 
   resources :trucks
@@ -7,8 +9,6 @@ Ctcadmin::Application.routes.draw do
   resources :companies
 
   resources :credit_invoices
-
-  resources :debit_invoices
 
   resources :credit_notes
 

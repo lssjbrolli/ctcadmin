@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140119194158) do
+ActiveRecord::Schema.define(version: 20140207092444) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,20 +70,6 @@ ActiveRecord::Schema.define(version: 20140119194158) do
 
   add_index "credit_notes", ["number"], name: "index_credit_notes_on_number", unique: true, using: :btree
 
-  create_table "debit_invoices", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "currency"
-    t.string   "number"
-    t.date     "date"
-    t.decimal  "total_value", precision: 8, scale: 2
-    t.decimal  "net_value",   precision: 8, scale: 2
-    t.decimal  "tax_value",   precision: 8, scale: 2
-    t.text     "comment"
-  end
-
-  add_index "debit_invoices", ["number"], name: "index_debit_invoices_on_number", unique: true, using: :btree
-
   create_table "events", force: true do |t|
     t.date     "date"
     t.string   "km"
@@ -92,6 +78,22 @@ ActiveRecord::Schema.define(version: 20140119194158) do
     t.datetime "updated_at"
     t.integer  "truck_id"
   end
+
+  create_table "expenses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "currency"
+    t.string   "number"
+    t.date     "date"
+    t.decimal  "value",       precision: 8, scale: 2
+    t.text     "comment"
+    t.decimal  "ron_value",   precision: 8, scale: 2
+    t.boolean  "card"
+    t.integer  "supplier_id"
+    t.string   "file"
+  end
+
+  add_index "expenses", ["number"], name: "index_expenses_on_number", unique: true, using: :btree
 
   create_table "models", force: true do |t|
     t.string   "email",                  default: "", null: false

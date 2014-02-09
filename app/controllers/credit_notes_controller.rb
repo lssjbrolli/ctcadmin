@@ -30,7 +30,7 @@ class CreditNotesController < ApplicationController
     @credit_note = CreditNote.new(credit_note_params)
     respond_to do |format|
       if @credit_note.save
-        format.html { redirect_to credit_notes_url, flash.now[:notice] = 'Credit note was successfully created.' }
+        format.html { redirect_to credit_notes_url, flash: { success: 'Credit note was successfully created.' }}
         format.json { render action: 'show', status: :created, location: @credit_note }
       else
         format.html { render action: 'new' }
@@ -44,7 +44,7 @@ class CreditNotesController < ApplicationController
   def update
     respond_to do |format|
       if @credit_note.update(credit_note_params)
-        format.html { redirect_to session.delete(:sega), flash.now[:notice] = 'Credit note was successfully updated.' }
+        format.html { redirect_to session.delete(:sega), flash: {success: 'Credit note was successfully updated.' }}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

@@ -45,7 +45,7 @@ class CreditInvoicesController < ApplicationController
 
     respond_to do |format|
       if @credit_invoice.save
-        format.html { redirect_to credit_invoices_path, flash.now[:notice] = 'Credit invoice was successfully created.' }
+        format.html { redirect_to credit_invoices_path, flash: { success: 'Credit invoice was successfully created.' }}
         format.json { render action: 'show', status: :created, location: @credit_invoice }
       else
         format.html { render action: 'new' }
@@ -59,7 +59,7 @@ class CreditInvoicesController < ApplicationController
   def update
     respond_to do |format|
       if @credit_invoice.update(credit_invoice_params)
-        format.html { redirect_to credit_invoices_path, flash.now[:notice] = 'Credit invoice was successfully updated.' }
+        format.html { redirect_to credit_invoices_path, flash: { success: 'Credit invoice was successfully updated.' }}
         format.json { respond_with_bip(@debit_invoice) }
       else
         format.html { render action: 'edit' }
