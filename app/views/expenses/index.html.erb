@@ -32,10 +32,10 @@
           <td><%= "%0.2f" % di.value %></td>
           <td><%= di.currency %></td>
           <td><%= di.ron_value %></td>
-          <td><%= di.supplier.name %></td>
+          <td><%= di.supplier.name unless di.supplier.nil? %></td>
           <td><%= di.comment %></td>
           <td class="btn-group btn-group-xs">
-            <%= link_to 'Show', expense_path(di, format: "pdf"), class: "btn btn-info" %>
+            <%= link_to 'Show', di.file_url, class: "btn btn-info" %>
             <%= link_to 'Edit', edit_expense_path(di), class: "btn btn-info" %>
             <%= link_to 'Destroy', di, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </td>

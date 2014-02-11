@@ -10,8 +10,8 @@ class FileUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
-  #storage :aws
-   storage :file
+  storage :aws
+  #storage :file
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -28,11 +28,28 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  process :to_pdf
   #
-  # def scale(width, height)
-  #   # do something
-  # end
+  def to_pdf
+    temp_dir = Rails.root.join('tmp', 'pdf')
+    temp_path = temp_dir.join("#{model.number}.pdf")
+
+    FileUtils.mkdir_p(temp_dir)
+
+    pdf = ExpensePdf.new(current_path)
+
+    p current_path
+    p temp_path
+
+    pdf.render_file(temp_path)
+
+    File.unlink(current_path)
+    FileUtils.cp(temp_path, current_path)
+  end
+
+  def filename
+    "#{model.number}.pdf"
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do
