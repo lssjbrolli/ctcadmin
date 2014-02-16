@@ -1,4 +1,5 @@
 # encoding: utf-8
+#require 'carrierwave/processing/mime_types'
 
 class FileUploader < CarrierWave::Uploader::Base
 
@@ -6,8 +7,8 @@ class FileUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
-  #include CarrierWave::MimeTypes
-  #process :set_content_type
+  include CarrierWave::MimeTypes
+  process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
   storage :aws
@@ -38,13 +39,12 @@ class FileUploader < CarrierWave::Uploader::Base
 
     pdf = ExpensePdf.new(current_path)
 
-    p current_path
-    p temp_path
-
     pdf.render_file(temp_path)
 
     File.unlink(current_path)
     FileUtils.cp(temp_path, current_path)
+
+    self.file.instance_variable_set(:@content_type, "application/pdf")
   end
 
   def filename
