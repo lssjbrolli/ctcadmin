@@ -9,7 +9,9 @@
     <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline' %>
     <%= f.association :truck,:label_method => :registration %>
     <%= f.input :order_nr %>
-    <%= f.input :paid %>
+    <% if @current_user.admin? %>
+        <%= f.input :paid %>
+    <% end %>
     <%= f.input :file, :label => "Select raport file" %>
     <%= f.hidden_field :file_cache %>
     <%= f.button :submit, class: 'btn-primary' %>
