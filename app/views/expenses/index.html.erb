@@ -13,7 +13,6 @@
         <th>Invoice Number</th>
         <th>Date</th>
         <th>Value</th>
-        <th>Currency</th>
         <th>RON Value</th>
         <th>Supplier</th>
         <th>Comment</th>
@@ -29,8 +28,7 @@
           <td><%= di.id %></td>
           <td><%= di.number %></td>
           <td><%= di.date %></td>
-          <td><%= "%0.2f" % di.value %></td>
-          <td><%= di.currency %></td>
+          <td><%= number_to_currency(di.value, :unit => di.currency) %></td>
           <td><%= di.ron_value %></td>
           <td><%= di.supplier.name unless di.supplier.nil? %></td>
           <td><%= di.comment %></td>

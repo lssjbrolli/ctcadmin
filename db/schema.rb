@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207092444) do
+ActiveRecord::Schema.define(version: 20140421193218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "card_expenses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "number"
+    t.date     "date"
+    t.text     "description"
+    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value_eur",   precision: 8, scale: 2
+    t.string   "currency"
+    t.boolean  "table",                               default: false
+    t.string   "file"
+  end
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -95,6 +108,11 @@ ActiveRecord::Schema.define(version: 20140207092444) do
 
   add_index "expenses", ["number"], name: "index_expenses_on_number", unique: true, using: :btree
 
+  create_table "globals", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "models", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -112,6 +130,17 @@ ActiveRecord::Schema.define(version: 20140207092444) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+
+  create_table "settings", force: true do |t|
+    t.string   "var",                   null: false
+    t.text     "value"
+    t.integer  "thing_id"
+    t.string   "thing_type", limit: 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
 
   create_table "trucks", force: true do |t|
     t.string   "registration"
