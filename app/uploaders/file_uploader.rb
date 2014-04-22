@@ -47,9 +47,9 @@ class FileUploader < CarrierWave::Uploader::Base
     self.file.instance_variable_set(:@content_type, "application/pdf")
   end
 
-  def filename
-    "#{model.number}.pdf"
-  end
+  #def filename
+  #  "#{model.number}.pdf"
+  #end
 
   # Create different versions of your uploaded files:
   # version :thumb do

@@ -16,6 +16,14 @@ module ApplicationHelper
 		end
 	end
 
+	def file_state(file)
+		if file.file_url.nil?
+			button_tag 'Show', html_options = { disabled: "disabled", class: "btn btn-info"}
+		else
+			link_to 'Show', file.file_url, html_options = { class: "btn btn-info" }
+		end
+	end
+
 	def fullname(user)
 		"#{user.first_name} #{user.last_name}"
 	end

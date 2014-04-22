@@ -13,10 +13,10 @@
       <tr>
         <th>Internal Number</th>
         <th>Invoice Number</th>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Value</th>
-        <th>EUR Value</th>
+        <th class="t_middle">Date</th>
+        <th class="t_middle">Description</th>
+        <th class="t_right">Value</th>
+        <th class="t_right">EUR Value</th>
         <th></th>
         <th></th>
         <th></th>
@@ -28,12 +28,12 @@
         <tr>
           <td><%= ce.id %></td>
           <td><%= ce.number %></td>
-          <td><%= ce.date %></td>
-          <td><%= ce.description %></td>
-          <td><%= number_to_currency(ce.value, :unit => ce.currency) %></td>
-          <td><%= number_to_currency(ce.value_eur, :unit => "EUR") %></td>
+          <td class="t_middle"><%= ce.date %></td>
+          <td class="t_middle"><%= ce.description %></td>
+          <td class="t_value"><%= number_to_currency(ce.value, :unit => ce.currency) %></td>
+          <td class="t_value"><%= number_to_currency(ce.value_eur, :unit => "EUR") %></td>
           <td class="btn-group btn-group-xs">
-            <%= link_to 'Show', ce.file_url, class: "btn btn-info" %>
+            <%= file_state(ce) %>
             <%= link_to 'Edit', edit_card_expense_path(ce), class: "btn btn-info" %>
             <%= link_to 'Destroy', ce, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </td>
