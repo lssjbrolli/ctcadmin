@@ -12,15 +12,13 @@
     <thead>
       <tr>
         <th>Number</th>
-        <th>Start</th>
-        <th>Stop</th>
-        <th>Week</th>
-        <th style="text-align: right">Value</th>
-        <th>Currency</th>
-        <th>Paid</th>
-        <th>Truck</th>
-        <th>File</th>
-        <th>Notes</th>
+        <th class="t_center">Start</th>
+        <th class="t_center">Stop</th>
+        <th class="t_center">Week</th>
+        <th class="t_right">Value</th>
+        <th class="t_center">Paid</th>
+        <th class="t_center">Truck</th>
+        <th class="t_center">Notes</th>
         <th></th>
       </tr>
     </thead>
@@ -29,15 +27,13 @@
       <% @cnotes.each do |cn| %>
         <tr>
           <td><%= cn.number %></td>
-          <td><%= cn.start %></td>
-          <td><%= cn.stop %></td>
-          <td><%= cn.week %></td>
-          <td style="text-align: right"><%= "%0.2f" % cn.value %></td>
-          <td><%= cn.currency %></td>
-          <td><%=raw paid(cn) %></td>
-          <td><%= truck(cn) %></td>
-          <td><%=raw file_uploaded(cn) %></td>
-          <td><%= cn.notes %></td> 
+          <td class="t_center"><%= cn.start %></td>
+          <td class="t_center"><%= cn.stop %></td>
+          <td class="t_center"><%= cn.week %></td>
+          <td class="t_value"><%= number_to_currency(cn.value, :unit => cn.currency) %></td>
+          <td class="t_center"><%=raw paid(cn) %></td>
+          <td class="t_center"><%= truck(cn) %></td>
+          <td class="t_center"><%= cn.notes %></td> 
           <td class="btn-group btn-group-xs">
             <%= link_to 'Show', cn.file_url, class: "btn btn-info" %>
             <%= link_to 'Edit', edit_credit_note_path(cn), class: "btn btn-info" %>

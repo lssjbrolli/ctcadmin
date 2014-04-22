@@ -10,8 +10,8 @@
     <thead>
       <tr>
         <th>Number</th>
-        <th>Date</th>
-        <th>Value</th>
+        <th class="t_middle">Date</th>
+        <th class="t_right">Value</th>
         <th></th>
         <th></th>
         <th></th>
@@ -22,8 +22,8 @@
       <% @credit_invoices.each do |ci| %>
         <tr>
           <td><%= ci.number %></td>
-          <td><%= ci.date %></td>
-          <td><%= "%0.2f" % ci.total_value %></td>
+          <td class="t_middle"><%= ci.date %></td>
+          <td class="t_value"><%= number_to_currency(ci.total_value, :unit => ci.currency) %></td>
           <td class="btn-group btn-group-xs">
             <%= link_to 'Show', credit_invoice_path(ci, format: "pdf"), class: "btn btn-info" %>
             <%= link_to 'Edit', edit_credit_invoice_path(ci), class: "btn btn-info" %>
