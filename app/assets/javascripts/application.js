@@ -15,6 +15,8 @@
 //= require best_in_place.purr
 //= require best_in_place
 //= require bootstrap
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.ro.js
 //= require turbolinks
 //= require_tree .
 

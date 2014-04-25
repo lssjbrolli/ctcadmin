@@ -66,6 +66,8 @@ gem 'money-rails'
 
 gem 'eu_central_bank'
 
+gem 'bootstrap-datepicker-rails'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
