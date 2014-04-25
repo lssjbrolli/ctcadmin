@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140421193218) do
+ActiveRecord::Schema.define(version: 20140425183844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 20140421193218) do
     t.string   "number"
     t.date     "date"
     t.text     "description"
-    t.decimal  "value",       precision: 8, scale: 2
-    t.decimal  "value_eur",   precision: 8, scale: 2
     t.string   "currency"
     t.boolean  "table",                               default: false
     t.string   "file"
+    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value_eur",   precision: 8, scale: 2
   end
 
   create_table "companies", force: true do |t|
@@ -91,22 +91,6 @@ ActiveRecord::Schema.define(version: 20140421193218) do
     t.datetime "updated_at"
     t.integer  "truck_id"
   end
-
-  create_table "expenses", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "currency"
-    t.string   "number"
-    t.date     "date"
-    t.decimal  "value",       precision: 8, scale: 2
-    t.text     "comment"
-    t.decimal  "ron_value",   precision: 8, scale: 2
-    t.boolean  "card"
-    t.integer  "supplier_id"
-    t.string   "file"
-  end
-
-  add_index "expenses", ["number"], name: "index_expenses_on_number", unique: true, using: :btree
 
   create_table "globals", force: true do |t|
     t.datetime "created_at"
