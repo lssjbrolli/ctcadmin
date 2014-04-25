@@ -46,5 +46,8 @@
 
   <%= will_paginate @p_card_expenses, renderer: BootstrapPagination::Rails %>
 
-  <%= link_to 'New Expense', new_card_expense_path, class: "btn btn-primary" %>
+  <div class="btn-group btn-group-xs">
+    <%= link_to 'New Expense', new_card_expense_path, class: "btn btn-primary" %>
+    <%= link_to "Generate raport", "/#", class: "btn btn-primary" %>
+  </div>
 </div>

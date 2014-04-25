@@ -15,6 +15,10 @@ class CardExpensesController < ApplicationController
   def show
   end
 
+  def generate
+    
+  end
+
   # GET /card_expenses/new
   def new
     @card_expense = CardExpense.new
