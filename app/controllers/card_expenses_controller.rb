@@ -49,7 +49,7 @@ class CardExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @card_expense.update(card_expense_params)
-        format.html { redirect_to @card_expense, notice: 'Card expense was successfully updated.' }
+        format.html { redirect_to card_expenses_path, flash: { success: 'Card expense was successfully updated.' }}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -76,6 +76,6 @@ class CardExpensesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_expense_params
-      params.require(:card_expense).permit( :currency, :number, :date, :value, :description, :eur_value, :file, :file_cache )
+      params.require(:card_expense).permit( :currency, :number, :date, :value, :description, :value_eur, :file, :file_cache )
     end
 end

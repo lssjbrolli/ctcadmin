@@ -7,11 +7,41 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 
-  <div class="navbar navbar-inverse">
+  <div class="navbar">
     <div class="navbar-inner">
       <%=link_to "CTCAdmin", trucks_path, class: "brand" %>  
-      <ul class="nav pull-right">
+      <ul class="nav pull-right" role="navigation">
         <% if signed_in? %>
+          <li><%= link_to "Trucks", trucks_path %></li>
+          <li><%= link_to "Credit notes", credit_notes_path %></li>
+          <li><%= link_to "Credit invoices", credit_invoices_path %></li>
+          <li class="dropdown" >
+            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+              Expenses
+              <span class="caret"></span>
+            </a>
+             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
+              <li role="presentation">
+                <%= link_to "Card Expenses", card_expenses_path, role: "menuitem", tabindex: "-1" %>
+              </li>
+              <li role="presentation">
+                <%= link_to "National Expenses", card_expenses_path, role: "menuitem", tabindex: "-1" %>
+              </li>
+              <li role="presentation">
+                <%= link_to "International Expenses", card_expenses_path, role: "menuitem", tabindex: "-1" %>
+              </li>              
+            </ul> 
+          </li>
+          <li><%= link_to "Companies", companies_path %></li>
+          <% if @current_user.admin? %>
+            <li><%= link_to "Users", users_path %></li>
+          <% end %>
+          <li class="divider-vertical"></li>
+          <li id="li_search">
+            <form class="form-search">
+              <input type="text" class="input-small search-query" placeholder="Search">
+            </form>
+          </li>
           <li class="divider-vertical"></li>
           <li><%= link_to "Logged in as #{fullname(@current_user)}", user_path(@current_user) %></li>
           <li class="divider-vertical"></li>
@@ -23,28 +53,6 @@
 </head>
 
 <body>
-  <div class="tabbable tabs-left">
-    <% if signed_in?%>
-    <ul class="nav nav-tabs" id="myTab">
-      <li class="<%= 'active' if current_page?(trucks_path) %>"><%= link_to "Trucks", trucks_path %></li>
-      <li class="<%= 'active' if current_page?(credit_notes_path) %>"><%= link_to "Credit notes", credit_notes_path %></li>
-      <li class="<%= 'active' if current_page?(credit_invoices_path) %>"><%= link_to "Credit invoices", credit_invoices_path %></li>
-      <li class="<%= 'active' if current_page?(card_expenses_path) %>"><%= link_to "Expenses", card_expenses_path %></li>
-      <li class="<%= 'active' if current_page?(companies_path) %>"><%= link_to "Companies", companies_path %></li>
-      <% if @current_user.admin? %>
-        <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "Users", users_path %></li>
-      <% end %>
-      <form class="form-search">
-        <input type="text" class="input-small search-query" placeholder="Search">
-      </form>
-    </ul>
-    <% end %>
-    <div class="tab-content">
-      <div class="tab-pane active" id="tab">
-        <%= yield %>
-      </div>
-    </div>
-  </div>
+  <%= yield %>
 </body>
-
 </html>
