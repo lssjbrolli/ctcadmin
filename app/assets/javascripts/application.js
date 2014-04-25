@@ -17,10 +17,13 @@
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ro.js
-//= require turbolinks
 //= require_tree .
 
-$('#myTab a').click(function (e) {
-  e.preventDefault();
-  $(this).tab('show');
-})
+$(document).ready(function() {
+  return $('[data-behaviour~=datepicker]').datepicker({
+    format: "yyyy-mm-dd",
+    todayBtn: "linked",
+    autoclose: true,
+    todayHighlight: true
+  });
+});

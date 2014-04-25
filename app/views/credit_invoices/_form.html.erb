@@ -1,6 +1,6 @@
 <%= simple_form_for @credit_invoice, :html => { class: 'form-horizontal' } do |f| %>
   <%= f.input :number %>
-  <%= f.input :date %>
+  <%= f.input :date, as: :string, input_html: { data: {behaviour: "datepicker"}} %>
   <%= f.association :seller %>
   <%= f.association :buyer %>
   <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
