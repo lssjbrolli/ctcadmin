@@ -25,7 +25,7 @@ module ApplicationHelper
 	end
 
 	def fullname(user)
-		"#{user.first_name} #{user.last_name}"
+		"#{user.first_name.capitalize} #{user.last_name.capitalize}"
 	end
 
 	def alert(k, v)
