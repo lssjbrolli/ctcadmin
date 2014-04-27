@@ -35,7 +35,7 @@
           <td class="t_middle"><%=raw paid(cn) %></td>
           <td class="t_middle"><%= cn.notes %></td> 
           <td class="btn-group btn-group-xs">
-            <%= file_state(cn) %>
+            <%= file_state(cn, 'Show') %>
             <%= link_to 'Edit', edit_credit_note_path(cn), class: "btn btn-info" %>
             <%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </td>

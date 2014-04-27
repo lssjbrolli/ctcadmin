@@ -16,11 +16,11 @@ module ApplicationHelper
 		end
 	end
 
-	def file_state(file)
+	def file_state(file, text)
 		if file.file_url.nil?
-			button_tag 'Show', html_options = { disabled: "disabled", class: "btn btn-info"}
+			button_tag "#{text}" , html_options = { disabled: "disabled", class: "btn btn-info"}
 		else
-			link_to 'Show', file.file_url, html_options = { class: "btn btn-info" }
+			link_to "#{text}", file.file_url, html_options = { class: "btn btn-info" }
 		end
 	end
 

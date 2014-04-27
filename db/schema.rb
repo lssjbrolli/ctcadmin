@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140425183844) do
+ActiveRecord::Schema.define(version: 20140427123945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,10 +23,11 @@ ActiveRecord::Schema.define(version: 20140425183844) do
     t.date     "date"
     t.text     "description"
     t.string   "currency"
-    t.boolean  "table",                               default: false
+    t.boolean  "raport",                              default: false
     t.string   "file"
     t.decimal  "value",       precision: 8, scale: 2
     t.decimal  "value_eur",   precision: 8, scale: 2
+    t.integer  "raport_id"
   end
 
   create_table "companies", force: true do |t|
@@ -114,6 +115,13 @@ ActiveRecord::Schema.define(version: 20140425183844) do
 
   add_index "models", ["email"], name: "index_models_on_email", unique: true, using: :btree
   add_index "models", ["reset_password_token"], name: "index_models_on_reset_password_token", unique: true, using: :btree
+
+  create_table "raports", force: true do |t|
+    t.string   "name"
+    t.string   "file"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "settings", force: true do |t|
     t.string   "var",                   null: false
