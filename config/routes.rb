@@ -1,6 +1,10 @@
 Ctcadmin::Application.routes.draw do
 
-  resources :raports
+  resources :raports do
+    post :make_raport, :on => :collection
+  end
+
+  get 'raport/:id', to: 'raport#show'
 
   resources :card_expenses
 

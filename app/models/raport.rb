@@ -1,5 +1,12 @@
 class Raport < ActiveRecord::Base
-	has_many :card_expenses
+	after_save :set_id
 
-	mount_uploader :file, FileUploader
+	has_many :card_expenses
+	serialize :ids
+
+	private
+
+	def set_id
+		self.ids.each { |x| CardExpense.find(x).update_attribute(:raport_id, self.id)}
+	end
 end
