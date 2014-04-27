@@ -7,6 +7,6 @@ class Raport < ActiveRecord::Base
 	private
 
 	def set_id
-		self.ids.each { |x| CardExpense.find(x).update_attribute(:raport_id, self.id)}
+		self.ids.each { |x| CardExpense.find(x).update_attributes(raport_id: self.id, raport: true)}
 	end
 end
