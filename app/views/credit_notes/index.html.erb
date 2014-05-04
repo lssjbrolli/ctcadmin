@@ -1,50 +1,50 @@
 <div class="container">
-  
+
   <% if flash %>
-    <% flash.each do |k,v| %>
-      <%= alert(k,v) %>
-    <% end %>
+      <% flash.each do |k, v| %>
+          <%= alert(k, v) %>
+      <% end %>
   <% end %>
 
   <h1>Listing Credit Notes</h1>
 
   <table class="table table-hover table-condensed">
     <thead>
-      <tr>
-        <th>Number</th>
-        <th class="t_center">Start</th>
-        <th class="t_center">Stop</th>
-        <th class="t_center">Week</th>
-        <th class="t_right">Value</th>
-        <th class="t_center">Paid</th>
-        <th class="t_center">Truck</th>
-        <th class="t_center">Notes</th>
-        <th></th>
-      </tr>
+    <tr>
+      <th>Number</th>
+      <th class="t_center">Start</th>
+      <th class="t_center">Stop</th>
+      <th class="t_center">Week</th>
+      <th class="t_right">Value</th>
+      <th class="t_center">Paid</th>
+      <th class="t_center">Truck</th>
+      <th class="t_center">Notes</th>
+      <th></th>
+    </tr>
     </thead>
 
     <tbody>
-      <% @cnotes.each do |cn| %>
+    <% @cnotes.each do |cn| %>
         <tr>
           <td><%= cn.number %></td>
           <td class="t_center"><%= cn.start %></td>
           <td class="t_center"><%= cn.stop %></td>
           <td class="t_center"><%= cn.week %></td>
           <td class="t_value"><%= number_to_currency(cn.value, :unit => cn.currency) %></td>
-          <td class="t_center"><%=raw paid(cn) %></td>
+          <td class="t_center"><%= raw paid(cn) %></td>
           <td class="t_center"><%= truck(cn) %></td>
-          <td class="t_center"><%= cn.notes %></td> 
+          <td class="t_center"><%= cn.notes %></td>
           <td class="btn-group btn-group-xs">
             <%= file_state(cn, 'Show') %>
-            <%= link_to 'Edit', edit_credit_note_path(cn), class: "btn btn-info" %>
-            <%= link_to 'Destroy', cn, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+            <%= link_to 'Edit', edit_credit_note_path(cn), class: 'btn btn-info' %>
+            <%= link_to 'Destroy', cn, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
         </tr>
-      <% end %>
+    <% end %>
     </tbody>
   </table>
 
   <%= will_paginate @cnotes, renderer: BootstrapPagination::Rails %>
 
-  <%= link_to 'New Credit note', new_credit_note_path, class: "btn btn-primary" %>
+  <%= link_to 'New Credit note', new_credit_note_path, class: 'btn btn-primary' %>
 </div>

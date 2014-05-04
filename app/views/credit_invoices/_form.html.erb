@@ -1,15 +1,15 @@
-<%= simple_form_for @credit_invoice, :html => { class: 'form-horizontal' } do |f| %>
-  <%= f.input :number %>
-  <%= f.input :date, as: :string, input_html: { data: {behaviour: "datepicker"}} %>
-  <%= f.association :seller %>
-  <%= f.association :buyer %>
-  <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
-  <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
-  <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
-  <%= f.input :delegat %>
-  <%= f.input :ci %>
-  <%= f.input :eliberat %>
-  <%= f.input :transport %>
-  <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to "Cancel", credit_invoices_path, class: "btn btn-danger"%>
+<%= simple_form_for @credit_invoice, :html => {class: 'form-horizontal'} do |f| %>
+    <%= f.input :number %>
+    <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.association :seller %>
+    <%= f.association :buyer %>
+    <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
+    <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
+    <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
+    <%= f.input :delegat %>
+    <%= f.input :ci %>
+    <%= f.input :eliberat %>
+    <%= f.input :transport %>
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to 'Cancel', credit_invoices_path, class: 'btn btn-danger' %>
 <% end %>

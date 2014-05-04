@@ -19,11 +19,11 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ro.js
 //= require_tree .
 
-$(document).ready(function() {
-  return $('[data-behaviour~=datepicker]').datepicker({
-    format: "yyyy-mm-dd",
-    todayBtn: "linked",
-    autoclose: true,
-    todayHighlight: true
-  });
+$(document).ready(function () {
+    return $('[data-behaviour~=datepicker]').datepicker({
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        autoclose: true,
+        todayHighlight: true
+    });
 });

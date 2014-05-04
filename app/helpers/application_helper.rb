@@ -6,7 +6,7 @@ module ApplicationHelper
 		else
 			'<i class="icon-ok"></i>'
 		end
-	end 
+	end
 
 	def paid(cn)
 		if cn.paid
@@ -18,9 +18,9 @@ module ApplicationHelper
 
 	def file_state(file, text)
 		if file.file_url.nil?
-			button_tag "#{text}" , html_options = { disabled: "disabled", class: "btn btn-info"}
+			button_tag "#{text}", html_options = {disabled: 'disabled', class: 'btn btn-info'}
 		else
-			link_to "#{text}", file.file_url, html_options = { class: "btn btn-info" }
+			link_to "#{text}", file.file_url, html_options = {class: 'btn btn-info'}
 		end
 	end
 
@@ -30,24 +30,24 @@ module ApplicationHelper
 
 	def alert(k, v)
 		content_tag :div, class: "alert alert-#{k}" do
-			content_tag(:button, "x", class: "close", type: "button", data: {dismiss: "alert"}) +
-			content_tag(:p, v)
-		end	
+			content_tag(:button, 'x', class: 'close', type: 'button', data: {dismiss: 'alert'}) +
+					content_tag(:p, v)
+		end
 	end
 
 	def generate_raport_status(expense, type)
 		if expense.empty?
-			button_tag 'Generate raport', html_options = { disabled: "disabled", class: "btn btn-info"}
+			button_tag 'Generate raport', html_options = {disabled: 'disabled', class: 'btn btn-info'}
 		else
-			link_to "Generate raport", make_raport_raports_path(invoice: "#{type}"), method: :post, class: "btn btn-primary"
+			link_to 'Generate raport', make_raport_raports_path(invoice: "#{type}"), method: :post, class: 'btn btn-primary'
 		end
 	end
 
 	def raport_state(cexpense)
 		if cexpense.raport_id.nil?
-			button_tag 'Raport', html_options = { disabled: "disabled", class: "btn btn-info"}
+			button_tag 'Raport', html_options = {disabled: 'disabled', class: 'btn btn-info'}
 		else
-			link_to "Raport nr.#{cexpense.raport_id}", raport_path(Raport.find(cexpense.raport_id), format: "pdf"), html_options = { class: "btn btn-info" }
+			link_to "Raport nr.#{cexpense.raport_id}", raport_path(Raport.find(cexpense.raport_id), format: 'pdf'), html_options = {class: 'btn btn-info'}
 		end
 	end
 

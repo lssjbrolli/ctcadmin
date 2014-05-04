@@ -12,8 +12,8 @@ class CreditInvoice < ActiveRecord::Base
 
 	validates :buyer, :seller, :credit_note_ids, presence: true
 
-	CURRENCY = ["EUR", "RON"]
-	VAT_RATE = ["24%", "taxare inversa"]
+	CURRENCY = %w(EUR RON)
+	VAT_RATE = ['24%', 'taxare inversa']
 
 	protected
 
@@ -21,7 +21,7 @@ class CreditInvoice < ActiveRecord::Base
 		if self.number.empty?
 			if CreditInvoice.last.nil?
 				self.number = 1
-			else				
+			else
 				self.number = CreditInvoice.last.number.next
 			end
 		end
@@ -32,8 +32,8 @@ class CreditInvoice < ActiveRecord::Base
 		self.credit_notes.map do |cn|
 			self.net_value += cn.value
 		end
-		if self.tax_rate == "24%"
-			self.tax_value = self.net_value * 0.24
+		if self.tax_rate == '24%'
+			self.tax_value   = self.net_value * 0.24
 			self.total_value = self.net_value + self.tax_value
 		else
 			self.total_value = self.net_value

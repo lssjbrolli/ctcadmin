@@ -9,8 +9,8 @@ class CreditNote < ActiveRecord::Base
 	validates :value, presence: true
 
 	mount_uploader :file, FileUploader
-	
-	CURRENCY = ["EUR", "RON"]
+
+	CURRENCY = %w(EUR RON)
 
 	def remove_file
 		self.remove_file!

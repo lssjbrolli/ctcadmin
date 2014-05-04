@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
 
 	validates :first_name, presence: true
 	validates :last_name, presence: true
-	validates :username, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
-	validates :cnp, presence: true, uniqueness: { case_sensitive: false }
-	validates :password, length: { minimum: 6 }
+	validates :username, presence: true, length: {maximum: 10}, uniqueness: {case_sensitive: false}
+	validates :cnp, presence: true, uniqueness: {case_sensitive: false}
+	validates :password, length: {minimum: 6}
 
 	has_secure_password
 
@@ -23,17 +23,17 @@ class User < ActiveRecord::Base
 
 	private
 
-		def username_downcase
-			self.username = username.downcase
-		end
+	def username_downcase
+		self.username = username.downcase
+	end
 
-		def create_remember_token
-			self.remember_token = User.encrypt(User.new_remember_token)
-		end
+	def create_remember_token
+		self.remember_token = User.encrypt(User.new_remember_token)
+	end
 
-		def proper_name
-			self.first_name = first_name.capitalize
-			self.last_name = last_name.capitalize
-		end
+	def proper_name
+		self.first_name = first_name.capitalize
+		self.last_name  = last_name.capitalize
+	end
 
 end

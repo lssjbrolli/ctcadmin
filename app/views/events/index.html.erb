@@ -1,36 +1,36 @@
 <div class="container">
-  
+
   <% if flash %>
-    <% flash.each do |k,v| %>
-      <%= alert(k,v) %>
-    <% end %>
+      <% flash.each do |k, v| %>
+          <%= alert(k, v) %>
+      <% end %>
   <% end %>
 
   <h1>Listing events</h1>
 
   <table>
     <thead>
-      <tr>
-        <th>Date</th>
-        <th>Km</th>
-        <th>Comment</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
+    <tr>
+      <th>Date</th>
+      <th>Km</th>
+      <th>Comment</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
     </thead>
 
     <tbody>
-      <% @events.each do |event| %>
+    <% @events.each do |event| %>
         <tr>
           <td><%= event.date %></td>
           <td><%= event.km %></td>
           <td><%= event.comment %></td>
           <td><%= link_to 'Show', event %></td>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>
-          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: {confirm: 'Are you sure?'} %></td>
         </tr>
-      <% end %>
+    <% end %>
     </tbody>
   </table>
 

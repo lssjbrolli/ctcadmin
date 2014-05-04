@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.1.1"
+ruby '2.1.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
@@ -27,11 +27,11 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+	# bundle exec rake doc:rails generates the API under doc/api.
+	gem 'sdoc', require: false
 end
 
-gem "bootstrap-sass", '~> 2.3.2'
+gem 'bootstrap-sass', '~> 2.3.2'
 
 gem 'simple_form'
 
@@ -45,17 +45,17 @@ gem 'prawn'
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
 
-gem "puma"
+gem 'puma'
 
 gem 'pg'
 
 group :production do
-  gem 'rails_12factor'
+	gem 'rails_12factor'
 end
 
 group :development do
-  gem "better_errors"
-  gem 'binding_of_caller'
+	gem 'better_errors'
+	gem 'binding_of_caller'
 end
 
 gem 'will_paginate-bootstrap', '~> 0.2.5'

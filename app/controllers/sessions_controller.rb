@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-	def new	
+	def new
 	end
 
 	def create
@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
 			sign_in user
 			redirect_to root_url
 		elsif user && user.authenticate(params[:session][:password]) && !user.activated?
-			flash.now[:notice] = "Please ask the administrator to activate your account."
+			flash.now[:notice] = 'Please ask the administrator to activate your account.'
 			render 'new'
 		else
-			flash.now[:error] = "Invalid user/password combination"
+			flash.now[:error] = 'Invalid user/password combination'
 			render 'new'
 		end
 	end

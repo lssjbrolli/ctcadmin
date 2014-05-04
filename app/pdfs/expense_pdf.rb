@@ -2,12 +2,12 @@ class ExpensePdf < Prawn::Document
 	def initialize(file)
 		super()
 		@file = file
-		
+
 		container
 	end
-	
+
 	def add_image
-		image "#{@file}",:width => 610, :height => 790
+		image "#{@file}", :width => 610, :height => 790
 	end
 
 	def container
