@@ -7,7 +7,7 @@ class CardExpensesController < ApplicationController
   # GET /card_expenses.json
   def index
     @card_expenses = CardExpense.all
-    @p_card_expenses = @card_expenses.paginate(:page => params[:page], :per_page => 10).order('id ASC')
+    @p_card_expenses = @card_expenses.paginate(:page => params[:page], :per_page => 8).order('id ASC')
   end
 
   # GET /card_expenses/1
