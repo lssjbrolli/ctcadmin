@@ -1,4 +1,4 @@
-class RaportPdf < Prawn::Document
+class CashPdf < Prawn::Document
 
 	def initialize(raport, view)
 		super(page_size: "A4")
@@ -6,7 +6,7 @@ class RaportPdf < Prawn::Document
 		@raport = raport
 		@view = view
 		@card_expenses = []
-		@raport.each { |x| @card_expenses << CardExpense.find(x) }
+		@raport.each { |x| @card_expenses << CashExpense.find(x) }
 
 		@dates = []
 		@card_expenses.each { |x| @dates << x.date}
@@ -19,7 +19,7 @@ class RaportPdf < Prawn::Document
 	end
 
 	def head
-		table = make_table([["Decont plati card #{@dates[0].month}.#{@dates[0].year} - #{@dates[-1].month}.#{@dates[-1].year}"]], width: 523)
+		table = make_table([["Decont plati numerar #{@dates[0].month}.#{@dates[0].year} - #{@dates[-1].month}.#{@dates[-1].year}"]], width: 523)
 		table.cells.style(size: 14, font_style: :bold, align: :center)
 
 		table.before_rendering_page do |page|
@@ -33,7 +33,7 @@ class RaportPdf < Prawn::Document
 
 
 	def header
-		data = ["Nr. crt.", "Nr. actului", "Data", "Descrierea", "Suma originala", "Suma in EUR"]
+		data = ["Nr. crt.", "Nr. actului", "Data", "Descrierea", "Suma originala", "Suma in RON"]
 		table = make_table([data], header: true, width: 523, column_widths: [48,100,75,115,100,85])
 
 		table.cells.style(size: 12, font_style: :bold)
@@ -55,13 +55,14 @@ class RaportPdf < Prawn::Document
 
 	def line_items
 		@card_expenses.map do |item|
-			["#{item.id}", "#{item.number}", "#{item.date}", "#{item.description}", @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
+			["#{item.id}", "#{item.number}", "#{item.date}", "#{item.description}", @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_ron, unit: 'RON')]
 		end
 	end
 
 	def content
 		table = make_table line_items, width: 523, column_widths: [48,100,75, 115, 100, 85]
 
+		table.cells.style(size: 10)
 		table.columns(0..3).style(align: :center)
 		table.columns(4..5).style(align: :right)
 
@@ -78,10 +79,10 @@ class RaportPdf < Prawn::Document
 
 	def total
 		value_a = []
-		@card_expenses.each { |x| value_a << x.value_eur }
+		@card_expenses.each { |x| value_a << x.value_ron }
 		total = value_a.inject(0) { |r, e| r + e }
 		
-		table = make_table [["", "Total:", @view.number_to_currency(total, unit: 'EUR')]], width: 523, column_widths: [338, 100, 85]
+		table = make_table [["", "Total:", @view.number_to_currency(total, unit: 'RON')]], width: 523, column_widths: [338, 100, 85]
 
 		table.cells.style(size: 12, font_style: :bold)
 		table.cells[0,1].style(align: :center)

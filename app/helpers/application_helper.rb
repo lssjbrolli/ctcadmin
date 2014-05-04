@@ -35,4 +35,20 @@ module ApplicationHelper
 		end	
 	end
 
+	def generate_raport_status(expense, type)
+		if expense.empty?
+			button_tag 'Generate raport', html_options = { disabled: "disabled", class: "btn btn-info"}
+		else
+			link_to "Generate raport", make_raport_raports_path(invoice: "#{type}"), method: :post, class: "btn btn-primary"
+		end
+	end
+
+	def raport_state(cexpense)
+		if cexpense.raport_id.nil?
+			button_tag 'Raport', html_options = { disabled: "disabled", class: "btn btn-info"}
+		else
+			link_to "Raport nr.#{cexpense.raport_id}", raport_path(Raport.find(cexpense.raport_id), format: "pdf"), html_options = { class: "btn btn-info" }
+		end
+	end
+
 end

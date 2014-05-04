@@ -8,15 +8,12 @@ class CardExpensesController < ApplicationController
   def index
     @card_expenses = CardExpense.all
     @p_card_expenses = @card_expenses.paginate(:page => params[:page], :per_page => 8).order('id ASC')
+    @card_expenses_missing =  CardExpense.where(raport: false)
   end
 
   # GET /card_expenses/1
   # GET /card_expenses/1.json
   def show
-  end
-
-  def generate
-    
   end
 
   # GET /card_expenses/new
@@ -49,7 +46,7 @@ class CardExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @card_expense.update(card_expense_params)
-        format.html { redirect_to card_expenses_path, flash: { success: 'Card expense was successfully updated.' }}
+        format.html { redirect_to card_expenses_path, flash: { success: 'Expense was successfully updated.' }}
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

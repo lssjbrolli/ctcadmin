@@ -6,7 +6,7 @@
     <% end %>
   <% end %>
 
-  <h1>Listing Card Expenses</h1>
+  <h1>Listing Cash Expenses</h1>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -16,7 +16,7 @@
         <th class="t_middle">Date</th>
         <th class="t_middle">Description</th>
         <th class="t_right">Value</th>
-        <th class="t_right">EUR Value</th>
+        <th class="t_right">RON Value</th>
         <th></th>
         <th></th>
         <th></th>
@@ -24,18 +24,18 @@
     </thead>
 
     <tbody>
-      <% @p_card_expenses.each do |ce| %>
+      <% @p_cash_expenses.each do |ce| %>
         <tr>
           <td><%= ce.id %></td>
           <td><%= ce.number %></td>
           <td class="t_middle"><%= ce.date %></td>
           <td class="t_middle"><%= ce.description %></td>
           <td class="t_value"><%= number_to_currency(ce.value, :unit => ce.currency) %></td>
-          <td class="t_value"><%= number_to_currency(ce.value_eur, :unit => "EUR") %></td>
+          <td class="t_value"><%= number_to_currency(ce.value_ron, :unit => "RON") %></td>
           <td class="btn-group btn-group-xs">
             <%= file_state(ce, 'Show') %>
             <%= raport_state(ce) %>
-            <%= link_to 'Edit', edit_card_expense_path(ce), class: "btn btn-info" %>
+            <%= link_to 'Edit', edit_cash_expense_path(ce), class: "btn btn-info" %>
             <%= link_to 'Destroy', ce, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </td>
         </tr>
@@ -45,10 +45,10 @@
 
   <br>
 
-  <%= will_paginate @p_card_expenses, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @p_cash_expenses, renderer: BootstrapPagination::Rails %>
 
   <div class="btn-group btn-group-xs">
-    <%= link_to 'New Expense', new_card_expense_path, class: "btn btn-primary" %>
-    <%= generate_raport_status(@card_expenses_missing, "card") %>
+    <%= link_to 'New Expense', new_cash_expense_path, class: "btn btn-primary" %>
+    <%= generate_raport_status(@cash_expenses_missing, "cash") %>
   </div>
 </div>

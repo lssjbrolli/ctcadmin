@@ -1,5 +1,7 @@
 Ctcadmin::Application.routes.draw do
 
+  resources :cash_expenses
+
   resources :raports do
     post :make_raport, :on => :collection
   end

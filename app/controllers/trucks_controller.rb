@@ -17,7 +17,7 @@ class TrucksController < ApplicationController
   def cnotes
     @truck = Truck.find(params[:id])
     @cnotes = Truck.find(params[:id]).credit_notes
-    @cn = @cnotes.paginate(:page => params[:page], :per_page => 10).order('order_nr ASC')
+    @cn = @cnotes.paginate(:page => params[:page], :per_page => 8).order('order_nr ASC')
   end
 
   # GET /trucks/new

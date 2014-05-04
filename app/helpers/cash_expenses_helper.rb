@@ -1,0 +1,2 @@
+module CashExpensesHelper
+end

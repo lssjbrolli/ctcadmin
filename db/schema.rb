@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427153639) do
+ActiveRecord::Schema.define(version: 20140504165622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,26 @@ ActiveRecord::Schema.define(version: 20140427153639) do
     t.string   "number"
     t.date     "date"
     t.text     "description"
+    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value_eur",   precision: 8, scale: 2
     t.string   "currency"
     t.boolean  "raport",                              default: false
     t.string   "file"
-    t.decimal  "value",       precision: 8, scale: 2
-    t.decimal  "value_eur",   precision: 8, scale: 2
     t.integer  "raport_id"
+  end
+
+  create_table "cash_expenses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "number"
+    t.date     "date"
+    t.text     "description"
+    t.string   "currency"
+    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value_ron",   precision: 8, scale: 2
+    t.integer  "raport_id"
+    t.boolean  "raport",                              default: false
+    t.string   "file"
   end
 
   create_table "companies", force: true do |t|
@@ -149,7 +163,7 @@ ActiveRecord::Schema.define(version: 20140427153639) do
     t.string   "password_digest"
     t.string   "language"
     t.string   "remember_token"
-    t.boolean  "admin"
+    t.boolean  "admin",           default: false
     t.boolean  "activated",       default: false
   end
 

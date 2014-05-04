@@ -7,7 +7,7 @@ class CreditNotesController < ApplicationController
   # GET /credit_notes.json
   def index
     @credit_notes = CreditNote.all
-    @cnotes = @credit_notes.paginate(:page => params[:page], :per_page => 10).order('number ASC')
+    @cnotes = @credit_notes.paginate(:page => params[:page], :per_page => 8).order('number ASC')
   end
 
   # GET /credit_notes/1
