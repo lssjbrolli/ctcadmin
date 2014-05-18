@@ -39,7 +39,7 @@ class CreditInvoicePdf < Prawn::Document
 													 row1_9,
 													 row1_10,
 													 row1_11
-											 ], width: 540, column_widths: [200, 50, 80], cell_style: {borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, padding: 1, padding_left: 5, font: 'Times-Roman', character_spacing: 1}
+											 ], width: 540, column_widths: [200, 50, 90], cell_style: {borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, padding: 1, padding_left: 5, font: 'Times-Roman', character_spacing: 1}
 
 		table.cells[0, 3].style(align: :center, size: 14, font_style: :bold)
 		table.cells[1, 3].style(align: :center, size: 14, font_style: :bold)

@@ -43,11 +43,11 @@ module ApplicationHelper
 		end
 	end
 
-	def raport_state(cexpense)
+	def raport_state(cexpense, type)
 		if cexpense.raport_id.nil?
 			button_tag 'Raport', html_options = {disabled: 'disabled', class: 'btn btn-info'}
 		else
-			link_to "Raport nr.#{cexpense.raport_id}", raport_path(Raport.find(cexpense.raport_id), format: 'pdf'), html_options = {class: 'btn btn-info'}
+			link_to "Raport nr.#{cexpense.raport_id}", raport_path(Raport.find(cexpense.raport_id), invoice: "#{type}", format: 'pdf'), html_options = {class: 'btn btn-info'}
 		end
 	end
 

@@ -35,12 +35,12 @@ class RaportsController < ApplicationController
 		respond_to do |format|
 			format.pdf do
 				if params[:invoice] == 'card'
-					pdf = CardPdf.new(@raport.ids, view_context)
+					pdf = CardPdf.new(@raport.ids.sort, view_context)
 					send_data pdf.render, filename: "#{@raport.id}.pdf",
 										type:        'application/pdf',
 										disposition: 'inline'
 				else
-					pdf = CashPdf.new(@raport.ids, view_context)
+					pdf = CashPdf.new(@raport.ids.sort, view_context)
 					send_data pdf.render, filename: "#{@raport.id}.pdf",
 										type:        'application/pdf',
 										disposition: 'inline'

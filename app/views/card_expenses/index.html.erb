@@ -34,7 +34,7 @@
           <td class="t_value"><%= number_to_currency(ce.value_eur, :unit => 'EUR') %></td>
           <td class="btn-group btn-group-xs">
             <%= file_state(ce, 'Show') %>
-            <%= raport_state(ce) %>
+            <%= raport_state(ce, 'card') %>
             <%= link_to 'Edit', edit_card_expense_path(ce), class: 'btn btn-info' %>
             <%= link_to 'Destroy', ce, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
