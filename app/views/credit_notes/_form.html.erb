@@ -1,4 +1,5 @@
 <%= simple_form_for @credit_note, :html => {class: 'form-horizontal'} do |f| %>
+    <%= f.error_notification %>
     <%= f.input :number, :label => 'Credit note number', :input_html => {:class => 'span6'} %>
     <%= f.input :value, :label => 'Value of trip' %>
     <%= f.input :start, :label => 'Trip start location' %>

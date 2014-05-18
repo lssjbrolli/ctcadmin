@@ -1,5 +1,7 @@
 Ctcadmin::Application.routes.draw do
 
+  resources :expenses
+
 	resources :cash_expenses
 
 	resources :raports do
