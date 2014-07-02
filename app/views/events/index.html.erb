@@ -8,7 +8,7 @@
 
   <h1>Listing events</h1>
 
-  <table>
+  <table class="table table-hover table-condensed">
     <thead>
     <tr>
       <th>Date</th>
@@ -26,9 +26,10 @@
           <td><%= event.date %></td>
           <td><%= event.km %></td>
           <td><%= event.comment %></td>
-          <td><%= link_to 'Show', event %></td>
-          <td><%= link_to 'Edit', edit_event_path(event) %></td>
-          <td><%= link_to 'Destroy', event, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+          <td class="btn-group btn-group-xs">
+            <%= link_to 'Edit', edit_event_path(event), class: 'btn btn-info' %>
+            <%= link_to 'Destroy', event, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+          </td>
         </tr>
     <% end %>
     </tbody>
@@ -36,5 +37,5 @@
 
   <br>
 
-  <%= link_to 'New Event', new_event_path %>
+  <%= link_to 'New Event', new_truck_event_path(@truck), class: 'btn btn-primary' %>
 </div>

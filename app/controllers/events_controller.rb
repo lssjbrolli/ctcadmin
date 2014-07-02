@@ -6,7 +6,8 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
-		@events = Event.all
+		@truck = Truck.find(params[:truck_id])
+		@events = @truck.events
 	end
 
 	# GET /events/1
@@ -16,21 +17,24 @@ class EventsController < ApplicationController
 
 	# GET /events/new
 	def new
-		@event = Event.new
+		@truck = Truck.find(params[:truck_id])
+		@event = @truck.events.build
 	end
 
 	# GET /events/1/edit
 	def edit
+		@event = Event.find(params[:id])
 	end
 
 	# POST /events
 	# POST /events.json
 	def create
-		@event = Event.new(event_params)
+		@truck = Truck.find(params[:truck_id])
+		@event = @truck.events.build(event_params)
 
 		respond_to do |format|
 			if @event.save
-				format.html { redirect_to @event, flash: {success: 'Event was successfully created.'} }
+				format.html { redirect_to truck_events_path(@truck), flash: {success: 'Event was successfully created.'} }
 				format.json { render action: 'show', status: :created, location: @event }
 			else
 				format.html { render action: 'new' }
@@ -42,9 +46,10 @@ class EventsController < ApplicationController
 	# PATCH/PUT /events/1
 	# PATCH/PUT /events/1.json
 	def update
+		@event = Event.find(params[:id])
 		respond_to do |format|
 			if @event.update(event_params)
-				format.html { redirect_to @event, flash: {success: 'Event was successfully updated.'} }
+				format.html { redirect_to truck_events_url(@event.truck_id), flash: {success: 'Event was successfully updated.'} }
 				format.json { head :no_content }
 			else
 				format.html { render action: 'edit' }
@@ -56,9 +61,10 @@ class EventsController < ApplicationController
 	# DELETE /events/1
 	# DELETE /events/1.json
 	def destroy
+		@event = Event.find(params[:id])
 		@event.destroy
 		respond_to do |format|
-			format.html { redirect_to events_url }
+			format.html { redirect_to request.referer, flash: {success: 'Event was successfully deleted.'} }
 			format.json { head :no_content }
 		end
 	end
@@ -71,6 +77,6 @@ class EventsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def event_params
-		params.require(:event).permit(:date, :km, :comment)
+		params.require(:event).permit(:date, :km, :comment, :truck_id)
 	end
 end

@@ -1,13 +1,9 @@
-<%= simple_form_for(@event) do |f| %>
-    <%= f.error_notification %>
+<%= simple_form_for [@truck, @event], :html => {class: 'form-horizontal'} do |f| %>
+	<%= f.error_notification %>
 
-    <div class="form-inputs">
-      <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
-      <%= f.input :km %>
-      <%= f.input :comment %>
-    </div>
-
-    <div class="form-actions">
-      <%= f.button :submit %>
-    </div>
+	<%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+	<%= f.input :km %>
+	<%= f.input :comment %>
+	<%= f.button :submit, class: 'btn-primary' %>
+	<%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>
 <% end %>

@@ -12,7 +12,8 @@
   </p>
 
   <p>
-    <%= link_to 'Credit Notes', cnotes_url(@truck), class: 'btn btn-info' %>
+    <%= link_to 'Credit Notes', cnotes_path(@truck), class: 'btn btn-info' %>
+    <%= link_to 'Events', truck_events_path(@truck), class: 'btn btn-info' %>
   </p>
   <%= link_to 'Edit', edit_truck_path(@truck), class: 'btn btn-primary' %> |
   <%= link_to 'Back', trucks_path, class: 'btn btn-primary' %>

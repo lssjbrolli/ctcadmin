@@ -12,9 +12,9 @@ Ctcadmin::Application.routes.draw do
 
 	resources :card_expenses
 
-	resources :events
-
-	resources :trucks
+	resources :trucks do
+		resources :events, shallow: true
+	end
 
 	resources :companies
 
@@ -25,6 +25,8 @@ Ctcadmin::Application.routes.draw do
 	resources :users
 
 	resources :sessions, only: [:new, :create, :destroy]
+
+	#get 'profile', to: 'users#show'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
