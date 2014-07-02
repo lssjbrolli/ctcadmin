@@ -73,7 +73,7 @@ class CreditInvoicesController < ApplicationController
 	def destroy
 		@credit_invoice.destroy
 		respond_to do |format|
-			format.html { redirect_to credit_invoices_url }
+			format.html { redirect_to credit_invoices_url, flash: {success: 'Credit invoice was successfully deleted.'} }
 			format.json { head :no_content }
 		end
 	end

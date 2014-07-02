@@ -65,7 +65,7 @@ class TrucksController < ApplicationController
 	def destroy
 		@truck.destroy
 		respond_to do |format|
-			format.html { redirect_to trucks_url }
+			format.html { redirect_to trucks_url, flash: {success: 'Truck was successfully deleted.'} }
 			format.json { head :no_content }
 		end
 	end

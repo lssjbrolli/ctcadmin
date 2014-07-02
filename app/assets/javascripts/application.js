@@ -27,3 +27,7 @@ $(document).ready(function () {
         todayHighlight: true
     });
 });
+
+$(document).ready(function () {
+	$(".alert").delay(3000).hide('fast');
+});

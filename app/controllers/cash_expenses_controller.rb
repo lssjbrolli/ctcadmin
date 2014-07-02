@@ -60,7 +60,7 @@ class CashExpensesController < ApplicationController
 	def destroy
 		@cash_expense.destroy
 		respond_to do |format|
-			format.html { redirect_to cash_expenses_url }
+			format.html { redirect_to cash_expenses_url, flash: {success: 'Expense was successfully deleted.'} }
 			format.json { head :no_content }
 		end
 	end

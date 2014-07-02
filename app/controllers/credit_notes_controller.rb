@@ -58,7 +58,7 @@ class CreditNotesController < ApplicationController
 	def destroy
 		@credit_note.destroy
 		respond_to do |format|
-			format.html { redirect_to credit_notes_url }
+			format.html { redirect_to credit_notes_url, flash: {success: 'Credit note was successfully deleted.'} }
 			format.json { head :no_content }
 		end
 	end
