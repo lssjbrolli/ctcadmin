@@ -12,14 +12,20 @@
     <thead>
     <tr>
       <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
     </thead>
 
     <tbody>
-    <% @companies.each do |company| %>
+    <% @p_companies.each do |company| %>
         <tr>
           <td><%= company.name %></td>
+          <td><%= company.phone %></td>
+          <td><%= company.email %></td>
           <td class="btn-group btn-group-xs">
             <%= link_to 'Show', company, class: 'btn btn-info' %>
             <%= link_to 'Edit', edit_company_path(company), class: 'btn btn-info' %>
@@ -29,7 +35,9 @@
     </tbody>
   </table>
 
-  <br>
+  <hr>
+    <%= will_paginate @p_companies, renderer: BootstrapPagination::Rails %>
+  <hr>
 
   <%= link_to 'New Company', new_company_path, class: 'btn btn-info' %>
 
