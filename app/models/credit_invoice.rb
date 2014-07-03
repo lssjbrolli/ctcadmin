@@ -1,6 +1,8 @@
 class CreditInvoice < ActiveRecord::Base
 
-	before_save :set_number, :set_total, :set_paid
+	before_save 	:set_number, :set_total, :set_paid
+	after_create 	:make_pdf
+	after_update	:make_pdf
 
 	belongs_to :buyer, :foreign_key => 'buyer_id', :class_name => 'Company'
 	belongs_to :seller, :foreign_key => 'seller_id', :class_name => 'Company'
@@ -11,6 +13,8 @@ class CreditInvoice < ActiveRecord::Base
 	accepts_nested_attributes_for :credit_notes
 
 	validates :buyer, :seller, :credit_note_ids, :tax_rate, :currency, presence: true
+
+	mount_uploader :file, FileUploader
 
 	CURRENCY = %w(EUR RON)
 	VAT_RATE = ['24%', 'taxare inversa']
@@ -44,5 +48,13 @@ class CreditInvoice < ActiveRecord::Base
 		self.credit_note_ids.each do |cn|
 			CreditNote.find(cn).update(paid: true)
 		end
+	end
+
+	def make_pdf
+		pdf = CreditInvoicePdf.new(self, ActionController::Base.helpers)
+		src = File.join(Rails.root, "tmp/pdf/tmp.pdf")
+		pdf.render_file src
+		src_file = File.new(src)
+		self.file = src_file
 	end
 end

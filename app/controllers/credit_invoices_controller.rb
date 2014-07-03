@@ -13,15 +13,6 @@ class CreditInvoicesController < ApplicationController
 	# GET /credit_invoices/1
 	# GET /credit_invoices/1.json
 	def show
-		@invoice = CreditInvoice.find(params[:id])
-		respond_to do |format|
-			format.pdf do
-				pdf = CreditInvoicePdf.new(@invoice, view_context)
-				send_data pdf.render, filename: "#{@invoice.number}.pdf",
-									type:        'application/pdf',
-									disposition: 'inline'
-			end
-		end
 	end
 
 	# GET /credit_invoices/new
