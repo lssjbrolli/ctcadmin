@@ -84,4 +84,8 @@ class FileUploader < CarrierWave::Uploader::Base
 		new_file.content_type.include? 'image'
 	end
 
+	def cache_dir
+		"#{Rails.root}/tmp/uploads"
+	end
+
 end
