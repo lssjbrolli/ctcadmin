@@ -52,7 +52,7 @@ class CreditInvoice < ActiveRecord::Base
 
 	def make_pdf
 		pdf = CreditInvoicePdf.new(self, ActionController::Base.helpers)
-		src = File.join(Rails.root, "tmp/pdf/tmp.pdf")
+		src = File.join(Rails.root, "tmp/tmp.pdf")
 		pdf.render_file src
 		src_file = File.new(src)
 		self.file = src_file
