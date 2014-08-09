@@ -1,15 +1,15 @@
-class CardPdf < Prawn::Document
+class TripPdf < Prawn::Document
 
 	def initialize(raport, view)
 		super(page_size: 'A4')
 
 		@raport        = raport
 		@view          = view
-		@card_expenses = []
-		@raport.each { |x| @card_expenses << CardExpense.find(x) }
+		@trip_expenses = []
+		@raport.each { |x| @trip_expenses << TripExpense.find(x) }
 
 		@dates = []
-		@card_expenses.each { |x| @dates << x.date }
+		@trip_expenses.each { |x| @dates << x.date }
 		@dates.sort!
 
 		head
@@ -19,7 +19,7 @@ class CardPdf < Prawn::Document
 	end
 
 	def head
-		table = make_table([["Decont plati card #{@dates[0].month}.#{@dates[0].year} - #{@dates[-1].month}.#{@dates[-1].year}"]], width: 523)
+		table = make_table([["Decont plati deplasare #{@dates[0].month}.#{@dates[0].year} - #{@dates[-1].month}.#{@dates[-1].year}"]], width: 523)
 		table.cells.style(size: 14, font_style: :bold, align: :center)
 
 		table.before_rendering_page do |page|
@@ -54,7 +54,7 @@ class CardPdf < Prawn::Document
 	end
 
 	def line_items
-		@card_expenses.map do |item|
+		@trip_expenses.map do |item|
 			["#{item.id}", "#{item.number}", "#{item.date}", "#{item.description}", @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
 		end
 	end
@@ -79,7 +79,7 @@ class CardPdf < Prawn::Document
 
 	def total
 		value_a = []
-		@card_expenses.each { |x| value_a << x.value_eur }
+		@trip_expenses.each { |x| value_a << x.value_eur }
 		total = value_a.inject(0) { |r, e| r + e }
 
 		table = make_table [['', 'Total:', @view.number_to_currency(total, unit: 'EUR')]], width: 523, column_widths: [338, 100, 85]

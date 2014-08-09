@@ -1,0 +1,56 @@
+<div class="container">
+
+  <% if flash %>
+      <% flash.each do |k, v| %>
+          <%= alert(k, v) %>
+      <% end %>
+  <% end %>
+
+  <h1>Listing Trip Expenses</h1>
+
+  <table class="table table-hover table-condensed">
+    <thead>
+    <tr>
+      <th>Internal Number</th>
+      <th>Invoice Number</th>
+      <th class="t_middle">Date</th>
+      <th class="t_middle">Description</th>
+      <th class="t_right">Value</th>
+      <th class="t_right">EUR Value</th>
+      <th class="t_right">Paid by card</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @p_trip_expenses.each do |te| %>
+        <tr>
+          <td><%= te.int_id %></td>
+          <td><%= te.number %></td>
+          <td class="t_middle"><%= te.date %></td>
+          <td class="t_middle"><%= te.description %></td>
+          <td class="t_value"><%= number_to_currency(te.value, :unit => te.currency) %></td>
+          <td class="t_value"><%= number_to_currency(te.value_eur, :unit => 'EUR') %></td>
+          <td class="t_middle"><%=raw card(te) %></td>
+          <td class="btn-group btn-group-xs">
+            <%= file_state(te, 'Show') %>
+            <%= raport_state(te, 'trip') %>
+            <%= link_to 'Edit', edit_trip_expense_path(te), class: 'btn btn-info' %>
+            <%= link_to 'Destroy', te, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= will_paginate @p_trip_expenses, renderer: BootstrapPagination::Rails %>
+
+  <div class="btn-group btn-group-xs">
+    <%= link_to 'New Expense', new_trip_expense_path, class: 'btn btn-primary' %>
+    <%= generate_raport_status(@trip_expenses_missing, 'trip') %>
+  </div>
+</div>

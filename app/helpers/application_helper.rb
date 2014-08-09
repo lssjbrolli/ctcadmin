@@ -8,14 +8,6 @@ module ApplicationHelper
 		end
 	end
 
-	def paid(cn)
-		if cn.paid
-			'<i class="icon-ok"></i>'
-		else
-			'<i class="icon-remove"></i>'
-		end
-	end
-
 	def file_state(file, text)
 		if file.file_url.nil?
 			button_tag "#{text}", html_options = {disabled: 'disabled', class: 'btn btn-info'}

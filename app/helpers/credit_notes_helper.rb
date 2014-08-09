@@ -6,4 +6,12 @@ module CreditNotesHelper
 		end
 	end
 
+	def paid(cn)
+		if cn.paid
+			'<i class="icon-ok"></i>'
+		else
+			'<i class="icon-remove"></i>'
+		end
+	end
+
 end

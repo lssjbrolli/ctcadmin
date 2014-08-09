@@ -10,7 +10,7 @@ Ctcadmin::Application.routes.draw do
 
 	get 'raport/:id', to: 'raport#show'
 
-	resources :card_expenses
+	resources :trip_expenses
 
 	resources :trucks do
 		resources :events, shallow: true

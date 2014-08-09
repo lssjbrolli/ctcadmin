@@ -11,24 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140703144053) do
+ActiveRecord::Schema.define(version: 20140809111057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "card_expenses", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "number"
-    t.date     "date"
-    t.text     "description"
-    t.decimal  "value",       precision: 8, scale: 2
-    t.decimal  "value_eur",   precision: 8, scale: 2
-    t.string   "currency"
-    t.boolean  "raport",                              default: false
-    t.string   "file"
-    t.integer  "raport_id"
-  end
 
   create_table "cash_expenses", force: true do |t|
     t.datetime "created_at"
@@ -124,6 +110,22 @@ ActiveRecord::Schema.define(version: 20140703144053) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "ids"
+  end
+
+  create_table "trip_expenses", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "number"
+    t.date     "date"
+    t.text     "description"
+    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value_eur",   precision: 8, scale: 2
+    t.string   "currency"
+    t.boolean  "raport",                              default: false
+    t.string   "file"
+    t.integer  "raport_id"
+    t.integer  "int_id"
+    t.boolean  "card",                                default: true
   end
 
   create_table "trucks", force: true do |t|
