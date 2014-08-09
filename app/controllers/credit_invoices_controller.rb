@@ -18,7 +18,6 @@ class CreditInvoicesController < ApplicationController
 	# GET /credit_invoices/new
 	def new
 		@credit_invoice = CreditInvoice.new
-		@companies      = Company.all
 		@cnotes         = CreditNote.all.where(paid: false).order('number ASC')
 	end
 
