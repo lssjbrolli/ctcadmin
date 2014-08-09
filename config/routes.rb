@@ -2,7 +2,7 @@ Ctcadmin::Application.routes.draw do
 
   resources :expenses
 
-	resources :cash_expenses
+	resources :national_expenses
 
 	resources :raports do
 		post :make_raport, :on => :collection
