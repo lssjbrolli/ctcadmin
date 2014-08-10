@@ -73,3 +73,5 @@ gem 'bootstrap-datepicker-rails'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'meta_request'

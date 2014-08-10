@@ -16,4 +16,12 @@ class CreditNote < ActiveRecord::Base
 		self.remove_file!
 	end
 
+	def self.search(search)
+		if search
+			where('number LIKE ?', "%#{search}%")
+		else
+			scoped
+		end
+	end
+
 end
