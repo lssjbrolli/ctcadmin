@@ -68,6 +68,8 @@ gem 'eu_central_bank'
 
 gem 'bootstrap-datepicker-rails'
 
+gem 'acts_as_indexed'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
