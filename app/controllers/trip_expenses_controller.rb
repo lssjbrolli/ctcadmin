@@ -1,4 +1,6 @@
 class TripExpensesController < ApplicationController
+	helper_method :sort_column, :sort_direction
+
 	before_action :set_trip_expense, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
@@ -6,9 +8,8 @@ class TripExpensesController < ApplicationController
 	# GET /trip_expenses
 	# GET /trip_expenses.json
 	def index
-		@trip_expenses         = TripExpense.all
-		@p_trip_expenses       = @trip_expenses.paginate(:page => params[:page], :per_page => 8).order('id ASC')
 		@trip_expenses_missing = TripExpense.where(raport: false)
+		@trip_expenses = TripExpense.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trip_expenses/1
@@ -66,6 +67,16 @@ class TripExpensesController < ApplicationController
 	end
 
 	private
+
+	# Sortable methods
+	def sort_column
+		%w[int_id value value_eur card].include?(params[:sort]) ? params[:sort] : "int_id"
+	end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
+
 	# Use callbacks to share common setup or constraints between actions.
 	def set_trip_expense
 		@trip_expense = TripExpense.find(params[:id])

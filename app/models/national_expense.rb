@@ -1,4 +1,5 @@
 class NationalExpense < ActiveRecord::Base
+	acts_as_indexed :fields => [:number]
 
 	validates :number, :value, presence: true
 
@@ -10,4 +11,12 @@ class NationalExpense < ActiveRecord::Base
 
 	DESCRIPTION = ['Piese', 'Service', 'Asigurari', 'Leasing', 'Taxe', 'Echipament IT',
 				   'Servicii curier']
+
+	def self.search(search)
+		if search && !search.empty?
+			NationalExpense.with_query(search)
+		else
+			NationalExpense.all
+		end
+	end
 end

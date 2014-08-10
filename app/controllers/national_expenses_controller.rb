@@ -1,4 +1,6 @@
 class NationalExpensesController < ApplicationController
+	helper_method :sort_column, :sort_direction
+
 	before_action :set_national_expense, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
@@ -6,9 +8,7 @@ class NationalExpensesController < ApplicationController
 	# GET /national_expenses
 	# GET /national_expenses.json
 	def index
-		@national_expenses         = NationalExpense.all
-		@p_national_expenses       = @national_expenses.paginate(:page => params[:page], :per_page => 8).order('id ASC')
-		@national_expenses_missing = NationalExpense.where(raport: false)
+		@national_expenses = NationalExpense.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /national_expenses/1
@@ -66,6 +66,15 @@ class NationalExpensesController < ApplicationController
 	end
 
 	private
+	# Sortable methods
+	def sort_column
+		%w[number value supplier_id paid_by].include?(params[:sort]) ? params[:sort] : "number"
+	end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
+
 	# Use callbacks to share common setup or constraints between actions.
 	def set_national_expense
 		@national_expense = NationalExpense.find(params[:id])

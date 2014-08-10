@@ -1,4 +1,6 @@
 class TripExpense < ActiveRecord::Base
+	acts_as_indexed :fields => [:int_id]
+
 	before_save :set_int_id
 
 	validates :number, :value, :value_eur, :date, :currency, presence: true
@@ -20,6 +22,14 @@ class TripExpense < ActiveRecord::Base
 			else
 				self.int_id = TripExpense.last.int_id.next
 			end
+		end
+	end
+
+	def self.search(search)
+		if search && !search.empty?
+			TripExpense.with_query(search)
+		else
+			TripExpense.all
 		end
 	end
 

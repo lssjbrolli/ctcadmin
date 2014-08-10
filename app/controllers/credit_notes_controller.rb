@@ -65,7 +65,8 @@ class CreditNotesController < ApplicationController
 	end
 
 	private
-	# Use callbacks to share common setup or constraints between actions.
+
+	# Sortable methods
 	def sort_column
 		%w[number value paid].include?(params[:sort]) ? params[:sort] : "number"
 	end
@@ -74,6 +75,7 @@ class CreditNotesController < ApplicationController
 		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 	end
 
+	# Use callbacks to share common setup or constraints between actions.
 	def set_credit_note
 		@credit_note = CreditNote.find(params[:id])
 	end

@@ -19,14 +19,7 @@
       <th class="t_center"><%= sortable "paid" %></th>
       <th class="t_center">Truck</th>
       <th class="t_center">Notes</th>
-      <th>
-        <%= form_tag credit_notes_path, method: "get" do %>
-          <%= hidden_field_tag :direction, params[:direction] %>
-          <%= hidden_field_tag :sort, params[:sort] %>
-          <%= text_field_tag :search, params[:search] %>
-          <%= submit_tag "Search", name: nil %>
-        <% end %>
-      </th>
+      <th><%= render 'search/search' %></th>
     </tr>
     </thead>
 

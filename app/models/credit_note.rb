@@ -2,7 +2,6 @@ class CreditNote < ActiveRecord::Base
 
 	acts_as_indexed :fields => [:number]
 
-
 	before_destroy :remove_file
 
 	belongs_to :truck
@@ -21,10 +20,7 @@ class CreditNote < ActiveRecord::Base
 
 	def self.search(search)
 		if search && !search.empty?
-			puts "ESTE"
-			puts search
 			CreditNote.with_query(search)
-
 		else
 			CreditNote.all
 		end

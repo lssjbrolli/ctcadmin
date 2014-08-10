@@ -1,4 +1,6 @@
 class CreditInvoicesController < ApplicationController
+	helper_method :sort_column, :sort_direction
+
 	before_action :set_credit_invoice, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
@@ -6,8 +8,7 @@ class CreditInvoicesController < ApplicationController
 	# GET /credit_invoices
 	# GET /credit_invoices.json
 	def index
-		@credit_invoices = CreditInvoice.all
-		@cinvoices       = @credit_invoices.paginate(:page => params[:page], :per_page => 8).order('number ASC')
+		@cinvoices = CreditInvoice.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /credit_invoices/1
@@ -70,6 +71,14 @@ class CreditInvoicesController < ApplicationController
 
 	private
 	# Use callbacks to share common setup or constraints between actions.
+	def sort_column
+		%w[number total_value].include?(params[:sort]) ? params[:sort] : "number"
+	end
+
+	def sort_direction
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+	end
+	
 	def set_credit_invoice
 		@credit_invoice = CreditInvoice.find(params[:id])
 	end

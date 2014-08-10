@@ -38,12 +38,6 @@
                     <li><%= link_to 'Users', users_path %></li>
                 <% end %>
             <li class="divider-vertical"></li>
-            <li id="li_search">
-              <form class="form-search">
-                <input type="text" class="input-small search-query" placeholder="Search">
-              </form>
-            </li>
-            <li class="divider-vertical"></li>
             <li><%= link_to "Logged in as #{fullname(@current_user)}", user_path(@current_user) %></li>
             <li class="divider-vertical"></li>
             <li><%= link_to 'Sign Out', signout_path, method: 'delete' %></li>
@@ -54,6 +48,6 @@
 </head>
 
 <body>
-<%= yield %>
+  <%= yield %>
 </body>
 </html>

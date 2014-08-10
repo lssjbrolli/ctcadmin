@@ -1,4 +1,6 @@
 class InternationalExpensesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   before_action :set_international_expense, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
@@ -6,8 +8,7 @@ class InternationalExpensesController < ApplicationController
   # GET /international_expenses
   # GET /international_expenses.json
   def index
-    @international_expenses = InternationalExpense.all
-    @p_international_expenses       = @international_expenses.paginate(:page => params[:page], :per_page => 8).order('id ASC')
+    @international_expenses = InternationalExpense.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /international_expenses/1
@@ -65,13 +66,21 @@ class InternationalExpensesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_international_expense
-      @international_expense = InternationalExpense.find(params[:id])
-    end
+  def sort_column
+    %w[number value supplier_id].include?(params[:sort]) ? params[:sort] : "number"
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def international_expense_params
-      params.require(:international_expense).permit(:number, :date, :description, :value, :supplier_id, :file, :file_cache)
-    end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_international_expense
+    @international_expense = InternationalExpense.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def international_expense_params
+    params.require(:international_expense).permit(:number, :date, :description, :value, :supplier_id, :file, :file_cache)
+  end
 end

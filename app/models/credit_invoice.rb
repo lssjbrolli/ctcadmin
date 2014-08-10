@@ -1,4 +1,5 @@
 class CreditInvoice < ActiveRecord::Base
+	acts_as_indexed :fields => [:number]
 
 	before_save 	:set_number, :set_total, :set_paid
 	after_create 	:make_pdf
@@ -56,5 +57,13 @@ class CreditInvoice < ActiveRecord::Base
 		pdf.render_file src
 		src_file = File.new(src)
 		self.file = src_file
+	end
+
+	def self.search(search)
+		if search && !search.empty?
+			CreditInvoice.with_query(search)
+		else
+			CreditInvoice.all
+		end
 	end
 end
