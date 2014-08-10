@@ -1,3 +1,2 @@
 module CreditInvoicesHelper
-
 end
