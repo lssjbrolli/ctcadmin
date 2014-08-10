@@ -7,11 +7,11 @@ class TripExpense < ActiveRecord::Base
 
 	mount_uploader :file, FileUploader
 
-	CURRENCY = %w(EUR RON HUF PLN DKK SEK NOK GBP)
+	CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
 	DESCRIPTION = ['Taxa drum A', 'Taxa drum RO', 'Taxa drum H', 'Taxa drum SK',
-				   'Taxa drum PL', 'Taxa drum D', 'Taxa drum N', 'Eurovigneta',
-				   'Taxa drum LV', 'Taxa drum LT', 'Motorina', 'Piese', 'Service',
-				   'Telefon', 'Altele'].sort
+								 'Taxa drum PL', 'Taxa drum D', 'Taxa drum N', 'Eurovigneta',
+								 'Taxa drum LV', 'Taxa drum LT', 'Motorina', 'Piese', 'Service',
+								 'Telefon', 'Altele'].sort
 
 	protected
 

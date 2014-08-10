@@ -1,9 +1,9 @@
 class CreditInvoice < ActiveRecord::Base
 	acts_as_indexed :fields => [:number]
 
-	before_save 	:set_number, :set_total, :set_paid
-	after_create 	:make_pdf
-	after_update	:make_pdf
+	before_save :set_number, :set_total, :set_paid
+	after_create :make_pdf
+	after_update :make_pdf
 
 	belongs_to :buyer, :foreign_key => 'buyer_id', :class_name => 'Company'
 	belongs_to :seller, :foreign_key => 'seller_id', :class_name => 'Company'
@@ -53,9 +53,9 @@ class CreditInvoice < ActiveRecord::Base
 
 	def make_pdf
 		pdf = CreditInvoicePdf.new(self, ActionController::Base.helpers)
-		src = File.join(Rails.root, "tmp/tmp.pdf")
+		src = File.join(Rails.root, 'tmp/tmp.pdf')
 		pdf.render_file src
-		src_file = File.new(src)
+		src_file  = File.new(src)
 		self.file = src_file
 	end
 

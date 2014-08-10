@@ -1,5 +1,5 @@
-<%= form_tag request.original_url.split("?")[0].split("/")[-1], method: "get", class: "form-search" do %>
+<%= form_tag request.original_url.split('?')[0].split('/')[-1], method: 'get', class: 'form-search' do %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
-    <%= text_field_tag :search, params[:search], class: "input-medium search-query", placeholder: "Search by number" %>
+    <%= text_field_tag :search, params[:search], class: 'input-medium search-query', placeholder: 'Search by number' %>
 <% end %>

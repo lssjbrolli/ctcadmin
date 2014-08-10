@@ -1,6 +1,6 @@
 Ctcadmin::Application.routes.draw do
 
-  resources :international_expenses
+	resources :extern_expenses
 
 	resources :national_expenses
 

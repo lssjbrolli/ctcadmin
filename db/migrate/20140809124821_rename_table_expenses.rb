@@ -1,5 +1,6 @@
 class RenameTableExpenses < ActiveRecord::Migration
-  def change
-  	rename_table :expenses, :international_expenses
-  end
+	def change
+		# noinspection RailsParamDefResolve
+		rename_table :expenses, :international_expenses
+	end
 end

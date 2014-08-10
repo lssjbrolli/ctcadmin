@@ -9,7 +9,7 @@ class TripExpensesController < ApplicationController
 	# GET /trip_expenses.json
 	def index
 		@trip_expenses_missing = TripExpense.where(raport: false)
-		@trip_expenses = TripExpense.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 8)
+		@trip_expenses         = TripExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trip_expenses/1
@@ -70,11 +70,11 @@ class TripExpensesController < ApplicationController
 
 	# Sortable methods
 	def sort_column
-		%w[int_id value value_eur card].include?(params[:sort]) ? params[:sort] : "int_id"
+		%w[int_id value value_eur card].include?(params[:sort]) ? params[:sort] : 'int_id'
 	end
 
 	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
 	end
 
 	# Use callbacks to share common setup or constraints between actions.

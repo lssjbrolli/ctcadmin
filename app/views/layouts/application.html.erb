@@ -22,21 +22,21 @@
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 <li>
-                    <%= link_to 'Trip Expenses', trip_expenses_path, role: 'menuitem', tabindex: '-1' %>
+                  <%= link_to 'Trip Expenses', trip_expenses_path, role: 'menuitem', tabindex: '-1' %>
                 </li>
                 <li>
-                    <%= link_to 'National Expenses', national_expenses_path, role: 'menuitem', tabindex: '-1' %>
+                  <%= link_to 'National Expenses', national_expenses_path, role: 'menuitem', tabindex: '-1' %>
                 </li>
                 <li>
-                    <%= link_to 'International Expenses', international_expenses_path, role: 'menuitem', tabindex: '-1' %>
+                  <%= link_to 'International Expenses', international_expenses_path, role: 'menuitem', tabindex: '-1' %>
                 </li>
                 <li>
-               </ul>
+              </ul>
             </li>
             <li><%= link_to 'Companies', companies_path %></li>
-                <% if @current_user.admin? %>
-                    <li><%= link_to 'Users', users_path %></li>
-                <% end %>
+            <% if @current_user.admin? %>
+                <li><%= link_to 'Users', users_path %></li>
+            <% end %>
             <li class="divider-vertical"></li>
             <li><%= link_to "Logged in as #{fullname(@current_user)}", user_path(@current_user) %></li>
             <li class="divider-vertical"></li>
@@ -48,6 +48,6 @@
 </head>
 
 <body>
-  <%= yield %>
+<%= yield %>
 </body>
 </html>

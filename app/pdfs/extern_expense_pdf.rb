@@ -1,4 +1,4 @@
-class InternationalExpensePdf < Prawn::Document
+class ExternExpensePdf < Prawn::Document
 	def initialize(file)
 		super()
 		@file = file

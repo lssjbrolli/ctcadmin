@@ -1,4 +1,4 @@
-class InternationalExpense < ActiveRecord::Base
+class ExternExpense < ActiveRecord::Base
 
 	acts_as_indexed :fields => [:number]
 
@@ -6,14 +6,14 @@ class InternationalExpense < ActiveRecord::Base
 
 	belongs_to :supplier, :foreign_key => 'supplier_id', :class_name => 'Company'
 
-	CURRENCY = %w(EUR RON HUF PLN DKK SEK NOK GBP)
+	CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
 	DESCRIPTION = %w(Rent Loan Fuel Cash Service Parts)
 
 	def self.search(search)
 		if search && !search.empty?
-			InternationalExpense.with_query(search)
+			ExternExpense.with_query(search)
 		else
-			InternationalExpense.all
+			ExternExpense.all
 		end
 	end
 

@@ -8,7 +8,7 @@ class CreditNotesController < ApplicationController
 	# GET /credit_notes
 	# GET /credit_notes.json
 	def index
-		@cnotes = CreditNote.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:page => params[:page], :per_page => 8)
+		@cnotes = CreditNote.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /credit_notes/1
@@ -68,11 +68,11 @@ class CreditNotesController < ApplicationController
 
 	# Sortable methods
 	def sort_column
-		%w[number value paid].include?(params[:sort]) ? params[:sort] : "number"
+		%w[number value paid].include?(params[:sort]) ? params[:sort] : 'number'
 	end
 
 	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+		%w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
 	end
 
 	# Use callbacks to share common setup or constraints between actions.

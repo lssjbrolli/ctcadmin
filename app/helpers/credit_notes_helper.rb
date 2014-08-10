@@ -7,7 +7,7 @@ module CreditNotesHelper
 	end
 
 	def paid(cn)
-		if cn.paid
+		if cn.paid?
 			'<i class="icon-ok"></i>'
 		else
 			'<i class="icon-remove"></i>'

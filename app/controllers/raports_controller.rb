@@ -9,7 +9,7 @@ class RaportsController < ApplicationController
 
 		@raport     = Raport.new
 		@raport.ids = @ids
-		
+
 		respond_to do |format|
 			if @raport.save
 				set_id
@@ -24,10 +24,10 @@ class RaportsController < ApplicationController
 		@raport = Raport.find(params[:id])
 		respond_to do |format|
 			format.pdf do
-					pdf = TripPdf.new(@raport.ids.sort, view_context)
-					send_data pdf.render, filename: "#{@raport.id}.pdf",
-										type:        'application/pdf',
-										disposition: 'inline'
+				pdf = TripPdf.new(@raport.ids.sort, view_context)
+				send_data pdf.render, filename: "#{@raport.id}.pdf",
+									type:                 'application/pdf',
+									disposition:          'inline'
 			end
 		end
 	end

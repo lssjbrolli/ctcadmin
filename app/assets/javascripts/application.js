@@ -29,5 +29,5 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-	$(".alert").delay(3000).hide('fast');
+    $(".alert").delay(3000).hide('fast');
 });

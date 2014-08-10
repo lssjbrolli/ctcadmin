@@ -10,7 +10,7 @@ class NationalExpense < ActiveRecord::Base
 	PAID_BY = %w(Cash Card Bank)
 
 	DESCRIPTION = ['Piese', 'Service', 'Asigurari', 'Leasing', 'Taxe', 'Echipament IT',
-				   'Servicii curier']
+								 'Servicii curier']
 
 	def self.search(search)
 		if search && !search.empty?

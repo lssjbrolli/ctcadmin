@@ -6,7 +6,7 @@ class EventsController < ApplicationController
 	# GET /events
 	# GET /events.json
 	def index
-		@truck = Truck.find(params[:truck_id])
+		@truck  = Truck.find(params[:truck_id])
 		@events = @truck.events
 	end
 
