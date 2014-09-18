@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -77,3 +77,5 @@ gem 'acts_as_indexed'
 # gem 'debugger', group: [:development, :test]
 
 gem 'meta_request'
+
+gem 'newrelic_rpm'
