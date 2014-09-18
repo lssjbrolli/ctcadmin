@@ -21,7 +21,7 @@
     </thead>
 
     <tbody>
-    <% @p_companies.each do |company| %>
+    <% @companies.each do |company| %>
         <tr>
           <td><%= company.name %></td>
           <td><%= company.phone %></td>
@@ -36,7 +36,7 @@
   </table>
 
   <hr>
-  <%= will_paginate @p_companies, renderer: BootstrapPagination::Rails %>
+  <%= will_paginate @companies, renderer: BootstrapPagination::Rails %>
   <hr>
 
   <%= link_to 'New Company', new_company_path, class: 'btn btn-info' %>
