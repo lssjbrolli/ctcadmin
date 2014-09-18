@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140810165350) do
     t.integer  "truck_id"
   end
 
-  create_table "international_expenses", force: true do |t|
+  create_table "extern_expenses", force: true do |t|
     t.string   "number"
     t.date     "date"
     t.text     "description"
@@ -102,14 +102,6 @@ ActiveRecord::Schema.define(version: 20140810165350) do
     t.string   "file"
     t.integer  "supplier_id"
     t.string   "paid_by"
-  end
-
-  create_table "pg_search_documents", force: true do |t|
-    t.text     "content"
-    t.integer  "searchable_id"
-    t.string   "searchable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "raports", force: true do |t|

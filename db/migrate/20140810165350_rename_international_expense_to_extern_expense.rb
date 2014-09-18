@@ -1,4 +1,4 @@
-class RenameInternationalToExtern < ActiveRecord::Migration
+class RenameInternationalExpenseToExternExpense < ActiveRecord::Migration
 	def change
 		# noinspection RailsParamDefResolve
 		rename_table :international_expenses, :extern_expenses
