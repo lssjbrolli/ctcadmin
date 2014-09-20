@@ -22,7 +22,7 @@ Ctcadmin::Application.routes.draw do
 
 	resources :credit_notes
 
-	resources :users
+	resources :users, except: :show
 
 	resources :sessions, only: [:new, :create, :destroy]
 
@@ -34,6 +34,7 @@ Ctcadmin::Application.routes.draw do
 	match '/signup', to: 'users#new', via: 'get'
 	match '/signin', to: 'sessions#new', via: 'get'
 	match '/signout', to: 'sessions#destroy', via: 'delete'
+	match '/profile', to: 'users#show', via: 'get'
 
 	# You can have the root of your site routed with "root"
 	root 'trucks#index'
