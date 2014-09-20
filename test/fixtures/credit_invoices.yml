@@ -4,8 +4,32 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  number: 550550
+  date: 01-01-2000
+  total_value: 2541.25
+  seller_id: 1
+  buyer_id: 2
+  tax_rate: 24%
+  currency: RON
+  delegat: sergiu
+  ci: nt5554654
+  eliberat: pol p nt
+  transport: b25cuc
+  user_id: 1
+  file: saad.pdf
+
+two:
+  number: 551551
+  date: 01-02-2001
+  total_value: 11241.22
+  seller_id: 1
+  buyer_id: 3
+  tax_rate: taxare inversa
+  currency: EUR
+  delegat: cozma
+  ci: vr52245
+  eliberat: pol p nt
+  transport: vr254vrv
+  user_id: 2
+  file: sada.pdf

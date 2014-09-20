@@ -4,8 +4,10 @@ one:
   date: 2013-12-29
   km: MyString
   comment: MyText
+  truck_id: 1
 
 two:
   date: 2013-12-29
   km: MyString
   comment: MyText
+  truck_id: 2

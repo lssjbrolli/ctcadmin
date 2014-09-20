@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 45554
+  date: 01-01-2000
+  description: dadas
+  value: 23232
+  value_eur: 2225.2
+  currency: RON
+  raport: false
+  file: 45554.pdf
+  raport_id: 
+  int_id: 1
+  card: true
+
+two:
+  number: 4445
+  date: 02-02-2001
+  description: dadasdada
+  value: 2221
+  value_eur: 2225
+  currency: PLN
+  raport: true
+  file: 4445.pdf
+  raport_id: 1
+  int_id: 2
+  card: false

@@ -4,8 +4,25 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one: 
+  name: cozma transport
+  registration: j27/1205/2005
+  vat: ro17868720
+  address: plantelor 35
+  acc_lei: da00asdf0000111122223333
+  acc_eur: da00asdf0000111122223333
+  bank: raif
+  capital: 400
+  phone: 0233282342
+  email: cozma@gm.com
+
+two: 
+  name: ntg nordic
+  vat: dk1458789
+  address: koge
+  acc_lei: da00asdf0000111122223333
+  acc_eur: da00asdf0000111122223333
+  bank: nordea
+  capital: 100000000
+  phone: 0452654685
+  email: ntg@ntg.dk

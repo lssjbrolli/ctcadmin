@@ -3,9 +3,27 @@ require 'test_helper'
 class CompaniesControllerTest < ActionController::TestCase
 	setup do
 		@company = companies(:one)
+		@company2 = companies(:two)
+	end
+
+	test "redirect if not logged in" do
+		ac = [:index, :new]
+		ac.each do |x|
+			get x
+			assert_response :redirect
+		end
+	end
+
+	test "redirect if logged in but not activated" do
+		ac = [:index, :new]
+		ac.each do |x|
+			get x
+			assert_response :redirect
+		end
 	end
 
 	test "should get index" do
+		
 		get :index
 		assert_response :success
 		assert_not_nil assigns(:companies)

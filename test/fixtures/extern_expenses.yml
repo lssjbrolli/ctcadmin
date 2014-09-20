@@ -4,8 +4,18 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  number: 5545
+  date: 01-01-2000
+  description: dasdasda
+  value: 2154.21
+  currency: RON
+  supplier_id: 2
+
+two:
+  number: 4445
+  date: 02-02-2001
+  description: dasdasdafafaa
+  value: 21245.65
+  currency: EUR
+  supplier_id: 3

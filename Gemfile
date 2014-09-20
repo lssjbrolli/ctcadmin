@@ -58,6 +58,11 @@ group :development do
 	gem 'binding_of_caller'
 end
 
+group :test do
+	gem 'shoulda'
+	gem 'mocha'
+end
+
 gem 'will_paginate-bootstrap', '~> 0.2.5'
 
 gem 'best_in_place', github: 'aaronchi/best_in_place'

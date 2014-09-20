@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first_name: MyString1
-  last_name: MyString1
-  cnp: MyString1
-  username: MyString1
+  first_name: sega
+  last_name: brolli
+  cnp: 1860223270025
+  username: sega
+  activated: true
 
 two:
-  first_name: MyString1
-  last_name: MyString1
-  cnp: MyString1
-  username: MyString1
+  first_name: sega2
+  last_name: sss
+  cnp: 2860223270025
+  username: sega2
+  activated: false

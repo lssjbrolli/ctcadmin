@@ -4,8 +4,30 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-#  column: value
+one:
+  number: 550550
+  start: taastr
+  stop: arlanda
+  week:
+  value: 2254.21
+  notes: ceva
+  paid: false
+  file: 550550.pdf
+  currency: EUR
+  credit_invoice_id: 1
+  truck_id: 1
+  order_nr: 1
+
+two:
+  number: 551551
+  start:
+  stop:
+  week: 22
+  value: 2211.11
+  notes: 
+  paid: true
+  file: 551551.pdf
+  currency: EUR
+  credit_invoice_id: 2
+  truck_id: 2
+  order_nr: 3
