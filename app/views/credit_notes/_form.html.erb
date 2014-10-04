@@ -14,6 +14,24 @@
     <% end %>
     <%= f.input :file, :label => 'Select raport file' %>
     <%= f.hidden_field :file_cache %>
-    <%= f.button :submit, class: 'btn-primary' %>
+    <%= f.button :submit, "Add new credit note", class: 'modal-toggle btn-primary', data: {toggle: 'modal', target: '#modal-dialog', backdrop: 'static'} %>
     <%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>
 <% end %>
+
+<div id="modal-dialog" class="modal hide fade">
+  <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h3 align="center">Uploading...</h3>
+        </div>
+        <div class="modal-body">
+             <p align="center">Please wait, uploading in progress.</p>
+        </div>
+        <div class="modal-footer">
+            <div class="progress progress-striped active">
+                <div class="bar" style="width: 40%;"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

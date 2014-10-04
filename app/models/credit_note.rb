@@ -9,6 +9,7 @@ class CreditNote < ActiveRecord::Base
 
   validates :number, presence: true, uniqueness: true
   validates :value, presence: true
+  validates :currency, presence: true
 
   mount_uploader :file, FileUploader
 
