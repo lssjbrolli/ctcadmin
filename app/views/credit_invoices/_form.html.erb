@@ -5,8 +5,8 @@
     <%= f.association :seller %>
     <%= f.association :buyer %>
     <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
-    <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
-    <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, :item_wrapper_class => 'inline' %>
+    <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, item_wrapper_class: 'inline', checked: CreditInvoice::CURRENCY[0] %>
+    <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, item_wrapper_class: 'inline', checked: CreditInvoice::VAT_RATE[1] %>
     <%= f.input :delegat %>
     <%= f.input :ci %>
     <%= f.input :eliberat %>

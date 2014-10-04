@@ -6,7 +6,7 @@
     <%= f.input :stop, :label => 'Trip finish location' %>
     <%= f.input :week %>
     <%= f.input :notes %>
-    <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline' %>
+    <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline', checked: CreditNote::CURRENCY[0] %>
     <%= f.association :truck, :label_method => :registration %>
     <%= f.input :order_nr %>
     <% if @current_user.admin? %>
