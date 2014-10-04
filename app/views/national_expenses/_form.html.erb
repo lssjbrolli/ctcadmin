@@ -1,4 +1,4 @@
-<%= simple_form_for @national_expense, :html => {class: 'form-horizontal'} do |f| %>
+<%= simple_nested_form_for @national_expense, :html => {class: 'form-horizontal'} do |f| %>
     <%= f.error_notification %>
     <%= f.input :number %>
     <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
@@ -6,8 +6,13 @@
     <%= f.association :supplier %>
     <%= f.input :description, collection: NationalExpense::DESCRIPTION, :item_wrapper_class => 'inline' %>
     <%= f.input :paid_by, collection: NationalExpense::PAID_BY, :item_wrapper_class => 'inline' %>
-    <%= f.input :file, :label => 'Select invoice file' %>
-    <%= f.hidden_field :file_cache %>
+    <%-#= f.input :file, :label => 'Select invoice file' %>
+    <%-#= f.hidden_field :file_cache %>
+    <%= f.simple_fields_for :attachments do |a_form| %>
+        <%= a_form.file_field :file %>
+        <%= a_form.link_to_remove "Remove this attachment" %>
+    <% end %>
+    <%= f.link_to_add "Add attachment", :attachments %>
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to 'Cancel', national_expenses_path, class: 'btn btn-danger' %>
 <% end %>

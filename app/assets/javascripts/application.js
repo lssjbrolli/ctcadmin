@@ -17,6 +17,7 @@
 //= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ro.js
+//= require jquery_nested_form
 //= require_tree .
 
 $(document).ready(function () {

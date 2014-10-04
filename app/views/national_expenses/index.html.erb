@@ -31,7 +31,7 @@
           <td class="t_middle"><%= ne.description %></td>
           <td class="t_middle"><%= ne.paid_by %></td>
           <td class="btn-group btn-group-xs">
-            <%= file_state(ne, 'Show') %>
+            <%-#= file_state(ne, 'Show') %>
             <%= link_to 'Edit', edit_national_expense_path(ne), class: 'btn btn-info' %>
             <%= link_to 'Destroy', ne, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>

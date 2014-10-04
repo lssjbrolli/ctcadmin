@@ -12,7 +12,7 @@
     <% if @current_user.admin? %>
         <%= f.input :paid %>
     <% end %>
-    <%= f.input :file, :label => 'Select raport file' %>
+    <%= f.input :file, :multiple => true, :label => 'Select raport file' %>
     <%= f.hidden_field :file_cache %>
     <%= f.button :submit, "Add new credit note", class: 'modal-toggle btn-primary', data: {toggle: 'modal', target: '#modal-dialog', backdrop: 'static'} %>
     <%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>

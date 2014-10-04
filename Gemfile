@@ -37,6 +37,7 @@ gem 'simple_form'
 
 gem 'carrierwave'
 gem 'carrierwave-aws'
+gem 'nested_form'
 
 gem 'pry'
 

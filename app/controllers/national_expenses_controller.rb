@@ -82,6 +82,7 @@ class NationalExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def national_expense_params
-    params.require(:national_expense).permit(:currency, :number, :date, :value, :description, :file, :file_cache, :supplier_id, :paid_by)
+    params.require(:national_expense).permit(:currency, :number, :date, :value, :description, :supplier_id, :paid_by, attachments_attributes: [:id, :file, :_destroy])
   end
+
 end
