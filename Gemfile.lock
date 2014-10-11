@@ -43,8 +43,6 @@ GEM
       json (~> 1.4)
       nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
-    bcrypt-ruby (3.1.5)
-      bcrypt (>= 3.1.3)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -200,7 +198,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_indexed
-  bcrypt-ruby (~> 3.1.2)
+  bcrypt
   best_in_place!
   better_errors
   binding_of_caller

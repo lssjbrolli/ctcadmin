@@ -46,7 +46,7 @@ gem 'prawn'
 gem 'prawn-table'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt'
 
 gem 'puma'
 
@@ -57,7 +57,6 @@ group :production do
 end
 
 group :development do
-	gem 'pry'
 	gem 'better_errors'
 	gem 'binding_of_caller'
 end
@@ -86,5 +85,6 @@ gem 'acts_as_indexed'
 # gem 'debugger', group: [:development, :test]
 
 gem 'meta_request'
+gem 'pry'
 
 #gem 'newrelic_rpm'
