@@ -1,11 +1,17 @@
 class TripExpense < ActiveRecord::Base
+  include ImageConvert
+
+  before_save :convert
+
   acts_as_indexed :fields => [:int_id]
 
   before_save :set_int_id
 
   validates :number, :value, :value_eur, :date, :currency, presence: true
 
-  mount_uploader :file, FileUploader
+  has_many :attachments, :as => :attachable
+
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
   DESCRIPTION = ['Taxa drum A', 'Taxa drum RO', 'Taxa drum H', 'Taxa drum SK',

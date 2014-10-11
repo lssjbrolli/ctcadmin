@@ -1,37 +1,31 @@
-<%= simple_form_for @credit_note, :html => {class: 'form-horizontal'} do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :number, :label => 'Credit note number', :input_html => {:class => 'span6'} %>
-    <%= f.input :value, :label => 'Value of trip' %>
-    <%= f.input :start, :label => 'Trip start location' %>
-    <%= f.input :stop, :label => 'Trip finish location' %>
-    <%= f.input :week %>
-    <%= f.input :notes %>
-    <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline', checked: CreditNote::CURRENCY[0] %>
-    <%= f.association :truck, :label_method => :registration %>
-    <%= f.input :order_nr %>
-    <% if @current_user.admin? %>
-        <%= f.input :paid %>
-    <% end %>
-    <%= f.input :file, :multiple => true, :label => 'Select raport file' %>
-    <%= f.hidden_field :file_cache %>
-    <%= f.button :submit, "Add new credit note", class: 'modal-toggle btn-primary', data: {toggle: 'modal', target: '#modal-dialog', backdrop: 'static'} %>
+<%= simple_nested_form_for @credit_note, :html => {class: 'form-horizontal'} do |f| %>
+    <div class="row">    
+        <div class="span5">
+            <%= f.error_notification %>
+            <%= f.input :number, :label => 'Credit note number' %>
+            <%= f.input :value, :label => 'Value of trip' %>
+            <%= f.input :start, :label => 'Trip start location' %>
+            <%= f.input :stop, :label => 'Trip finish location' %>
+            <%= f.input :week %>
+            <%= f.input :notes %>
+            <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline', checked: CreditNote::CURRENCY[0] %>
+            <%= f.association :truck, :label_method => :registration %>
+            <% if @current_user.admin? %>
+                <%= f.input :paid %>
+            <% end %>
+        </div>
+        <div class="span4 offset3">
+            <fieldset>
+                <legend>Files:</legend>
+                <%= f.fields_for :attachments do |a_form| %>
+                    <%= a_form.file_field :file %>
+                    <%= a_form.hidden_field :file_cache %>
+                    <%= a_form.link_to_remove "", class: "icon-remove" %>
+                <% end %>
+                <%= f.link_to_add "Add file", :attachments, class: "btn btn-info" %>
+            </fieldset>
+        </div>
+    </div>                                                                                                             
+    <%= f.button :submit, "Add new credit note", class: 'btn-primary' %>
     <%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>
 <% end %>
-
-<div id="modal-dialog" class="modal hide fade">
-  <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-            <h3 align="center">Uploading...</h3>
-        </div>
-        <div class="modal-body">
-             <p align="center">Please wait, uploading in progress.</p>
-        </div>
-        <div class="modal-footer">
-            <div class="progress progress-striped active">
-                <div class="bar" style="width: 40%;"></div>
-            </div>
-        </div>
-      </div>
-    </div>
-</div>

@@ -1,23 +1,22 @@
 class CreditNote < ActiveRecord::Base
+  include ImageConvert
+
+  before_save :convert
 
   acts_as_indexed :fields => [:number]
 
-  before_destroy :remove_file
-
   belongs_to :truck
   belongs_to :credit_invoice
+
+  has_many :attachments, :as => :attachable, dependent: :destroy
+  
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   validates :number, presence: true, uniqueness: true
   validates :value, presence: true
   validates :currency, presence: true
 
-  mount_uploader :file, FileUploader
-
   CURRENCY = %w(EUR RON)
-
-  def remove_file
-    self.remove_file!
-  end
 
   def self.search(search)
     if search && !search.empty?

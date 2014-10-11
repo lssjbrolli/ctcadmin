@@ -30,6 +30,7 @@ class CreditNotesController < ApplicationController
   # POST /credit_notes.json
   def create
     @credit_note = CreditNote.new(credit_note_params)
+
     respond_to do |format|
       if @credit_note.save
         format.html { redirect_to credit_notes_url, flash: {success: 'Credit note was successfully created.'} }
@@ -83,6 +84,6 @@ class CreditNotesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_note_params
-    params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :order_nr, :file_cache, :file)
+    params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :order_nr, attachments_attributes: [:id, :file, :_destroy, :file_cache])
   end
 end

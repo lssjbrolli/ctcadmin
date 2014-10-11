@@ -1,18 +1,18 @@
 source 'https://rubygems.org'
 
-ruby '2.1.2'
+ruby '2.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -39,9 +39,11 @@ gem 'carrierwave'
 gem 'carrierwave-aws'
 gem 'nested_form'
 
-gem 'pry'
 
+
+#pdfs
 gem 'prawn'
+gem 'prawn-table'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
@@ -55,6 +57,7 @@ group :production do
 end
 
 group :development do
+	gem 'pry'
 	gem 'better_errors'
 	gem 'binding_of_caller'
 end
@@ -84,4 +87,4 @@ gem 'acts_as_indexed'
 
 gem 'meta_request'
 
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'

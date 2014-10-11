@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import "bootstrap-datepicker";
+@import "**/*";
 
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
@@ -14,11 +15,6 @@
  *= require_self
  *= require_tree .
  */
-
-.credit_invoice_credit_notes > div.controls {
-  height: 100px;
-  overflow-y: scroll;
-}
 
 #user {
   font-size: 16px;
@@ -63,4 +59,8 @@ div.container {
   margin-left: 100px;
   margin-right: 100px;
   width: 90%;
+}
+
+a.btn {
+  color: white;
 }

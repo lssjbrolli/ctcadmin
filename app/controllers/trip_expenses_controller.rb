@@ -84,6 +84,6 @@ class TripExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def trip_expense_params
-    params.require(:trip_expense).permit(:currency, :number, :date, :value, :description, :value_eur, :file, :file_cache, :int_id, :card)
+    params.require(:trip_expense).permit(:currency, :number, :date, :value, :description, :value_eur, :int_id, :card, attachments_attributes: [:id, :file, :file_cache, :_destroy])
   end
 end

@@ -28,11 +28,11 @@ class ExternExpensesController < ApplicationController
   # POST /extern_expenses
   # POST /extern_expenses.json
   def create
-    @extern_expense = ExternExpense.new(expense_params)
+    @extern_expense = ExternExpense.new(extern_expense_params)
 
     respond_to do |format|
       if @extern_expense.save
-        format.html { redirect_to extern_expenses_url, notice: 'Expense was successfully created.' }
+        format.html { redirect_to extern_expenses_url, success: 'Expense was successfully created.' }
         format.json { render action: 'show', status: :created, location: @extern_expense }
       else
         format.html { render action: 'new' }
@@ -46,7 +46,7 @@ class ExternExpensesController < ApplicationController
   def update
     respond_to do |format|
       if @extern_expense.update(extern_expense_params)
-        format.html { redirect_to extern_expenses_url, notice: 'Expense was successfully updated.' }
+        format.html { redirect_to extern_expenses_url, success: 'Expense was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -81,6 +81,6 @@ class ExternExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def extern_expense_params
-    params.require(:extern_expense).permit(:number, :date, :description, :value, :supplier_id, :file, :file_cache)
+    params.require(:extern_expense).permit(:number, :date, :description, :value, :currency, :supplier_id, attachments_attributes: [:id, :file, :_destroy, :file_cache])
   end
 end

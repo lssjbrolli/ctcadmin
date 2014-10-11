@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
   def user_activated
     redirect_to signin_url, notice: 'Please contact the administrator to activate your account.' unless acc_activated?
   end
+  
 end

@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004123422) do
+ActiveRecord::Schema.define(version: 20141011073848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attachments", force: true do |t|
-    t.text     "description"
     t.string   "file"
     t.integer  "attachable_id"
     t.string   "attachable_type"
@@ -59,7 +58,6 @@ ActiveRecord::Schema.define(version: 20141004123422) do
     t.string   "eliberat"
     t.string   "transport"
     t.integer  "user_id"
-    t.string   "file"
   end
 
   add_index "credit_invoices", ["number"], name: "index_credit_invoices_on_number", unique: true, using: :btree
@@ -74,7 +72,6 @@ ActiveRecord::Schema.define(version: 20141004123422) do
     t.decimal  "value",             precision: 8, scale: 2
     t.text     "notes"
     t.boolean  "paid"
-    t.string   "file"
     t.string   "currency"
     t.integer  "credit_invoice_id"
     t.integer  "truck_id"
@@ -110,7 +107,6 @@ ActiveRecord::Schema.define(version: 20141004123422) do
     t.date     "date"
     t.text     "description"
     t.decimal  "value",       precision: 8, scale: 2
-    t.string   "file"
     t.integer  "supplier_id"
     t.string   "paid_by"
   end
@@ -131,7 +127,6 @@ ActiveRecord::Schema.define(version: 20141004123422) do
     t.decimal  "value_eur",   precision: 8, scale: 2
     t.string   "currency"
     t.boolean  "raport",                              default: false
-    t.string   "file"
     t.integer  "raport_id"
     t.integer  "int_id"
     t.boolean  "card",                                default: true

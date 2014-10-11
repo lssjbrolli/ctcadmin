@@ -1,7 +1,7 @@
 class CreditInvoice < ActiveRecord::Base
   acts_as_indexed :fields => [:number]
 
-  before_save :set_number, :set_total, :set_paid
+  before_save  :set_number, :set_total, :set_paid
   after_create :make_pdf
   after_update :make_pdf
 
@@ -10,12 +10,12 @@ class CreditInvoice < ActiveRecord::Base
   belongs_to :user
 
   has_many :credit_notes
+  has_many :attachments, :as => :attachable
 
+  accepts_nested_attributes_for :attachments, allow_destroy: true
   accepts_nested_attributes_for :credit_notes
 
   validates :buyer, :seller, :credit_note_ids, :tax_rate, :currency, presence: true
-
-  mount_uploader :file, FileUploader
 
   CURRENCY = %w(EUR RON)
   VAT_RATE = ['24%', 'taxare inversa']
@@ -56,7 +56,7 @@ class CreditInvoice < ActiveRecord::Base
     src = File.join(Rails.root, 'tmp/tmp.pdf')
     pdf.render_file src
     src_file  = File.new(src)
-    self.file = src_file
+    self.attachments.new(file: File.open(src_file))
   end
 
   def self.search(search)

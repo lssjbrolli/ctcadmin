@@ -1,7 +1,8 @@
 module ApplicationHelper
 
   def file_uploaded(file)
-    if file.file_url.nil?
+    @file = file.attachments[0]
+    if @file.file_url.nil?
       '<i class="icon-remove"></i>'
     else
       '<i class="icon-ok"></i>'
@@ -9,10 +10,11 @@ module ApplicationHelper
   end
 
   def file_state(file, text)
-    if file.file_url.nil?
+    @file = file.attachments[0]
+    if @file.file_url.nil?
       button_tag "#{text}", html_options = {disabled: 'disabled', class: 'btn btn-info'}
     else
-      link_to "#{text}", file.file_url, html_options = {class: 'btn btn-info'}
+      link_to "#{text}", @file.file_url, html_options = {class: 'btn btn-info'}
     end
   end
 
