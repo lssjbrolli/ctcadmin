@@ -1,7 +1,7 @@
 <%= simple_nested_form_for @extern_expense, html: {class: 'form-horizontal'} do |f| %>
+    <%= f.error_notification %>
     <div class="row">
         <div class="span5">
-            <%= f.error_notification %>
             <%= f.input :number %>
             <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
             <%= f.input :value %>
