@@ -4,11 +4,14 @@ module ImageConvert
   def convert
   	@imgs = []
     self.attachments.each {|x| @imgs << x.file.current_path}
-  	if self.attachments[0].file.content_type.include?("image")
-  	  image_to_pdf(@imgs)
-  	elsif self.attachments[0].file.content_type.include?("pdf") && @imgs.count >1
-  	  join_pdfs
-	end
+    unless self.attachments[0].nil?
+    	if self.attachments[0].file.content_type.include?("image")
+    	  image_to_pdf(@imgs)
+    	elsif self.attachments[0].file.content_type.include?("pdf") && @imgs.count >1
+    	  join_pdfs
+      end
+    end
+
 
     CarrierWave.clean_cached_files!
   end

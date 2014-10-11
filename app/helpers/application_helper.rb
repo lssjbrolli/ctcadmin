@@ -11,7 +11,7 @@ module ApplicationHelper
 
   def file_state(file, text)
     @file = file.attachments[0]
-    if @file.file_url.nil?
+    if @file.nil?
       button_tag "#{text}", html_options = {disabled: 'disabled', class: 'btn btn-info'}
     else
       link_to "#{text}", @file.file_url, html_options = {class: 'btn btn-info'}
