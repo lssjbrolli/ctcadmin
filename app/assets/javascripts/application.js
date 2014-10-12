@@ -20,7 +20,7 @@
 //= require jquery_nested_form
 //= require_tree .
 
-$(document).ready(function () {
+$(document).ready(function() {
     return $('[data-behaviour~=datepicker]').datepicker({
         format: "yyyy-mm-dd",
         todayBtn: "linked",
@@ -29,6 +29,6 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
+$(document).ready(function() {
     $(".alert").delay(3000).hide('fast');
 });
