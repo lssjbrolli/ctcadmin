@@ -6,10 +6,10 @@
             <%= f.input :number %>
             <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
             <%= f.input :value %>
-            <%= f.input :currency, collection: TripExpense::CURRENCY, :item_wrapper_class => 'inline' %>
+            <%= f.input :currency, collection: TripExpense::CURRENCY.sort, :item_wrapper_class => 'inline' %>
             <%= f.input :value_eur %>
             <%= f.input :card %>
-            <%= f.input :description, collection: TripExpense::DESCRIPTION, :item_wrapper_class => 'inline' %>
+            <%= f.input :description, collection: TripExpense::DESCRIPTION.sort, :item_wrapper_class => 'inline' %>
         </div>
         <div class="span4 offset3">
             <fieldset>

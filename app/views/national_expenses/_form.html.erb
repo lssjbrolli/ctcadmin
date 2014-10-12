@@ -6,8 +6,8 @@
             <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
             <%= f.input :value %>
             <%= f.association :supplier %>
-            <%= f.input :description, collection: NationalExpense::DESCRIPTION, :item_wrapper_class => 'inline' %>
-            <%= f.input :paid_by, collection: NationalExpense::PAID_BY, :item_wrapper_class => 'inline' %>
+            <%= f.input :description, collection: NationalExpense::DESCRIPTION.sort, :item_wrapper_class => 'inline' %>
+            <%= f.input :paid_by, collection: NationalExpense::PAID_BY.sort, :item_wrapper_class => 'inline' %>
         </div>
         <div class="span4 offset3">
             <fieldset>
