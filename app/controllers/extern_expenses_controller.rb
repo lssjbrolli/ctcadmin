@@ -4,6 +4,7 @@ class ExternExpensesController < ApplicationController
   before_action :set_extern_expense, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
+  before_filter :format_date_time, :only => [:create, :update]
 
   # GET /extern_expenses
   # GET /extern_expenses.json
@@ -29,7 +30,7 @@ class ExternExpensesController < ApplicationController
   # POST /extern_expenses.json
   def create
     @extern_expense = ExternExpense.new(extern_expense_params)
-
+    logger.debug "Create: #{extern_expense_params}"
     respond_to do |format|
       if @extern_expense.save
         format.html { redirect_to extern_expenses_url, success: 'Expense was successfully created.' }
@@ -44,6 +45,7 @@ class ExternExpensesController < ApplicationController
   # PATCH/PUT /extern_expenses/1
   # PATCH/PUT /extern_expenses/1.json
   def update
+    logger.debug "Update: #{extern_expense_params}"
     respond_to do |format|
       if @extern_expense.update(extern_expense_params)
         format.html { redirect_to extern_expenses_url, success: 'Expense was successfully updated.' }
@@ -66,6 +68,12 @@ class ExternExpensesController < ApplicationController
   end
 
   private
+  def format_date_time
+    date = extern_expense_params['date']
+    parse = Date.parse(date)
+    params["extern_expense"]["date"] = parse
+  end
+
   def sort_column
     %w[number value supplier_id].include?(params[:sort]) ? params[:sort] : 'number'
   end

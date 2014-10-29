@@ -1,7 +1,7 @@
 class ExternExpense < ActiveRecord::Base
   include ImageConvert
 
-  before_save :convert
+  before_save :convert, :date_parse
 
   acts_as_indexed :fields => [:number]
 
@@ -23,6 +23,12 @@ class ExternExpense < ActiveRecord::Base
     else
       ExternExpense.all
     end
+  end
+
+  private
+
+  def date_parse
+    logger.debug "THIS IS TEST: #{self.date}"
   end
 
 end
