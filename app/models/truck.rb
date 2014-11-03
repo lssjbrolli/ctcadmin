@@ -6,7 +6,7 @@ class Truck < ActiveRecord::Base
 
   has_many :credit_notes
   has_many :events
-  has_many :papers
+  has_many :papers, :as => :document
 
   accepts_nested_attributes_for :papers, allow_destroy: true
 
