@@ -13,8 +13,7 @@ class CreditNote < ActiveRecord::Base
   accepts_nested_attributes_for :attachments, allow_destroy: true, :reject_if => proc {|attributes| attributes['file'].blank? && attributes['file_cache'].blank?}
 
   validates :number, presence: true, uniqueness: true
-  validates :value, presence: true
-  validates :currency, presence: true
+  validates :value, :currency, presence: true
 
   CURRENCY = %w(EUR RON)
 
