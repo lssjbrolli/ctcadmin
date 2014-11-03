@@ -13,7 +13,7 @@ class TrucksController < ApplicationController
   # GET /trucks/1.json
   def show
     @truck = Truck.find(params[:id])
-    @papers = @truck.papers
+    #@papers = @truck.papers
   end
 
   def cnotes
