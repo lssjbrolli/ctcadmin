@@ -6,15 +6,38 @@
       <% end %>
   <% end %>
 
-  <p>
-    <strong>Registration:</strong>
-    <%= @truck.registration %>
+  <p style="text-align: center">
+    <strong>Registration:</strong> <%= @truck.registration %> (VIN: <%= @truck.vin %>)
+  </p>
+  <p style="text-align: center">
+    View <%= link_to 'Credit Notes', cnotes_path(@truck)%> or <%= link_to 'Events', truck_events_path(@truck) %>.
   </p>
 
-  <p>
-    <%= link_to 'Credit Notes', cnotes_path(@truck), class: 'btn btn-info' %>
-    <%= link_to 'Events', truck_events_path(@truck), class: 'btn btn-info' %>
-  </p>
-  <%= link_to 'Edit', edit_truck_path(@truck), class: 'btn btn-primary' %> |
-  <%= link_to 'Back', trucks_path, class: 'btn btn-primary' %>
+  <table class="table table-hover table-condensed">
+    <thead>
+      <tr>
+        <th>Paper</th>
+        <th>Expire</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @papers.each do |p| %>
+        <tr>
+          <td><%= p.description %></td>
+          <td><%= p.expire %></td>
+          <td>link to show</td>
+          <td>link to edit</td>
+          <td>link to destroy</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+
+
+
+  <%#= link_to 'Edit', edit_truck_path(@truck), class: 'btn btn-primary' %> |
+  <%#= link_to 'Back', trucks_path, class: 'btn btn-primary' %>
