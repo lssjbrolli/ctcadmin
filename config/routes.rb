@@ -47,6 +47,7 @@ Ctcadmin::Application.routes.draw do
 
 	get '/trucks/:id/cnotes', to: 'trucks#cnotes', as: :cnotes	
 	get '/trucks/:id/papers/', to: 'trucks#edit_truck_paper', as: :edit_truck_paper
+	delete '/trucks/:id/papers/', to: 'trucks#delete_truck_paper', as: :delete_truck_paper
 
 	# Example resource route (maps HTTP verbs to controller actions automatically):
 	#   resources :products

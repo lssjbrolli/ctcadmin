@@ -33,7 +33,7 @@
             <td class="btn-group btn-group-xs">
               <%= file_state(p, 'Show') %>
               <%= link_to 'Edit', edit_truck_paper_path(p), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#paper-modal', class: "btn btn-info"} %>
-              <%#= link_to 'Destroy', p, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+              <%= link_to 'Destroy', delete_truck_paper_path(p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
             </td>
           </tr>
         <% end %>
