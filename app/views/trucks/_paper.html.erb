@@ -1,7 +1,7 @@
 <%= simple_nested_form_for @truck, :html => {class: 'form-horizontal'} do |f| %>
 	<%= f.simple_fields_for :papers, @obj do |p| %>
 		<%= p.input :description %>
-		<%= p.input :expire, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+		<%= p.input :expire, as: :string, input_html: {class: 'datepicker'} %>
 		<%= p.simple_fields_for :attachments do |a| %>
                     <%= a.file_field :file %>
                     <%= a.hidden_field :file_cache %>
