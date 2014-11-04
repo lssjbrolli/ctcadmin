@@ -6,7 +6,7 @@ class TrucksController < ApplicationController
   # GET /trucks
   # GET /trucks.json
   def index
-    @trucks = Truck.all
+    @trucks = Truck.all.paginate(:page => params[:page], :per_page => 8).order('registration ASC')
   end
 
   # GET /trucks/1
@@ -14,7 +14,7 @@ class TrucksController < ApplicationController
   def show
     @truck = Truck.find(params[:id])
     @papers = @truck.papers
-    #@paper = Paper.find(params[:id])
+    @papers_p = @papers.paginate(:page => params[:page], :per_page => 8).order('description ASC')
   end
 
   def cnotes

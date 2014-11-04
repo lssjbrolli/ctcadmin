@@ -24,8 +24,8 @@
       </tr>
     </thead>
     <tbody>
-      <% unless @papers.nil? %>
-        <% @papers.each do |p| %>
+      <% unless @papers_p.nil? %>
+        <% @papers_p.each do |p| %>
           <tr>
             <td><%= p.description %></td>
             <td><%= p.expire %></td>
@@ -39,7 +39,9 @@
       <% end %>
     </tbody>
   </table>
+  <br>
   <%= link_to 'Add paper', edit_truck_path,  {:remote => true, 'data-toggle' => "modal", 'data-target' => '#paper-modal', class: "btn btn-primary"}  %>
+  <%= will_paginate @papers_p, renderer: BootstrapPagination::Rails %>
 </div>
 
 <div id="paper-modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
