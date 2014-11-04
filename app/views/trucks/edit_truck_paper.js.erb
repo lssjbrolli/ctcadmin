@@ -1,0 +1,10 @@
+$("#paper-modal").html("<%= escape_javascript(render 'trucks/modal') %>");
+$(document).ready(function() {
+    $('.datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        orientation: "top left",
+        autoclose: true,
+        todayHighlight: true
+    });
+});

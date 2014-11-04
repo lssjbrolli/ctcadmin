@@ -1,6 +1,5 @@
 <%= simple_form_for @truck, :html => {class: 'form-horizontal'} do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :registration %>
-    <%= f.button :submit, class: 'btn btn-success' %>
-    <%= link_to 'Back', trucks_path, class: 'btn btn-danger' %>
+	<%= f.input :registration %>
+	<%= f.input :vin %>
+	<%= f.button :submit, class: "btn" %>
 <% end %>

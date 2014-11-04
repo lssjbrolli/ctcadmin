@@ -6,13 +6,15 @@ class TrucksController < ApplicationController
   # GET /trucks
   # GET /trucks.json
   def index
-    @trucks = Truck.all
+    @trucks = Truck.all.paginate(:page => params[:page], :per_page => 8).order('registration ASC')
   end
 
   # GET /trucks/1
   # GET /trucks/1.json
   def show
     @truck = Truck.find(params[:id])
+    @papers = @truck.papers
+    @papers_p = @papers.paginate(:page => params[:page], :per_page => 8).order('description ASC')
   end
 
   def cnotes
@@ -28,6 +30,11 @@ class TrucksController < ApplicationController
 
   # GET /trucks/1/edit
   def edit
+    @truck  = Truck.find(params[:id])
+    @obj = @truck.papers.build
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /trucks
@@ -38,10 +45,8 @@ class TrucksController < ApplicationController
     respond_to do |format|
       if @truck.save
         format.html { redirect_to @truck, flash: {success: 'Truck was successfully created.'} }
-        format.json { render action: 'show', status: :created, location: @truck }
       else
         format.html { render action: 'new' }
-        format.json { render json: @truck.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,10 +57,8 @@ class TrucksController < ApplicationController
     respond_to do |format|
       if @truck.update(truck_params)
         format.html { redirect_to @truck, flash: {success: 'Truck was successfully updated.'} }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @truck.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,7 +69,24 @@ class TrucksController < ApplicationController
     @truck.destroy
     respond_to do |format|
       format.html { redirect_to trucks_url, flash: {success: 'Truck was successfully deleted.'} }
-      format.json { head :no_content }
+    end
+  end
+
+  def edit_truck_paper
+    @obj = Paper.find(params[:id])
+    @truck = @obj.document
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def delete_truck_paper
+    @paper = Paper.find(params[:id])
+    @truck = @paper.document
+    @paper.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @truck, flash: {success: 'Paper was successfully deleted.'} }
     end
   end
 
@@ -78,7 +98,7 @@ class TrucksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def truck_params
-    params.require(:truck).permit(:registration)
+    params.require(:truck).permit(:registration, :vin, papers_attributes: [:id, :description, :expire, :_destroy, attachments_attributes: [:id, :file, :file_cache, :_destroy]])
   end
 
 end

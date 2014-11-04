@@ -30,7 +30,6 @@ class ExternExpensesController < ApplicationController
   # POST /extern_expenses.json
   def create
     @extern_expense = ExternExpense.new(extern_expense_params)
-    logger.debug "Create: #{extern_expense_params}"
     respond_to do |format|
       if @extern_expense.save
         format.html { redirect_to extern_expenses_url, success: 'Expense was successfully created.' }
@@ -45,7 +44,6 @@ class ExternExpensesController < ApplicationController
   # PATCH/PUT /extern_expenses/1
   # PATCH/PUT /extern_expenses/1.json
   def update
-    logger.debug "Update: #{extern_expense_params}"
     respond_to do |format|
       if @extern_expense.update(extern_expense_params)
         format.html { redirect_to extern_expenses_url, success: 'Expense was successfully updated.' }

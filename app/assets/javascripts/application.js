@@ -21,9 +21,10 @@
 //= require_tree .
 
 $(document).ready(function() {
-    return $('[data-behaviour~=datepicker]').datepicker({
+    $('[data-behaviour~=datepicker]').datepicker({
         format: "yyyy-mm-dd",
         todayBtn: "linked",
+        orientation: "top left",
         autoclose: true,
         todayHighlight: true
     });

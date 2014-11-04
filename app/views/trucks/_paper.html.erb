@@ -1,0 +1,16 @@
+<%= simple_nested_form_for @truck, :html => {class: 'form-horizontal'} do |f| %>
+	<%= f.simple_fields_for :papers, @obj do |p| %>
+		<%= p.input :description %>
+		<%= p.input :expire, as: :string, input_html: {class: 'datepicker'} %>
+		<%= p.simple_fields_for :attachments do |a| %>
+                    <%= a.file_field :file %>
+                    <%= a.hidden_field :file_cache %>
+                    <%= a.link_to_remove "", class: "icon-remove" %>
+        <% end %>
+        <%= p.link_to_add "Add file", :attachments, class: "btn btn-info" %>
+	<% end %>
+	<div class="modal-footer">
+	  <%= f.button :submit, class: "btn btn-primary" %>
+	  <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	</div>
+<% end %>
