@@ -50,7 +50,11 @@ class FileUploader < CarrierWave::Uploader::Base
 
   def filename
     unless original_filename.nil?
-      "#{model.attachable.number}.#{content_type.split("/")[-1]}"
+      if model.attachable.class.to_s == "Paper"
+        "#{model.attachable.id}.#{content_type.split("/")[-1]}"
+      else
+        "#{model.attachable.number}.#{content_type.split("/")[-1]}"
+      end
     end
   end
 
