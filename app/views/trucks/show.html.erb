@@ -24,30 +24,23 @@
       </tr>
     </thead>
     <tbody>
-      <%# @papers.each do |p| %>
-        <tr>
-          <td><%#= p.description %></td>
-          <td><%#= p.expire %></td>
-          <td>link to show</td>
-          <td>link to edit</td>
-          <td>link to destroy</td>
-        </tr>
-      <%# end %>
+      <% unless @papers.nil? %>
+        <% @papers.each do |p| %>
+          <tr>
+            <td><%= p.description %></td>
+            <td><%= p.expire %></td>
+            <td><%= p.id %></td>
+            <td class="btn-group btn-group-xs">
+              <%= file_state(p, 'Show') %>
+              <%= link_to 'Edit', edit_truck_paper_path(p), {:remote => true, 'data-toggle' => "modal", 'data-target' => '#paper-modal', class: "btn btn-info"} %>
+              <%#= link_to 'Destroy', p, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
     </tbody>
   </table>
-  <%= link_to "Modal", "#myModal", class: "btn btn-primary", role: "button", data: {toggle: "modal"} %>
+  <%= link_to 'Add paper', new_truck_paper_path,  {:remote => true, 'data-toggle' => "modal", 'data-target' => '#paper-modal', class: "btn btn-primary"}  %>
 </div>
 
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Add new document...</h3>
-  </div>
-  <div class="modal-body">
-    <%= render partial: 'paper' %>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary">Create</button>
-    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  </div>
-</div>
+<div id="paper-modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

@@ -13,7 +13,8 @@ class TrucksController < ApplicationController
   # GET /trucks/1.json
   def show
     @truck = Truck.find(params[:id])
-    #@papers = @truck.papers
+    @papers = @truck.papers
+    #@paper = Paper.find(params[:id])
   end
 
   def cnotes
@@ -39,10 +40,8 @@ class TrucksController < ApplicationController
     respond_to do |format|
       if @truck.save
         format.html { redirect_to @truck, flash: {success: 'Truck was successfully created.'} }
-        format.json { render action: 'show', status: :created, location: @truck }
       else
         format.html { render action: 'new' }
-        format.json { render json: @truck.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -53,10 +52,8 @@ class TrucksController < ApplicationController
     respond_to do |format|
       if @truck.update(truck_params)
         format.html { redirect_to @truck, flash: {success: 'Truck was successfully updated.'} }
-        format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @truck.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,7 +64,24 @@ class TrucksController < ApplicationController
     @truck.destroy
     respond_to do |format|
       format.html { redirect_to trucks_url, flash: {success: 'Truck was successfully deleted.'} }
-      format.json { head :no_content }
+    end
+  end
+
+  def new_truck_paper
+    @truck = Truck.find(params[:id])
+    @paper = @truck.papers.build
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def edit_truck_paper
+    #@truck = Truck.find(params[:id])
+    #@paper = @truck.find(params[:id])
+    @paper = Paper.find(params[:id])
+    respond_to do |format|
+      format.js
     end
   end
 
