@@ -1,4 +1,8 @@
 class Paper < ActiveRecord::Base
+	include ImageConvert
+
+  	before_save :convert
+  	
 	belongs_to :document, polymorphic: true
 	
 	has_many :attachments, :as => :attachable, dependent: :destroy
