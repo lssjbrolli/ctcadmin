@@ -30,6 +30,11 @@ class TrucksController < ApplicationController
 
   # GET /trucks/1/edit
   def edit
+    @truck  = Truck.find(params[:id])
+    @obj = @truck.papers.build
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /trucks
@@ -67,19 +72,9 @@ class TrucksController < ApplicationController
     end
   end
 
-  def new_truck_paper
-    @truck = Truck.find(params[:id])
-    @paper = @truck.papers.build
-
-    respond_to do |format|
-      format.js
-    end
-  end
-
   def edit_truck_paper
-    #@truck = Truck.find(params[:id])
-    #@paper = @truck.find(params[:id])
-    @paper = Paper.find(params[:id])
+    @obj = Paper.find(params[:id])
+    @truck = @obj.document
     respond_to do |format|
       format.js
     end

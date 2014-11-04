@@ -1,5 +1,5 @@
 <%= simple_nested_form_for @truck, :html => {class: 'form-horizontal'} do |f| %>
-	<%= f.simple_fields_for :papers do |builder| %>
+	<%= f.simple_fields_for :papers, @obj do |builder| %>
 		<%= builder.input :description %>
 		<%= builder.input :expire, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
 	<% end %>

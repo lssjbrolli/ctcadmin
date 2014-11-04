@@ -45,9 +45,8 @@ Ctcadmin::Application.routes.draw do
 	# Example of named route that can be invoked with purchase_url(id: product.id)
 	#   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-	get '/trucks/:id/cnotes', to: 'trucks#cnotes', as: :cnotes
-	get '/trucks/:id/new_truck_paper', to: 'trucks#new_truck_paper', as: :new_truck_paper
-	get '/trucks/:id/edit_truck_paper', to: 'trucks#edit_truck_paper', as: :edit_truck_paper
+	get '/trucks/:id/cnotes', to: 'trucks#cnotes', as: :cnotes	
+	get '/trucks/:id/papers/', to: 'trucks#edit_truck_paper', as: :edit_truck_paper
 
 	# Example resource route (maps HTTP verbs to controller actions automatically):
 	#   resources :products
