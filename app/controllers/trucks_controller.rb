@@ -14,7 +14,7 @@ class TrucksController < ApplicationController
   def show
     @truck = Truck.find(params[:id])
     @papers = @truck.papers
-    @papers_p = @papers.paginate(:page => params[:page], :per_page => 8).order('description ASC')
+    @papers_p = @papers.paginate(:page => params[:page], :per_page => 8).order("expire ASC").order('description ASC')
   end
 
   def cnotes

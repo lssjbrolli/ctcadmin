@@ -27,7 +27,7 @@
     <tbody>
       <% unless @papers_p.nil? %>
         <% @papers_p.each do |p| %>
-          <tr>
+          <%=raw expire_row(p.expire) %>
             <td><%= p.description %></td>
             <td><%= p.expire %></td>
             <td><%= p.comments %></td>
