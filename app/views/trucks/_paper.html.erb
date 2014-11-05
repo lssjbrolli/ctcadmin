@@ -2,6 +2,7 @@
 	<%= f.simple_fields_for :papers, @obj do |p| %>
 		<%= p.input :description %>
 		<%= p.input :expire, as: :string, input_html: {class: 'datepicker'} %>
+		<%= p.input :comments %>
 		<%= p.simple_fields_for :attachments do |a| %>
                     <%= a.file_field :file %>
                     <%= a.hidden_field :file_cache %>
