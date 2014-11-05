@@ -33,6 +33,7 @@ class TrucksController < ApplicationController
     @truck  = Truck.find(params[:id])
     @obj = @truck.papers.build
     respond_to do |format|
+      format.html
       format.js
     end
   end
@@ -56,7 +57,7 @@ class TrucksController < ApplicationController
   def update
     respond_to do |format|
       if @truck.update(truck_params)
-        format.html { redirect_to @truck, flash: {success: 'Truck was successfully updated.'} }
+        format.html { redirect_to trucks_url, flash: {success: 'Truck was successfully updated.'} }
       else
         format.html { render action: 'edit' }
       end
