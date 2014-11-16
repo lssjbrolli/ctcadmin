@@ -10,7 +10,7 @@ class CreditNote < ActiveRecord::Base
 
   has_many :attachments, :as => :attachable, dependent: :destroy
   
-  accepts_nested_attributes_for :attachments, allow_destroy: true, :reject_if => proc {|attributes| attributes['file'].blank? && attributes['file_cache'].blank?}
+  accepts_nested_attributes_for :attachments, allow_destroy: true
 
   validates :number, presence: true, uniqueness: true
   validates :value, :currency, presence: true

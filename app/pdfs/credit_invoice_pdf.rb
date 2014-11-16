@@ -6,20 +6,25 @@ class CreditInvoicePdf < Prawn::Document
     @ci   = ci
     @view = view
 
-    table1
-    table2
-    table3
-    table4
-    table5
-    table6
+    bounding_box([0, cursor], width: 540, height: 770) do
+      transparent(1) { stroke_bounds }
+      table1
+      table2
+      table3
+      table4
+      bounding_box([0, 115], width: 540, height: 150) do
+        table5
+        table6
+      end
+    end
   end
 
   def table1
     row1_1  = [{content: "Furnizor: #{@ci.seller.name}", colspan: 2}, '', {content: 'FACTURA', colspan: 2}]
     row1_2  = [{content: "Nr.ord.Reg.Com/an: #{@ci.seller.registration} ", colspan: 2}, '', {content: "Seria NT ACT Nr. #{'%07d' % @ci.number}", colspan: 2}]
     row1_3  = [{content: "C.U.I. #{@ci.seller.vat}", colspan: 2}, '', {content: "Din data de #{@ci.date}", colspan: 2}]
-    row1_4  = [{content: "Adresa: #{@ci.seller.address}", colspan: 2, rowspan: 2}, {content: '', rowspan: 2}, {content: '', colspan: 2}]
-    row1_5  = [{content: "Cumparator: #{@ci.buyer.name}", colspan: 2}]
+    row1_4  = [{content: "Adresa: #{@ci.seller.address}", colspan: 2, rowspan: 2}, {content: '', rowspan: 2}, {content: "Cumparator: #{@ci.buyer.name}", colspan: 2, rowspan: 2}]
+    row1_5  = []
     row1_6  = [{content: "Cont Lei: #{@ci.seller.acc_lei}", colspan: 2}, '', {content: "Nr ord Reg.Com/an: #{@ci.buyer.registration}", colspan: 2}]
     row1_7  = [{content: "Cont Euro: #{@ci.seller.acc_eur}", colspan: 2}, '', {content: "C.U.I. #{@ci.buyer.vat}", colspan: 2}]
     row1_8  = [{content: "Banca: #{@ci.seller.bank}", colspan: 2}, '', {content: "Adresa: #{@ci.buyer.address}", rowspan: 2, colspan: 2}]
@@ -39,13 +44,13 @@ class CreditInvoicePdf < Prawn::Document
                            row1_9,
                            row1_10,
                            row1_11
-                       ], width: 540, column_widths: [200, 50, 90], cell_style: {borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, padding: 1, padding_left: 5, font: 'Times-Roman', character_spacing: 1}
+                       ], width: 540, column_widths: [120, 120, 90, 100, 110], cell_style: {borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, padding: 1, padding_left: 5, font: 'Times-Roman', character_spacing: 1}
 
-    table.cells[0, 3].style(align: :center, size: 14, font_style: :bold)
-    table.cells[1, 3].style(align: :center, size: 14, font_style: :bold)
+    table.cells[0, 3].style(align: :center, size: 12, font_style: :bold)
+    table.cells[1, 3].style(align: :center, size: 12, font_style: :bold)
     table.cells[2, 3].style(align: :center)
-    table.cells[0, 0].style(size: 14, font_style: :bold)
-    table.cells[4, 3].style(size: 14, font_style: :bold)
+    table.cells[0, 0].style(size: 12, font_style: :bold)
+    table.cells[3, 3].style(size: 12, font_style: :bold)
 
 
     table.before_rendering_page do |page|
@@ -61,7 +66,7 @@ class CreditInvoicePdf < Prawn::Document
   def table2
     table = make_table [
                            ['Denumire servicii sau produs', 'Cant', 'Pret unitar', 'Valoare', 'Valoare TVA']
-                       ], width: 540, cell_style: {size: 12, padding: 5, font: 'Times-Roman', character_spacing: 1, align: :center}, column_widths: [190, 50, 100, 100, 100]
+                       ], width: 540, cell_style: {borders: [:top, :left, :right, :bottom], size: 12, padding: 5, font: 'Times-Roman', character_spacing: 1, align: :center}, column_widths: [190, 50, 100, 100, 100]
 
     table.draw
   end
@@ -75,22 +80,10 @@ class CreditInvoicePdf < Prawn::Document
   end
 
   def table4
-    bounding_box([0, 602], width: 540, height: 470) do
-      table1 = make_table [
-                              ['', '', '', '', ''],
-                              ['', '', '', '', ''],
-                              ['', '', '', '', ''],
-                              ['', '', '', '', '']
-                          ], width: 540, cell_style: {borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, font: 'Times-Roman', character_spacing: 1}
-      table1.draw
-
       table line_items, width: 540, column_widths: [190, 50, 100, 100, 100], cell_style: {borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, font: 'Times-Roman', character_spacing: 1} do
         columns(2..4).align = :right
         columns(1).align    = :center
       end
-
-      transparent(1) { stroke_bounds }
-    end
   end
 
   def table5
