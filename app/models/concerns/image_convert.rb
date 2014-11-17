@@ -19,7 +19,7 @@ module ImageConvert
   private
 
   def image_to_pdf(imgs)
-  	tmp_path = "#{Rails.root}/tmp/pdf/tmp.pdf"
+  	tmp_path = "#{Rails.root}/tmp.pdf"
     pdf = ImageToPdf.new(imgs)
 	pdf.render_file(tmp_path)
 	self.attachments.destroy_all
