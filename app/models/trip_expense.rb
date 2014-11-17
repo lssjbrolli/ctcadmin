@@ -3,7 +3,7 @@ class TripExpense < ActiveRecord::Base
 
   before_save :convert
 
-  acts_as_indexed :fields => [:int_id]
+  acts_as_indexed :fields => [:number]
 
   before_save :set_int_id
 
@@ -14,9 +14,7 @@ class TripExpense < ActiveRecord::Base
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
   CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
-  DESCRIPTION = ['Taxa drum A', 'Taxa drum RO', 'Taxa drum H', 'Taxa drum SK',
-                 'Taxa drum PL', 'Taxa drum D', 'Taxa drum N', 'Eurovigneta',
-                 'Taxa drum LV', 'Taxa drum LT', 'Motorina', 'Piese', 'Service',
+  DESCRIPTION = ['Taxa drum', 'Motorina', 'Piese', 'Service', 'Transport'
                  'Telefon', 'Altele'].sort
 
   protected
