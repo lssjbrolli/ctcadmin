@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105110455) do
+ActiveRecord::Schema.define(version: 20141127130543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "credit_invoices", force: true do |t|
@@ -58,6 +60,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.string   "eliberat"
     t.string   "transport"
     t.integer  "user_id"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   add_index "credit_invoices", ["number"], name: "index_credit_invoices_on_number", unique: true, using: :btree
@@ -76,6 +80,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.integer  "credit_invoice_id"
     t.integer  "truck_id"
     t.integer  "order_nr"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   add_index "credit_notes", ["number"], name: "index_credit_notes_on_number", unique: true, using: :btree
@@ -87,6 +93,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "truck_id"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "extern_expenses", force: true do |t|
@@ -98,6 +106,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.datetime "updated_at"
     t.string   "currency"
     t.integer  "supplier_id"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "national_expenses", force: true do |t|
@@ -109,6 +119,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.decimal  "value",       precision: 8, scale: 2
     t.integer  "supplier_id"
     t.string   "paid_by"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "papers", force: true do |t|
@@ -119,6 +131,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "comments"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "raports", force: true do |t|
@@ -140,6 +154,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.integer  "raport_id"
     t.integer  "int_id"
     t.boolean  "card",                                default: true
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "trucks", force: true do |t|
@@ -147,6 +163,8 @@ ActiveRecord::Schema.define(version: 20141105110455) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "vin"
+    t.integer  "create_id"
+    t.integer  "update_id"
   end
 
   create_table "users", force: true do |t|

@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  include UserInfo
+
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
@@ -27,7 +29,7 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
+    on_create(@company)
     respond_to do |format|
       if @company.save
         format.html { redirect_to companies_url, flash: {success: 'Company was successfully created.'} }
@@ -42,6 +44,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1
   # PATCH/PUT /companies/1.json
   def update
+    on_update(@company)
     respond_to do |format|
       if @company.update(company_params)
         format.html { redirect_to companies_url, flash: {success: 'Company was successfully updated.'} }

@@ -10,6 +10,8 @@ class TripExpense < ActiveRecord::Base
   validates :number, :value, :value_eur, :date, :currency, presence: true
 
   has_many :attachments, :as => :attachable
+  belongs_to :created_by, :foreign_key => 'create_id', :class_name => 'User'
+  belongs_to :updated_by, :foreign_key => 'update_id', :class_name => 'User'
 
   accepts_nested_attributes_for :attachments, allow_destroy: true
 

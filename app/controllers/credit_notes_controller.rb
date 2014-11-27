@@ -1,4 +1,6 @@
 class CreditNotesController < ApplicationController
+  include UserInfo
+
   helper_method :sort_column, :sort_direction
 
   before_action :set_credit_note, only: [:show, :edit, :update, :destroy]
@@ -30,7 +32,7 @@ class CreditNotesController < ApplicationController
   # POST /credit_notes.json
   def create
     @credit_note = CreditNote.new(credit_note_params)
-
+    on_create(@credit_note)
     respond_to do |format|
       if @credit_note.save
         format.html { redirect_to credit_notes_url, flash: {success: 'Credit note was successfully created.'} }
@@ -45,6 +47,7 @@ class CreditNotesController < ApplicationController
   # PATCH/PUT /credit_notes/1
   # PATCH/PUT /credit_notes/1.json
   def update
+    on_update(@credit_note)
     respond_to do |format|
       if @credit_note.update(credit_note_params)
         format.html { redirect_to session[:last_page], flash: {success: 'Credit note was successfully updated.'} }

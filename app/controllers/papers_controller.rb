@@ -1,4 +1,6 @@
 class PapersController < ApplicationController
+  include UserInfo
+
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
@@ -35,6 +37,7 @@ class PapersController < ApplicationController
     @truck = Truck.find(params[:truck_id])
     @paper = @truck.papers.build
     @paper.update_attributes(paper_params)
+    on_create(@paper)
     respond_to do |format|
       if @truck.save
         format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Paper was successfully created.'} }
@@ -49,6 +52,7 @@ class PapersController < ApplicationController
   def update
     @truck = Truck.find(params[:truck_id])
     @paper = Paper.find(params[:id])
+    on_update(@paper)
     respond_to do |format|
       if @paper.update(paper_params)
         format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Paper was successfully updated.'} }

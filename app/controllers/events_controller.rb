@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  include UserInfo
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
@@ -31,7 +33,7 @@ class EventsController < ApplicationController
   def create
     @truck = Truck.find(params[:truck_id])
     @event = @truck.events.build(event_params)
-
+    on_create(@event)
     respond_to do |format|
       if @event.save
         format.html { redirect_to truck_events_path(@truck), flash: {success: 'Event was successfully created.'} }
@@ -47,6 +49,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     @event = Event.find(params[:id])
+    on_update(@event)
     respond_to do |format|
       if @event.update(event_params)
         format.html { redirect_to truck_events_url(@event.truck_id), flash: {success: 'Event was successfully updated.'} }

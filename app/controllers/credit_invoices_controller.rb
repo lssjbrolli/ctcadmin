@@ -1,4 +1,6 @@
 class CreditInvoicesController < ApplicationController
+  include UserInfo
+
   helper_method :sort_column, :sort_direction
 
   before_action :set_credit_invoice, only: [:show, :edit, :update, :destroy]
@@ -32,15 +34,12 @@ class CreditInvoicesController < ApplicationController
   # POST /credit_invoices.json
   def create
     @credit_invoice = CreditInvoice.new(credit_invoice_params)
-    @credit_invoice.update_attributes(user_id: @current_user.id)
-
+    on_create(@credit_invoice)
     respond_to do |format|
       if @credit_invoice.save
         format.html { redirect_to credit_invoices_path, flash: {success: 'Credit invoice was successfully created.'} }
-        format.json { render action: 'show', status: :created, location: @credit_invoice }
       else
         format.html { render action: 'new' }
-        format.json { render json: @credit_invoice.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,6 +47,7 @@ class CreditInvoicesController < ApplicationController
   # PATCH/PUT /credit_invoices/1
   # PATCH/PUT /credit_invoices/1.json
   def update
+    on_update(@credit_invoice)
     respond_to do |format|
       if @credit_invoice.update(credit_invoice_params)
         format.html { redirect_to credit_invoices_path, flash: {success: 'Credit invoice was successfully updated.'} }

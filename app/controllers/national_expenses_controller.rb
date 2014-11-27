@@ -1,4 +1,6 @@
 class NationalExpensesController < ApplicationController
+  include UserInfo
+
   helper_method :sort_column, :sort_direction
 
   before_action :set_national_expense, only: [:show, :edit, :update, :destroy]
@@ -29,7 +31,7 @@ class NationalExpensesController < ApplicationController
   # POST /national_expenses.json
   def create
     @national_expense = NationalExpense.new(national_expense_params)
-
+    on_create(@national_expense)
     respond_to do |format|
       if @national_expense.save
         format.html { redirect_to national_expenses_url, flash: {success: 'Expense was successfully created.'} }
@@ -44,6 +46,7 @@ class NationalExpensesController < ApplicationController
   # PATCH/PUT /national_expenses/1
   # PATCH/PUT /national_expenses/1.json
   def update
+    on_update(@national_expense)
     respond_to do |format|
       if @national_expense.update(national_expense_params)
         format.html { redirect_to national_expenses_path, flash: {success: 'Expense was successfully updated.'} }

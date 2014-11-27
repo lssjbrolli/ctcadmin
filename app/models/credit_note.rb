@@ -7,6 +7,8 @@ class CreditNote < ActiveRecord::Base
 
   belongs_to :truck
   belongs_to :credit_invoice
+  belongs_to :created_by, :foreign_key => 'create_id', :class_name => 'User'
+  belongs_to :updated_by, :foreign_key => 'update_id', :class_name => 'User'
 
   has_many :attachments, :as => :attachable, dependent: :destroy
   

@@ -1,4 +1,6 @@
 class TripExpensesController < ApplicationController
+  include UserInfo
+
   helper_method :sort_column, :sort_direction
 
   before_action :set_trip_expense, only: [:show, :edit, :update, :destroy]
@@ -30,7 +32,7 @@ class TripExpensesController < ApplicationController
   # POST /trip_expenses.json
   def create
     @trip_expense = TripExpense.new(trip_expense_params)
-
+    on_create(@trip_expense)
     respond_to do |format|
       if @trip_expense.save
         format.html { redirect_to trip_expenses_url, flash: {success: 'Expense was successfully created.'} }
@@ -45,6 +47,7 @@ class TripExpensesController < ApplicationController
   # PATCH/PUT /trip_expenses/1
   # PATCH/PUT /trip_expenses/1.json
   def update
+    on_update(@trip_expense)
     respond_to do |format|
       if @trip_expense.update(trip_expense_params)
         format.html { redirect_to trip_expenses_path, flash: {success: 'Expense was successfully updated.'} }

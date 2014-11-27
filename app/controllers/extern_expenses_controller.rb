@@ -1,4 +1,6 @@
 class ExternExpensesController < ApplicationController
+  include UserInfo
+
   helper_method :sort_column, :sort_direction
 
   before_action :set_extern_expense, only: [:show, :edit, :update, :destroy]
@@ -30,6 +32,7 @@ class ExternExpensesController < ApplicationController
   # POST /extern_expenses.json
   def create
     @extern_expense = ExternExpense.new(extern_expense_params)
+    on_create(@extern_expense)
     respond_to do |format|
       if @extern_expense.save
         format.html { redirect_to extern_expenses_url, success: 'Expense was successfully created.' }
@@ -44,6 +47,7 @@ class ExternExpensesController < ApplicationController
   # PATCH/PUT /extern_expenses/1
   # PATCH/PUT /extern_expenses/1.json
   def update
+    on_create(@extern_expense)
     respond_to do |format|
       if @extern_expense.update(extern_expense_params)
         format.html { redirect_to extern_expenses_url, success: 'Expense was successfully updated.' }

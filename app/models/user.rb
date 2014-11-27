@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   before_save :username_downcase
   before_create :create_remember_token
 
-  has_many :credit_invoices
-
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :username, presence: true, length: {maximum: 10}, uniqueness: {case_sensitive: false}

@@ -1,4 +1,6 @@
 class TrucksController < ApplicationController
+  include Userinfo
+
   before_action :set_truck, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
@@ -33,7 +35,7 @@ class TrucksController < ApplicationController
   # POST /trucks.json
   def create
     @truck = Truck.new(truck_params)
-
+    on_create(@truck)
     respond_to do |format|
       if @truck.save
         format.html { redirect_to @truck, flash: {success: 'Truck was successfully created.'} }
@@ -46,6 +48,7 @@ class TrucksController < ApplicationController
   # PATCH/PUT /trucks/1
   # PATCH/PUT /trucks/1.json
   def update
+    on_update(@truck)
     respond_to do |format|
       if @truck.update(truck_params)
         format.html { redirect_to @truck, flash: {success: 'Truck was successfully updated.'} }

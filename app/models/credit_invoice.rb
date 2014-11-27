@@ -7,13 +7,13 @@ class CreditInvoice < ActiveRecord::Base
 
   belongs_to :buyer, :foreign_key => 'buyer_id', :class_name => 'Company'
   belongs_to :seller, :foreign_key => 'seller_id', :class_name => 'Company'
-  belongs_to :user
+  belongs_to :created_by, :foreign_key => 'create_id', :class_name => 'User'
+  belongs_to :updated_by, :foreign_key => 'update_id', :class_name => 'User'
 
   has_many :credit_notes
   has_many :attachments, :as => :attachable
 
   accepts_nested_attributes_for :attachments, allow_destroy: true
-  accepts_nested_attributes_for :credit_notes
 
   validates :buyer, :seller, :credit_note_ids, :tax_rate, :currency, presence: true
 
