@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   before_save :username_downcase
-  before_create :create_remember_token
+  before_create :create_remember_token, :set_first_user
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -32,6 +32,13 @@ class User < ActiveRecord::Base
   def proper_name
     self.first_name = first_name.capitalize
     self.last_name  = last_name.capitalize
+  end
+
+  def set_first_user
+    if User.count == 0
+      self.admin = true
+      self.activated = true
+    end
   end
 
 end
