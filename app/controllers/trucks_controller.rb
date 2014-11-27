@@ -1,5 +1,5 @@
 class TrucksController < ApplicationController
-  include Userinfo
+  include UserInfo
 
   before_action :set_truck, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
