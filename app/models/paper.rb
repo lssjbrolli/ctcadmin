@@ -1,7 +1,9 @@
 class Paper < ActiveRecord::Base
 	include ImageConvert
 
-  	before_save :convert, :cap
+  	after_create :cap
+  	before_create :convert
+  	before_update :convert
   	
 	belongs_to :document, polymorphic: true
 	

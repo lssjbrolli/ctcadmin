@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
+gem 'rails', '4.1.8'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -37,7 +37,7 @@ gem 'simple_form'
 
 gem 'carrierwave'
 gem 'carrierwave-aws'
-gem 'nested_form'
+gem 'nested_form', github: 'ryanb/nested_form'
 
 
 

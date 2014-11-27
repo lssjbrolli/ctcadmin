@@ -23,7 +23,9 @@
           <td><%= truck.vin %></td>
           <td><%= truck.registration %></td>
           <td class="btn-group btn-group-xs">
-            <%= link_to 'Details', truck, class: 'btn btn-info' %>
+            <%= link_to 'Details', truck_papers_path(truck), class: 'btn btn-info' %>
+            <%= link_to 'Credit Notes', cnotes_path(truck), class: 'btn btn-info' %>
+            <%= link_to 'Events', truck_events_path(truck), class: 'btn btn-info' %>
             <%= link_to 'Edit', edit_truck_path(truck), class: 'btn btn-info' %>
             <%= link_to 'Destroy', truck, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
