@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @truck  = Truck.find(params[:truck_id])
-    @events = @truck.events
+    @events = @truck.events.paginate(:page => params[:page], :per_page => 8).order('date ASC')
   end
 
   # GET /events/1
@@ -38,10 +38,8 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
         format.html { redirect_to truck_events_path(@truck), flash: {success: 'Event was successfully created.'} }
-        format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end

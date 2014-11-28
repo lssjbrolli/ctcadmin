@@ -40,7 +40,7 @@ class TrucksController < ApplicationController
     on_create(@truck)
     respond_to do |format|
       if @truck.save
-        format.html { redirect_to @truck, flash: {success: 'Truck was successfully created.'} }
+        format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Truck was successfully created.'} }
       else
         format.html { render action: 'new' }
       end
@@ -53,7 +53,7 @@ class TrucksController < ApplicationController
     on_update(@truck)
     respond_to do |format|
       if @truck.update(truck_params)
-        format.html { redirect_to @truck, flash: {success: 'Truck was successfully updated.'} }
+        format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Truck was successfully updated.'} }
       else
         format.html { render action: 'edit' }
       end

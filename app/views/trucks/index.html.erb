@@ -6,14 +6,14 @@
       <% end %>
   <% end %>
 
-  <h1>Listing trucks</h1>
+  <h2>Listing trucks</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
     <tr>
-      <th>VIN</th>
-      <th>Registration</th>
-      <th></th>
+      <th style="width: 40%;">VIN</th>
+      <th style="width: 20%;">Registration</th>
+      <th style="width: 40%;"></th>
     </tr>
     </thead>
 
@@ -26,7 +26,7 @@
             <%= link_to 'Details', truck_papers_path(truck), class: 'btn btn-info' %>
             <%= link_to 'Credit Notes', cnotes_path(truck), class: 'btn btn-info' %>
             <%= link_to 'Events', truck_events_path(truck), class: 'btn btn-info' %>
-            <%= link_to 'Edit', edit_truck_path(truck), class: 'btn btn-info' %>
+            <%= link_to 'Edit', edit_truck_path(truck),  {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal', 'data-backdrop' => 'static', class: "btn btn-info"}  %>
             <%= link_to 'Destroy', truck, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
         </tr>
@@ -37,6 +37,8 @@
   <br>
 
   <%= will_paginate @trucks, renderer: BootstrapPagination::Rails %>
-  <%= link_to 'New Truck', new_truck_path, class: 'btn btn-primary' %>
+  <%= link_to 'Add Truck', new_truck_path,  {:remote => true, 'data-toggle' => "modal", 'data-target' => '#modal', 'data-backdrop' => 'static', class: "btn btn-primary"}  %>
+
 </div>
+<div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 

@@ -1,5 +1,6 @@
-$("#paper-modal").html("<%= escape_javascript(render 'modal') %>");
+$("#modal").html("<%= escape_javascript(render 'modal/modal') %>");
 $(document).ready(function() {
+	$('#myModalLabel').text("Editing paper...");
     $('.datepicker').datepicker({
         format: "yyyy-mm-dd",
         todayBtn: "linked",
