@@ -10,7 +10,7 @@ class NationalExpensesController < ApplicationController
   # GET /national_expenses
   # GET /national_expenses.json
   def index
-    @national_expenses = NationalExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
+    @national_expenses = NationalExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 7)
   end
 
   # GET /national_expenses/1

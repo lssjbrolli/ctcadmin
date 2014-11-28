@@ -10,13 +10,12 @@ class PapersController < ApplicationController
   # GET /papers.json
   def index
     @truck = Truck.find(params[:truck_id])
-    @papers = @truck.papers.paginate(:page => params[:page], :per_page => 8).order("expire ASC").order('description ASC')
+    @papers = @truck.papers.paginate(:page => params[:page], :per_page => 7).order("expire ASC").order('description ASC')
   end
 
   # GET /papers/1
   # GET /papers/1.json
   def show
-    @papers = Paper.all.paginate(:page => params[:page], :per_page => 8).order("expire ASC").order('description ASC')
   end
 
   # GET /papers/new
