@@ -11,7 +11,7 @@ class TripExpensesController < ApplicationController
   # GET /trip_expenses.json
   def index
     @trip_expenses_missing = TripExpense.where(raport: false)
-    @trip_expenses         = TripExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 7)
+    @trip_expenses         = TripExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /trip_expenses/1

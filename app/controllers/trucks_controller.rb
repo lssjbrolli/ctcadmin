@@ -10,7 +10,7 @@ class TrucksController < ApplicationController
   # GET /trucks
   # GET /trucks.json
   def index
-    @trucks = Truck.all.paginate(:page => params[:page], :per_page => 7).order('registration ASC')
+    @trucks = Truck.all.paginate(:page => params[:page], :per_page => 8).order('registration ASC')
   end
 
   # GET /trucks/1
@@ -20,7 +20,7 @@ class TrucksController < ApplicationController
 
   def cnotes
     @truck  = Truck.find(params[:id])
-    @cn = CreditNote.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 7)
+    @cn = CreditNote.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /trucks/new
@@ -70,7 +70,7 @@ class TrucksController < ApplicationController
   end
 
   private
-
+  
   # Sortable methods
   def sort_column
     %w[number value paid].include?(params[:sort]) ? params[:sort] : 'number'
