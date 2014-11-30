@@ -88,7 +88,7 @@ class FileUploader < CarrierWave::Uploader::Base
 		@old_tmp_file = new_file
 	end
 
-	def delete_old_tmp_file
+	def delete_old_tmp_file(dummy)
 		@old_tmp_file.try :delete
 	end
 
