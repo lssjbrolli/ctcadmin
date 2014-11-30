@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127134432) do
+ActiveRecord::Schema.define(version: 20141128155139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 20141127134432) do
     t.integer  "update_id"
   end
 
-  create_table "raports", force: true do |t|
+  create_table "reports", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "ids"
@@ -151,8 +151,8 @@ ActiveRecord::Schema.define(version: 20141127134432) do
     t.decimal  "value",       precision: 8, scale: 2
     t.decimal  "value_eur",   precision: 8, scale: 2
     t.string   "currency"
-    t.boolean  "raport",                              default: false
-    t.integer  "raport_id"
+    t.boolean  "report",                              default: false
+    t.integer  "report_id"
     t.integer  "int_id"
     t.boolean  "card",                                default: true
     t.integer  "create_id"

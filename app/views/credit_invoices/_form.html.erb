@@ -1,29 +1,31 @@
 <%= simple_form_for @credit_invoice, :html => {class: 'form-horizontal'} do |f| %>
     <%= f.error_notification %>
     <div class="row">
-        <div class="span5">
-            <%= f.input :number %>
-            <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
-            <%= f.association :seller %>
-            <%= f.association :buyer %>
-            <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
-            <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, item_wrapper_class: 'inline', checked: CreditInvoice::CURRENCY[0] %>
-            <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, item_wrapper_class: 'inline', checked: CreditInvoice::VAT_RATE[1] %>   
-        </div>
-        <div class="span4 offset3"> 
-            <fieldset>
-                <legend><small><a href="#" id="toggle">Contact info:</a></small></legend>
-                <div id="date_delegat">
-                    <%= f.input :delegat %>
-                    <%= f.input :ci, label: "CI" %>
-                    <%= f.input :eliberat %>
-                    <%= f.input :transport %>
-                </div>
-            </fieldset>
-        </div>
+      <div class="span5">
+        <%= f.input :number %>
+        <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+        <%= f.association :seller %>
+        <%= f.association :buyer %>
+        <%= f.association :credit_notes, as: :check_boxes, :collection => @cnotes, :label_method => :number, value_method: :id %>
+        <%= f.input :currency, collection: CreditInvoice::CURRENCY, :as => :radio_buttons, item_wrapper_class: 'inline', checked: CreditInvoice::CURRENCY[0] %>
+        <%= f.input :tax_rate, collection: CreditInvoice::VAT_RATE, :as => :radio_buttons, item_wrapper_class: 'inline', checked: CreditInvoice::VAT_RATE[1] %>
+      </div>
+      <div class="span4 offset3">
+        <fieldset>
+          <legend>
+            <small><a href="#" id="toggle">Contact info:</a></small>
+          </legend>
+          <div id="date_delegat">
+            <%= f.input :delegat %>
+            <%= f.input :ci, label: 'CI' %>
+            <%= f.input :eliberat %>
+            <%= f.input :transport %>
+          </div>
+        </fieldset>
+      </div>
     </div>
     <div class="button_group">
-        <%= f.button :submit, :class => 'btn-primary' %>
-        <%= link_to 'Cancel', credit_invoices_path, class: 'btn btn-danger' %>
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to 'Cancel', credit_invoices_path, class: 'btn btn-danger' %>
     </div>
 <% end %>

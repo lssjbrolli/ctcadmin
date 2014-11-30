@@ -1,4 +1,4 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
+// This is a manifest file that will be compiled into application.js, which will include all the files
 // listed below.
 //
 // Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
@@ -20,7 +20,7 @@
 //= require jquery_nested_form
 //= require_tree .
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('[data-behaviour~=datepicker]').datepicker({
         format: "yyyy-mm-dd",
         todayBtn: "linked",
@@ -30,6 +30,6 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $(".alert").delay(3000).hide('fast');
 });

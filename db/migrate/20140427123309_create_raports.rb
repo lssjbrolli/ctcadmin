@@ -1,6 +1,6 @@
 class CreateRaports < ActiveRecord::Migration
 	def change
-		create_table :raports do |t|
+		create_table :reports do |t|
 			t.string :name
 			t.string :file
 			t.timestamps

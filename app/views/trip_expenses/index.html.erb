@@ -34,7 +34,7 @@
           <td class="t_middle"><%= raw card(te) %></td>
           <td class="btn-group btn-group-xs">
             <%= file_state(te, 'Show') %>
-            <%= raport_state(te, 'trip') %>
+            <%= report_state(te) %>
             <%= link_to 'Edit', edit_trip_expense_path(te), class: 'btn btn-info' %>
             <%= link_to 'Destroy', te, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
@@ -49,6 +49,6 @@
 
   <div class="btn-group btn-group-xs">
     <%= link_to 'New Expense', new_trip_expense_path, class: 'btn btn-primary' %>
-    <%= generate_raport_status(@trip_expenses_missing, 'trip') %>
+    <%= generate_report_status(@trip_expenses_missing) %>
   </div>
 </div>

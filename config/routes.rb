@@ -1,27 +1,15 @@
 Ctcadmin::Application.routes.draw do
 
-	resources :extern_expenses
+	resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses
 
-	resources :national_expenses
+	post 'make_report', to: 'reports#make_report'
 
-	resources :raports do
-		post :make_raport, :on => :collection
-	end
-
-	get 'raport/:id', to: 'raport#show'
-
-	resources :trip_expenses
+	resources :reports, only: :show
 
 	resources :trucks do
 		resources :events
 		resources :papers
 	end
-
-	resources :companies
-
-	resources :credit_invoices
-
-	resources :credit_notes
 
 	resources :users, except: :show
 
