@@ -1,16 +1,16 @@
 <%= simple_form_for @company, :html => {class: 'form-horizontal'} do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :registration, disabled: true %>
-  <%= f.input :vat, disabled: true %>
-  <%= f.input :address, disabled: true %>
-  <%= f.input :acc_lei, disabled: true %>
-  <%= f.input :acc_eur, disabled: true %>
-  <%= f.input :bank, disabled: true %>
-  <%= f.input :capital, disabled: true %>
-  <%= f.input :phone, disabled: true %>
-  <%= f.input :email, disabled: true %>
-  <%= f.input :contact, disabled: true %>
-  <div class="modal-footer">
-    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
-  </div>
+    <%= f.error_notification %>
+    <%= f.input :registration, disabled: true %>
+    <%= f.input :vat, disabled: true %>
+    <%= f.input :address, disabled: true %>
+    <%= f.input :acc_lei, disabled: true %>
+    <%= f.input :acc_eur, disabled: true %>
+    <%= f.input :bank, disabled: true %>
+    <%= f.input :capital, disabled: true %>
+    <%= f.input :phone, disabled: true %>
+    <%= f.input :email, disabled: true %>
+    <%= f.input :contact, disabled: true %>
+    <div class="modal-footer">
+      <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
 <% end %>

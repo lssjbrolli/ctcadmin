@@ -29,7 +29,7 @@
           <td><%= company.email %></td>
           <td><%= company.contact %></td>
           <td class="btn-group btn-group-xs">
-            <%= link_to 'Show', company,  {:remote => true, 'data-company' => company.name, 'data-toggle' => "modal", 'data-target' => '#modal', class: "btn btn-info"}  %>
+            <%= link_to 'Show', company, {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
             <%= link_to 'Edit', edit_company_path(company), class: 'btn btn-info' %>
             <%= link_to 'Destroy', company, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
         </tr>

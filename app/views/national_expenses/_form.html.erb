@@ -1,25 +1,25 @@
 <%= simple_nested_form_for @national_expense, :html => {class: 'form-horizontal'} do |f| %>
     <%= f.error_notification %>
     <div class="row">
-        <div class="span5">
-            <%= f.input :number %>
-            <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
-            <%= f.input :value %>
-            <%= f.association :supplier %>
-            <%= f.input :description, collection: NationalExpense::DESCRIPTION.sort, :item_wrapper_class => 'inline' %>
-            <%= f.input :paid_by, collection: NationalExpense::PAID_BY.sort, :item_wrapper_class => 'inline' %>
-        </div>
-        <div class="span4 offset3">
-            <fieldset>
-                <legend>Files:</legend>
-                <%= f.fields_for :attachments do |a_form| %>
-                    <%= a_form.file_field :file %>
-                    <%= a_form.hidden_field :file_cache %>
-                    <%= a_form.link_to_remove "", class: "icon-remove" %>
-                <% end %>
-                <%= f.link_to_add "Add file", :attachments, class: "btn btn-info" %>
-            </fieldset>
-        </div>
+      <div class="span5">
+        <%= f.input :number %>
+        <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+        <%= f.input :value %>
+        <%= f.association :supplier %>
+        <%= f.input :description, collection: NationalExpense::DESCRIPTION.sort, :item_wrapper_class => 'inline' %>
+        <%= f.input :paid_by, collection: NationalExpense::PAID_BY.sort, :item_wrapper_class => 'inline' %>
+      </div>
+      <div class="span4 offset3">
+        <fieldset>
+          <legend>Files:</legend>
+          <%= f.fields_for :attachments do |a_form| %>
+              <%= a_form.file_field :file %>
+              <%= a_form.hidden_field :file_cache %>
+              <%= a_form.link_to_remove '', class: 'icon-remove' %>
+          <% end %>
+          <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
+        </fieldset>
+      </div>
     </div>
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to 'Cancel', national_expenses_path, class: 'btn btn-danger' %>

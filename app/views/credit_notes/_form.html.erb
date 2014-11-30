@@ -1,31 +1,31 @@
 <%= simple_nested_form_for @credit_note, :html => {class: 'form-horizontal', multipart: true} do |f| %>
     <%= f.error_notification %>
-    <div class="row">    
-        <div class="span5">
-            <%= f.input :number, :label => 'Credit note number' %>
-            <%= f.input :value, :label => 'Value of trip' %>
-            <%= f.input :start, :label => 'Trip start location' %>
-            <%= f.input :stop, :label => 'Trip finish location' %>
-            <%= f.input :week %>
-            <%= f.input :notes %>
-            <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline', checked: CreditNote::CURRENCY[0] %>
-            <%= f.association :truck, :label_method => :registration %>
-            <% if @current_user.admin? %>
-                <%= f.input :paid %>
-            <% end %>
-        </div>
-        <div class="span4 offset3">
-            <fieldset>
-                <legend>Files:</legend>
-                <%= f.fields_for :attachments do |a_form| %>
-                    <%= a_form.file_field :file %>
-                    <%= a_form.hidden_field :file_cache %>
-                    <%= a_form.link_to_remove "", class: "icon-remove" %>
-                <% end %>
-                <%= f.link_to_add "Add file", :attachments, class: "btn btn-info" %>
-            </fieldset>
-        </div>
-    </div>                                                                                                             
+    <div class="row">
+      <div class="span5">
+        <%= f.input :number, :label => 'Credit note number' %>
+        <%= f.input :value, :label => 'Value of trip' %>
+        <%= f.input :start, :label => 'Trip start location' %>
+        <%= f.input :stop, :label => 'Trip finish location' %>
+        <%= f.input :week %>
+        <%= f.input :notes %>
+        <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline', checked: CreditNote::CURRENCY[0] %>
+        <%= f.association :truck, :label_method => :registration %>
+        <% if @current_user.admin? %>
+            <%= f.input :paid %>
+        <% end %>
+      </div>
+      <div class="span4 offset3">
+        <fieldset>
+          <legend>Files:</legend>
+          <%= f.fields_for :attachments do |a_form| %>
+              <%= a_form.file_field :file %>
+              <%= a_form.hidden_field :file_cache %>
+              <%= a_form.link_to_remove '', class: 'icon-remove' %>
+          <% end %>
+          <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
+        </fieldset>
+      </div>
+    </div>
     <%= f.button :submit, class: 'btn-primary' %>
     <%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>
 <% end %>

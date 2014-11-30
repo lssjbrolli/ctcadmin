@@ -1,12 +1,11 @@
 module UserInfo
-  extend ActiveSupport::Concern
+	extend ActiveSupport::Concern
 
-  def on_create
-  	logger.debug "test"
-  	logger.debug @current_user.inspect
-  end
+	def on_create(x)
+		x.update(create_id: @current_user.id)
+	end
 
-  def on_update
-  	
-  end
+	def on_update(x)
+		x.update(update_id: @current_user.id)
+	end
 end

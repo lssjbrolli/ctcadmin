@@ -1,9 +1,8 @@
 @import "bootstrap";
 @import "bootstrap-datepicker";
-@import "**/*";
 
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * This is a manifest file that will be compiled into application.css, which will include all the files
  * listed below.
  *
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
@@ -41,7 +40,7 @@ th.t_center {
 }
 
 .form-search {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 5px;
 }
 
