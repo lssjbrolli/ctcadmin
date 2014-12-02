@@ -1,7 +1,7 @@
 module ReportsHelper
 
 	def report_state(expense)
-		if expense.report?
+		if expense.report_id?
 			link_to "Report nr.#{expense.report_id}", report_path(expense.report), class: 'btn btn-info'
 		else
 			button_tag 'Report', html_options = {disabled: 'disabled', class: 'btn btn-info'}
