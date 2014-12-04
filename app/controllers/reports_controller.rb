@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
 	def make_report
 		@ids = []
 
-		TripExpense.where(raport: false).each { |x| @ids << x.int_id }
+		TripExpense.where(report: nil).each { |x| @ids << x.int_id }
 
 		@report     = Report.new
 		@report.ids = @ids
