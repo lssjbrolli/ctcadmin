@@ -55,7 +55,7 @@ class TripPdf < Prawn::Document
 
 	def line_items
 		@trip_expenses.map do |item|
-			["#{item.id}", "#{item.number}", "#{item.date}", "#{item.description}", @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
+			["#{item.int_id}", "#{item.number}", "#{item.date}", "#{item.description}", @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
 		end
 	end
 
