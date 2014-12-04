@@ -41,7 +41,7 @@ class TripExpense < ActiveRecord::Base
 	end
 
 	def self.missing
-		TripExpense.where(report: false)
+		TripExpense.where(report: nil)
 	end
 
 end

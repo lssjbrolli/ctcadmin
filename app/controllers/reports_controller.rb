@@ -35,7 +35,7 @@ class ReportsController < ApplicationController
 	private
 
 	def set_id
-		@ids.each { |x| TripExpense.find(x).update_attributes(raport_id: @report.id, report: true) }
+		@ids.each { |x| TripExpense.find_by_int_id(x).update(report_id: @report.id) }
 	end
 
 end
