@@ -20,7 +20,7 @@ class TrucksController < ApplicationController
 
 	def cnotes
 		@truck = Truck.find(params[:id])
-		@cn    = CreditNote.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
+		@cn    = @truck.credit_notes.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trucks/new
@@ -73,7 +73,7 @@ class TrucksController < ApplicationController
 
 	# Sortable methods
 	def sort_column
-		%w[number value paid].include?(params[:sort]) ? params[:sort] : 'number'
+		%w[number value paid].include?(params[:sort]) ? params[:sort] : 'order_nr'
 	end
 
 	def sort_direction
