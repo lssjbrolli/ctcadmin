@@ -1,7 +1,6 @@
 <%= simple_form_for [@truck, @event], :html => {class: 'form-horizontal'} do |f| %>
     <%= f.error_notification %>
-
-    <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
+    <%= f.input :date, as: :string, input_html: {class: 'datepicker'} %>
     <%= f.input :km %>
     <%= f.input :comment %>
     <div class="modal-footer">
