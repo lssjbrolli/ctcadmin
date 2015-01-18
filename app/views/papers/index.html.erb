@@ -27,15 +27,15 @@
     <tbody>
     <% unless @papers.nil? %>
         <% @papers.each do |p| %>
-            <tr <%= raw expire_row(p.expire) %>
-            <td><%= p.description %></td>
-            <td><%= p.expire %></td>
-            <td><%= p.comments %></td>
-            <td class="btn-group btn-group-xs">
-              <%= file_state(p, 'Show') %>
-              <%= link_to 'Edit', edit_truck_paper_path(p.document, p), {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
-              <%= link_to 'Destroy', truck_paper_path(p.document, p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
-            </td>
+            <tr <%= raw expire_row(p.expire) %> >
+              <td><%= p.description %></td>
+              <td><%= p.expire %></td>
+              <td><%= p.comments %></td>
+              <td class="btn-group btn-group-xs">
+                <%= file_state(p, 'Show') %>
+                <%= link_to 'Edit', edit_truck_paper_path(p.document, p), {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
+                <%= link_to 'Destroy', truck_paper_path(p.document, p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+              </td>
             </tr>
         <% end %>
     <% end %>

@@ -2,7 +2,6 @@ module PapersHelper
 	def expire_row(date)
 		today = Time.now.to_date
 		if date.nil?
-			'<tr>'
 		else
 			diff = (date - today).to_i
 			if diff <= 7
