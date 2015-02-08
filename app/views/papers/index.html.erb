@@ -30,7 +30,7 @@
             <tr <%= raw expire_row(p.expire) %> >
               <td><%= p.description %></td>
               <td><%= p.expire %></td>
-              <td><%= p.comments %></td>
+              <td class="td.t_center"><%= p.comments %></td>
               <td class="btn-group btn-group-xs">
                 <%= file_state(p, 'Show') %>
                 <%= link_to 'Edit', edit_truck_paper_path(p.document, p), {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
