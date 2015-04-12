@@ -2,7 +2,7 @@ Ctcadmin::Application.routes.draw do
 
   resources :employees
 
-	resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses
+	resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses, :employees
 
 	post 'make_report', to: 'reports#make_report'
 
