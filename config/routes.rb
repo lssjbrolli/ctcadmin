@@ -2,11 +2,16 @@ Ctcadmin::Application.routes.draw do
 
   resources :employees
 
-	resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses, :employees
+	resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses
 
 	post 'make_report', to: 'reports#make_report'
 
 	resources :reports, only: :show
+
+	resources :employees do
+		#resources :payments
+		resources :papers
+	end
 
 	resources :trucks do
 		resources :events

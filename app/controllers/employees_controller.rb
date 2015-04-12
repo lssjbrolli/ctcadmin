@@ -1,6 +1,10 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  include UserInfo
 
+  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
+  before_action :user_activated
+  
   # GET /employees
   # GET /employees.json
   def index
@@ -10,6 +14,7 @@ class EmployeesController < ApplicationController
   # GET /employees/1
   # GET /employees/1.json
   def show
+    @employee = Employee.find(params[:id])
   end
 
   # GET /employees/new
@@ -28,7 +33,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
+        format.html { redirect_to @employee, flash: {success: 'Employee was successfully created.'} }
         format.json { render action: 'show', status: :created, location: @employee }
       else
         format.html { render action: 'new' }
@@ -42,7 +47,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @employee, notice: 'Employee was successfully updated.' }
+        format.html { redirect_to @employee, flash: {succes: 'Employee was successfully updated.'} }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +74,6 @@ class EmployeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :cnp)
+      params.require(:employee).permit(:first_name, :last_name, :cnp, :bank_ron, :bank_eur, :activ)
     end
 end
