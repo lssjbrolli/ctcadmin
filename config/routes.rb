@@ -11,7 +11,7 @@ Ctcadmin::Application.routes.draw do
 	resources :reports, only: :show
 
 	resources :employees do
-		#resources :payments
+		resources :payments
 		resources :papers
 	end
 

@@ -1,23 +1,45 @@
-<h1>Listing payments</h1>
+<div class="container">
 
-<table>
-  <thead>
+  <% if flash %>
+      <% flash.each do |k, v| %>
+          <%= alert(k, v) %>
+      <% end %>
+  <% end %>
+
+  <h2>Listing payments for: </h2>
+
+  <table class="table table-hover table-condensed">
+    <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Salar RON</th>
+      <th>Salar EUR</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    <% @payments.each do |payment| %>
-      <tr>
-        <td><%= link_to 'Show', payment %></td>
-        <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
-        <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tbody>
+    <% unless @payments.nil? %>
+      <% @payments.each do |payment| %>
+          <tr>
+            <td><%= payment.salar_ron %></td>
+            <td><%= payment.salar_eur %></td>
+            <td class="btn-group btn-group-xs">
+              <%= link_to 'Show', payment, {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
+              <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
+              <%= link_to 'Destroy', payment, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+          </tr>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <hr>
+  <%= will_paginate @payments, renderer: BootstrapPagination::Rails %>
+  <hr>
 
-<%= link_to 'New Payment', new_payment_path %>
+  <%= link_to 'New Payment', new_payment_path, class: 'btn btn-info' %>
+
+</div>
+<div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

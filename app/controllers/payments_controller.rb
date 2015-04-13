@@ -1,15 +1,18 @@
 class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user
+  before_action :user_activated
 
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all
+    @payments = Payment.all.paginate(:page => params[:page], :per_page => 8).order('salar_ron DESC') #FIX
   end
 
   # GET /payments/1
   # GET /payments/1.json
   def show
+    @payment = Payment.find(params[:id])
   end
 
   # GET /payments/new
@@ -28,7 +31,7 @@ class PaymentsController < ApplicationController
 
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to @payment, notice: 'Payment was successfully created.' }
+        format.html { redirect_to payments_url, flash: {success: 'Payment was successfully created.'} }
         format.json { render action: 'show', status: :created, location: @payment }
       else
         format.html { render action: 'new' }
@@ -42,7 +45,7 @@ class PaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @payment.update(payment_params)
-        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
+        format.html { redirect_to payments_url, flash: {success: 'Payment was successfully updated.'} }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -69,6 +72,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params[:payment]
+      params.require(:payment).permit(:salar_ron)
     end
 end
