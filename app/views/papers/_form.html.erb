@@ -1,4 +1,4 @@
-<%= simple_nested_form_for [@truck, @paper], :html => {class: 'form-horizontal'} do |p| %>
+<%= simple_nested_form_for [@document, @paper], :html => {class: 'form-horizontal'} do |p| %>
     <%= p.input :description %>
     <%= p.input :expire, as: :string, input_html: {class: 'datepicker'} %>
     <%= p.input :comments %>
