@@ -11,8 +11,13 @@
   <table class="table table-hover table-condensed">
     <thead>
     <tr>
+      <th>Luna</th>
       <th>Salar RON</th>
       <th>Salar EUR</th>
+      <th>Per Zi</th>
+      <th>Avans</th>
+      <th>Rest</th>
+      <th>Total</th>
       <th></th>
       <th></th>
       <th></th>
@@ -23,9 +28,15 @@
     <% unless @payments.nil? %>
       <% @payments.each do |payment| %>
           <tr>
-            <td><%= payment.salar_ron %></td>
-            <td><%= payment.salar_eur %></td>
+            <td><%= payment.month.strftime("%B %Y") %></td>
+            <td><%= humanized_money payment.sron %></td>
+            <td><%= humanized_money_with_symbol payment.seur %></td>
+            <td><%= payment.per_day %></td>
+            <td><%= payment.avans %></td>
+            <td><%= payment.rest %></td>
+            <td><%= payment.total %></td>
             <td class="btn-group btn-group-xs">
+              <%= link_to 'Generate order', '#', class: 'btn btn-info' %> //FIX
               <%= link_to 'Show', payment, {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
               <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
               <%= link_to 'Destroy', payment, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>

@@ -1,6 +1,10 @@
 <%= simple_form_for @payment, :html => {class: 'form-horizontal'} do |f| %>
     <%= f.error_notification %>
-    <%= f.input :salar_ron %>
+    <%= f.input :sron, input_html: { value: 777 } %>
+    <%= f.input :month, as: :string, input_html: {data: {behaviour: 'monthpicker'}, value: (Time.now - 1.month).strftime("%B %Y")}, discard_day: true %>
+    <%= f.input :diurna %>
+    <%= f.input :days, input_html: {value: (Time.now - 1.month).end_of_month.day} %>
+    <%= f.input :avans %>
     <%= f.button :submit, class: 'btn btn-success' %>
     <%= link_to 'Back', payments_path, class: 'btn btn-danger' %>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413092815) do
+ActiveRecord::Schema.define(version: 20150413132020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,11 @@ ActiveRecord::Schema.define(version: 20150413092815) do
     t.integer  "salar_eur"
     t.integer  "avans"
     t.integer  "rest"
+    t.date     "month"
+    t.integer  "per_day"
+    t.integer  "total"
+    t.boolean  "diurna",     default: true
+    t.integer  "days"
   end
 
   create_table "reports", force: true do |t|

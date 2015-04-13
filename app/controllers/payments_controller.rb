@@ -2,6 +2,7 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
+  before_filter :format_date_time, :only => [:create, :update]
 
   # GET /payments
   # GET /payments.json
@@ -65,6 +66,13 @@ class PaymentsController < ApplicationController
   end
 
   private
+
+    def format_date_time
+      date                             = payment_params['month']
+      parse                            = Date.parse(date)
+      params['payment']['month'] = parse
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_payment
       @payment = Payment.find(params[:id])
@@ -72,6 +80,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:salar_ron)
+      params.require(:payment).permit(:sron, :month, :avans, :diurna, :days)
     end
 end
