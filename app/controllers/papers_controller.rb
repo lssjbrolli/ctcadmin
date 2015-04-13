@@ -5,42 +5,40 @@ class PapersController < ApplicationController
 	before_action :signed_in_user
 	before_action :user_activated
 	before_action :update_file, only: :update
+	before_action :find_document
 
 	# GET /papers
 	# GET /papers.json
 	def index
-		@truck  = Truck.find(params[:truck_id])
-		@papers = @truck.papers.paginate(:page => params[:page], :per_page => 14).order('expire ASC').order('description ASC')
+		@papers = @document.papers.paginate(:page => params[:page], :per_page => 14).order('expire ASC').order('description ASC')
 	end
 
 	# GET /papers/1
 	# GET /papers/1.json
 	def show
-		@papers = Paper.all.paginate(:page => params[:page], :per_page => 8).order('expire ASC').order('description ASC')
+		#@papers = Paper.all.paginate(:page => params[:page], :per_page => 8).order('expire ASC').order('description ASC') FIX
 	end
 
 	# GET /papers/new
 	def new
-		@truck = Truck.find(params[:truck_id])
-		@paper = @truck.papers.build
+		@paper = @document.papers.build
 	end
 
 	# GET /papers/1/edit
 	def edit
 		@paper = Paper.find(params[:id])
-		@truck = @paper.document
+		@truck = @paper.document # FIX
 	end
 
 	# POST /papers
 	# POST /papers.json
 	def create
-		@truck = Truck.find(params[:truck_id])
-		@paper = @truck.papers.build
+		@paper = @document.papers.build
 		@paper.update_attributes(paper_params)
 		on_create(@paper)
 		respond_to do |format|
-			if @truck.save
-				format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Paper was successfully created.'} }
+			if @document.save
+				format.html { redirect_to parent_url(@document), flash: {success: 'Paper was successfully created.'} }
 			else
 				format.html { render action: 'new' }
 			end
@@ -50,12 +48,11 @@ class PapersController < ApplicationController
 	# PATCH/PUT /papers/1
 	# PATCH/PUT /papers/1.json
 	def update
-		@truck = Truck.find(params[:truck_id])
 		@paper = Paper.find(params[:id])
 		on_update(@paper)
 		respond_to do |format|
 			if @paper.update(paper_params)
-				format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Paper was successfully updated.'} }
+				format.html { redirect_to parent_url(@document), flash: {success: 'Paper was successfully updated.'} }
 			else
 				format.html { render action: 'edit' }
 			end
@@ -67,11 +64,26 @@ class PapersController < ApplicationController
 	def destroy
 		@paper.destroy
 		respond_to do |format|
-			format.html { redirect_to truck_papers_url, flash: {success: 'Paper was successfully deleted.'} }
+			format.html { redirect_to parent_url(@document), flash: {success: 'Paper was successfully deleted.'} }
 		end
 	end
 
 	private
+
+	# set document depending of class
+	def find_document
+	    klass = [Truck, Employee].detect{|c| params["#{c.name.underscore}_id"]}
+    	@document = klass.find(params["#{klass.name.underscore}_id"])
+  	end
+
+  	# set proper url path
+  	def parent_url(parent)
+	    case
+		    when params[:truck_id] then truck_papers_path(parent)
+		    when params[:employee_id] then employee_papers_path(parent)
+	    end    
+  	end
+
 	#replace file on update
 	def update_file
 		#check to see if there is a file to replace or just create a new record
