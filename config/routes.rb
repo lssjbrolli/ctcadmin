@@ -1,5 +1,7 @@
 Ctcadmin::Application.routes.draw do
 
+  resources :payments
+
   resources :employees
 
 	resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses
