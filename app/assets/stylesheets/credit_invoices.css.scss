@@ -7,8 +7,10 @@
 }
 
 .credit_invoice_credit_notes > .controls {
-  height: 100px;
+  height: 200px;
   overflow-y: scroll;
+  padding-left: 20px;
+  line-height: 5px;
 }
 
 a#toggle {
