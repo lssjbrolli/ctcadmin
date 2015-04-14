@@ -108,7 +108,7 @@ class CreditInvoicePdf < Prawn::Document
 
 	def line_items
 		@ci.credit_notes.map do |item|
-			["nr: #{item.number}", '1', sel_currency(@ci.currency, item.value), sel_currency(@ci.currency, item.value), sel_taxrate(@ci.tax_rate, item.value)]
+			["nr: #{item.number}", '1', sel_currency(@ci.currency, item.value), sel_currency(@ci.currency, item.value), sel_taxrate(@ci.currency, @ci.tax_rate, item.value)]
 		end
 	end
 
@@ -120,9 +120,9 @@ class CreditInvoicePdf < Prawn::Document
 		end
 	end
 
-	def sel_taxrate(tax, value)
+	def sel_taxrate(cur, tax, value)
 		if tax == '24%'
-			@view.number_to_currency(value * 0.24)
+			sel_currency(cur, value * 0.24)
 		end
 	end
 end
