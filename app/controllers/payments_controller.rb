@@ -2,12 +2,13 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
+  before_action :set_employee, except: [:edit]
   before_filter :format_date_time, :only => [:create, :update]
 
   # GET /payments
   # GET /payments.json
   def index
-    @payments = Payment.all.paginate(:page => params[:page], :per_page => 8).order('salar_ron DESC') #FIX
+    @payments = @employee.payments.paginate(:page => params[:page], :per_page => 8).order('month DESC')
   end
 
   # GET /payments/1
@@ -23,16 +24,18 @@ class PaymentsController < ApplicationController
 
   # GET /payments/1/edit
   def edit
+    @payment = Payment.find(params[:id])
+    @employee = @payment.employee
   end
 
   # POST /payments
   # POST /payments.json
   def create
-    @payment = Payment.new(payment_params)
-
+    @payment = @employee.payments.build
+    @payment.update_attributes(payment_params)
     respond_to do |format|
       if @payment.save
-        format.html { redirect_to payments_url, flash: {success: 'Payment was successfully created.'} }
+        format.html { redirect_to employee_payments_path(@employee), flash: {success: 'Payment was successfully created.'} }
         format.json { render action: 'show', status: :created, location: @payment }
       else
         format.html { render action: 'new' }
@@ -46,7 +49,7 @@ class PaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @payment.update(payment_params)
-        format.html { redirect_to payments_url, flash: {success: 'Payment was successfully updated.'} }
+        format.html { redirect_to employee_payments_path(@employee), flash: {success: 'Payment was successfully updated.'} }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -60,12 +63,16 @@ class PaymentsController < ApplicationController
   def destroy
     @payment.destroy
     respond_to do |format|
-      format.html { redirect_to payments_url }
-      format.json { head :no_content }
+      format.html { redirect_to employee_payments_path(@employee), flash: {success: 'Payment was successfully deleted.'} }
     end
   end
 
   private
+
+    #get the specific employee
+    def set_employee
+      @employee = Employee.find(params[:employee_id])
+    end
 
     def format_date_time
       date                             = payment_params['month']
@@ -80,6 +87,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:sron, :month, :avans, :diurna, :days)
+      params.require(:payment).permit(:sron, :month, :avans, :diurna, :days, :employee_id)
     end
 end

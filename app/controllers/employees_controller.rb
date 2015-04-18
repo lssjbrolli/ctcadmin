@@ -26,6 +26,18 @@ class EmployeesController < ApplicationController
   def edit
   end
 
+  #generate monthly payments reports
+  def payment_report
+    respond_to do |format|
+      format.html do
+        pdf = PaymentReportPdf.new(params[:month])
+        send_data pdf.render, filename: "month.pdf",
+                  type:                 'application/pdf',
+                  disposition:          'inline'
+      end
+    end
+  end
+
   # POST /employees
   # POST /employees.json
   def create

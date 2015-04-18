@@ -31,8 +31,8 @@ class Payment < ActiveRecord::Base
 	end
 
 	def set_diurna
-		days  = self.month.end_of_month.day
-		self.per_day = ((DIURNA_BAZA.to_f - self.salar_eur/100) / days).round
+		self.days  ||= self.month.end_of_month.day
+		self.per_day = ((DIURNA_BAZA.to_f - self.salar_eur/100) / self.month.end_of_month.day).round
 		self.total = self.per_day * self.days
 	end
 

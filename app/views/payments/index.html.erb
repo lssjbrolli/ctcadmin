@@ -6,7 +6,7 @@
       <% end %>
   <% end %>
 
-  <h2>Listing payments for: </h2>
+  <h2>Listing payments for: <%= @employee.name %></h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -25,7 +25,7 @@
     </thead>
 
     <tbody>
-    <% unless @payments.nil? %>
+    <% unless @employee.nil? %>
       <% @payments.each do |payment| %>
           <tr>
             <td><%= payment.month.strftime("%B %Y") %></td>
@@ -37,9 +37,8 @@
             <td><%= payment.total %></td>
             <td class="btn-group btn-group-xs">
               <%= link_to 'Generate order', '#', class: 'btn btn-info' %> //FIX
-              <%= link_to 'Show', payment, {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
               <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
-              <%= link_to 'Destroy', payment, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+              <%= link_to 'Destroy', employee_payment_path(payment.employee, payment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
           </tr>
       <% end %>
     <% end %>
@@ -50,7 +49,8 @@
   <%= will_paginate @payments, renderer: BootstrapPagination::Rails %>
   <hr>
 
-  <%= link_to 'New Payment', new_payment_path, class: 'btn btn-info' %>
+  <%= link_to 'New Payment', new_employee_payment_path(@employee) , class: 'btn btn-info' %>
+  <%= link_to 'Generate Order', "#", class: 'btn btn-primary generate-order' %>
 
 </div>
 <div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

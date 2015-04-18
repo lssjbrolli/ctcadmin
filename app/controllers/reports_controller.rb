@@ -25,9 +25,9 @@ class ReportsController < ApplicationController
 		respond_to do |format|
 			format.html do
 				pdf = TripPdf.new(@report.ids.sort, view_context)
-				send_data pdf.render, filename: "#{@report.id}.pdf",
-									type:                 'application/pdf',
-									disposition:          'inline'
+				send_data pdf.render, filename: 	"#{@report.id}.pdf",
+									  type:         'application/pdf',
+									  disposition:  'inline'
 			end
 		end
 	end
