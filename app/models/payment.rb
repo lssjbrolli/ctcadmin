@@ -8,6 +8,8 @@ class Payment < ActiveRecord::Base
 	monetize :salar_eur, :as => "seur", :allow_nil => true, with_currency: :eur
 
 	belongs_to :employee
+	has_many :bonuses
+	accepts_nested_attributes_for :bonuses
 
 	DIURNA_BAZA = 1500
 
@@ -32,12 +34,20 @@ class Payment < ActiveRecord::Base
 
 	def set_diurna
 		self.days  ||= self.month.end_of_month.day
-		self.per_day = ((DIURNA_BAZA.to_f - self.salar_eur/100) / self.month.end_of_month.day).round
+		self.per_day = ((DIURNA_BAZA.to_f + set_bonus() - self.salar_eur/100) / self.month.end_of_month.day).round
 		self.total = self.per_day * self.days
 	end
 
 	def set_rest
 		self.rest = self.total - self.avans
+	end
+
+	def set_bonus
+		bonus = 0
+		self.bonuses.each do |x|
+			bonus += x.value.to_i
+		end
+		bonus
 	end
 
 end
