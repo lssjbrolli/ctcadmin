@@ -46,13 +46,15 @@
 
   
 
-  <%= simple_form_for :month, :url => '/payment_report', wrapper_html: {class: "form-inline float-right"} do |f| %>
+  <%= simple_form_for (:month), url: payment_report_path, method: :get, wrapper_html: {class: "form-inline float-right"} do |f| %>
     <%= link_to 'New Employee', new_employee_path, class: 'btn btn-info' %>
     <p class="btn-group btn-group-xs">
-      <%= f.input_field :month, as: :string, label: false, placeholder: "Select a month", input_html: {data: {behaviour: 'monthpicker'}}, discard_day: true %>
-      <%= f.submit 'Generate Raport', class: "btn btn-primary", id: 'shift_generate_button' %>
+      <%= f.input_field :month, as: :string, label: false, placeholder: "Select a month", 'data-behaviour' => 'monthpicker', discard_day: true %>
+      <%= f.submit 'Generate Raport', class: "btn btn-primary", id: 'shift_generate_button'%>
     </p>
   <% end %>
+
+    <%= link_to 'Show', payment_report_path(format: 'pdf'), class: 'btn btn-info' %>
 
 </div>
 <div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

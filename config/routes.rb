@@ -5,7 +5,7 @@ Ctcadmin::Application.routes.draw do
 
 	post 'make_report', to: 'reports#make_report'
 
-	post 'payment_report', to: 'employees#payment_report'
+	get 'payment_report', to: 'employees#payment_report'
 
 	resources :reports, only: :show
 

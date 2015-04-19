@@ -28,12 +28,13 @@ class EmployeesController < ApplicationController
 
   #generate monthly payments reports
   def payment_report
+    params[:month]['month'].empty? ? month = Date.today : month = params[:month]['month']
     respond_to do |format|
       format.html do
-        pdf = PaymentReportPdf.new(params[:month])
-        send_data pdf.render, filename: "diurne #{params[:month]['month']}.pdf",
-                  type:                 'application/pdf',
-                  disposition:          'inline'
+        pdf = PaymentReportPdf.new(month)
+        send_data pdf.render, filename:    "diurne #{month}.pdf",
+                              type:        'application/pdf',
+                              disposition: 'inline'
       end
     end
   end
