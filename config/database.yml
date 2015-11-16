@@ -2,7 +2,7 @@ development:
   adapter: postgresql
   encoding: unicode
   database: ctc_dev
-  username: sega
+  username: ctcadmin
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -12,10 +12,12 @@ test:
   adapter: postgresql
   encoding: unicode
   database: ctc_test
-  username: sega
+  username: ctcadmin
   host: localhost
 
 production:
   adapter: postgresql
   encoding: unicode
   database: ctcadmin
+  username: ctcadmin
+  host: localhost
