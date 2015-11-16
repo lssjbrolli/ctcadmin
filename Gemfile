@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.8'
@@ -48,8 +48,10 @@ gem 'prawn-table'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
-gem 'puma'
+# server
+gem 'passenger'
 
+# database
 gem 'pg'
 
 group :production do
