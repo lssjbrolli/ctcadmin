@@ -71,7 +71,7 @@ class NationalExpensesController < ApplicationController
 	private
 	# Sortable methods
 	def sort_column
-		%w[number value supplier_id paid_by].include?(params[:sort]) ? params[:sort] : 'number'
+		%w[number date value supplier_id paid_by].include?(params[:sort]) ? params[:sort] : 'number'
 	end
 
 	def sort_direction
