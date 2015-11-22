@@ -18,6 +18,7 @@
 .env
 TODO
 .idea*
+.vscode
 latest.dump
 *.rbc
 capybara-*.html
