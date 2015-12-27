@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "attachments", force: true do |t|
+  create_table "attachments", force: :cascade do |t|
     t.string   "file"
     t.integer  "attachable_id"
     t.string   "attachable_type"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
 
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", using: :btree
 
-  create_table "bonuses", force: true do |t|
+  create_table "bonuses", force: :cascade do |t|
     t.string   "value"
     t.string   "comment"
     t.integer  "payment_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.datetime "updated_at"
   end
 
-  create_table "companies", force: true do |t|
+  create_table "companies", force: :cascade do |t|
     t.string   "name"
     t.string   "registration"
     t.string   "vat"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.string   "contact"
   end
 
-  create_table "credit_invoices", force: true do |t|
+  create_table "credit_invoices", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "number"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
 
   add_index "credit_invoices", ["number"], name: "index_credit_invoices_on_number", unique: true, using: :btree
 
-  create_table "credit_notes", force: true do |t|
+  create_table "credit_notes", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "number"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
 
   add_index "credit_notes", ["number"], name: "index_credit_notes_on_number", unique: true, using: :btree
 
-  create_table "employees", force: true do |t|
+  create_table "employees", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name"
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.boolean  "activ",      default: true
   end
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.date     "date"
     t.string   "km"
     t.text     "comment"
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "update_id"
   end
 
-  create_table "extern_expenses", force: true do |t|
+  create_table "extern_expenses", force: :cascade do |t|
     t.string   "number"
     t.date     "date"
     t.text     "description"
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "update_id"
   end
 
-  create_table "national_expenses", force: true do |t|
+  create_table "national_expenses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "number"
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "update_id"
   end
 
-  create_table "papers", force: true do |t|
+  create_table "papers", force: :cascade do |t|
     t.string   "description"
     t.date     "expire"
     t.integer  "document_id"
@@ -155,7 +155,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "update_id"
   end
 
-  create_table "payments", force: true do |t|
+  create_table "payments", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "salar_ron"
@@ -170,13 +170,13 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "employee_id"
   end
 
-  create_table "reports", force: true do |t|
+  create_table "reports", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "ids"
   end
 
-  create_table "trip_expenses", force: true do |t|
+  create_table "trip_expenses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "number"
@@ -192,7 +192,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "update_id"
   end
 
-  create_table "trucks", force: true do |t|
+  create_table "trucks", force: :cascade do |t|
     t.string   "registration"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -201,7 +201,7 @@ ActiveRecord::Schema.define(version: 20150419111310) do
     t.integer  "update_id"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "cnp"

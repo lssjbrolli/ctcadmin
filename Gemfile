@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.2.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -24,22 +24,26 @@ gem 'jquery-rails'
 #gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+#gem 'jbuilder', '~> 1.2'
 
 group :doc do
 	# bundle exec rake doc:rails generates the API under doc/api.
 	gem 'sdoc', require: false
 end
 
-gem 'bootstrap-sass', '~> 2.3.2'
+# Bootstrap
+gem 'bootstrap-sass'
+gem 'will_paginate-bootstrap'
+gem 'bootstrap_form'
+gem 'bootstrap-glyphicons'
+gem 'bootstrap-datepicker-rails'
 
-gem 'simple_form'
-
-gem 'carrierwave'
-gem 'carrierwave-aws'
+# nested forms
 gem 'nested_form', github: 'ryanb/nested_form'
 
-
+# upload
+gem 'carrierwave'
+gem 'carrierwave-aws'
 
 #pdfs
 gem 'prawn'
@@ -68,15 +72,13 @@ group :test do
 	gem 'mocha'
 end
 
-gem 'will_paginate-bootstrap', '~> 0.2.5'
+
 
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
 gem 'money-rails'
 
 gem 'eu_central_bank'
-
-gem 'bootstrap-datepicker-rails'
 
 gem 'acts_as_indexed'
 

@@ -3,14 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .button_group {
-  margin-top: 40px;
+  margin-top: 1.3em;
 }
 
-.credit_invoice_credit_notes > .controls {
-  height: 200px;
+.credit_note_ids_style {
+  height: 10em;
   overflow-y: scroll;
-  padding-left: 20px;
-  line-height: 5px;
+  padding-left: 1em;
 }
 
 a#toggle {

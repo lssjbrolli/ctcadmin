@@ -1,13 +1,13 @@
-<div class="container">
-  <h2>Sign up</h2>
-  <%= simple_form_for @user, :html => {class: 'form-horizontal'} do |f| %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :cnp %>
-      <%= f.input :language, collection: %w(English Romana) %>
-      <%= f.input :username %>
-      <%= f.input :password %>
-      <%= f.input :password_confirmation %>
+<h2 class="title">Sign up</h2>
+<div class="container-fluid">
+  <%= bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-4") do |f| %>
+      <%= f.text_field :first_name %>
+      <%= f.text_field :last_name %>
+      <%= f.text_field :cnp %>
+      <%= f.select :language, %w(English Romana) %>
+      <%= f.text_field :username %>
+      <%= f.password_field :password %>
+      <%= f.password_field :password_confirmation %>
       <%= f.submit 'Create my account', class: 'btn btn-large btn-primary' %>
   <% end %>
 </div>

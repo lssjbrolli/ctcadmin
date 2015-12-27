@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing companies</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing companies</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -28,7 +27,7 @@
           <td><%= company.phone %></td>
           <td><%= company.email %></td>
           <td><%= company.contact %></td>
-          <td class="btn-group btn-group-xs">
+          <td class="btn-group btn-group-xm">
             <%= link_to 'Show', company, {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
             <%= link_to 'Edit', edit_company_path(company), class: 'btn btn-info' %>
             <%= link_to 'Destroy', company, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
@@ -37,11 +36,17 @@
     </tbody>
   </table>
 
-  <hr>
-  <%= will_paginate @companies, renderer: BootstrapPagination::Rails %>
-  <hr>
-
-  <%= link_to 'New Company', new_company_path, class: 'btn btn-info' %>
+  <div class="button-container">
+    <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @companies, renderer: BootstrapPagination::Rails %>
+  </div>
 
 </div>
-<div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

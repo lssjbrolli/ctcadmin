@@ -3,9 +3,9 @@ module ApplicationHelper
 	def file_uploaded(file)
 		@file = file.attachments[0]
 		if @file.file_url.nil?
-			'<i class="icon-remove"></i>'
+			'<i class="glyphicon glyphicon-remove"></i>'
 		else
-			'<i class="icon-ok"></i>'
+			'<i class="glyphicon glyphicon-ok"></i>'
 		end
 	end
 

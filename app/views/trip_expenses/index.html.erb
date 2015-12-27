@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing Trip Expenses</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing Trip Expenses</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -18,7 +17,6 @@
       <th class="t_right"><%= sortable 'value' %></th>
       <th class="t_right"><%= sortable 'value_eur', 'EUR Value' %></th>
       <th class="t_right"><%= sortable 'card', 'Paid by card' %></th>
-      <th><%= render 'search/search' %></th>
     </tr>
     </thead>
 
@@ -27,12 +25,12 @@
         <tr>
           <td><%= te.int_id %></td>
           <td><%= te.number %></td>
-          <td class="t_middle"><%= te.date %></td>
+          <td class="t_middle"><%= te.date.strftime("%d/%m/%Y") unless te.date.nil? %></td>
           <td class="t_middle"><%= te.description %></td>
           <td class="t_value"><%= number_to_currency(te.value, :unit => te.currency) %></td>
           <td class="t_value"><%= number_to_currency(te.value_eur, :unit => 'EUR') %></td>
           <td class="t_middle"><%= raw card(te) %></td>
-          <td class="btn-group btn-group-xs">
+          <td class="btn-group btn-group-xm">
             <%= file_state(te, 'Show') %>
             <%= report_state(te) %>
             <%= link_to 'Edit', edit_trip_expense_path(te), class: 'btn btn-info' %>
@@ -43,12 +41,12 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= will_paginate @trip_expenses, renderer: BootstrapPagination::Rails %>
-
-  <div class="btn-group btn-group-xs">
+  <div class="btn-group btn-group-xm button-container">
     <%= link_to 'New Expense', new_trip_expense_path, class: 'btn btn-primary' %>
     <%= generate_report_status(@trip_expenses_missing) %>
   </div>
+  <div class="button-container">
+    <%= will_paginate @trip_expenses, renderer: BootstrapPagination::Rails %>
+  </div>
+
 </div>

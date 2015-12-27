@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing employees</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing employees</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -28,10 +27,9 @@
             <td><%= employee.first_name %></td>
             <td><%= employee.last_name %></td>
             <td><%= employee.cnp %></td>
-            <td class="btn-group btn-group-xs">
+            <td class="btn-group btn-group-xm">
               <%= link_to 'Papers', employee_papers_path(employee), class: 'btn btn-info' %>
               <%= link_to 'Payments', employee_payments_path(employee), class: 'btn btn-info' %>
-              <%= link_to 'Show', employee, {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
               <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-info' %>
               <%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
           </tr>
@@ -40,21 +38,18 @@
     </tbody>
   </table>
 
-  <hr>
-  <%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
-  <hr>
-
-  
-
-  <%= simple_form_for (:month), url: payment_report_path, method: :get, wrapper_html: {class: "form-inline float-right"} do |f| %>
-    <%= link_to 'New Employee', new_employee_path, class: 'btn btn-info' %>
-    <p class="btn-group btn-group-xs">
-      <%= f.input_field :month, as: :string, label: false, placeholder: "Select a month", 'data-behaviour' => 'monthpicker', discard_day: true %>
-      <%= f.submit 'Generate Raport', class: "btn btn-primary", id: 'shift_generate_button'%>
-    </p>
-  <% end %>
-
-    <%= link_to 'Show', payment_report_path(format: 'pdf'), class: 'btn btn-info' %>
+  <div class="button-container">
+    <%= link_to 'New Employee', new_employee_path, class: 'btn btn-primary' %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
+  </div>
+  <div class="button-container">
+    <%= bootstrap_form_tag(url: payment_report_path, method: "get") do |f| %>
+      <%= f.text_field :month, hide_label: true, placeholder: "Select a month", 'data-provide' => 'monthpicker', wrapper: { class: "gen_payments_btn"} %>
+      <%= f.submit 'Generate Raport', class: "btn btn-info" %>
+    <% end %>
+  </div>
 
 </div>
 <div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>

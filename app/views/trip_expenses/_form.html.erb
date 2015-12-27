@@ -1,28 +1,34 @@
-<%= simple_nested_form_for @trip_expense, :html => {class: 'form-horizontal'} do |f| %>
-    <%= f.error_notification %>
+<%= bootstrap_nested_form_for(@trip_expense, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
     <div class="row">
-      <div class="span5">
-        <%= f.input :int_id, label: 'Internal ID' %>
-        <%= f.input :number %>
-        <%= f.input :date, as: :string, input_html: {data: {behaviour: 'datepicker'}} %>
-        <%= f.input :value %>
-        <%= f.input :currency, collection: TripExpense::CURRENCY.sort, :item_wrapper_class => 'inline' %>
-        <%= f.input :value_eur %>
-        <%= f.input :card %>
-        <%= f.input :description, collection: TripExpense::DESCRIPTION.sort, :item_wrapper_class => 'inline' %>
+      <div class="col-md-5">
+        <%= f.number_field :int_id, label: 'Internal ID' %>
+        <%= f.text_field :number %>
+        <%= f.text_field :date, :value => "#{f.object.date.strftime("%d/%m/%Y") unless f.object.new_record?}", "data-provide" => 'datepicker', "data-date-format" => "dd/mm/yyyy", "data-date-autoclose" => "true" %>
+        <%= f.number_field :value %>
+        <%= f.select :currency, TripExpense::CURRENCY.sort, include_blank: true %>
+        <%= f.number_field :value_eur %>
+        <%= f.form_group :card, label: { text: "Card?" } do %>
+          <%= f.check_box :card, label: "" %>
+        <% end %>
+        <%= f.select :description, TripExpense::DESCRIPTION.sort, include_blank: true %>
       </div>
-      <div class="span4 offset3">
+      <div class="col-md-4 col-md-offset3">
         <fieldset>
           <legend>Files:</legend>
           <%= f.fields_for :attachments do |a_form| %>
-              <%= a_form.file_field :file %>
+            <div class="button-container">
+              <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+            </div>
               <%= a_form.hidden_field :file_cache %>
-              <%= a_form.link_to_remove '', class: 'icon-remove' %>
+            <div class="button-container">
+              <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+            </div>
           <% end %>
           <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
         </fieldset>
       </div>
     </div>
-    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
     <%= link_to 'Cancel', trip_expenses_path, class: 'btn btn-danger' %>
 <% end %>

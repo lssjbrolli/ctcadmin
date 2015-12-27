@@ -1,11 +1,11 @@
 class ExternExpense < ActiveRecord::Base
 	include ImageConvert
 
-	before_save :convert, :date_parse
+	before_save :convert
 
 	acts_as_indexed :fields => [:number]
 
-	validates :number, :value, :currency, :supplier, presence: true
+	validates :number, :date, :value, :currency, :supplier_id, presence: true
 	validates :number, uniqueness: true
 
 	has_many :attachments, :as => :attachable
@@ -25,12 +25,6 @@ class ExternExpense < ActiveRecord::Base
 		else
 			ExternExpense.all
 		end
-	end
-
-	private
-
-	def date_parse
-		logger.debug "THIS IS TEST: #{self.date}"
 	end
 
 end

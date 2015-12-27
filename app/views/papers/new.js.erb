@@ -1,11 +1,4 @@
-$("#modal").html("<%= escape_javascript(render 'modal/modal') %>");
+$(".modal-content").html("<%= escape_javascript(render 'modal/modal') %>");
 $(document).ready(function () {
     $('#myModalLabel').text("Add new paper...");
-    $('.datepicker').datepicker({
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        orientation: "top left",
-        autoclose: true,
-        todayHighlight: true
-    });
 });

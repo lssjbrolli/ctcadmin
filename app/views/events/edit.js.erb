@@ -1,4 +1,4 @@
-$("#modal").html("<%= escape_javascript(render 'modal/modal') %>");
+$(".modal-content").html("<%= escape_javascript(render 'modal/modal') %>");
 $(document).ready(function () {
     $('#myModalLabel').text("Editing event...");
     $('.datepicker').datepicker({

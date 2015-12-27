@@ -8,9 +8,9 @@ module CreditNotesHelper
 
 	def paid(cn)
 		if cn.paid?
-			'<i class="icon-ok"></i>'
+			'<i class="glyphicon glyphicon-ok"></i>'
 		else
-			'<i class="icon-remove"></i>'
+			'<i class="glyphicon glyphicon-remove"></i>'
 		end
 	end
 

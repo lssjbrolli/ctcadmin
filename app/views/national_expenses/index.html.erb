@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing National Expenses</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing National Expenses</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -17,7 +16,6 @@
       <th class="t_middle"><%= sortable 'supplier_id' %></th>
       <th class="t_middle">Description</th>
       <th class="t_middle"><%= sortable 'paid_by', 'Paid by' %></th>
-      <th><%= render 'search/search' %></th>
     </tr>
     </thead>
 
@@ -30,7 +28,7 @@
           <td class="t_middle"><%= ne.supplier.name %></td>
           <td class="t_middle"><%= ne.description %></td>
           <td class="t_middle"><%= ne.paid_by %></td>
-          <td class="btn-group btn-group-xs">
+          <td class="btn-group btn-group-xm">
             <%= file_state(ne, 'Show') %>
             <%= link_to 'Edit', edit_national_expense_path(ne), class: 'btn btn-info' %>
             <%= link_to 'Destroy', ne, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
@@ -40,11 +38,11 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= will_paginate @national_expenses, renderer: BootstrapPagination::Rails %>
-
-  <div class="btn-group btn-group-xs">
+  <div class="button-container">
     <%= link_to 'New Expense', new_national_expense_path, class: 'btn btn-primary' %>
   </div>
+  <div class="button-container">
+    <%= will_paginate @national_expenses, renderer: BootstrapPagination::Rails %>
+  </div>
+
 </div>

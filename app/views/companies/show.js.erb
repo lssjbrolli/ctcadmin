@@ -1,6 +1,5 @@
-$("#modal").html("<%= escape_javascript(render 'modal/modal') %>");
+$(".modal-content").html("<%= escape_javascript(render 'modal/modal') %>");
 $(document).ready(function () {
-    var company = "<%= @company.name %>";
-    var header = 'Info for: ' + company;
-    $('#myModalLabel').text(header);
+    var header = 'Info for: ' + "<%= @company.name %>";
+    $('#myModalLabel').html(header);
 });

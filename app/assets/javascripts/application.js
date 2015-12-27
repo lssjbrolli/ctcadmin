@@ -33,3 +33,12 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(".alert").delay(3000).hide('fast');
 });
+
+$(document).ready(function() {
+  return $("[data-provide=monthpicker]").datepicker({
+    format: "M yyyy",
+    minViewMode: 1,
+    discard_day: true,
+    autoclose: true
+  });
+});

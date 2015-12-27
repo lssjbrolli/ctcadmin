@@ -11,12 +11,6 @@ class EmployeesController < ApplicationController
     @employees = Employee.all.paginate(:page => params[:page], :per_page => 8).order('cnp ASC')
   end
 
-  # GET /employees/1
-  # GET /employees/1.json
-  def show
-    @employee = Employee.find(params[:id])
-  end
-
   # GET /employees/new
   def new
     @employee = Employee.new
@@ -28,7 +22,7 @@ class EmployeesController < ApplicationController
 
   #generate monthly payments reports
   def payment_report
-    params[:month]['month'].empty? ? month = Date.today : month = params[:month]['month']
+    params['month'].empty? ? month = Date.today : month = params['month']
     respond_to do |format|
       format.html do
         pdf = PaymentReportPdf.new(month)

@@ -72,8 +72,10 @@ class ExternExpensesController < ApplicationController
 	private
 	def format_date_time
 		date                             = extern_expense_params['date']
-		parse                            = Date.parse(date)
-		params['extern_expense']['date'] = parse
+		unless date.empty?
+			parse                            = Date.parse(date)
+			params['extern_expense']['date'] = parse
+		end
 	end
 
 	def sort_column

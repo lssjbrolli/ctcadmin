@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing trucks</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing trucks</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -22,7 +21,7 @@
         <tr>
           <td><%= truck.vin %></td>
           <td><%= truck.registration %></td>
-          <td class="btn-group btn-group-xs">
+          <td class="btn-group btn-group-xm">
             <%= link_to 'Details', truck_papers_path(truck), class: 'btn btn-info' %>
             <%= link_to 'Credit Notes', cnotes_path(truck), class: 'btn btn-info' %>
             <%= link_to 'Events', truck_events_path(truck), class: 'btn btn-info' %>
@@ -34,11 +33,17 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= will_paginate @trucks, renderer: BootstrapPagination::Rails %>
-  <%= link_to 'Add Truck', new_truck_path, {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
+  <div class="button-container">
+    <%= link_to 'Add Truck', new_truck_path, {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @trucks, renderer: BootstrapPagination::Rails %>
+  </div>
 
 </div>
-<div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
 
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

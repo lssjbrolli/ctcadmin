@@ -1,8 +1,8 @@
-<%= simple_form_for [@truck, @event], :html => {class: 'form-horizontal'} do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :date, as: :string, input_html: {class: 'datepicker'} %>
-    <%= f.input :km %>
-    <%= f.input :comment %>
+<%= bootstrap_form_for([@truck, @event], layout: :horizontal) do |f| %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
+    <%= f.text_field :date, :value=>"#{f.object.date.strftime("%d/%m/%Y") unless f.object.new_record?}", 'data-provide' => 'datepicker', "data-date-format" => "dd/mm/yyyy", "data-date-autoclose" => "true" %>
+    <%= f.text_field :km %>
+    <%= f.text_field :comment %>
     <div class="modal-footer">
       <%= f.button :submit, class: 'btn btn-primary' %>
       <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>

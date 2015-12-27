@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container-fluid">
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
 
-  <p style="text-align: center">
+  <h3 style="text-align: center">
     <strong>Documents for: </strong><%= @document.name %>
-  </p>
+  </h3>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -35,8 +35,19 @@
     <% end %>
     </tbody>
   </table>
-  <br>
-  <%= link_to 'Add paper', new_employee_paper_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
-  <%= will_paginate @papers, renderer: BootstrapPagination::Rails %>
+
+  <div class="button-container">
+    <%= link_to 'Add paper', new_employee_paper_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @papers, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
-<div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

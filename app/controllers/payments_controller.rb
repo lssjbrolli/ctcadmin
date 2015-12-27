@@ -2,13 +2,17 @@ class PaymentsController < ApplicationController
   before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
-  before_action :set_employee, except: [:edit]
+  before_action :set_employee, except: [:edit, :bonus]
   before_filter :format_date_time, :only => [:create, :update]
 
   # GET /payments
   # GET /payments.json
   def index
     @payments = @employee.payments.paginate(:page => params[:page], :per_page => 8).order('month DESC')
+  end
+
+  def bonus
+    @bonus = Payment.find(params[:id])
   end
 
   # GET /payments/1

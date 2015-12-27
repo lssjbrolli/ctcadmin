@@ -1,31 +1,37 @@
-<%= simple_nested_form_for @credit_note, :html => {class: 'form-horizontal', multipart: true} do |f| %>
-    <%= f.error_notification %>
+<%= bootstrap_nested_form_for(@credit_note, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
     <div class="row">
-      <div class="span5">
-        <%= f.input :number, :label => 'Credit note number' %>
-        <%= f.input :value, :label => 'Value of trip' %>
-        <%= f.input :start, :label => 'Trip start location' %>
-        <%= f.input :stop, :label => 'Trip finish location' %>
-        <%= f.input :week %>
-        <%= f.input :notes %>
-        <%= f.input :currency, collection: CreditNote::CURRENCY, as: :radio_buttons, :item_wrapper_class => 'inline', checked: CreditNote::CURRENCY[0] %>
-        <%= f.association :truck, :label_method => :registration %>
+      <div class="col-md-5">
+        <%= f.text_field :number, label: 'Credit note number' %>
+        <%= f.number_field :value, label: 'Value of trip' %>
+        <%= f.text_field :start, label: 'Trip start location' %>
+        <%= f.text_field :stop, label: 'Trip finish location' %>
+        <%= f.number_field :week %>
+        <%= f.text_area :notes %>
+        <%= f.select :currency, CreditNote::CURRENCY %>
+        <%= f.collection_select :truck, Truck.all, :id, :registration %>
         <% if @current_user.admin? %>
-            <%= f.input :paid %>
+          <%= f.form_group :paid, label: { text: "Paid?" } do %>
+            <%= f.check_box :paid, label: "" %>
+          <% end %>
         <% end %>
       </div>
-      <div class="span4 offset3">
+      <div class="col-md-5 col-md-offset3">
         <fieldset>
           <legend>Files:</legend>
           <%= f.fields_for :attachments do |a_form| %>
-              <%= a_form.file_field :file %>
-              <%= a_form.hidden_field :file_cache %>
-              <%= a_form.link_to_remove '', class: 'icon-remove' %>
+            <div class="button-container">
+              <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+            </div>
+            <div class="button-container">
+              <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+            </div>
+            <%= a_form.hidden_field :file_cache %>
           <% end %>
           <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
         </fieldset>
       </div>
     </div>
-    <%= f.button :submit, class: 'btn-primary' %>
+    <%= f.submit "Submit", class: 'btn btn-primary' %>
     <%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>
 <% end %>

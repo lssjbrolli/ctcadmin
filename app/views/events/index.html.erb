@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing events</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing events</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -24,7 +23,7 @@
           <td><%= event.date %></td>
           <td><%= event.km %></td>
           <td><%= event.comment %></td>
-          <td class="btn-group btn-group-xs">
+          <td class="btn-group btn-group-xm">
             <%= link_to 'Edit', edit_truck_event_path(event.truck, event), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-info'} %>
             <%= link_to 'Destroy', truck_event_path(event.truck, event), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
           </td>
@@ -33,12 +32,18 @@
     </tbody>
   </table>
 
-  <br>
-
-  <%= link_to 'Add event', new_truck_event_path(@truck), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
-
-  <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+  <div class="button-container">
+    <%= link_to 'Add event', new_truck_event_path(@truck), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @events, renderer: BootstrapPagination::Rails %>
+  </div>
 
 </div>
 
-<div id="modal" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<!-- modal -->
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
+</div>

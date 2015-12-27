@@ -1,6 +1,7 @@
 @import "bootstrap";
-@import "bootstrap-datepicker";
+@import "bootstrap-datepicker3";
 @import "**/*";
+@import "bootstrap/glyphicons";
 
 /*
  * This is a manifest file that will be compiled into application.css, which will include all the files
@@ -14,6 +15,7 @@
  *
  *= require_self
  *= require_tree .
+ *= require rails_bootstrap_forms
  */
 
 td.t_value {
@@ -40,14 +42,9 @@ th.t_center {
   text-align: center;
 }
 
-.form-search {
-  margin-bottom: 0;
-  margin-top: 5px;
-}
-
 div.container {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 3em;
+  margin-right: 3em;
   width: 90%;
 }
 
@@ -55,6 +52,22 @@ a.btn {
   color: white;
 }
 
-div.container h2 {
+.button-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15%;
+}
+
+.bonus-container {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+label.required:after {
+  content:" *";
+}
+
+.title {
   text-align: center;
+  margin-bottom: 1.5em;
 }

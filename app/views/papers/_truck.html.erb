@@ -5,14 +5,14 @@
       <% end %>
   <% end %>
 
-  <p style="text-align: center">
-    <strong>Registration:</strong> <%= link_to @document.registration, edit_truck_path(@document), {:remote => true, data: { toggle: 'modal', target: 'modal', backdrop: 'static'}} %>
+  <h3 style="text-align: center">
+    <strong>Registration:</strong> <%= link_to @document.registration, edit_truck_path(@document), {:remote => true, data: { toggle: 'modal', target: '#modal', backdrop: 'static'}} %>
     (VIN: <%= @document.vin %>)
-  </p>
+  </h3>
 
-  <p style="text-align: center">
+  <h4 style="text-align: center">
     View <%= link_to 'Credit Notes', cnotes_path(@document) %> or <%= link_to 'Events', truck_events_path(@document) %>.
-  </p>
+  </h4>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -30,7 +30,7 @@
               <td><%= p.description %></td>
               <td><%= p.expire %></td>
               <td class="td.t_center"><%= p.comments %></td>
-              <td class="btn-group btn-group-xs">
+              <td class="btn-group btn-group-xm">
                 <%= file_state(p, 'Show') %>
                 <%= link_to 'Edit', edit_truck_paper_path(p.document, p), {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
                 <%= link_to 'Destroy', truck_paper_path(p.document, p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
@@ -40,8 +40,19 @@
     <% end %>
     </tbody>
   </table>
-  <br>
-  <%= link_to 'Add paper', new_truck_paper_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
-  <%= will_paginate @papers, renderer: BootstrapPagination::Rails %>
+  <div class="button-container">
+    <%= link_to 'Add paper', new_truck_paper_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @papers, renderer: BootstrapPagination::Rails %>
+  </div>
 </div>
-<div id="modal" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

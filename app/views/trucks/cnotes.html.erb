@@ -1,12 +1,11 @@
-<div class="container">
+<h2 class="title">Listing <%= @truck.registration %> Credit Notes</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
           <%= alert(k, v) %>
       <% end %>
   <% end %>
-
-  <h2>Listing <%= @truck.registration %> Credit Notes</h2>
 
   <table class="table table-hover table-condensed">
     <thead>
@@ -19,7 +18,6 @@
       <th class="t_right">Value</th>
       <th class="t_middle">Paid</th>
       <th class="t_middle">Notes</th>
-      <th><%= render 'search/search' %></th>
     </tr>
     </thead>
 

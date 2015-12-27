@@ -7,6 +7,8 @@ Ctcadmin::Application.routes.draw do
 
 	get 'payment_report', to: 'employees#payment_report'
 
+	get '/payments/:id/bonus', to: 'payments#bonus', as: :bonus
+
 	resources :reports, only: :show
 
 	resources :employees do

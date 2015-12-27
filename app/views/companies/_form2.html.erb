@@ -1,16 +1,16 @@
-<%= simple_form_for @company, :html => {class: 'form-horizontal'} do |f| %>
-    <%= f.error_notification %>
-    <%= f.input :name %>
-    <%= f.input :registration %>
-    <%= f.input :vat %>
-    <%= f.input :address %>
-    <%= f.input :acc_lei %>
-    <%= f.input :acc_eur %>
-    <%= f.input :bank %>
-    <%= f.input :capital %>
-    <%= f.input :phone %>
-    <%= f.input :email %>
-    <%= f.input :contact %>
-    <%= f.button :submit, class: 'btn btn-success' %>
+<%= bootstrap_form_for(@company, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |f| %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
+    <%= f.text_field :name %>
+    <%= f.text_field :registration %>
+    <%= f.text_field :vat %>
+    <%= f.text_field :address %>
+    <%= f.text_field :acc_lei %>
+    <%= f.text_field :acc_eur %>
+    <%= f.text_field :bank %>
+    <%= f.text_field :capital %>
+    <%= f.phone_field :phone %>
+    <%= f.email_field :email %>
+    <%= f.text_field :contact %>
+    <%= f.submit "Submit", class: "btn btn-success" %>
     <%= link_to 'Back', companies_path, class: 'btn btn-danger' %>
 <% end %>

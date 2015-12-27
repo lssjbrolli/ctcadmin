@@ -1,4 +1,5 @@
-<div class="container">
+<h2 class="title">Listing users</h2>
+<div class="container-fluid">
 
   <% if flash %>
       <% flash.each do |k, v| %>
@@ -6,7 +7,6 @@
       <% end %>
   <% end %>
 
-  <h2>Listing users</h2>
   <table class="table table-hover table-condensed">
     <thead>
     <tr>
@@ -19,12 +19,20 @@
     <% @users.each do |user| %>
         <tr>
           <td><%= fullname user %></td>
-          <td class="btn-group">
+          <td class="btn-group" style="display: flex">
             <%= best_in_place user, :activated, type: :checkbox, collection: %w(Inactiv Activ), classes: [act_toggle(user), 'act_button'] %>
+            <%= link_to 'Show', edit_user_path(user), class: "btn btn-info act_button", remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}%>
             <%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger act_button' %>
           </td>
         </tr>
     <% end %>
     </tbody>
   </table>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"></div>
+  </div>
 </div>
