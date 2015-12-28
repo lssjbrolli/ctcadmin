@@ -3,8 +3,6 @@ class ExternExpense < ActiveRecord::Base
 
 	before_save :convert
 
-	acts_as_indexed :fields => [:number]
-
 	validates :number, :date, :value, :currency, :supplier_id, presence: true
 	validates :number, uniqueness: true
 
@@ -18,13 +16,5 @@ class ExternExpense < ActiveRecord::Base
 
 	CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
 	DESCRIPTION = %w(Rent Loan Fuel Cash Service Parts Phone Transportation Fine Other)
-
-	def self.search(search)
-		if search && !search.empty?
-			ExternExpense.with_query(search)
-		else
-			ExternExpense.all
-		end
-	end
-
+	
 end

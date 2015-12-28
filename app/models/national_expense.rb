@@ -3,8 +3,6 @@ class NationalExpense < ActiveRecord::Base
 
 	before_save :convert
 
-	acts_as_indexed :fields => [:number]
-
 	validates :number, :value, :supplier, presence: true
 
 	belongs_to :supplier, :foreign_key => 'supplier_id', :class_name => 'Company'
@@ -19,14 +17,5 @@ class NationalExpense < ActiveRecord::Base
 
 	DESCRIPTION = ['Piese', 'Service', 'Asigurari', 'Leasing', 'Taxe', 'Echipament IT',
 								 'Servicii curier', 'Transport', 'Altele']
-
-
-	def self.search(search)
-		if search && !search.empty?
-			NationalExpense.with_query(search)
-		else
-			NationalExpense.all
-		end
-	end
-
+								 
 end

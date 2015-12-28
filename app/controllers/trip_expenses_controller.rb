@@ -11,7 +11,8 @@ class TripExpensesController < ApplicationController
 	# GET /trip_expenses.json
 	def index
 		@trip_expenses_missing = TripExpense.missing
-		@trip_expenses         = TripExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
+		@q                     = TripExpense.ransack(params[:q])
+		@trip_expenses         = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trip_expenses/1
@@ -87,6 +88,6 @@ class TripExpensesController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def trip_expense_params
-		params.require(:trip_expense).permit(:currency, :number, :date, :value, :description, :value_eur, :int_id, :card, attachments_attributes: [:id, :file, :file_cache, :_destroy])
+		params.require(:trip_expense).permit(:currency, :number, :date, :value, :description, :value_eur, :intnr, :card, attachments_attributes: [:id, :file, :file_cache, :_destroy])
 	end
 end

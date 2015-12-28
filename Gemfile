@@ -58,6 +58,9 @@ gem 'passenger'
 # database
 gem 'pg'
 
+#search
+gem 'ransack'
+
 group :production do
 	gem 'rails_12factor'
 end
@@ -65,6 +68,8 @@ end
 group :development do
 	gem 'better_errors'
 	gem 'binding_of_caller'
+	gem 'meta_request'
+	gem 'pry'
 end
 
 group :test do
@@ -80,15 +85,7 @@ gem 'money-rails'
 
 gem 'eu_central_bank'
 
-gem 'acts_as_indexed'
-
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
-gem 'meta_request'
-gem 'pry'
-
-#gem 'newrelic_rpm'

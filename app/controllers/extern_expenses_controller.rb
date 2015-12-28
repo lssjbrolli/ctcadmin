@@ -11,7 +11,8 @@ class ExternExpensesController < ApplicationController
 	# GET /extern_expenses
 	# GET /extern_expenses.json
 	def index
-		@extern_expenses = ExternExpense.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(:page => params[:page], :per_page => 8)
+		@q 				 = ExternExpense.ransack(params[:q])
+		@extern_expenses = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /extern_expenses/1

@@ -3,16 +3,14 @@ class TripExpense < ActiveRecord::Base
 
 	before_save :convert
 
-	acts_as_indexed :fields => [:number]
-
 	before_save :set_int_id
 
-	validates :number, :value, :value_eur, :date, :currency, presence: true
+	validates   :number, :value, :value_eur, :date, :currency, presence: true
 
-	has_many :attachments, :as => :attachable
-	belongs_to :created_by, :foreign_key => 'create_id', :class_name => 'User'
-	belongs_to :updated_by, :foreign_key => 'update_id', :class_name => 'User'
-	belongs_to :report
+	has_many    :attachments, :as => :attachable
+	belongs_to  :created_by, :foreign_key => 'create_id', :class_name => 'User'
+	belongs_to  :updated_by, :foreign_key => 'update_id', :class_name => 'User'
+	belongs_to  :report
 
 	accepts_nested_attributes_for :attachments, allow_destroy: true
 
@@ -29,14 +27,6 @@ class TripExpense < ActiveRecord::Base
 			else
 				self.int_id = TripExpense.last.int_id.next
 			end
-		end
-	end
-
-	def self.search(search)
-		if search && !search.empty?
-			TripExpense.with_query(search)
-		else
-			TripExpense.all
 		end
 	end
 

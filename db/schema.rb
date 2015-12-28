@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419111310) do
+ActiveRecord::Schema.define(version: 20151228120724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attachments", force: :cascade do |t|
-    t.string   "file"
+    t.string   "file",            limit: 255
     t.integer  "attachable_id"
-    t.string   "attachable_type"
+    t.string   "attachable_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,47 +27,47 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   add_index "attachments", ["attachable_id", "attachable_type"], name: "index_attachments_on_attachable_id_and_attachable_type", using: :btree
 
   create_table "bonuses", force: :cascade do |t|
-    t.string   "value"
-    t.string   "comment"
+    t.string   "value",      limit: 255
+    t.string   "comment",    limit: 255
     t.integer  "payment_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string   "name"
-    t.string   "registration"
-    t.string   "vat"
+    t.string   "name",         limit: 255
+    t.string   "registration", limit: 255
+    t.string   "vat",          limit: 255
     t.text     "address"
-    t.string   "acc_lei"
-    t.string   "acc_eur"
-    t.string   "bank"
-    t.string   "capital"
-    t.string   "phone"
+    t.string   "acc_lei",      limit: 255
+    t.string   "acc_eur",      limit: 255
+    t.string   "bank",         limit: 255
+    t.string   "capital",      limit: 255
+    t.string   "phone",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
+    t.string   "email",        limit: 255
     t.integer  "create_id"
     t.integer  "update_id"
-    t.string   "contact"
+    t.string   "contact",      limit: 255
   end
 
   create_table "credit_invoices", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "number"
+    t.string   "number",      limit: 255
     t.date     "date"
-    t.decimal  "total_value", precision: 8, scale: 2
+    t.decimal  "total_value",             precision: 8, scale: 2
     t.integer  "seller_id"
     t.integer  "buyer_id"
-    t.string   "tax_rate"
-    t.decimal  "net_value",   precision: 8, scale: 2
-    t.decimal  "tax_value",   precision: 8, scale: 2
-    t.string   "currency"
-    t.string   "delegat"
-    t.string   "ci"
-    t.string   "eliberat"
-    t.string   "transport"
+    t.string   "tax_rate",    limit: 255
+    t.decimal  "net_value",               precision: 8, scale: 2
+    t.decimal  "tax_value",               precision: 8, scale: 2
+    t.string   "currency",    limit: 255
+    t.string   "delegat",     limit: 255
+    t.string   "ci",          limit: 255
+    t.string   "eliberat",    limit: 255
+    t.string   "transport",   limit: 255
     t.integer  "user_id"
     t.integer  "create_id"
     t.integer  "update_id"
@@ -78,14 +78,14 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   create_table "credit_notes", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "number"
-    t.string   "start"
-    t.string   "stop"
+    t.string   "number",            limit: 255
+    t.string   "start",             limit: 255
+    t.string   "stop",              limit: 255
     t.integer  "week"
-    t.decimal  "value",             precision: 8, scale: 2
+    t.decimal  "value",                         precision: 8, scale: 2
     t.text     "notes"
     t.boolean  "paid"
-    t.string   "currency"
+    t.string   "currency",          limit: 255
     t.integer  "credit_invoice_id"
     t.integer  "truck_id"
     t.integer  "order_nr"
@@ -98,17 +98,17 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   create_table "employees", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "cnp"
-    t.string   "bank_ron"
-    t.string   "bank_eur"
-    t.boolean  "activ",      default: true
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "cnp",        limit: 255
+    t.string   "bank_ron",   limit: 255
+    t.string   "bank_eur",   limit: 255
+    t.boolean  "activ",                  default: true
   end
 
   create_table "events", force: :cascade do |t|
     t.date     "date"
-    t.string   "km"
+    t.string   "km",         limit: 255
     t.text     "comment"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -118,13 +118,13 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   end
 
   create_table "extern_expenses", force: :cascade do |t|
-    t.string   "number"
+    t.string   "number",      limit: 255
     t.date     "date"
     t.text     "description"
-    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value",                   precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "currency"
+    t.string   "currency",    limit: 255
     t.integer  "supplier_id"
     t.integer  "create_id"
     t.integer  "update_id"
@@ -133,24 +133,24 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   create_table "national_expenses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "number"
+    t.string   "number",      limit: 255
     t.date     "date"
     t.text     "description"
-    t.decimal  "value",       precision: 8, scale: 2
+    t.decimal  "value",                   precision: 8, scale: 2
     t.integer  "supplier_id"
-    t.string   "paid_by"
+    t.string   "paid_by",     limit: 255
     t.integer  "create_id"
     t.integer  "update_id"
   end
 
   create_table "papers", force: :cascade do |t|
-    t.string   "description"
+    t.string   "description",   limit: 255
     t.date     "expire"
     t.integer  "document_id"
-    t.string   "document_type"
+    t.string   "document_type", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "comments"
+    t.string   "comments",      limit: 255
     t.integer  "create_id"
     t.integer  "update_id"
   end
@@ -179,40 +179,40 @@ ActiveRecord::Schema.define(version: 20150419111310) do
   create_table "trip_expenses", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "number"
+    t.string   "number",      limit: 255
     t.date     "date"
     t.text     "description"
-    t.decimal  "value",       precision: 8, scale: 2
-    t.decimal  "value_eur",   precision: 8, scale: 2
-    t.string   "currency"
+    t.decimal  "value",                   precision: 8, scale: 2
+    t.decimal  "value_eur",               precision: 8, scale: 2
+    t.string   "currency",    limit: 255
     t.integer  "report_id"
-    t.integer  "int_id"
-    t.boolean  "card",                                default: true
+    t.string   "intnr"
+    t.boolean  "card",                                            default: true
     t.integer  "create_id"
     t.integer  "update_id"
   end
 
   create_table "trucks", force: :cascade do |t|
-    t.string   "registration"
+    t.string   "registration", limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "vin"
+    t.string   "vin",          limit: 255
     t.integer  "create_id"
     t.integer  "update_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "cnp"
-    t.string   "username"
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
+    t.string   "cnp",             limit: 255
+    t.string   "username",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_digest"
-    t.string   "language"
-    t.string   "remember_token"
-    t.boolean  "admin",           default: false
-    t.boolean  "activated",       default: false
+    t.string   "password_digest", limit: 255
+    t.string   "language",        limit: 255
+    t.string   "remember_token",  limit: 255
+    t.boolean  "admin",                       default: false
+    t.boolean  "activated",                   default: false
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

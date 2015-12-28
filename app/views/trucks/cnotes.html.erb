@@ -18,6 +18,7 @@
       <th class="t_right">Value</th>
       <th class="t_middle">Paid</th>
       <th class="t_middle">Notes</th>
+      <th><%= render "credit_notes/search" %></th>
     </tr>
     </thead>
 
@@ -32,7 +33,7 @@
           <td class="t_value"><%= number_to_currency(cn.value, :unit => cn.currency) %></td>
           <td class="t_middle"><%= raw paid(cn) %></td>
           <td class="t_middle"><%= cn.notes %></td>
-          <td class="btn-group btn-group-xs">
+          <td class="btn-group btn-group-xm">
             <%= file_state(cn, 'Show') %>
             <%= link_to 'Edit', edit_credit_note_path(cn), class: 'btn btn-info' %>
             <%= link_to 'Destroy', cn, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
