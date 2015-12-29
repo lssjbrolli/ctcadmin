@@ -2,7 +2,7 @@
   <%= f.alert_message "Please fix the errors below.", error_summary: false %>
   <div class="row">
     <div class="col-md-5">
-      <%= f.number_field :number %>
+      <%= f.number_field :number, step: 'any' %>
       <%= f.text_field :date, :value=>"#{f.object.date.strftime("%d/%m/%Y") unless f.object.new_record?}", 'data-provide' => 'datepicker', "data-date-format" => "dd/mm/yyyy", "data-date-autoclose" => "true" %>
       <%= f.collection_select :seller_id, Company.all, :id, :name %>
       <%= f.collection_select :buyer_id, Company.all, :id, :name %>

@@ -4,7 +4,7 @@
     <div class="col-md-5">
       <%= f.text_field :number %>
       <%= f.text_field :date, :value => "#{f.object.date.strftime("%b %Y") unless f.object.new_record?}", "data-provide" => 'monthpicker' %>
-      <%= f.number_field :value %>
+      <%= f.number_field :value, step: 'any' %>
       <%= f.select :currency, ExternExpense::CURRENCY.sort, include_blank: true %>
       <%= f.collection_select :supplier_id, Company.all, :id, :name, include_blank: true %>
       <%= f.select :description, ExternExpense::DESCRIPTION.sort, include_blank: true %>

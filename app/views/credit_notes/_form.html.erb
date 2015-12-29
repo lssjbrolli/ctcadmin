@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-5">
         <%= f.text_field :number, label: 'Credit note number' %>
-        <%= f.number_field :value, label: 'Value of trip' %>
+        <%= f.number_field :value, step: 'any', label: 'Value of trip' %>
         <%= f.text_field :start, label: 'Trip start location' %>
         <%= f.text_field :stop, label: 'Trip finish location' %>
         <%= f.number_field :week %>
