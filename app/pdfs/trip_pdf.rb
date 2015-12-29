@@ -6,7 +6,7 @@ class TripPdf < Prawn::Document
 		@report        = report
 		@view          = view
 		@trip_expenses = []
-		@report.each { |x| @trip_expenses << TripExpense.find_by_int_id(x) }
+		@report.each { |x| @trip_expenses << TripExpense.find_by_intnr(x) }
 
 		@dates = []
 		@trip_expenses.each { |x| @dates << x.date }
@@ -55,7 +55,7 @@ class TripPdf < Prawn::Document
 
 	def line_items
 		@trip_expenses.map do |item|
-			["#{item.int_id}", "#{item.number}", item.date.strftime("%d.%m.%y"), "#{item.description}", card(item), @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
+			["#{item.intnr}", "#{item.number}", item.date.strftime("%d.%m.%y"), "#{item.description}", card(item), @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
 		end
 	end
 

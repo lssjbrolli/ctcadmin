@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
 	def make_report
 		@ids = []
 
-		TripExpense.where(report: nil).each { |x| @ids << x.int_id }
+		TripExpense.where(report: nil).each { |x| @ids << x.intnr }
 
 		@report     = Report.new
 		@report.ids = @ids
@@ -35,7 +35,7 @@ class ReportsController < ApplicationController
 	private
 
 	def set_id
-		@ids.each { |x| TripExpense.find_by_int_id(x).update(report_id: @report.id) }
+		@ids.each { |x| TripExpense.find_by_intnr(x).update(report_id: @report.id) }
 	end
 
 end

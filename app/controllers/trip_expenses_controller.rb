@@ -72,15 +72,6 @@ class TripExpensesController < ApplicationController
 
 	private
 
-	# Sortable methods
-	def sort_column
-		%w[int_id value value_eur card].include?(params[:sort]) ? params[:sort] : 'int_id'
-	end
-
-	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-	end
-
 	# Use callbacks to share common setup or constraints between actions.
 	def set_trip_expense
 		@trip_expense = TripExpense.find(params[:id])

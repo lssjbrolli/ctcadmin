@@ -3,7 +3,7 @@ class TripExpense < ActiveRecord::Base
 
 	before_save :convert
 
-	before_save :set_int_id
+	before_save :set_intnr
 
 	validates   :number, :value, :value_eur, :date, :currency, presence: true
 
@@ -20,12 +20,12 @@ class TripExpense < ActiveRecord::Base
 
 	protected
 
-	def set_int_id
-		if self.int_id.nil?
-			if TripExpense.last.int_id.nil?
-				self.int_id = 1
+	def set_intnr
+		if self.intnr.nil?
+			if TripExpense.last.intnr.nil?
+				self.intnr = 1
 			else
-				self.int_id = TripExpense.last.int_id.next
+				self.intnr = TripExpense.last.intnr.next
 			end
 		end
 	end
