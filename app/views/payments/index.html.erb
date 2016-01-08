@@ -34,7 +34,7 @@
             <td><%= payment.avans %></td>
             <td><%= payment.rest %></td>
             <td><%= payment.total %></td>
-            <td class="btn-group btn-group-xm">
+            <td class="btn-group btn-group-xm payment-group">
               <%= gen_order(payment) %>
               <%= link_to 'Bonus', bonus_path(payment), class: 'btn btn-info', remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'} %>
               <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
