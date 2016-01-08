@@ -32,5 +32,8 @@ module Ctcadmin
 		end
 
 		I18n.config.enforce_available_locales = false
+
+		#Error handling in transaction callbacks
+		config.active_record.raise_in_transactional_callbacks = true
 	end
 end

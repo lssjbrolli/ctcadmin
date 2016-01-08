@@ -35,7 +35,7 @@
             <td><%= payment.rest %></td>
             <td><%= payment.total %></td>
             <td class="btn-group btn-group-xm">
-              <%= link_to 'Generate order', '#', class: 'btn btn-info' %> //FIX
+              <%= gen_order(payment) %>
               <%= link_to 'Bonus', bonus_path(payment), class: 'btn btn-info', remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'} %>
               <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
               <%= link_to 'Destroy', employee_payment_path(payment.employee, payment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>

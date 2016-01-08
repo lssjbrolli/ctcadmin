@@ -9,6 +9,8 @@ class Payment < ActiveRecord::Base
 
 	belongs_to :employee
 	has_many :bonuses
+	has_one :order
+
 	accepts_nested_attributes_for :bonuses
 
 	DIURNA_BAZA = 1500

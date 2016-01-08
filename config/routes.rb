@@ -9,7 +9,11 @@ Ctcadmin::Application.routes.draw do
 
 	get '/payments/:id/bonus', to: 'payments#bonus', as: :bonus
 
+	get '/payments/:id/order', to: 'orders#new', as: :new_order
+
 	resources :reports, only: :show
+
+	resources :orders, only: [:show, :create]
 
 	resources :employees do
 		resources :payments
