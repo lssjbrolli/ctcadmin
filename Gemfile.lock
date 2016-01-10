@@ -51,15 +51,15 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
-    autoprefixer-rails (6.2.1)
+    autoprefixer-rails (6.2.3)
       execjs
       json
-    aws-sdk (2.2.8)
-      aws-sdk-resources (= 2.2.8)
-    aws-sdk-core (2.2.8)
+    aws-sdk (2.2.9)
+      aws-sdk-resources (= 2.2.9)
+    aws-sdk-core (2.2.9)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.2.8)
-      aws-sdk-core (= 2.2.8)
+    aws-sdk-resources (2.2.9)
+      aws-sdk-core (= 2.2.9)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -154,6 +154,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     rack (1.6.4)
     rack-contrib (1.4.0)
       git-version-bump (~> 0.15)
@@ -197,7 +199,6 @@ GEM
       i18n
       polyamorous (~> 1.2)
     rdoc (4.2.1)
-      json (~> 1.4)
     ref (2.0.0)
     sass (3.4.20)
     sass-rails (5.0.4)
@@ -228,14 +229,18 @@ GEM
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (2.0.1)
+    tilt (2.0.2)
     ttfunk (1.4.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    will_paginate (3.0.7)
+    web-console (3.0.0)
+      activemodel (>= 4.2)
+      debug_inspector
+      railties (>= 4.2)
+    will_paginate (3.1.0)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
 
@@ -265,6 +270,7 @@ DEPENDENCIES
   prawn
   prawn-table
   pry
+  pry-rails
   rails (= 4.2.0)
   rails_12factor
   ransack
@@ -273,6 +279,7 @@ DEPENDENCIES
   shoulda
   therubyracer
   uglifier
+  web-console
   will_paginate-bootstrap
 
 BUNDLED WITH

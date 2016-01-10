@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.4'
+ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -70,6 +70,8 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'meta_request'
 	gem 'pry'
+	gem 'pry-rails'
+	gem 'web-console'
 end
 
 group :test do
