@@ -25,7 +25,7 @@
               <td><%= p.description %></td>
               <td><%= p.expire %></td>
               <td class="td.t_center"><%= p.comments %></td>
-              <td class="btn-group btn-group-xs">
+              <td class="btn-group btn-group-xm">
                 <%= file_state(p, 'Show') %>
                 <%= link_to 'Edit', edit_employee_paper_path(p.document, p), {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
                 <%= link_to 'Destroy', employee_paper_path(p.document, p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
