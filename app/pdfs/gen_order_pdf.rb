@@ -12,7 +12,7 @@ class GenOrderPdf < Prawn::Document
 		@days = @payment.days
 
 		if params[:begin]
-			@first_day = params[:begin]
+			@first_day = Date.parse(params[:begin])
 		else
 			@first_day = @payment.month.at_beginning_of_month
 		end
