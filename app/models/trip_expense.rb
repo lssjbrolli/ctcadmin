@@ -6,6 +6,7 @@ class TripExpense < ActiveRecord::Base
 	before_save :set_intnr
 
 	validates   :number, :value, :value_eur, :date, :currency, presence: true
+	validates	:intnr, uniqueness: true
 
 	has_many    :attachments, :as => :attachable
 	belongs_to  :created_by, :foreign_key => 'create_id', :class_name => 'User'
@@ -17,6 +18,10 @@ class TripExpense < ActiveRecord::Base
 	CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
 	DESCRIPTION = ['Taxa drum', 'Motorina', 'Piese', 'Service', 'Transport',
 								 'Telefon', 'Altele'].sort
+
+	ransacker :intnr do
+  		Arel.sql('intnr::int')
+	end							 
 
 	protected
 

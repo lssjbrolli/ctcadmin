@@ -10,7 +10,7 @@ class TripExpensesController < ApplicationController
 	def index
 		@trip_expenses_missing = TripExpense.missing
 		@q                     = TripExpense.ransack(params[:q])
-		@trip_expenses         = @q.result(distinct: true).order(intnr: :asc).paginate(:page => params[:page], :per_page => 8)
+		@trip_expenses         = @q.result().order("intnr::int desc").paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trip_expenses/1
