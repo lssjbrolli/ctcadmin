@@ -7,6 +7,7 @@ class TripPdf < Prawn::Document
 		@view          = view
 		@trip_expenses = []
 		@report.each { |x| @trip_expenses << TripExpense.find_by_intnr(x) }
+		@trip_expenses.sort_by! { |x| x.intnr[/\d+/].to_i }
 
 		@dates = []
 		@trip_expenses.each { |x| @dates << x.date }
@@ -34,7 +35,7 @@ class TripPdf < Prawn::Document
 
 	def header
 		data  = ['Nr. crt.', 'Nr. actului', 'Data', 'Descrierea', 'Card', 'Suma originala', 'Suma in EUR']
-		table = make_table([data], header: true, width: 540, column_widths: [45, 95, 60, 110, 40, 100, 90])
+		table = make_table([data], width: 540, column_widths: [45, 95, 60, 110, 40, 100, 90])
 
 		table.cells.style(size: 12, font_style: :bold)
 		table.cells[0, 1].style(align: :center)
@@ -68,8 +69,8 @@ class TripPdf < Prawn::Document
 
 
 		table.before_rendering_page do |page|
-			page.row(0).border_top_width       = 0
-			page.row(-1).border_bottom_width   = 0
+			page.row(0).border_top_width       = 2
+			page.row(-1).border_bottom_width   = 2
 			page.column(0).border_left_width   = 2
 			page.column(-1).border_right_width = 2
 		end
