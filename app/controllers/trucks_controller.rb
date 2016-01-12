@@ -1,8 +1,6 @@
 class TrucksController < ApplicationController
 	include UserInfo
 
-	helper_method :sort_column, :sort_direction
-
 	before_action :set_truck, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
@@ -71,15 +69,6 @@ class TrucksController < ApplicationController
 	end
 
 	private
-
-	# Sortable methods
-	def sort_column
-		%w[number value paid].include?(params[:sort]) ? params[:sort] : 'order_nr'
-	end
-
-	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
-	end
 
 	# Use callbacks to share common setup or constraints between actions.
 	def set_truck

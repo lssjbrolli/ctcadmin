@@ -1,8 +1,6 @@
 class TripExpensesController < ApplicationController
 	include UserInfo
 
-	helper_method :sort_column, :sort_direction
-
 	before_action :set_trip_expense, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
@@ -12,7 +10,7 @@ class TripExpensesController < ApplicationController
 	def index
 		@trip_expenses_missing = TripExpense.missing
 		@q                     = TripExpense.ransack(params[:q])
-		@trip_expenses         = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+		@trip_expenses         = @q.result(distinct: true).order(:id).paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trip_expenses/1

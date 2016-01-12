@@ -1,8 +1,6 @@
 class ExternExpensesController < ApplicationController
 	include UserInfo
 
-	helper_method :sort_column, :sort_direction
-
 	before_action :set_extern_expense, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
@@ -77,14 +75,6 @@ class ExternExpensesController < ApplicationController
 			parse                            = Date.parse(date)
 			params['extern_expense']['date'] = parse
 		end
-	end
-
-	def sort_column
-		%w[number value supplier_id].include?(params[:sort]) ? params[:sort] : 'number'
-	end
-
-	def sort_direction
-		%w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
 	end
 
 	# Use callbacks to share common setup or constraints between actions.

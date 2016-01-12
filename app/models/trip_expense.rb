@@ -21,8 +21,8 @@ class TripExpense < ActiveRecord::Base
 	protected
 
 	def set_intnr
-		if self.intnr.nil?
-			if TripExpense.last.intnr.nil?
+		if self.intnr.empty?
+			if TripExpense.last.intnr.empty?
 				self.intnr = 1
 			else
 				self.intnr = TripExpense.last.intnr.next
