@@ -17,7 +17,7 @@ class GenOrderPdf < Prawn::Document
 			@first_day = @payment.month.at_beginning_of_month
 		end
 
-		if @days < @payment.month.at_end_of_month,day
+		if @days < @payment.month.at_end_of_month.day
 			@last_day = params[:begin].next_day(@days - 1)
 		else
 			@last_day = @payment.month.at_end_of_month
