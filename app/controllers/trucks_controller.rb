@@ -19,7 +19,7 @@ class TrucksController < ApplicationController
 	def cnotes
 		@truck = Truck.find(params[:id])
 		@q 	   = @truck.credit_notes.ransack(params[:q])
-		@cn    = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+		@cn    = @q.result(distinct: true).order('order_nr ASC').paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trucks/new
