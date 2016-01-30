@@ -16,7 +16,7 @@
       <th class="t_center">Week</th>
       <th class="t_center"><%= sort_link(@q, :value) %></th>
       <th class="t_center"><%= sort_link(@q, :paid) %></th>
-      <th class="t_center">Truck</th>
+      <th class="t_center"><%= sort_link(@q, :truck_id, 'Truck') %></th>
       <th class="t_center">Notes</th>
       <th><%= render 'search' %></th>
     </tr>

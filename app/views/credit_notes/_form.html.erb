@@ -9,7 +9,7 @@
         <%= f.number_field :week %>
         <%= f.text_area :notes %>
         <%= f.select :currency, CreditNote::CURRENCY %>
-        <%= f.collection_select :truck, Truck.all, :id, :registration %>
+        <%= f.collection_select :truck_id, Truck.all, :id, :registration, include_blank: true %>
         <% if @current_user.admin? %>
           <%= f.form_group :paid, label: { text: "Paid?" } do %>
             <%= f.check_box :paid, label: "" %>
