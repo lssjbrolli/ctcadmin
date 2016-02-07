@@ -17,11 +17,7 @@ class TripExpense < ActiveRecord::Base
 
 	CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
 	DESCRIPTION = ['Taxa drum', 'Motorina', 'Piese', 'Service', 'Transport',
-								 'Telefon', 'Altele'].sort
-
-	ransacker :intnr do
-  		Arel.sql('intnr::int')
-	end							 
+								 'Telefon', 'Altele'].sort						 
 
 	protected
 
