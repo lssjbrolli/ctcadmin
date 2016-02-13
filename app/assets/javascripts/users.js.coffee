@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $(".best_in_place").bind "ajax:success", ->
+  $(".user_button").bind "ajax:success", ->
     if $(this).text() is "Activ"
       $(this).removeClass()
       $(this).addClass "best_in_place act_button btn btn-primary"

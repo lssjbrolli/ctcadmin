@@ -4,6 +4,7 @@ class CreditNotesController < ApplicationController
 	before_action :set_credit_note, only: [:show, :edit, :update, :destroy]
 	before_action :signed_in_user
 	before_action :user_activated
+	before_action :uniq_id, only: :update
 
 	# GET /credit_notes
 	# GET /credit_notes.json
@@ -78,5 +79,19 @@ class CreditNotesController < ApplicationController
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def credit_note_params
 		params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :order_nr, attachments_attributes: [:id, :file, :_destroy, :file_cache])
+	end
+
+	# mass update if order_nr already exists
+	def uniq_id
+		logger.info "logger test"
+		logger.info "#{credit_note_params[:order_nr].empty?}"
+		unless credit_note_params[:order_nr].empty?
+			clist = CreditNote.where("truck_id = :truck and order_nr = :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+			unless clist.empty?
+				logger.info "we update"
+				list = CreditNote.where("truck_id = :truck and order_nr >= :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+				list.each {|x| x.update_attribute("order_nr", x.order_nr + 1)}
+			end
+		end
 	end
 end
