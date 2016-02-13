@@ -8,7 +8,7 @@ class TrucksController < ApplicationController
 	# GET /trucks
 	# GET /trucks.json
 	def index
-		@trucks = Truck.all.paginate(:page => params[:page], :per_page => 8).order('registration ASC')
+		@trucks = Truck.order('sold ASC, truck DESC').paginate(:page => params[:page], :per_page => 8)
 	end
 
 	# GET /trucks/1
@@ -77,7 +77,7 @@ class TrucksController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def truck_params
-		params.require(:truck).permit(:registration, :vin, papers_attributes: [:id, :description, :expire, :comments, :_destroy, attachments_attributes: [:id, :file, :_destroy]])
+		params.require(:truck).permit(:registration, :vin, :truck, :sold, papers_attributes: [:id, :description, :expire, :comments, :_destroy, attachments_attributes: [:id, :file, :_destroy]])
 	end
 
 end
