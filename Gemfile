@@ -58,8 +58,11 @@ gem 'passenger'
 # database
 gem 'pg'
 
-#search
+# search
 gem 'ransack'
+
+# site settings
+gem "rails-settings-cached", "~> 0.4.0"
 
 group :production do
 	gem 'rails_12factor'
