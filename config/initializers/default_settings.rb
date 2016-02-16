@@ -1,0 +1,5 @@
+SiteSettings.save_default(:diurna_baza, "")
+SiteSettings.save_default(:activities, "")
+SiteSettings.save_default(:vat_rate, "")
+SiteSettings.save_default(:currencies, "")
+SiteSettings.save_default(:paid_by, "")

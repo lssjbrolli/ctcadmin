@@ -15,6 +15,4 @@ class CreditNote < ActiveRecord::Base
 	validates :number, presence: true, uniqueness: true
 	validates :value, :currency, presence: true
 
-	CURRENCY = %w(EUR RON)
-
 end

@@ -12,10 +12,5 @@ class NationalExpense < ActiveRecord::Base
 	has_many :attachments, :as => :attachable
 
 	accepts_nested_attributes_for :attachments, allow_destroy: true
-
-	PAID_BY = %w(Cash Card Bank)
-
-	DESCRIPTION = ['Piese', 'Service', 'Asigurari', 'Leasing', 'Taxe', 'Echipament IT',
-								 'Servicii curier', 'Transport', 'Altele']
 								 
 end

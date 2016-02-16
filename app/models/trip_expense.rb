@@ -13,11 +13,7 @@ class TripExpense < ActiveRecord::Base
 	belongs_to  :updated_by, :foreign_key => 'update_id', :class_name => 'User'
 	belongs_to  :report
 
-	accepts_nested_attributes_for :attachments, allow_destroy: true
-
-	CURRENCY    = %w(EUR RON HUF PLN DKK SEK NOK GBP)
-	DESCRIPTION = ['Taxa drum', 'Motorina', 'Piese', 'Service', 'Transport',
-								 'Telefon', 'Altele'].sort						 
+	accepts_nested_attributes_for :attachments, allow_destroy: true					 
 
 	protected
 

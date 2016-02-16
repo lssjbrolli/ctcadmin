@@ -12,7 +12,7 @@ Ctcadmin::Application.routes.draw do
 	get '/payments/:id/order', to: 'orders#new', as: :new_order
 
 	resources :reports, only: :show
-	resources :site_settings, only: [:index, :edit]
+	resources :site_settings, only: [:index, :update, :destroy]
 
 	resources :orders, only: [:show, :create]
 

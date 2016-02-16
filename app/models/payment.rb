@@ -13,8 +13,6 @@ class Payment < ActiveRecord::Base
 
 	accepts_nested_attributes_for :bonuses
 
-	DIURNA_BAZA = 1500
-
 	private
 
 	def set_salar_eur
@@ -36,7 +34,7 @@ class Payment < ActiveRecord::Base
 
 	def set_diurna
 		self.days  ||= self.month.end_of_month.day
-		self.per_day = ((DIURNA_BAZA.to_f + set_bonus() - self.salar_eur/100) / self.month.end_of_month.day).round
+		self.per_day = ((SiteSettings.diurna_baza.to_f + set_bonus() - self.salar_eur/100) / self.month.end_of_month.day).round
 		self.total = self.per_day * self.days
 	end
 

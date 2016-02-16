@@ -16,9 +16,6 @@ class CreditInvoice < ActiveRecord::Base
 
 	validates :buyer, :seller, :credit_note_ids, :tax_rate, :currency, presence: true
 
-	CURRENCY = %w(EUR RON)
-	VAT_RATE = ['24%', 'taxare inversa']
-
 	protected
 
 	def set_number
