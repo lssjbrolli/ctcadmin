@@ -29,4 +29,8 @@ module ApplicationHelper
 		end
 	end
 
+	def check_mounted
+		File.file?("#{Rails.root}/public/uploads/mounted")
+	end
+
 end

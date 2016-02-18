@@ -42,3 +42,10 @@ $(document).ready(function() {
     autoclose: true
   });
 });
+
+$(document).ready(function () {
+    $("#storage_modal").modal({
+        keyboard: false,
+        backdrop: "static"
+    });
+});
