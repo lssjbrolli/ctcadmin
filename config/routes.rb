@@ -39,9 +39,10 @@ Ctcadmin::Application.routes.draw do
 	match '/signin', to: 'sessions#new', via: 'get'
 	match '/signout', to: 'sessions#destroy', via: 'delete'
 	match '/profile', to: 'users#show', via: 'get'
+	match '/main', to: "mainpage#index", via: 'get'
 
 	# You can have the root of your site routed with "root"
-	root 'trucks#index'
+	root 'mainpage#index'
 
 	# Example of regular route:
 	#   get 'products/:id' => 'catalog#view'
