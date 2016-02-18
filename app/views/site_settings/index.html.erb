@@ -7,8 +7,24 @@
       <% end %>
   <% end %>
 
-  <%= bootstrap_form_tag(layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-3") do |f| %>
-    <%= f.text_field :a, label: "Diurna baza",  value: SiteSettings.diurna_baza %>
-  <% end %>
+  <table class="table table-hover table-condensed">
+    <tbody>
+    	<tr>
+    		<td>Diurna baza</td><td><%= best_in_place @settings[0], :value %></td>
+    	</tr>
+    	<tr>
+    		<td>Activities</td><td><%= best_in_place @settings[1], :value %></td>
+    	</tr>
+    	<tr>
+    		<td>Vat Rate</td><td><%= best_in_place @settings[2], :value %></td>
+    	</tr>
+    	<tr>
+    		<td>Currencies</td><td><%= best_in_place @settings[3], :value %></td>
+    	</tr>
+    	<tr>
+    		<td>Paid by</td><td><%= best_in_place @settings[4], :value %></td>
+    	</tr>
+    </tbody>
+  </table>
 
 </div>
