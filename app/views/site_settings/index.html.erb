@@ -10,19 +10,19 @@
   <table class="table table-hover table-condensed">
     <tbody>
     	<tr>
-    		<td>Diurna baza</td><td><%= best_in_place @settings[0], :value %></td>
+    		<td>Diurna baza</td><td><%= best_in_place SiteSettings.diurna_baza, :value %></td>
     	</tr>
     	<tr>
-    		<td>Activities</td><td><%= best_in_place @settings[1], :value %></td>
+    		<td>Activities</td><td><%= best_in_place SiteSettings.activities, :value %></td>
     	</tr>
     	<tr>
-    		<td>Vat Rate</td><td><%= best_in_place @settings[2], :value %></td>
+    		<td>Vat Rate</td><td><%= best_in_place SiteSettings.vat_rate, :value %></td>
     	</tr>
     	<tr>
-    		<td>Currencies</td><td><%= best_in_place @settings[3], :value %></td>
+    		<td>Currencies</td><td><%= best_in_place SiteSettings.currencies, :value %></td>
     	</tr>
     	<tr>
-    		<td>Paid by</td><td><%= best_in_place @settings[4], :value %></td>
+    		<td>Paid by</td><td><%= best_in_place SiteSettings.paid_by, :value %></td>
     	</tr>
     </tbody>
   </table>

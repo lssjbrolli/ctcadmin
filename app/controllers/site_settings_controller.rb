@@ -5,8 +5,6 @@ class SiteSettingsController < ApplicationController
   before_action :user_activated
 
   def index
-    # to get all items for render list
-    @settings = SiteSettings.unscoped.sort
   end
 
   def update
