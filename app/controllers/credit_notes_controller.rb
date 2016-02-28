@@ -83,12 +83,14 @@ class CreditNotesController < ApplicationController
 
 	# mass update if order_nr already exists
 	def uniq_id
-		unless credit_note_params[:order_nr].empty?
-			clist = CreditNote.where("truck_id = :truck and order_nr = :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
-			unless clist.empty?
-				logger.info "we update"
-				list = CreditNote.where("truck_id = :truck and order_nr >= :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
-				list.each {|x| x.update_attribute("order_nr", x.order_nr + 1)}
+		unless  credit_note_params[:order_nr].nil?
+			unless credit_note_params[:order_nr].empty?
+				clist = CreditNote.where("truck_id = :truck and order_nr = :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+				unless clist.empty?
+					logger.info "we update"
+					list = CreditNote.where("truck_id = :truck and order_nr >= :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+					list.each {|x| x.update_attribute("order_nr", x.order_nr + 1)}
+				end
 			end
 		end
 	end
