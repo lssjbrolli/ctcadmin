@@ -83,8 +83,6 @@ class CreditNotesController < ApplicationController
 
 	# mass update if order_nr already exists
 	def uniq_id
-		logger.info "logger test"
-		logger.info "#{credit_note_params[:order_nr].empty?}"
 		unless credit_note_params[:order_nr].empty?
 			clist = CreditNote.where("truck_id = :truck and order_nr = :order", { truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
 			unless clist.empty?
