@@ -1,7 +1,7 @@
 #A4(landscape) pdf points dimensions = 595 × 842
 class GenOrderPdf < Prawn::Document
 
-	def initialize(params)
+	def initialize(params, order_id)
 
 		super(page_size: 'A4', page_layout: :landscape)
 
@@ -10,6 +10,8 @@ class GenOrderPdf < Prawn::Document
 		@driver = @payment.employee.name
 
 		@days = @payment.days
+
+		@order_id = order_id
 
 		if params[:begin]
 			@first_day = Date.parse(params[:begin])
@@ -44,7 +46,7 @@ class GenOrderPdf < Prawn::Document
         	table6
         	table7
     	end
-
+    	
 	end
 
 	def table1
@@ -59,7 +61,10 @@ class GenOrderPdf < Prawn::Document
 				[{content: "#{". "*200}", colspan:3}],
 				[{content: " la #{". "*5}NTG Nordic A/S #{". "*100}", colspan:3}],
 				[{content: "#{". "*5}Danemarca#{". "*100}", colspan:3}],
-				[{content: "Durata deplasarii de la #{". "*3}#{@first_day.strftime("%d/%m/%Y")}#{". "*15}", colspan:2}, "la #{". "*3}#{@last_day.strftime("%d/%m/%Y")}#{". "*15}"]]
+				[{content: "Durata deplasarii de la #{". "*3}#{@first_day.strftime("%d/%m/%Y")}#{". "*15}", colspan:2}, "la #{". "*3}#{@last_day.strftime("%d/%m/%Y")}#{". "*15}"],
+				[{content: "se legitimeaza cu #{". "*50} ", colspan:3}],
+				[{content: "Stampila unitatii si semnatura.", colspan:3}],
+				[{content: "Data #{". "*5}#{@last_day.strftime("%d/%m/%Y")}#{". "*5}", colspan:3}]]
 				
 		table1 = make_table(data, width: 366) do |t|  
 			
@@ -70,6 +75,7 @@ class GenOrderPdf < Prawn::Document
 			t.cells[1, 0].style(align: :left)
 			t.cells[1, 1].style(align: :right)
 			t.cells[2, 0].style(align: :center, size: 14, height: 32, font_style: :bold)
+			t.cells[12,0].style(align: :right, height: 40)
 			
 			t.before_rendering_page do |page|  
 
@@ -90,9 +96,7 @@ class GenOrderPdf < Prawn::Document
 		data2 = [["Sosit #{". "*100}"],
 				 ["Plecat #{". "*100}"],
 				 ["Cu (fara) cazare #{". "*100}"],
-				 ["Stampila unitati"],
-				 ["si semnatura"],
-				 [""],
+				 ["Stampila unitati si semnatura"],
 				 [""]
 				]
 		
@@ -101,8 +105,7 @@ class GenOrderPdf < Prawn::Document
 			t.cells.border_width = 0  
 			t.cells.style(size: 10, height: 20)
 			t.cells[3, 0].style(align: :center)
-			t.cells[4, 0].style(align: :center)
-			t.cells[5, 0].style(height: 25)
+			t.cells[4, 0].style(height: 25)
 			
 			t.before_rendering_page do |page|   
 
@@ -221,7 +224,7 @@ class GenOrderPdf < Prawn::Document
 	def table6
 
 		data6 = [["Diferenta de restituit ", {content: "#{@neg_switch[0]}", inline_format: true}],
-				 ["s-a depus cu chitanta","Diferenta de #{". "*10}#{@rest.abs} EUR#{". "*20}"],
+				 ["s-a depus cu chitanta", {content: "Diferenta de #{". "*10}<b>#{@rest.abs} EUR</b>#{". "*20}", inline_format: true}],
 				 ["nr. #{". "*5}din #{". "*5} ", {content: "#{@neg_switch[1]}", inline_format: true}]]
 				
 		table = make_table(data6, width: 367) do |t|
@@ -294,10 +297,14 @@ class GenOrderPdf < Prawn::Document
 	end
 
 	def generate_number
-		if Order.last.nil?
-			return 1
+		if @order_id.nil?
+			if Order.last.nil?
+				return 1
+			else
+				Order.last.id.next
+			end
 		else
-			Order.last.id.next
+			@order_id
 		end
 	end
 

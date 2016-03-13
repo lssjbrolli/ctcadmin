@@ -14,9 +14,14 @@ class OrdersController < ApplicationController
 
 	def create
 		@payment = Payment.find(params[:payment])
-		@order = Order.new
 
-		pdf = GenOrderPdf.new(params)
+		if @payment.order.nil?
+			@order = Order.new
+		else
+			@order = @payment.order
+		end
+
+		pdf = GenOrderPdf.new(params, @order.id)
 		src = File.join(Rails.root, 'tmp/tmp.pdf')
 		pdf.render_file src
 		src_file = File.new(src)
@@ -26,6 +31,7 @@ class OrdersController < ApplicationController
 
 		respond_to do |format|
 			if @order.save
+				@payment.update_column("updated", "false")
 				format.html { redirect_to employee_payments_url(@payment.employee), flash: {success: 'Order was successfully created.'} }
 			else
 				format.html { render action: 'new' }

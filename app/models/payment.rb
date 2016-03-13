@@ -1,8 +1,10 @@
 class Payment < ActiveRecord::Base
 	before_save :set_salar_eur
 	before_save :set_diurna, :set_rest, if: "self.diurna"
+	before_update :set_updated, if: "self.diurna"
 
 	validates :sron, :month, presence: true
+	validates :days, :avans, presence: true, if: "self.diurna"
 
 	monetize :salar_ron, :as => "sron", :allow_nil => true, with_currency: :ron
 	monetize :salar_eur, :as => "seur", :allow_nil => true, with_currency: :eur
@@ -50,4 +52,7 @@ class Payment < ActiveRecord::Base
 		bonus
 	end
 
+	def set_updated
+		self.updated = true
+	end
 end
