@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313144131) do
+ActiveRecord::Schema.define(version: 20160414114058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160313144131) do
     t.integer  "week"
     t.decimal  "value",                         precision: 8, scale: 2
     t.text     "notes"
-    t.boolean  "paid"
+    t.boolean  "paid",                                                  default: false
     t.string   "currency",          limit: 255
     t.integer  "credit_invoice_id"
     t.integer  "truck_id"
