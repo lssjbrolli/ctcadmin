@@ -6,7 +6,7 @@
   <% end %>
 
   <h3 style="text-align: center">
-    <strong>Registration:</strong> <%= link_to @document.registration, edit_truck_path(@document), {:remote => true, data: { toggle: 'modal', target: '#modal', backdrop: 'static'}} %>
+    <strong>Registration:</strong> <%= link_to @document.registration, edit_truck_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}} %>
     (VIN: <%= @document.vin %>)
   </h3>
 

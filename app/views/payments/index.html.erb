@@ -25,35 +25,35 @@
 
     <tbody>
     <% unless @employee.nil? %>
-      <% @payments.each do |payment| %>
-          <tr>
-            <td><%= payment.month.strftime("%B %Y") %></td>
-            <td><%= humanized_money payment.sron %></td>
-            <td><%= humanized_money_with_symbol payment.seur %></td>
-            <td><%= payment.per_day %></td>
-            <td><%= payment.avans %></td>
-            <td><%= payment.rest %></td>
-            <td><%= payment.total %></td>
-            <td class="btn-group btn-group-xm payment-group">
-              <%= gen_order(payment) %>
-              <%= link_to 'Bonus', bonus_path(payment), class: 'btn btn-info', remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'} %>
-              <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
-              <%= link_to 'Destroy', employee_payment_path(payment.employee, payment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
-          </tr>
-      <% end %>
+        <% @payments.each do |payment| %>
+            <tr>
+              <td><%= payment.month.strftime("%B %Y") %></td>
+              <td><%= humanized_money payment.sron %></td>
+              <td><%= humanized_money_with_symbol payment.seur %></td>
+              <td><%= payment.per_day %></td>
+              <td><%= payment.avans %></td>
+              <td><%= payment.rest %></td>
+              <td><%= payment.total %></td>
+              <td class="btn-group btn-group-xm payment-group">
+                <%= gen_order(payment) %>
+                <%= link_to 'Bonus', bonus_path(payment), class: 'btn btn-info', remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'} %>
+                <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
+                <%= link_to 'Destroy', employee_payment_path(payment.employee, payment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+            </tr>
+        <% end %>
     <% end %>
     </tbody>
   </table>
 
   <div class="button-container">
-    <%= link_to 'New Payment', new_employee_payment_path(@employee) , class: 'btn btn-info' %>
+    <%= link_to 'New Payment', new_employee_payment_path(@employee), class: 'btn btn-info' %>
   </div>
   <div class="button-container">
     <%= will_paginate @payments, renderer: BootstrapPagination::Rails %>
-  </div> 
-
-<div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content"></div>
   </div>
-</div>
+
+  <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>

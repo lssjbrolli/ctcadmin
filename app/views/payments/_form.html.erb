@@ -2,7 +2,7 @@
     <p class="bonus-align">There are no bonuses for this month.</p>
 <% else %>
     <% @bonus.bonuses.each do |p| %>
-        <%= bootstrap_form_for(p, layout: :inline, html: { class: "bonus-align"}) do |f| %>
+        <%= bootstrap_form_for(p, layout: :inline, html: {class: "bonus-align"}) do |f| %>
             <%= f.text_field :value, hide_label: true, disabled: true %>
             <%= f.text_field :comment, hide_label: true, disabled: true %>
         <% end %>

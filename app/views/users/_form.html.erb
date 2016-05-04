@@ -1,10 +1,10 @@
 <%= bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
-	<%= f.alert_message "Please fix the errors below.", error_summary: false %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
     <%= f.text_field :first_name, disabled: true %>
-	<%= f.text_field :last_name, disabled: true %>
-	<%= f.text_field :cnp, disabled: true %>
-	<%= f.text_field :language, disabled: true %>
-	<%= f.text_field :username, disabled: true %>
+    <%= f.text_field :last_name, disabled: true %>
+    <%= f.text_field :cnp, disabled: true %>
+    <%= f.text_field :language, disabled: true %>
+    <%= f.text_field :username, disabled: true %>
     <div class="modal-footer">
       <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
     </div>

@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :user_activated
-  
+
   # GET /employees
   # GET /employees.json
   def index
@@ -26,9 +26,9 @@ class EmployeesController < ApplicationController
     respond_to do |format|
       format.html do
         pdf = PaymentReportPdf.new(month)
-        send_data pdf.render, filename:    "diurne #{month}.pdf",
-                              type:        'application/pdf',
-                              disposition: 'inline'
+        send_data pdf.render, filename: "diurne #{month}.pdf",
+                  type: 'application/pdf',
+                  disposition: 'inline'
       end
     end
   end
@@ -74,13 +74,13 @@ class EmployeesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_employee
-      @employee = Employee.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_employee
+    @employee = Employee.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def employee_params
-      params.require(:employee).permit(:first_name, :last_name, :cnp, :bank_ron, :bank_eur, :activ)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def employee_params
+    params.require(:employee).permit(:first_name, :last_name, :cnp, :bank_ron, :bank_eur, :activ)
+  end
 end

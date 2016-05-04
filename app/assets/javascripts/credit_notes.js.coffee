@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  # Activating Best In Place 
+# Activating Best In Place 
   jQuery(".best_in_place").best_in_place();

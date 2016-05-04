@@ -1,30 +1,30 @@
 <%= bootstrap_nested_form_for(@extern_expense, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
-  <%= f.alert_message "Please fix the errors below.", error_summary: false %>
-  <div class="row">
-    <div class="col-md-5">
-      <%= f.text_field :number %>
-      <%= f.text_field :date, :value => "#{f.object.date.strftime("%b %Y") unless f.object.new_record?}", "data-provide" => 'monthpicker' %>
-      <%= f.number_field :value, step: 'any' %>
-      <%= f.select :currency, SiteSettings.currencies.split(', ').sort, include_blank: true %>
-      <%= f.collection_select :supplier_id, Company.all.sort, :id, :name, include_blank: true %>
-      <%= f.select :description, SiteSettings.activities.split(', ').sort, include_blank: true %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.text_field :number %>
+        <%= f.text_field :date, :value => "#{f.object.date.strftime("%b %Y") unless f.object.new_record?}", "data-provide" => 'monthpicker' %>
+        <%= f.number_field :value, step: 'any' %>
+        <%= f.select :currency, SiteSettings.currencies.split(', ').sort, include_blank: true %>
+        <%= f.collection_select :supplier_id, Company.all.sort, :id, :name, include_blank: true %>
+        <%= f.select :description, SiteSettings.activities.split(', ').sort, include_blank: true %>
+      </div>
+      <div class="col-md-4 col-md-offset3">
+        <fieldset>
+          <legend>Files:</legend>
+          <%= f.fields_for :attachments do |a_form| %>
+              <div class="button-container">
+                <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+              </div>
+              <%= a_form.hidden_field :file_cache %>
+              <div class="button-container">
+                <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+              </div>
+          <% end %>
+          <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
+        </fieldset>
+      </div>
     </div>
-    <div class="col-md-4 col-md-offset3">
-      <fieldset>
-        <legend>Files:</legend>
-        <%= f.fields_for :attachments do |a_form| %>
-          <div class="button-container">
-            <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
-          </div>
-          <%= a_form.hidden_field :file_cache %>
-          <div class="button-container">
-            <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
-          </div>
-        <% end %>
-        <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
-      </fieldset>
-    </div>
-  </div>
-  <%= f.submit "Submit", class: 'btn btn-primary' %>
-  <%= link_to 'Cancel', extern_expenses_path, class: 'btn btn-danger' %>
+    <%= f.submit "Submit", class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', extern_expenses_path, class: 'btn btn-danger' %>
 <% end %>

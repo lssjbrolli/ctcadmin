@@ -8,8 +8,8 @@
         <%= f.number_field :value, step: 'any' %>
         <%= f.select :currency, SiteSettings.currencies.split.sort, include_blank: true %>
         <%= f.number_field :value_eur, step: 'any' %>
-        <%= f.form_group :card, label: { text: "Card?" } do %>
-          <%= f.check_box :card, label: "" %>
+        <%= f.form_group :card, label: {text: "Card?"} do %>
+            <%= f.check_box :card, label: "" %>
         <% end %>
         <%= f.select :description, SiteSettings.activities.split(', ').sort, include_blank: true %>
       </div>
@@ -17,13 +17,13 @@
         <fieldset>
           <legend>Files:</legend>
           <%= f.fields_for :attachments do |a_form| %>
-            <div class="button-container">
-              <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
-            </div>
+              <div class="button-container">
+                <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+              </div>
               <%= a_form.hidden_field :file_cache %>
-            <div class="button-container">
-              <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
-            </div>
+              <div class="button-container">
+                <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+              </div>
           <% end %>
           <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
         </fieldset>

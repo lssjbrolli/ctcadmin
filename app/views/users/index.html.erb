@@ -21,7 +21,7 @@
           <td><%= fullname user %></td>
           <td class="btn-group" style="display: flex">
             <%= best_in_place user, :activated, type: :checkbox, collection: %w(Inactiv Activ), classes: [act_toggle(user), 'act_button', 'user_button'] %>
-            <%= link_to 'Show', edit_user_path(user), class: "btn btn-info act_button", remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}%>
+            <%= link_to 'Show', edit_user_path(user), class: "btn btn-info act_button", remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'} %>
             <%= link_to 'Destroy', user, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger act_button' %>
           </td>
         </tr>

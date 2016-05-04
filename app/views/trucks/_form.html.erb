@@ -1,13 +1,13 @@
 <%= bootstrap_form_for(@truck, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
-	<%= f.alert_message "Please fix the errors below.", error_summary: false %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
     <%= f.text_field :registration %>
     <%= f.text_field :vin %>
-    <%= f.form_group :truck, label: { text: "Truck?" } do %>
-            <%= f.check_box :truck, label: "" %>
-	<% end %>
-	<%= f.form_group :sold, label: { text: "Sold?" } do %>
-		<%= f.check_box :sold, label: "" %>
-	<% end %>
+    <%= f.form_group :truck, label: {text: "Truck?"} do %>
+        <%= f.check_box :truck, label: "" %>
+    <% end %>
+    <%= f.form_group :sold, label: {text: "Sold?"} do %>
+        <%= f.check_box :sold, label: "" %>
+    <% end %>
     <div class="modal-footer">
       <%= f.submit "Submit", class: 'btn btn-primary' %>
       <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>

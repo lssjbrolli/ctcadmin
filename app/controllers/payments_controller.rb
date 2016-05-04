@@ -73,24 +73,24 @@ class PaymentsController < ApplicationController
 
   private
 
-    #get the specific employee
-    def set_employee
-      @employee = Employee.find(params[:employee_id])
-    end
+  #get the specific employee
+  def set_employee
+    @employee = Employee.find(params[:employee_id])
+  end
 
-    def format_date_time
-      date                             = payment_params['month']
-      parse                            = Date.parse(date)
-      params['payment']['month'] = parse
-    end
+  def format_date_time
+    date = payment_params['month']
+    parse = Date.parse(date)
+    params['payment']['month'] = parse
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_payment
-      @payment = Payment.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_payment
+    @payment = Payment.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def payment_params
-      params.require(:payment).permit(:sron, :month, :avans, :diurna, :days, bonuses_attributes: [:id, :value, :comment, :_destroy])
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def payment_params
+    params.require(:payment).permit(:sron, :month, :avans, :diurna, :days, bonuses_attributes: [:id, :value, :comment, :_destroy])
+  end
 end

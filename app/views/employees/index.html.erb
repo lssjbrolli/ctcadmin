@@ -22,18 +22,18 @@
 
     <tbody>
     <% unless @employees.nil? %>
-      <% @employees.each do |employee| %>
-          <tr>
-            <td><%= employee.first_name %></td>
-            <td><%= employee.last_name %></td>
-            <td><%= employee.cnp %></td>
-            <td class="btn-group btn-group-xm">
-              <%= link_to 'Papers', employee_papers_path(employee), class: 'btn btn-info' %>
-              <%= link_to 'Payments', employee_payments_path(employee), class: 'btn btn-info' %>
-              <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-info' %>
-              <%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
-          </tr>
-      <% end %>
+        <% @employees.each do |employee| %>
+            <tr>
+              <td><%= employee.first_name %></td>
+              <td><%= employee.last_name %></td>
+              <td><%= employee.cnp %></td>
+              <td class="btn-group btn-group-xm">
+                <%= link_to 'Papers', employee_papers_path(employee), class: 'btn btn-info' %>
+                <%= link_to 'Payments', employee_payments_path(employee), class: 'btn btn-info' %>
+                <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-info' %>
+                <%= link_to 'Destroy', employee, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+            </tr>
+        <% end %>
     <% end %>
     </tbody>
   </table>
@@ -46,8 +46,8 @@
   </div>
   <div class="button-container">
     <%= bootstrap_form_tag(url: payment_report_path, method: "get") do |f| %>
-      <%= f.text_field :month, hide_label: true, placeholder: "Select a month", 'data-provide' => 'monthpicker', wrapper: { class: "gen_payments_btn"} %>
-      <%= f.submit 'Generate Raport', class: "btn btn-info" %>
+        <%= f.text_field :month, hide_label: true, placeholder: "Select a month", 'data-provide' => 'monthpicker', wrapper: {class: "gen_payments_btn"} %>
+        <%= f.submit 'Generate Raport', class: "btn btn-info" %>
     <% end %>
   </div>
 

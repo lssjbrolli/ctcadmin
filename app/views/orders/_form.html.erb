@@ -1,9 +1,9 @@
 <%= bootstrap_form_tag(url: orders_path, method: :post, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
-	<%= f.hidden_field "payment", value: @payment.id %>
-	<% if check_days_in_month(@payment) %>
-		<%= f.text_field :begin, :value => "#{@payment.month.strftime("%d/%m/%Y")}", "data-provide" => 'datepicker', "data-date-format" => "dd/mm/yyyy", "data-date-autoclose" => "true", label: "Start date:" %>
-	<% end %>
-	<%= f.alert_message "Please fix the errors below.", error_summary: false %>
+    <%= f.hidden_field "payment", value: @payment.id %>
+    <% if check_days_in_month(@payment) %>
+        <%= f.text_field :begin, :value => "#{@payment.month.strftime("%d/%m/%Y")}", "data-provide" => 'datepicker', "data-date-format" => "dd/mm/yyyy", "data-date-autoclose" => "true", label: "Start date:" %>
+    <% end %>
+    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
     <div class="modal-footer">
       <%= f.submit "Submit", class: 'btn btn-primary' %>
       <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>

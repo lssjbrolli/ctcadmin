@@ -27,8 +27,8 @@ gem 'jquery-rails'
 #gem 'jbuilder', '~> 1.2'
 
 group :doc do
-	# bundle exec rake doc:rails generates the API under doc/api.
-	gem 'sdoc', require: false
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end
 
 # Bootstrap
@@ -65,23 +65,22 @@ gem 'ransack'
 gem "rails-settings-cached", "~> 0.4.0"
 
 group :production do
-	gem 'rails_12factor'
+  gem 'rails_12factor'
 end
 
 group :development do
-	gem 'better_errors'
-	gem 'binding_of_caller'
-	gem 'meta_request'
-	gem 'pry'
-	gem 'pry-rails'
-	gem 'web-console'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'web-console'
 end
 
 group :test do
-	gem 'shoulda'
-	gem 'mocha'
+  gem 'shoulda'
+  gem 'mocha'
 end
-
 
 
 gem 'best_in_place', github: 'aaronchi/best_in_place'

@@ -2,23 +2,23 @@
     <%= f.alert_message "Please fix the errors below.", error_summary: false %>
     <%= f.text_field :sron, value: SiteSettings.salar_baza, label: "Salariu RON" %>
     <%= f.text_field :month, "data-provide" => 'monthpicker', value: "#{f.object.new_record? ? (Time.now - 1.month).strftime("%b %Y") : f.object.month.strftime("%b %Y")}" %>
-    <%= f.form_group :diurna, label: { text: "Diurna?" } do %>
+    <%= f.form_group :diurna, label: {text: "Diurna?"} do %>
         <%= f.check_box :diurna, label: "" %>
     <% end %>
     <%= f.number_field :days, placeholder: 'Only if less than full month' %>
     <%= f.number_field :avans %>
     <%= f.fields_for :bonuses do |b| %>
         <div class="bonus-container">
-	       <%= b.text_field :value, hide_label: true, placeholder: 'Bonus value' %>
+          <%= b.text_field :value, hide_label: true, placeholder: 'Bonus value' %>
         </div>
         <div class="bonus-container">
-	       <%= b.text_field :comment, hide_label: true, placeholder: 'Comments' %>
+          <%= b.text_field :comment, hide_label: true, placeholder: 'Comments' %>
         </div>
         <div class="bonus-container">
-		  <%= b.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+          <%= b.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
         </div>
-	<% end %>
-	<%= f.link_to_add "Add a bonus", :bonuses, class: 'btn btn-info' %>
+    <% end %>
+    <%= f.link_to_add "Add a bonus", :bonuses, class: 'btn btn-info' %>
     <%= f.submit "Submit", class: 'btn btn-success' %>
     <%= link_to 'Back', employee_payments_path(@employee), class: 'btn btn-danger' %>
 <% end %>

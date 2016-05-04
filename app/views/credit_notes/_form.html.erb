@@ -11,22 +11,22 @@
         <%= f.select :currency, SiteSettings.currencies.split(', ').sort %>
         <%= f.collection_select :truck_id, Truck.where("truck = true and sold = false"), :id, :registration, include_blank: true %>
         <% if @current_user.admin? %>
-          <%= f.form_group :paid, label: { text: "Paid?" } do %>
-            <%= f.check_box :paid, label: "" %>
-          <% end %>
+            <%= f.form_group :paid, label: {text: "Paid?"} do %>
+                <%= f.check_box :paid, label: "" %>
+            <% end %>
         <% end %>
       </div>
       <div class="col-md-5 col-md-offset3">
         <fieldset>
           <legend>Files:</legend>
           <%= f.fields_for :attachments do |a_form| %>
-            <div class="button-container">
-              <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
-            </div>
-            <div class="button-container">
-              <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
-            </div>
-            <%= a_form.hidden_field :file_cache %>
+              <div class="button-container">
+                <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+              </div>
+              <div class="button-container">
+                <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+              </div>
+              <%= a_form.hidden_field :file_cache %>
           <% end %>
           <%= f.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
         </fieldset>

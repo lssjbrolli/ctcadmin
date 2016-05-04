@@ -2,4 +2,4 @@
 I18n.default_locale = :en
 
 LANGUAGES = [
-		%w(English en), %w(Romana ro)]
+    %w(English en), %w(Romana ro)]

@@ -10,14 +10,14 @@ class SiteSettingsController < ApplicationController
   end
 
   def update
-  	respond_to do |format|
+    respond_to do |format|
       @setting.value = params[:site_settings][:value]
-  		if @setting.save
-  			format.json { head :no_content, flash: {success: 'Expense was successfully updated.'}  }
-  		else
-  			format.json { render json: @trip_expense.errors, status: :unprocessable_entity }
-  		end
-  	end
+      if @setting.save
+        format.json { head :no_content, flash: {success: 'Expense was successfully updated.'} }
+      else
+        format.json { render json: @trip_expense.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

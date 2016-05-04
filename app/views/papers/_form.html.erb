@@ -5,10 +5,10 @@
     <%= p.text_field :comments %>
     <%= p.fields_for :attachments do |a| %>
         <div class="button-container">
-            <%= a.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+          <%= a.file_field :file, hide_label: true, label_col: "col-sm-0" %>
         </div>
         <div class="button-container">
-            <%= a.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
+          <%= a.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
         </div>
     <% end %>
     <%= p.link_to_add 'Add file', :attachments, class: 'btn btn-info' %>
