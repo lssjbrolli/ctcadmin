@@ -99,7 +99,7 @@ class CreditInvoicePdf < Prawn::Document
                            [{content: "Nume delegat: #{@ci.delegat}", colspan: 4}],
                            [{content: "Act identitate: #{@ci.ci}", colspan: 4}],
                            [{content: "Eliberat de: #{@ci.eliberat}", colspan: 4}],
-                           [{content: "Mijloc de transport: #{@ci.transport}", colspan: 2}, {content: 'Semnatura de primire', rowspan: 2}, {content: "Total factura: #{sel_currency(@ci.currency, total_value)}", rowspan: 2}],
+                           [{content: "Mijloc de transport: #{@ci.transport}", colspan: 2}, {content: 'Semnatura de primire', rowspan: 2}, {content: "Total factura: #{total_value}", rowspan: 2}],
                            [{content: 'Semnatura', colspan: 2}]
                        ], width: 540, column_widths: [80], cell_style: {size: 12, padding: 1, padding_left: 5, font: 'Times-Roman', character_spacing: 1}
 
@@ -124,14 +124,15 @@ class CreditInvoicePdf < Prawn::Document
     unless tax == 'taxare inversa'
       tax_f = tax.split("%")[0].to_f/100
       @tax_value = sel_currency(cur, value * tax_f)
+      sel_currency(cur, value * tax_f)
     end
   end
 
   def total_value
     if @ci.tax_rate == 'taxare inversa'
-      @ci.total_value
+      sel_currency(@ci.currency, @ci.total_value)
     else
-      @ci.total_value + @tax_value
+      sel_currency(@ci.currency, @ci.total_value + @tax_value)
     end
   end
 end
