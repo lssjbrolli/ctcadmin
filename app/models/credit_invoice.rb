@@ -33,11 +33,12 @@ class CreditInvoice < ActiveRecord::Base
     self.credit_notes.map do |cn|
       self.net_value += cn.value
     end
-    if self.tax_rate == '24%'
-      self.tax_value = self.net_value * 0.24
-      self.total_value = self.net_value + self.tax_value
-    else
+    if self.tax_rate == 'taxare inversa'
       self.total_value = self.net_value
+    else
+      tax = self.tax_rate.split("%")[0].to_f/100
+      self.tax_value = self.net_value * tax
+      self.total_value = self.net_value + self.tax_value
     end
   end
 
