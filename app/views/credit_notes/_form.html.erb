@@ -8,7 +8,7 @@
         <%= f.text_field :stop, label: 'Trip finish location' %>
         <%= f.number_field :week %>
         <%= f.text_area :notes %>
-        <%= f.select :currency, SiteSettings.currencies.split(', ').sort %>
+        <%= f.select :currency, SiteSettings['main.currencies'].split(', ').sort %>
         <%= f.collection_select :truck_id, Truck.where("truck = true and sold = false"), :id, :registration, include_blank: true %>
         <% if @current_user.admin? %>
             <%= f.form_group :paid, label: {text: "Paid?"} do %>

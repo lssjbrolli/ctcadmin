@@ -74,6 +74,6 @@ class CreditInvoicesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_invoice_params
-    params.require(:credit_invoice).permit(:number, :date, :seller_id, :buyer_id, :currency, :tax_rate, :delegat, :ci, :eliberat, :transport, {:credit_note_ids => []})
+    params.require(:credit_invoice).permit(:number, :date, :client_id, :currency, :tax_rate, :delegat, :ci, :eliberat, :transport, {:credit_note_ids => []})
   end
 end

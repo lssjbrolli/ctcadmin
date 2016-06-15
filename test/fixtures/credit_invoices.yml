@@ -8,8 +8,7 @@ one:
   number: 550550
   date: 01-01-2000
   total_value: 2541.25
-  seller_id: 1
-  buyer_id: 2
+  client_id: 2
   tax_rate: 24%
   currency: RON
   delegat: sergiu
@@ -23,8 +22,7 @@ two:
   number: 551551
   date: 01-02-2001
   total_value: 11241.22
-  seller_id: 1
-  buyer_id: 3
+  client_id: 3
   tax_rate: taxare inversa
   currency: EUR
   delegat: cozma

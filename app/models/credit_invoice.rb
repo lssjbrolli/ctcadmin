@@ -4,8 +4,7 @@ class CreditInvoice < ActiveRecord::Base
   after_create :make_pdf
   after_update :make_pdf
 
-  belongs_to :buyer, :foreign_key => 'buyer_id', :class_name => 'Company'
-  belongs_to :seller, :foreign_key => 'seller_id', :class_name => 'Company'
+  belongs_to :client, :foreign_key => 'client_id', :class_name => 'Company'
   belongs_to :created_by, :foreign_key => 'create_id', :class_name => 'User'
   belongs_to :updated_by, :foreign_key => 'update_id', :class_name => 'User'
 
@@ -14,7 +13,7 @@ class CreditInvoice < ActiveRecord::Base
 
   accepts_nested_attributes_for :attachments, allow_destroy: true
 
-  validates :buyer, :seller, :credit_note_ids, :tax_rate, :currency, presence: true
+  validates :client, :credit_note_ids, :tax_rate, :currency, presence: true
 
   protected
 
