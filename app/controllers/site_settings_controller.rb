@@ -6,14 +6,15 @@ class SiteSettingsController < ApplicationController
 
   def index
     # to get all items for render list
-    @settings = SiteSettings.unscoped.sort
+    @my_company = SiteSettings.where("var LIKE 'company%'").sort
+    @settings = SiteSettings.where("var LIKE 'main%'").sort
   end
 
   def update
     respond_to do |format|
       @setting.value = params[:site_settings][:value]
       if @setting.save
-        format.json { head :no_content, flash: {success: 'Expense was successfully updated.'} }
+        format.json { head :no_content, flash: {success: 'Settings were successfully updated.'} }
       else
         format.json { render json: @trip_expense.errors, status: :unprocessable_entity }
       end

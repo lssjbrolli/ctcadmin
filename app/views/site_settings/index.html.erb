@@ -7,33 +7,93 @@
       <% end %>
   <% end %>
 
-  <table class="table table-hover table-condensed">
-    <tbody>
-    <tr>
-      <td>Diurna baza</td>
-      <td><%= best_in_place @settings[0], :value %></td>
-    </tr>
-    <tr>
-      <td>Activities</td>
-      <td><%= best_in_place @settings[1], :value %></td>
-    </tr>
-    <tr>
-      <td>Vat Rate</td>
-      <td><%= best_in_place @settings[2], :value %></td>
-    </tr>
-    <tr>
-      <td>Currencies</td>
-      <td><%= best_in_place @settings[3], :value %></td>
-    </tr>
-    <tr>
-      <td>Paid by</td>
-      <td><%= best_in_place @settings[4], :value %></td>
-    </tr>
-    <tr>
-      <td>Salar</td>
-      <td><%= best_in_place @settings[5], :value %></td>
-    </tr>
-    </tbody>
-  </table>
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab">My company settings</a></li>
+    <li role="presentation"><a href="#gen_settings" aria-controls="gen_settings" role="tab" data-toggle="tab">General site settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="company">
+      <table class="table table-hover table-condensed">
+        <tbody>
+          <tr>
+            <td>Company name</td>
+            <td><%= best_in_place @my_company[0], :value %></td>
+          </tr>
+          <tr>
+            <td>Registration</td>
+            <td><%= best_in_place @my_company[1], :value %></td>
+          </tr>
+          <tr>
+            <td>VAT</td>
+            <td><%= best_in_place @my_company[2], :value %></td>
+          </tr>
+          <tr>
+            <td>Company address</td>
+            <td><%= best_in_place @my_company[3], :value %></td>
+          </tr>
+          <tr>
+            <td>RON Account</td>
+            <td><%= best_in_place @my_company[4], :value %></td>
+          </tr>
+          <tr>
+            <td>EUR Account</td>
+            <td><%= best_in_place @my_company[5], :value %></td>
+          </tr>
+          <tr>
+            <td>Bank name</td>
+            <td><%= best_in_place @my_company[6], :value %></td>
+          </tr>
+          <tr>
+            <td>Capital</td>
+            <td><%= best_in_place @my_company[7], :value %></td>
+          </tr>
+          <tr>
+            <td>Company phone</td>
+            <td><%= best_in_place @my_company[8], :value %></td>
+          </tr>
+          <tr>
+            <td>Company email</td>
+            <td><%= best_in_place @my_company[9], :value %></td>
+          </tr>
+          <tr>
+            <td>Contact person</td>
+            <td><%= best_in_place @my_company[10], :value %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="gen_settings">
+      <table class="table table-hover table-condensed">
+        <tbody>
+          <tr>
+            <td>Diurna baza</td>
+            <td><%= best_in_place @settings[0], :value %></td>
+          </tr>
+          <tr>
+            <td>Activities</td>
+            <td><%= best_in_place @settings[1], :value %></td>
+          </tr>
+          <tr>
+            <td>Vat Rate</td>
+            <td><%= best_in_place @settings[2], :value %></td>
+          </tr>
+          <tr>
+            <td>Currencies</td>
+            <td><%= best_in_place @settings[3], :value %></td>
+          </tr>
+          <tr>
+            <td>Paid by</td>
+            <td><%= best_in_place @settings[4], :value %></td>
+          </tr>
+          <tr>
+            <td>Salar</td>
+            <td><%= best_in_place @settings[5], :value %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 </div>
