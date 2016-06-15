@@ -1,16 +1,18 @@
-<%= bootstrap_form_for(@company, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |f| %>
-    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
-    <%= f.text_field :name %>
-    <%= f.text_field :registration %>
-    <%= f.text_field :vat %>
-    <%= f.text_field :address %>
-    <%= f.text_field :acc_lei %>
-    <%= f.text_field :acc_eur %>
-    <%= f.text_field :bank %>
-    <%= f.text_field :capital %>
-    <%= f.phone_field :phone %>
-    <%= f.email_field :email %>
-    <%= f.text_field :contact %>
-    <%= f.submit "Submit", class: "btn btn-success" %>
-    <%= link_to 'Back', companies_path, class: 'btn btn-danger' %>
-<% end %>
+<div id="toggle_comp_info">
+  <%= bootstrap_form_for(@company, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-5") do |f| %>
+      <%= f.alert_message "Please fix the errors below.", error_summary: false %>
+      <%= f.text_field :name %>
+      <%= f.text_field :registration %>
+      <%= f.text_field :vat %>
+      <%= f.text_field :address %>
+      <%= f.text_field :acc_lei, label: 'RON Account' %>
+      <%= f.text_field :acc_eur, label: 'EUR Account' %>
+      <%= f.text_field :bank %>
+      <%= f.text_field :capital %>
+      <%= f.phone_field :phone %>
+      <%= f.email_field :email %>
+      <%= f.text_field :contact %>
+      <%= f.submit "Submit", class: "btn btn-success" %>
+      <%= link_to 'Back', companies_path, class: 'btn btn-danger' %>
+  <% end %>
+</div>

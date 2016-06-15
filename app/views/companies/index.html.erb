@@ -35,7 +35,7 @@
   </table>
 
   <div class="button-container">
-    <%= link_to 'New Company', new_company_path, class: 'btn btn-primary' %>
+    <%= link_to 'New Company', new_company_path, {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
   </div>
   <div class="button-container">
     <%= will_paginate @companies, renderer: BootstrapPagination::Rails %>

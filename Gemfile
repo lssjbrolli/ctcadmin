@@ -89,6 +89,9 @@ gem 'money-rails'
 
 gem 'eu_central_bank'
 
+# use rest services
+gem 'httparty'
+
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 

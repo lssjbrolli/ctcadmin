@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(@company, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
+    <%= f.number_field :vat %>
+    <%= f.form_group :company, label: {text: "Foreign company?"} do %>
+        <%= f.check_box :foreign, label: "" %>
+    <% end %>
+    <div class="modal-footer">
+      <%= f.submit "Submit", class: 'btn btn-primary' %>
+      <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
+<% end %>
