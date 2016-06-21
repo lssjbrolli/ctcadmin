@@ -38,6 +38,13 @@ gem 'bootstrap_form'
 gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
 
+# Country selector
+gem 'country_select'
+gem 'countries'
+
+# vies checker
+gem 'valvat'
+
 # nested forms
 gem 'nested_form', github: 'ryanb/nested_form'
 

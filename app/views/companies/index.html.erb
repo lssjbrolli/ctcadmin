@@ -11,6 +11,7 @@
     <thead>
     <tr>
       <th>Name</th>
+      <th>VAT id</th>
       <th>Phone</th>
       <th>Email</th>
       <th>Contact</th>
@@ -22,6 +23,7 @@
     <% @companies.each do |company| %>
         <tr>
           <td><%= company.name %></td>
+          <td><%= company.vat %></td>
           <td><%= company.phone %></td>
           <td><%= company.email %></td>
           <td><%= company.contact %></td>

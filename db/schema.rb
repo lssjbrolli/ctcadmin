@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160615152423) do
+ActiveRecord::Schema.define(version: 20160621151153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,7 +58,8 @@ ActiveRecord::Schema.define(version: 20160615152423) do
     t.integer  "create_id"
     t.integer  "update_id"
     t.string   "contact",      limit: 255
-    t.boolean  "foreign",                  default: false
+    t.string   "country",                  default: "false"
+    t.boolean  "vies_valid",               default: false
   end
 
   create_table "credit_invoices", force: :cascade do |t|
