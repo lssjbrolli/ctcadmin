@@ -62,6 +62,7 @@ gem 'bcrypt'
 
 # server
 gem 'passenger'
+gem 'puma'
 
 # database
 gem 'pg'
