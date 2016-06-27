@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def check_mounted
-    File.file?("#{Rails.root}/public/uploads/mounted")
+    SiteConfig['util.use_s3'] == 'true' || (SiteConfig['util.use_s3'] == 'false' && File.file?("#{Rails.root}/public/uploads/mounted"))
   end
 
 end

@@ -51,6 +51,7 @@ gem 'nested_form', github: 'ryanb/nested_form'
 # upload
 gem 'carrierwave'
 gem 'carrierwave-aws'
+gem 'aws-sdk'
 
 #pdfs
 gem 'prawn'
@@ -69,7 +70,7 @@ gem 'pg'
 gem 'ransack'
 
 # site settings
-gem "rails-settings-cached", "~> 0.4.0"
+gem "rails-settings-cached"
 
 group :production do
   gem 'rails_12factor'
@@ -82,6 +83,7 @@ group :development do
   gem 'pry'
   gem 'pry-rails'
   gem 'web-console'
+  gem 'byebug'
 end
 
 group :test do

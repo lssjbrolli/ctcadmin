@@ -5,6 +5,3 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-100000.times do
-  CreditNote.create(number: rand(1..999999), value: rand(1..1000), currency: "EUR")
-end

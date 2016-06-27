@@ -12,8 +12,15 @@ class FileUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
-  #storage :aws
-  storage :file
+
+  if SiteConfig['util.use_s3'] == 'true'
+    @storage = :aws
+  else
+    @storage = :file
+  end
+
+
+  storage @storage
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:

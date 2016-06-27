@@ -5,7 +5,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :registration
       t.string :vat
       t.text :address
-      t.string :acc_lei
+      t.string :acc_ron
       t.string :acc_eur
       t.string :bank
       t.string :capital

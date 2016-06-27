@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title><%= SiteSettings['company.name']%></title>
+  <title><%= SiteConfig['company.name']%></title>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
@@ -51,7 +51,7 @@
               <% if @current_user.admin? %>
                   <li><%= link_to 'Users', users_path, class: "btn btn-default navbar-btn" %></li>
               <% end %>
-              <li><%= link_to 'Settings', site_settings_path, class: "btn btn-default navbar-btn" %></li>
+              <li><%= link_to 'Settings', site_configs_path, class: "btn btn-default navbar-btn" %></li>
               <li class="divider-vertical"></li>
               <li><%= link_to "Logged in as #{fullname(@current_user)}", profile_path, class: "btn btn-default navbar-btn" %></li>
               <li class="divider-vertical"></li>

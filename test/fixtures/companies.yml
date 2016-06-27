@@ -9,7 +9,7 @@ one:
   registration: j27/1205/2005
   vat: ro17868720
   address: plantelor 35
-  acc_lei: da00asdf0000111122223333
+  acc_ron: da00asdf0000111122223333
   acc_eur: da00asdf0000111122223333
   bank: raif
   capital: 400
@@ -20,7 +20,7 @@ two:
   name: ntg nordic
   vat: dk1458789
   address: koge
-  acc_lei: da00asdf0000111122223333
+  acc_ron: da00asdf0000111122223333
   acc_eur: da00asdf0000111122223333
   bank: nordea
   capital: 100000000

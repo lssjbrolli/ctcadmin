@@ -31,7 +31,7 @@ module ImageConvert
   end
 
   def join_pdfs
-    logger.debug 'INFO: multiple pdfs'
+    logger.debug 'INFO: multiple pdfs' # TODO
   end
 
 end

@@ -1,0 +1,123 @@
+<h2 class="title">Listing Site Settings</h2>
+<div class="container-fluid">
+
+  <% if flash %>
+      <% flash.each do |k, v| %>
+          <%= alert(k, v) %>
+      <% end %>
+  <% end %>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab">My company settings</a></li>
+    <li role="presentation"><a href="#gen_settings" aria-controls="gen_settings" role="tab" data-toggle="tab">General site settings</a></li>
+    <li role="presentation"><a href="#util_settings" aria-controls="util_settings" role="tab" data-toggle="tab">Utility settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="company">
+      <table class="table table-hover table-condensed">
+        <tbody>
+          <tr>
+            <td>Company name</td>
+            <td><%= best_in_place get_setting('company.name'), :value %></td>
+          </tr>
+          <tr>
+            <td>Registration</td>
+            <td><%= best_in_place get_setting('company.registration'), :value %></td>
+          </tr>
+          <tr>
+            <td>VAT</td>
+            <td><%= best_in_place get_setting('company.vat'), :value %></td>
+          </tr>
+          <tr>
+            <td>Company address</td>
+            <td><%= best_in_place get_setting('company.address'), :value %></td>
+          </tr>
+          <tr>
+            <td>RON Account</td>
+            <td><%= best_in_place get_setting('company.acc_ron'), :value %></td>
+          </tr>
+          <tr>
+            <td>EUR Account</td>
+            <td><%= best_in_place get_setting('company.acc_eur'), :value %></td>
+          </tr>
+          <tr>
+            <td>Bank name</td>
+            <td><%= best_in_place get_setting('company.bank'), :value %></td>
+          </tr>
+          <tr>
+            <td>Capital</td>
+            <td><%= best_in_place get_setting('company.capital'), :value %></td>
+          </tr>
+          <tr>
+            <td>Company phone</td>
+            <td><%= best_in_place get_setting('company.phone'), :value %></td>
+          </tr>
+          <tr>
+            <td>Company email</td>
+            <td><%= best_in_place get_setting('company.email'), :value %></td>
+          </tr>
+          <tr>
+            <td>Contact person</td>
+            <td><%= best_in_place get_setting('company.contact'), :value %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="gen_settings">
+      <table class="table table-hover table-condensed">
+        <tbody>
+          <tr>
+            <td>Diurna baza</td>
+            <td><%= best_in_place get_setting('main.diurna_baza'), :value %></td>
+          </tr>
+          <tr>
+            <td>Activities</td>
+            <td><%= best_in_place get_setting('main.activities'), :value %></td>
+          </tr>
+          <tr>
+            <td>Vat Rate</td>
+            <td><%= best_in_place get_setting('main.vat_rate'), :value %></td>
+          </tr>
+          <tr>
+            <td>Currencies</td>
+            <td><%= best_in_place get_setting('main.currencies'), :value %></td>
+          </tr>
+          <tr>
+            <td>Paid by</td>
+            <td><%= best_in_place get_setting('main.paid_by'), :value %></td>
+          </tr>
+          <tr>
+            <td>Salar</td>
+            <td><%= best_in_place get_setting('main.salar_baza'), :value %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="util_settings">
+      <table class="table table-hover table-condensed">
+        <tbody>
+        <tr>
+          <td>Use S3 Storage</td>
+          <td><%= best_in_place get_setting('util.use_s3'), :value, type: :checkbox %></td>
+        </tr>
+        <tr>
+          <td>S3 bucket name</td>
+          <td><%= best_in_place get_setting('util.s3_bucket'), :value, :place_holder => "Click me to add content!" %></td>
+        </tr>
+        <tr>
+          <td>S3 Access Key ID</td>
+          <td><%= best_in_place get_setting('util.s3_access_key_id'), :value %></td>
+        </tr>
+        <tr>
+          <td>S3 Access Key</td>
+          <td><%= best_in_place get_setting('util.s3_secret_access_key'), :value %></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

@@ -6,8 +6,8 @@
         <%= f.text_field :date, :value => "#{f.object.date.strftime("%d/%m/%Y") unless f.object.new_record?}", 'data-provide' => 'datepicker', "data-date-format" => "dd/mm/yyyy", "data-date-autoclose" => "true" %>
         <%= f.collection_select :client_id, Company.all, :id, :name %>
         <%= f.collection_check_boxes :credit_note_ids, @cnotes, :id, :number, label: "Credit notes", control_col: "credit_note_ids_style col-sm-7" %>
-        <%= f.select :currency, SiteSettings['main.currencies'].split(', ').sort %>
-        <%= f.select :tax_rate, SiteSettings['main.vat_rate'].split(", ").sort %>
+        <%= f.select :currency, SiteConfig['main.currencies'].split(', ').sort %>
+        <%= f.select :tax_rate, SiteConfig['main.vat_rate'].split(", ").sort %>
       </div>
       <div class="col-md-4 col-md-offset-2">
         <fieldset>
