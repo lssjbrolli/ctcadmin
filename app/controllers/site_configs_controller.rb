@@ -11,7 +11,6 @@ class SiteConfigsController < ApplicationController
   def update
     respond_to do |format|
       @setting.value = params[:site_config][:value]
-      logger.debug params[:site_config][:value].inspect
       if @setting.save!
         format.json { head :no_content, flash: {success: 'Settings were successfully updated.'} }
       else

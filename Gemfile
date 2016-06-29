@@ -51,7 +51,6 @@ gem 'nested_form', github: 'ryanb/nested_form'
 # upload
 gem 'carrierwave'
 gem 'carrierwave-aws'
-gem 'aws-sdk'
 
 #pdfs
 gem 'prawn'

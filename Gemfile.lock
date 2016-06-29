@@ -299,7 +299,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aws-sdk
   bcrypt
   best_in_place!
   better_errors
