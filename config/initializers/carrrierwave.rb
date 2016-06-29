@@ -6,8 +6,8 @@ CarrierWave.configure do |config|
   config.aws_authenticated_url_expiration = 60 * 60 * 24 * 7
 
   config.aws_credentials = {
-      access_key_id: SiteConfig['util.s3_access_key_id'],
-      secret_access_key: SiteConfig['util.s3_secret_access_key'],
+      access_key_id: SiteConfig.find_by(var: 'util.s3_access_key_id').value.to_s,
+      secret_access_key: SiteConfig.find_by(var: 'util.s3_secret_access_key').value.to_s,
       region: 'eu-central-1',
       endpoint: 'http://s3.eu-central-1.amazonaws.com'
   }
