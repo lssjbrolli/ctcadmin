@@ -11,6 +11,8 @@ Ctcadmin::Application.routes.draw do
 
   get '/payments/:id/order', to: 'orders#new', as: :new_order
 
+  get 'restart', to: 'site_configs#restart'
+
   resources :reports, only: :show
   resources :site_configs, only: [:index, :update]
 

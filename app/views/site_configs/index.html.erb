@@ -101,7 +101,7 @@
         <tbody>
         <tr>
           <td>Use S3 Storage</td>
-          <td><%= best_in_place get_setting('util.use_s3'), :value, type: :checkbox %></td>
+          <td><%= best_in_place get_setting('util.use_s3'), :value, type: :select, collection: {yes: 'true', no: 'false'} %></td>
         </tr>
         <tr>
           <td>S3 bucket name</td>
@@ -114,6 +114,10 @@
         <tr>
           <td>S3 Access Key</td>
           <td><%= best_in_place get_setting('util.s3_secret_access_key'), :value %></td>
+        </tr>
+        <tr>
+          <td><%= button_to "Restart app", restart_path, method: 'get', class: "btn btn-danger" %></td>
+          <td>You must restart the app after changing these settings!</td>
         </tr>
         </tbody>
       </table>

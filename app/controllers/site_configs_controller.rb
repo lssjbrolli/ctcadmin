@@ -8,13 +8,17 @@ class SiteConfigsController < ApplicationController
     #TODO dry settings list
   end
 
+  def restart
+    exit
+  end
+
   def update
     respond_to do |format|
       @setting.value = params[:site_config][:value]
       if @setting.save!
-        format.json { head :no_content, flash: {success: 'Settings were successfully updated.'} }
+        format.json { respond_with_bip(@setting), flash: {success: 'Settings were successfully updated.'} }
       else
-        format.json { render json: @setting.errors, status: :unprocessable_entity }
+        format.json { respond_with_bip(@setting) }
       end
     end
   end
