@@ -92,7 +92,7 @@ group :test do
 end
 
 
-gem 'best_in_place', github: 'aaronchi/best_in_place'
+gem 'best_in_place'
 
 gem 'money-rails'
 

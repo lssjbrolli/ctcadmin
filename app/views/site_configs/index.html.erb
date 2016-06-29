@@ -101,7 +101,7 @@
         <tbody>
         <tr>
           <td>Use S3 Storage</td>
-          <td><%= best_in_place get_setting('util.use_s3'), :value, type: :select, collection: {yes: 'true', no: 'false'} %></td>
+          <td><%= best_in_place get_setting('util.use_s3'), :value, as: :checkbox %></td>
         </tr>
         <tr>
           <td>S3 bucket name</td>

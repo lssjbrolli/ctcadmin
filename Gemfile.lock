@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/aaronchi/best_in_place.git
-  revision: 1152e2256afd485e66602833fd99d09d60994841
-  specs:
-    best_in_place (2.1.0)
-      jquery-rails
-      rails (>= 3.1)
-
-GIT
   remote: git://github.com/ryanb/nested_form.git
   revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
   specs:
@@ -63,6 +55,9 @@ GEM
     aws-sdk-resources (2.3.14)
       aws-sdk-core (= 2.3.14)
     bcrypt (3.1.11)
+    best_in_place (3.1.0)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -300,7 +295,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
-  best_in_place!
+  best_in_place
   better_errors
   binding_of_caller
   bootstrap-datepicker-rails

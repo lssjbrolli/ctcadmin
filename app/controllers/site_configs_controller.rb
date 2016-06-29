@@ -16,9 +16,9 @@ class SiteConfigsController < ApplicationController
     respond_to do |format|
       @setting.value = params[:site_config][:value]
       if @setting.save!
-        format.json { respond_with_bip(@setting), flash: {success: 'Settings were successfully updated.'} }
+        format.json { head :no_content, flash: {success: 'Settings were successfully updated.'} }
       else
-        format.json { respond_with_bip(@setting) }
+        format.json { render json: @setting.errors, status: :unprocessable_entity }
       end
     end
   end
