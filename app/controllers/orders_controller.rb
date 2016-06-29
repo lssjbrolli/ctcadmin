@@ -26,12 +26,12 @@ class OrdersController < ApplicationController
     pdf.render_file src
     src_file = File.new(src)
 
-    @order.update_attribute("payment_id", @payment.id)
+    @order.update_attribute('payment_id', @payment.id)
     @order.attachments.new(file: File.open(src_file))
 
     respond_to do |format|
       if @order.save
-        @payment.update_column("updated", "false")
+        @payment.update_column('updated', 'false')
         format.html { redirect_to employee_payments_url(@payment.employee), flash: {success: 'Order was successfully created.'} }
       else
         format.html { render action: 'new' }
@@ -43,6 +43,6 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit()
+    params.require(:order).permit(:payment_id)
   end
 end

@@ -14,7 +14,7 @@
     <tbody>
     <% @papers.each do |paper| %>
         <tr <%= raw expire_row(paper.expire) %> >
-          <td><%= paper.document_type == "Truck" ? paper.document.registration : paper.document.name %></td>
+          <td><%= paper.document_type == 'Truck' ? paper.document.registration : paper.document.name %></td>
           <td><%= paper.description %></td>
           <td><%= paper.expire %></td>
           <td><%= paper.comments %></td>

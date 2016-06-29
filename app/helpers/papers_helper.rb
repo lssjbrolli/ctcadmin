@@ -6,9 +6,9 @@ module PapersHelper
       if diff == 0
         "class='error tip' data-title='This document will expire today.'"
       elsif diff < 0
-        "class='error tip' data-title='This document has expired #{pluralize(diff.abs, "day")} ago.'"
+        "class='error tip' data-title='This document has expired #{pluralize(diff.abs, 'day')} ago.'"
       elsif diff > 0 && diff <= 7
-        "class='error tip' data-title='This document will expire in #{pluralize(diff.abs, "day")}.'"
+        "class='error tip' data-title='This document will expire in #{pluralize(diff.abs, 'day')}.'"
       elsif diff > 7 && diff < 30
         "class='warning tip' data-title='This document will expire in #{diff} days.'"
       end

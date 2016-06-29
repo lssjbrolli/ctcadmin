@@ -10,12 +10,12 @@
   <table class="table table-hover table-condensed">
     <thead>
     <tr>
-      <th><%= sort_link(@q, :number, 'Invoice number') %></th>
+      <th><%= sort_link(@search_result, :number, 'Invoice number') %></th>
       <th class="t_middle">Paid in</th>
-      <th class="t_right"><%= sort_link(@q, :value) %></th>
-      <th class="t_middle"><%= sort_link(@q, :supplier_id) %></th>
+      <th class="t_right"><%= sort_link(@search_result, :value) %></th>
+      <th class="t_middle"><%= sort_link(@search_result, :supplier_id) %></th>
       <th class="t_middle">Description</th>
-      <th><%= render "national_expenses/search" %></th>
+      <th><%= render 'national_expenses/search' %></th>
     </tr>
     </thead>
 
@@ -23,7 +23,7 @@
     <% @extern_expenses.each do |ee| %>
         <tr>
           <td><%= ee.number %></td>
-          <td class="t_middle"><%= ee.date.strftime("%b %Y") unless ee.date.nil? %></td>
+          <td class="t_middle"><%= ee.date.strftime('%b %Y') unless ee.date.nil? %></td>
           <td class="t_value"><%= number_to_currency(ee.value, :unit => ee.currency) %></td>
           <td class="t_middle"><%= ee.supplier.name %></td>
           <td class="t_middle"><%= ee.description %></td>

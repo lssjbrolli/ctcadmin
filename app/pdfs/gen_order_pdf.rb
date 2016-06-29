@@ -7,10 +7,6 @@ class GenOrderPdf < Prawn::Document
 
     @payment = Payment.find(params[:payment])
 
-    @driver = @payment.employee.name
-
-    @days = @payment.days
-
     @order_id = order_id
 
     if params[:begin]
@@ -19,19 +15,11 @@ class GenOrderPdf < Prawn::Document
       @first_day = @payment.month.at_beginning_of_month
     end
 
-    if @days < @payment.month.at_end_of_month.day
-      @last_day = @first_day.next_day(@days - 1)
+    if @payment.days < @payment.month.at_end_of_month.day
+      @last_day = @first_day.next_day(@payment.days - 1)
     else
       @last_day = @payment.month.at_end_of_month
     end
-
-    @per_day = @payment.per_day
-
-    @avans = @payment.avans
-
-    @rest = @payment.rest
-
-    @total = @payment.total
 
     strike_negative
 
@@ -51,20 +39,20 @@ class GenOrderPdf < Prawn::Document
 
   def table1
 
-    data = [["Unitatea", {content: "Depus decontul (numarul si data)", colspan: 2}],
-            [{content: "SC. Cozma Transport 2005 SRL", colspan: 2}, "#{". "*5}#{generate_number} din #{@last_day.strftime("%d/%m/%Y")}#{". "*5}"],
-            [{content: "Ordin de deplasare nr. ", colspan: 3}],
-            [{content: "Domnul (a) #{". "*3}#{@driver}#{". "*50}", colspan: 3}],
-            [{content: "avand functia de #{". "*5} conducator auto #{". "*50}", colspan: 3}],
-            [{content: "este delegat pentru #{". "*5}transport marfa #{". "*50}", colspan: 3}],
-            [{content: "#{". "*200}", colspan: 3}],
-            [{content: "#{". "*200}", colspan: 3}],
-            [{content: " la #{". "*5}NTG Nordic A/S #{". "*100}", colspan: 3}],
-            [{content: "#{". "*5}Danemarca#{". "*100}", colspan: 3}],
-            [{content: "Durata deplasarii de la #{". "*3}#{@first_day.strftime("%d/%m/%Y")}#{". "*15}", colspan: 2}, "la #{". "*3}#{@last_day.strftime("%d/%m/%Y")}#{". "*15}"],
-            [{content: "se legitimeaza cu #{". "*50} ", colspan: 3}],
-            [{content: "Stampila unitatii si semnatura.", colspan: 3}],
-            [{content: "Data #{". "*5}#{@last_day.strftime("%d/%m/%Y")}#{". "*5}", colspan: 3}]]
+    data = [['Unitatea', {content: 'Depus decontul (numarul si data)', colspan: 2}],
+            [{content: 'SC. Cozma Transport 2005 SRL', colspan: 2}, "#{'. '*5}#{generate_number} din #{@last_day.strftime('%d/%m/%Y')}#{'. '*5}"],
+            [{content: 'Ordin de deplasare nr. ', colspan: 3}],
+            [{content: "Domnul (a) #{'. '*3}#{@payment.employee.name}#{'. '*50}", colspan: 3}],
+            [{content: "avand functia de #{'. '*5} conducator auto #{'. '*50}", colspan: 3}],
+            [{content: "este delegat pentru #{'. '*5}transport marfa #{'. '*50}", colspan: 3}],
+            [{content: "#{'. '*200}", colspan: 3}],
+            [{content: "#{'. '*200}", colspan: 3}],
+            [{content: " la #{'. '*5}NTG Nordic A/S #{'. '*100}", colspan: 3}],
+            [{content: "#{'. '*5}Danemarca#{'. '*100}", colspan: 3}],
+            [{content: "Durata deplasarii de la #{'. '*3}#{@first_day.strftime('%d/%m/%Y')}#{'. '*15}", colspan: 2}, "la #{'. '*3}#{@last_day.strftime('%d/%m/%Y')}#{'. '*15}"],
+            [{content: "se legitimeaza cu #{'. '*50} ", colspan: 3}],
+            [{content: 'Stampila unitatii si semnatura.', colspan: 3}],
+            [{content: "Data #{'. '*5}#{@last_day.strftime('%d/%m/%Y')}#{'. '*5}", colspan: 3}]]
 
     table1 = make_table(data, width: 366) do |t|
 
@@ -93,11 +81,11 @@ class GenOrderPdf < Prawn::Document
 
   def table2
 
-    data2 = [["Sosit #{". "*100}"],
-             ["Plecat #{". "*100}"],
-             ["Cu (fara) cazare #{". "*100}"],
-             ["Stampila unitati si semnatura"],
-             [""]
+    data2 = [["Sosit #{'. '*100}"],
+             ["Plecat #{'. '*100}"],
+             ["Cu (fara) cazare #{'. '*100}"],
+             ['Stampila unitati si semnatura'],
+             ['']
     ]
 
     table2 = make_table(data2, width: 183.5) do |t|
@@ -127,16 +115,16 @@ class GenOrderPdf < Prawn::Document
 
   def table3
 
-    data3 = [["Ziua si ora plecarii #{". "*50}"],
-             ["Ziua si ora sosirii #{". "*50}"],
-             ["Data depunerii #{". "*50}"],
-             ["Penalizari calculate #{". "*50}"],
+    data3 = [["Ziua si ora plecarii #{'. '*50}"],
+             ["Ziua si ora sosirii #{'. '*50}"],
+             ["Data depunerii #{'. '*50}"],
+             ["Penalizari calculate #{'. '*50}"],
     ]
 
-    data4 = [["Avans spre decontare"],
-             ["Primit la plecare #{". "*50}"],
-             ["Primit in timpul deplasarii #{". "*3}#{@avans}#{". "*30}"],
-             ["TOTAL #{". "*3}#{@avans} EUR#{". "*30}"]
+    data4 = [['Avans spre decontare'],
+             ["Primit la plecare #{'. '*50}"],
+             ["Primit in timpul deplasarii #{'. '*3}#{@payment.avans}#{'. '*30}"],
+             ["TOTAL #{'. '*3}#{@payment.avans} EUR#{'. '*30}"]
     ]
 
     table3 = make_table(data3, width: 183.5) do |t|
@@ -179,21 +167,21 @@ class GenOrderPdf < Prawn::Document
 
   def table5
 
-    data5 = [[{content: "Cheltuieli efectuate conform documentelor anexate", colspan: 3}],
-             ["Felul actului", "Nr. si data actului", "Suma"],
-             ["Diurna externa", "#{@days} zile x #{@per_day} EUR", "#{@total} EUR"],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             ["", "", ""],
-             [{content: "TOTAL CHELTUIELI: ", colspan: 2}, "#{@total} EUR"]
+    data5 = [[{content: 'Cheltuieli efectuate conform documentelor anexate', colspan: 3}],
+             ['Felul actului', 'Nr. si data actului', 'Suma'],
+             ['Diurna externa', "#{@payment.days} zile x #{@payment.per_day} EUR", "#{@payment.total} EUR"],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             ['', '', ''],
+             [{content: 'TOTAL CHELTUIELI: ', colspan: 2}, "#{@payment.total} EUR"]
     ]
     table5 = make_table(data5, width: 367) do |t|
 
@@ -223,9 +211,9 @@ class GenOrderPdf < Prawn::Document
 
   def table6
 
-    data6 = [["Diferenta de restituit ", {content: "#{@neg_switch[0]}", inline_format: true}],
-             ["s-a depus cu chitanta", {content: "Diferenta de #{". "*10}<b>#{@rest.abs} EUR</b>#{". "*20}", inline_format: true}],
-             ["nr. #{". "*5}din #{". "*5} ", {content: "#{@neg_switch[1]}", inline_format: true}]]
+    data6 = [['Diferenta de restituit ', {content: "#{@neg_switch[0]}", inline_format: true}],
+             ['s-a depus cu chitanta', {content: "Diferenta de #{'. '*10}<b>#{@payment.rest.abs} EUR</b>#{'. '*20}", inline_format: true}],
+             ["nr. #{'. '*5}din #{'. '*5} ", {content: "#{@neg_switch[1]}", inline_format: true}]]
 
     table = make_table(data6, width: 367) do |t|
 
@@ -251,8 +239,8 @@ class GenOrderPdf < Prawn::Document
 
   def table7
 
-    data7 = [[{content: "Semnatura", rowspan: 2}, "Se aproba, conducatorul unitatii", "Controlul financiar preventiv", "Verificat decont", "Titular avans"],
-             ["", "", "", ""]]
+    data7 = [[{content: 'Semnatura', rowspan: 2}, 'Se aproba, conducatorul unitatii', 'Controlul financiar preventiv', 'Verificat decont', 'Titular avans'],
+             ['', '', '', '']]
 
     table7 = make_table(data7, width: 367) do |t|
 
@@ -281,13 +269,13 @@ class GenOrderPdf < Prawn::Document
   private
 
   def strike_negative
-    a = "<strikethrough>primit</strikethrough>"
-    aa = "primit"
-    b = "<strikethrough>restituit</strikethrough>"
-    bb = "restituit"
+    a = '<strikethrough>primit</strikethrough>'
+    aa = 'primit'
+    b = '<strikethrough>restituit</strikethrough>'
+    bb = 'restituit'
     @neg_switch = []
 
-    if @rest < 0
+    if @payment.rest < 0
       @neg_switch.push a
       @neg_switch.push bb
     else

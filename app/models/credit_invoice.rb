@@ -35,7 +35,7 @@ class CreditInvoice < ActiveRecord::Base
     if self.tax_rate == 'taxare inversa'
       self.total_value = self.net_value
     else
-      tax = self.tax_rate.split("%")[0].to_f/100
+      tax = self.tax_rate.split('%')[0].to_f/100
       self.tax_value = self.net_value * tax
       self.total_value = self.net_value + self.tax_value
     end

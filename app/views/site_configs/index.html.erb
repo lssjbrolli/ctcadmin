@@ -105,7 +105,7 @@
         </tr>
         <tr>
           <td>S3 bucket name</td>
-          <td><%= best_in_place get_setting('util.s3_bucket'), :value, :place_holder => "Click me to add content!" %></td>
+          <td><%= best_in_place get_setting('util.s3_bucket'), :value, :place_holder => 'Click me to add content!' %></td>
         </tr>
         <tr>
           <td>S3 Access Key ID</td>
@@ -116,7 +116,7 @@
           <td><%= best_in_place get_setting('util.s3_secret_access_key'), :value %></td>
         </tr>
         <tr>
-          <td><%= button_to "Restart app", restart_path, method: 'get', class: "btn btn-danger" %></td>
+          <td><%= button_to 'Restart app', restart_path, method: 'get', class: 'btn btn-danger' %></td>
           <td>You must restart the app after changing these settings!</td>
         </tr>
         </tbody>

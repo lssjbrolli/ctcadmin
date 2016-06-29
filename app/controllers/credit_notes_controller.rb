@@ -9,8 +9,8 @@ class CreditNotesController < ApplicationController
   # GET /credit_notes
   # GET /credit_notes.json
   def index
-    @q = CreditNote.ransack(params[:q])
-    @cnotes = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+    @search_result = CreditNote.ransack(params[:search_result])
+    @cnotes = @search_result.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /credit_notes/1
@@ -85,11 +85,10 @@ class CreditNotesController < ApplicationController
   def uniq_id
     unless credit_note_params[:order_nr].nil?
       unless credit_note_params[:order_nr].empty?
-        clist = CreditNote.where("truck_id = :truck and order_nr = :order", {truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+        clist = CreditNote.where('truck_id = :truck and order_nr = :order', {truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
         unless clist.empty?
-          logger.info "we update"
-          list = CreditNote.where("truck_id = :truck and order_nr >= :order", {truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
-          list.each { |x| x.update_attribute("order_nr", x.order_nr + 1) }
+          list = CreditNote.where('truck_id = :truck and order_nr >= :order', {truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+          list.each { |x| x.update_attribute('order_nr', x.order_nr + 1) }
         end
       end
     end

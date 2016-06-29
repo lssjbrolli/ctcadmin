@@ -4,10 +4,10 @@ class PaymentReportPdf < Prawn::Document
     @month = Date.parse(month.to_s)
 
     @payments_ids = []
-    Payment.where("DATE(month) = ?", @month).where(diurna: true).each { |x| @payments_ids << x.id }
+    Payment.where('DATE(month) = ?', @month).where(diurna: true).each { |x| @payments_ids << x.id }
 
     if @payments_ids.empty?
-      text "#{@month.strftime("%B %Y")} doesn't have any payments."
+      text "#{@month.strftime('%B %Y')} doesn't have any payments."
     else
       @payments = []
       @payments_ids.each { |x| @payments << Payment.find(x) }
@@ -19,7 +19,7 @@ class PaymentReportPdf < Prawn::Document
   end
 
   def head
-    table = make_table([["Diurne deplasare externa #{@month.strftime("%B %Y")}"]], width: 540, column_widths: [540])
+    table = make_table([["Diurne deplasare externa #{@month.strftime('%B %Y')}"]], width: 540, column_widths: [540])
     table.cells.style(size: 14, font_style: :bold, align: :center)
 
     table.before_rendering_page do |page|
@@ -73,7 +73,7 @@ class PaymentReportPdf < Prawn::Document
 
   def line_items
     @payments.map do |item|
-      ["#{item.employee.name}", "#{item.avans}", "#{item.rest}", "#{item.total}", "#{item.days}", "#{item.per_day}"]
+      %W(#{item.employee.name} #{item.avans} #{item.rest} #{item.total} #{item.days} #{item.per_day})
     end
   end
 

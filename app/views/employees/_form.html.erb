@@ -1,8 +1,8 @@
-<%= bootstrap_form_for(@employee, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
-    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
+<%= bootstrap_form_for(@employee, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7') do |f| %>
+    <%= f.alert_message 'Please fix the errors below.', error_summary: false %>
     <%= f.text_field :first_name %>
     <%= f.text_field :last_name %>
     <%= f.text_field :cnp %>
-    <%= f.submit "Submit", class: 'btn btn-success' %>
+    <%= f.submit 'Submit', class: 'btn btn-success' %>
     <%= link_to 'Back', employees_path, class: 'btn btn-danger' %>
 <% end %>

@@ -122,7 +122,7 @@ class CreditInvoicePdf < Prawn::Document
 
   def sel_taxrate(cur, tax, value)
     unless tax == 'taxare inversa'
-      tax_f = tax.split("%")[0].to_f/100
+      tax_f = tax.split('%')[0].to_f/100
       sel_currency(cur, value * tax_f)
     end
   end

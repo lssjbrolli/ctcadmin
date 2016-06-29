@@ -20,6 +20,9 @@ class EmployeesController < ApplicationController
   def edit
   end
 
+  def show
+  end
+
   #generate monthly payments reports
   def payment_report
     params['month'].empty? ? month = Date.today : month = params['month']

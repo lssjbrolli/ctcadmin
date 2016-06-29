@@ -1,5 +1,5 @@
-<%= bootstrap_nested_form_for(@credit_note, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-7") do |f| %>
-    <%= f.alert_message "Please fix the errors below.", error_summary: false %>
+<%= bootstrap_nested_form_for(@credit_note, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-7') do |f| %>
+    <%= f.alert_message 'Please fix the errors below.', error_summary: false %>
     <div class="row">
       <div class="col-md-5">
         <%= f.text_field :number, label: 'Credit note number' %>
@@ -9,10 +9,10 @@
         <%= f.number_field :week %>
         <%= f.text_area :notes %>
         <%= f.select :currency, SiteConfig['main.currencies'].split(', ').sort %>
-        <%= f.collection_select :truck_id, Truck.where("truck = true and sold = false"), :id, :registration, include_blank: true %>
+        <%= f.collection_select :truck_id, Truck.where('truck = true and sold = false'), :id, :registration, include_blank: true %>
         <% if @current_user.admin? %>
-            <%= f.form_group :paid, label: {text: "Paid?"} do %>
-                <%= f.check_box :paid, label: "" %>
+            <%= f.form_group :paid, label: {text: 'Paid?'} do %>
+                <%= f.check_box :paid, label: '' %>
             <% end %>
         <% end %>
       </div>
@@ -21,7 +21,7 @@
           <legend>Files:</legend>
           <%= f.fields_for :attachments do |a_form| %>
               <div class="button-container">
-                <%= a_form.file_field :file, hide_label: true, label_col: "col-sm-0" %>
+                <%= a_form.file_field :file, hide_label: true, label_col: 'col-sm-0' %>
               </div>
               <div class="button-container">
                 <%= a_form.link_to_remove '', class: 'glyphicon glyphicon-remove' %>
@@ -32,6 +32,6 @@
         </fieldset>
       </div>
     </div>
-    <%= f.submit "Submit", class: 'btn btn-primary' %>
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
     <%= link_to 'Cancel', request.referer, class: 'btn btn-danger' %>
 <% end %>

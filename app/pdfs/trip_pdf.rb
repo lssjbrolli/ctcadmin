@@ -56,7 +56,7 @@ class TripPdf < Prawn::Document
 
   def line_items
     @trip_expenses.map do |item|
-      ["#{item.intnr}", "#{item.number}", item.date.strftime("%d.%m.%y"), "#{item.description}", card(item), @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
+      ["#{item.intnr}", "#{item.number}", item.date.strftime('%d.%m.%y'), "#{item.description}", card(item), @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
     end
   end
 
@@ -103,17 +103,17 @@ class TripPdf < Prawn::Document
 
   def title
     if @dates[0].month == @dates[-1].month
-      "Decont plati deplasare #{@dates[0].strftime("%B %Y")}"
+      "Decont plati deplasare #{@dates[0].strftime('%B %Y')}"
     else
-      "Decont plati deplasare #{@dates[0].strftime("%B %Y")} - #{@dates[-1].strftime("%B %Y")}"
+      "Decont plati deplasare #{@dates[0].strftime('%B %Y')} - #{@dates[-1].strftime('%B %Y')}"
     end
   end
 
   def card(item)
     if item.card
-      "Da"
+      'Da'
     else
-      "Nu"
+      'Nu'
     end
   end
 end

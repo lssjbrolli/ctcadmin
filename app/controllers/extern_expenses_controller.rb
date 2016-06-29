@@ -9,8 +9,8 @@ class ExternExpensesController < ApplicationController
   # GET /extern_expenses
   # GET /extern_expenses.json
   def index
-    @q = ExternExpense.ransack(params[:q])
-    @extern_expenses = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+    @search_result = ExternExpense.ransack(params[:search_result])
+    @extern_expenses = @search_result.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /extern_expenses/1

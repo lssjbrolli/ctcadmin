@@ -24,7 +24,7 @@ class Company < ActiveRecord::Base
     if response.code == 200
       self.name = response['name']
       self.registration = response['registration_id']
-      if response['vat'] == "1"
+      if response['vat'] == '1'
         self.vat = "RO#{response['cif']}"
       else
         self.vat = response['cif']
@@ -33,7 +33,7 @@ class Company < ActiveRecord::Base
       self.phone = response['phone']
       self.vies_valid = Valvat::Lookup.validate("#{self.vat}")
     else
-      self.name = "#"
+      self.name = '#'
     end
   end
 
@@ -45,7 +45,7 @@ class Company < ActiveRecord::Base
     end
 
     if company == false || company.nil?
-      self.name = "#"
+      self.name = '#'
     else
       self.name = company[:name].titleize
       if self.country == 'GR'

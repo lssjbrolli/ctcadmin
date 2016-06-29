@@ -78,10 +78,9 @@ class PapersController < ApplicationController
 
   # set proper url path
   def parent_url(parent)
-    case
-      when params[:truck_id] then
+    if params[:truck_id]
         truck_papers_path(parent)
-      when params[:employee_id] then
+    elsif params[:employee_id]
         employee_papers_path(parent)
     end
   end

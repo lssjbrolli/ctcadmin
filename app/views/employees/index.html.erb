@@ -45,9 +45,9 @@
     <%= will_paginate @employees, renderer: BootstrapPagination::Rails %>
   </div>
   <div class="button-container">
-    <%= bootstrap_form_tag(url: payment_report_path, method: "get") do |f| %>
-        <%= f.text_field :month, hide_label: true, placeholder: "Select a month", 'data-provide' => 'monthpicker', wrapper: {class: "gen_payments_btn"} %>
-        <%= f.submit 'Generate Raport', class: "btn btn-info" %>
+    <%= bootstrap_form_tag(url: payment_report_path, method: 'get') do |f| %>
+        <%= f.text_field :month, hide_label: true, placeholder: 'Select a month', 'data-provide' => 'monthpicker', wrapper: {class: 'gen_payments_btn'} %>
+        <%= f.submit 'Generate Raport', class: 'btn btn-info' %>
     <% end %>
   </div>
 

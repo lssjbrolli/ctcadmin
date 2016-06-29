@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
   config.aws_credentials = {
       access_key_id: SiteConfig['util.s3_access_key_id'],
       secret_access_key: SiteConfig['util.s3_secret_access_key'],
-      region: "eu-central-1",
-      endpoint: "http://s3.eu-central-1.amazonaws.com"
+      region: 'eu-central-1',
+      endpoint: 'http://s3.eu-central-1.amazonaws.com'
   }
 end

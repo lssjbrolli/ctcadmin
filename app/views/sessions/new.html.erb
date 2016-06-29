@@ -7,7 +7,7 @@
       <% end %>
   <% end %>
 
-  <%= bootstrap_form_for(:session, url: sessions_path, layout: :horizontal, label_col: "col-sm-1", control_col: "col-sm-2") do |f| %>
+  <%= bootstrap_form_for(:session, url: sessions_path, layout: :horizontal, label_col: 'col-sm-1', control_col: 'col-sm-2') do |f| %>
       <%= f.text_field :username %>
       <%= f.password_field :password %>
       <%= f.submit 'Sign In', class: 'btn btn-success' %> |

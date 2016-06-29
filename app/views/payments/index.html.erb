@@ -27,7 +27,7 @@
     <% unless @employee.nil? %>
         <% @payments.each do |payment| %>
             <tr>
-              <td><%= payment.month.strftime("%B %Y") %></td>
+              <td><%= payment.month.strftime('%B %Y') %></td>
               <td><%= humanized_money payment.sron %></td>
               <td><%= humanized_money_with_symbol payment.seur %></td>
               <td><%= payment.per_day %></td>
@@ -57,3 +57,4 @@
       <div class="modal-content"></div>
     </div>
   </div>
+</div>

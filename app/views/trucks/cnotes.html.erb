@@ -10,7 +10,7 @@
   <table class="table table-hover table-condensed">
     <thead>
     <tr>
-      <th><%= sort_link(@q, :order_nr, 'Order Nr', default_order: :asc) %></th>
+      <th><%= sort_link(@search_result, :order_nr, 'Order Nr', default_order: :asc) %></th>
       <th>Number</th>
       <th>Start</th>
       <th>Stop</th>
@@ -18,7 +18,7 @@
       <th class="t_right">Value</th>
       <th class="t_middle">Paid</th>
       <th class="t_middle">Notes</th>
-      <th><%= render "credit_notes/search" %></th>
+      <th><%= render 'credit_notes/search' %></th>
     </tr>
     </thead>
 

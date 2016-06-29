@@ -8,8 +8,8 @@ class NationalExpensesController < ApplicationController
   # GET /national_expenses
   # GET /national_expenses.json
   def index
-    @q = NationalExpense.ransack(params[:q])
-    @national_expenses = @q.result(distinct: true).includes(:supplier).paginate(:page => params[:page], :per_page => 8)
+    @search_result = NationalExpense.ransack(params[:search_result])
+    @national_expenses = @search_result.result(distinct: true).includes(:supplier).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /national_expenses/1
