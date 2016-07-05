@@ -12,9 +12,7 @@ class FileUploader < CarrierWave::Uploader::Base
   process :set_content_type
 
   # Choose what kind of storage to use for this uploader:
-
-
-  if SiteConfig['util.use_s3'] == 'true'
+  if SiteConfig.find_by(var: 'util.use_s3') == 'true'
     storage :aws
   else
     storage :file

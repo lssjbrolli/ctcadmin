@@ -1,3 +1,3 @@
-<%= search_form_for @search_result, html: {class: 'form-inline'} do |f| %>
+<%= search_form_for @q, html: {class: 'form-inline'} do |f| %>
     <%= f.search_field :number_or_supplier_name_cont, placeholder: 'Search', type: 'search', class: 'form-control search_input' %>
 <% end %>

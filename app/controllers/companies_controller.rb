@@ -8,8 +8,8 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @search_result = Company.ransack(params[:search_result])
-    @companies = @search_result.result(distinct: true).paginate(:page => params[:page], :per_page => 8).order('name ASC')
+    @q = Company.ransack(params[:q])
+    @companies = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8).order('name ASC')
   end
 
   # GET /companies/1

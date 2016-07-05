@@ -9,8 +9,8 @@ class CreditNotesController < ApplicationController
   # GET /credit_notes
   # GET /credit_notes.json
   def index
-    @search_result = CreditNote.ransack(params[:search_result])
-    @cnotes = @search_result.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+    @q = CreditNote.ransack(params[:q])
+    @cnotes = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /credit_notes/1
