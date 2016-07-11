@@ -35,6 +35,7 @@ class Company < ActiveRecord::Base
     else
       self.name = '#'
     end
+    nil
   end
 
   def international
