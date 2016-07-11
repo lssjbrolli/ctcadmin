@@ -9,7 +9,7 @@ class CreditInvoicesController < ApplicationController
   # GET /credit_invoices.json
   def index
     @q = CreditInvoice.ransack(params[:q])
-    @cinvoices = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+    @cinvoices = @q.result(distinct: true).order('number DESC').paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /credit_invoices/1
