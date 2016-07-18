@@ -82,15 +82,21 @@ group :development do
   gem 'meta_request'
   gem 'pry'
   gem 'pry-rails'
-  gem 'web-console'
+end
+
+group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.4'
+  gem 'capybara', '~> 2.5'
+  gem 'factory_girl_rails', '~> 4.5.0'
 end
 
 group :test do
-  gem 'shoulda'
-  gem 'mocha'
+  gem 'shoulda-matchers', '~> 3.0', require: false
+  gem 'database_cleaner', '~> 1.5'
+  gem 'faker', '~> 1.6.1'
+  gem 'simplecov', :require => false
 end
-
 
 gem 'best_in_place'
 

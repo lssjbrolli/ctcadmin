@@ -56,3 +56,6 @@ bower.json
 
 #byebug
 .byebug_history
+
+# SimpleCov
+/coverage
