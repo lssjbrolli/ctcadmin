@@ -11,6 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# use your own database settings
+/config/database.yml
+
 # Ignore schema
 db/schema.rb
 
