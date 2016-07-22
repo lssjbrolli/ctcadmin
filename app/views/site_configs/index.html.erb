@@ -11,9 +11,6 @@
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab">My company settings</a></li>
     <li role="presentation"><a href="#gen_settings" aria-controls="gen_settings" role="tab" data-toggle="tab">General site settings</a></li>
-    <% if @current_user.admin? %>
-      <li role="presentation"><a href="#util_settings" aria-controls="util_settings" role="tab" data-toggle="tab">Utility settings</a></li>
-    <% end %>
   </ul>
 
   <!-- Tab panes -->
@@ -98,34 +95,6 @@
         </tbody>
       </table>
     </div>
-    <% if @current_user.admin? %>
-      <div role="tabpanel" class="tab-pane fade" id="util_settings">
-        <table class="table table-hover table-condensed">
-          <tbody>
-          <tr>
-            <td>Use S3 Storage</td>
-            <td><%= best_in_place get_setting('util.use_s3'), :value, as: :checkbox %></td>
-          </tr>
-          <tr>
-            <td>S3 bucket name</td>
-            <td><%= best_in_place get_setting('util.s3_bucket'), :value %></td>
-          </tr>
-          <tr>
-            <td>S3 Access Key ID</td>
-            <td><%= best_in_place get_setting('util.s3_access_key_id'), :value %></td>
-          </tr>
-          <tr>
-            <td>S3 Access Key</td>
-            <td><%= best_in_place get_setting('util.s3_secret_access_key'), :value %></td>
-          </tr>
-          <tr>
-            <td><%= button_to 'Restart app', restart_path, method: 'get',remote: true, class: 'btn btn-danger' %></td>
-            <td>You must restart the app after changing these settings!</td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    <% end %>
   </div>
 
 </div>
