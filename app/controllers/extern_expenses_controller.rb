@@ -2,6 +2,7 @@ class ExternExpensesController < ApplicationController
   include UserInfo
 
   before_action :set_extern_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_companies_list, only: [:new, :edit, :create]
   before_action :signed_in_user
   before_action :user_activated
   before_filter :format_date_time, :only => [:create, :update]
@@ -69,6 +70,10 @@ class ExternExpensesController < ApplicationController
   end
 
   private
+  def set_companies_list
+    @companies = Company.order('name ASC')
+  end
+
   def format_date_time
     date = extern_expense_params['date']
     unless date.empty?

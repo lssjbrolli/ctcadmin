@@ -2,6 +2,7 @@ class NationalExpensesController < ApplicationController
   include UserInfo
 
   before_action :set_national_expense, only: [:show, :edit, :update, :destroy]
+  before_action :set_companies_list, only: [:new, :edit, :create]
   before_action :signed_in_user
   before_action :user_activated
 
@@ -76,6 +77,10 @@ class NationalExpensesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def national_expense_params
     params.require(:national_expense).permit(:currency, :number, :date, :value, :description, :supplier_id, :paid_by, attachments_attributes: [:id, :file, :_destroy])
+  end
+
+  def set_companies_list
+    @companies = Company.order('name ASC')
   end
 
 end
