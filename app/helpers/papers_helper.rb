@@ -14,4 +14,20 @@ module PapersHelper
       end
     end
   end
+
+  def path_info(path, action, p)
+    if path == "truck"
+      if action == 'edit'
+        edit_truck_paper_path(p.document, p)
+      else
+        truck_paper_path(p.document, p)
+      end
+    else
+      if action == 'edit'
+        edit_employee_paper_path(p.document, p)
+      else
+        employee_paper_path(p.document, p)
+      end
+    end
+  end
 end

@@ -9,32 +9,28 @@
     <strong>Documents for: </strong><%= @document.name %>
   </h3>
 
-  <table class="table table-hover table-condensed">
-    <thead>
-    <tr>
-      <th style="width: 30%;">Paper</th>
-      <th style="width: 10%;">Expire</th>
-      <th style="width: 40%; text-align: center;">Comments</th>
-      <th style="width: 20%;"></th>
-    </tr>
-    </thead>
-    <tbody>
-    <% unless @papers.nil? %>
-        <% @papers.each do |p| %>
-            <tr <%= raw expire_row(p.expire) %> >
-              <td><%= p.description %></td>
-              <td><%= p.expire %></td>
-              <td class="td.t_center"><%= p.comments %></td>
-              <td class="btn-group btn-group-xm">
-                <%= file_state(p, 'Show') %>
-                <%= link_to 'Edit', edit_employee_paper_path(p.document, p), {:remote => true, data: {toggle: 'modal', target: '#modal'}, class: 'btn btn-info'} %>
-                <%= link_to 'Destroy', employee_paper_path(p.document, p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
-              </td>
-            </tr>
-        <% end %>
-    <% end %>
-    </tbody>
-  </table>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#papers" aria-controls="papers" role="tab" data-toggle="tab">Documents</a></li>
+    <li role="presentation"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Info</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="papers">
+      <%= render partial: 'papers/paper_table', locals: {papers: @papers.where(is_info: false), model_path: 'employee'} %>
+    </div>
+    <div role="tabpanel" class="tab-pane fade" id="info">
+      <%= render partial: 'papers/paper_table', locals: {papers: @papers.where(is_info: true), model_path: 'employee'} %>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <%= link_to 'Add new', new_truck_paper_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>
+  </div>
+  <div class="button-container">
+    <%= will_paginate @papers, renderer: BootstrapPagination::Rails %>
+  </div>
 
   <div class="button-container">
     <%= link_to 'Add paper', new_employee_paper_path(@document), {:remote => true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'}, class: 'btn btn-primary'} %>

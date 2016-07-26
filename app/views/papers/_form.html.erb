@@ -2,6 +2,9 @@
     <%= p.alert_message 'Please fix the errors below.', error_summary: false %>
     <%= p.text_field :description %>
     <%= p.text_field :expire, :value => "#{p.object.expire.strftime('%d/%m/%Y') unless p.object.new_record? || p.object.expire.nil? }", 'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'data-date-autoclose' => 'true' %>
+    <%= p.form_group :paid, label: {text: 'It is info?'} do %>
+        <%= p.check_box :is_info, label: '' %>
+    <% end %>
     <%= p.text_field :comments %>
     <%= p.fields_for :attachments do |a| %>
         <div class="button-container">

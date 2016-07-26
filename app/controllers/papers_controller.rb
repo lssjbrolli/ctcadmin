@@ -107,7 +107,7 @@ class PapersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def paper_params
-    params.require(:paper).permit(:description, :expire, :comments, attachments_attributes: [:id, :file, :_destroy])
+    params.require(:paper).permit(:description, :expire, :is_info, :comments, attachments_attributes: [:id, :file, :_destroy])
   end
 
 end
