@@ -30,7 +30,7 @@ module ApplicationHelper
   end
 
   def check_mounted
-    SiteConfig['util.use_s3'] == 'true' || (SiteConfig['util.use_s3'] == 'false' && File.file?("#{Rails.root}/public/uploads/mounted"))
+    !ENV['AWS_ACCESS_KEY_ID'].empty? || ENV['AWS_ACCESS_KEY_ID'].empty? && File.file?("#{Rails.root}/public/uploads/mounted")
   end
 
 end
