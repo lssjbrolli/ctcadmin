@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   def index
     @truck = Truck.find(params[:truck_id])
     @q = @truck.events.ransack(params[:q])
-    @events = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8).order('date ASC')
+    @events = @q.result(distinct: true).order('date DESC').paginate(:page => params[:page], :per_page => 8)
   end
 
   # GET /events/1
