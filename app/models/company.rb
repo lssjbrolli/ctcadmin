@@ -45,7 +45,7 @@ class Company < ActiveRecord::Base
       company = Valvat.new("#{self.country}#{self.vat}").exists?(:detail => true)
     end
 
-    if company == false || company.nil?
+    if company == false || company.nil? || company[:name].nil? || company[:address].nil?
       self.name = '#'
     else
       self.name = company[:name].titleize
