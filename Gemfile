@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.5.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.11'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -64,7 +64,7 @@ gem 'passenger'
 gem 'puma'
 
 # database
-gem 'pg'
+gem 'pg', '~> 0.18.4'
 
 # search
 gem 'ransack'

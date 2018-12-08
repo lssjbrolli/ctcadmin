@@ -1,4 +1,5 @@
-Ctcadmin::Application.routes.draw do
+Rails.application.routes.draw do
+    
 
   resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses,
             :employees, :payments

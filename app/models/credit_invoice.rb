@@ -43,15 +43,20 @@ class CreditInvoice < ActiveRecord::Base
 
   def set_paid
     self.credit_note_ids.each do |cn|
-      CreditNote.find(cn).update(paid: true)
+      CreditNote.find(cn).update_attribute(:paid, true)
     end
   end
 
   def make_pdf
+    logger.info 'we make invoice'
     pdf = CreditInvoicePdf.new(self, ActionController::Base.helpers)
+    byebug
     src = File.join(Rails.root, 'tmp/tmp.pdf')
+    byebug
     pdf.render_file src
+    byebug
     src_file = File.new(src)
+    byebug
     self.attachments.new(file: File.open(src_file))
   end
 
