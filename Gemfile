@@ -102,7 +102,7 @@ gem 'best_in_place'
 
 gem 'money-rails'
 
-gem 'eu_central_bank'
+gem 'eu_central_bank', '~>1.3.1'
 
 # use rest services
 gem 'httparty'
