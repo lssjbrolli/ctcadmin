@@ -48,15 +48,10 @@ class CreditInvoice < ActiveRecord::Base
   end
 
   def make_pdf
-    logger.info 'we make invoice'
     pdf = CreditInvoicePdf.new(self, ActionController::Base.helpers)
-    byebug
     src = File.join(Rails.root, 'tmp/tmp.pdf')
-    byebug
     pdf.render_file src
-    byebug
     src_file = File.new(src)
-    byebug
     self.attachments.new(file: File.open(src_file))
   end
 
