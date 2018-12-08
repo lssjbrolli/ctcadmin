@@ -1,5 +1,4 @@
 # encoding: utf-8
-#require 'carrierwave/processing/mime_types'
 
 class FileUploader < CarrierWave::Uploader::Base
   after :store, :delete_old_tmp_file
@@ -7,9 +6,6 @@ class FileUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
-
-  include CarrierWave::MimeTypes
-  process :set_content_type
 
   # Choose what kind of storage to use:
   #storage :aws
