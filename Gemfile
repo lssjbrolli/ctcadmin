@@ -64,7 +64,7 @@ gem 'passenger'
 gem 'puma'
 
 # database
-gem 'pg', '~> 0.18.4'
+gem 'pg', '~> 1.1.4'
 
 # search
 gem 'ransack'
