@@ -188,7 +188,7 @@ GEM
       rack
       rake (>= 0.8.1)
     pdf-core (0.7.0)
-    pg (0.18.4)
+    pg (1.1.4)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -355,7 +355,7 @@ DEPENDENCIES
   money-rails
   nested_form!
   passenger
-  pg (~> 0.18.4)
+  pg (~> 1.1.4)
   prawn
   prawn-table
   pry
