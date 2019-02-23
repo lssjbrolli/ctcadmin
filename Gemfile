@@ -87,7 +87,7 @@ end
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.4'
-  gem 'capybara', '~> 2.5'
+  gem 'capybara', '~> 3.13'
   gem 'factory_girl_rails', '~> 4.9.0'
 end
 
