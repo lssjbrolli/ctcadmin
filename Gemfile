@@ -94,7 +94,7 @@ end
 group :test do
   gem 'shoulda-matchers', '~> 3.0', require: false
   gem 'database_cleaner', '~> 1.5'
-  gem 'faker', '~> 1.6.1'
+  gem 'faker', '~> 1.9.3'
   gem 'simplecov', :require => false
 end
 
