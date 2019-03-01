@@ -255,7 +255,7 @@ GEM
     rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-rails (3.8.1)
+    rspec-rails (3.8.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -365,7 +365,7 @@ DEPENDENCIES
   rails-settings-cached
   rails_12factor
   ransack
-  rspec-rails (~> 3.4)
+  rspec-rails (~> 3.8)
   sass-rails
   sdoc
   shoulda-matchers (~> 3.0)
