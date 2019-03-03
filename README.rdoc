@@ -4,13 +4,13 @@ This is a bussiness administration software used by Cozma Transport 2005 SRL. It
 might not work for your needs, however tweaks and fixes are welcomed :)
 
 To install:
--clone the repo
--bundle install
--rename database.yml.default to database.yml and fill with your settings
--chose if using local storage or aws in app/uploaders/file_uploader.rb
--rename environment_variables.yml.default to environment_variables.yml and fill with your settings
--run the migrations
--run the app
--create a user, first user will be admin
--fill in company data and settings
--and your ready to rumble
+- clone the repo
+- bundle install
+- rename database.yml.default to database.yml and fill with your settings
+- chose if using local storage or aws in app/uploaders/file_uploader.rb
+- rename environment_variables.yml.default to environment_variables.yml and fill with your settings
+- run the migrations
+- run the app
+- create a user, first user will be admin
+- fill in company data and settings
+- and your ready to rumble
