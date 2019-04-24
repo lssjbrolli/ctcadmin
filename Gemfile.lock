@@ -84,7 +84,7 @@ GEM
       sassc (>= 2.0.0)
     bootstrap_form (2.7.0)
     builder (3.2.3)
-    byebug (11.0.0)
+    byebug (11.0.1)
     callsite (0.0.11)
     capybara (2.18.0)
       addressable
