@@ -108,14 +108,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.4)
-    countries (2.1.4)
+    concurrent-ruby (1.1.5)
+    countries (3.0.0)
       i18n_data (~> 0.8.0)
-      money (~> 6.9)
       sixarm_ruby_unaccent (~> 1.1)
       unicode_utils (~> 1.4)
-    country_select (3.1.1)
-      countries (~> 2.0)
+    country_select (4.0.0)
+      countries (~> 3.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.4)
     database_cleaner (1.7.0)
