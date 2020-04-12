@@ -75,7 +75,7 @@ gem 'pg'
 gem 'ransack'
 
 # site settings
-gem 'rails-settings-cached'
+gem 'rails-settings-cached', '0.7.2'
 
 group :production do
   gem 'rails_12factor'
