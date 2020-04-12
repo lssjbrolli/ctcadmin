@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         @payment.update_column('updated', 'false')
-        format.html { redirect_to employee_payments_url(@payment.employee), flash: {success: 'Order was successfully created.'} }
+        format.html { redirect_to employee_payments_url(@payment.employee), flash: { success: 'Order was successfully created.' } }
       else
         format.html { render action: 'new' }
       end

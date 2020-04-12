@@ -2,15 +2,15 @@ module ImageConvert
   extend ActiveSupport::Concern
 
   def convert
-    #create list with attached files
+    # create list with attached files
     @files = []
     self.attachments.each { |x| @files << x.file.current_path }
-    #check if we have any files to work with
+    # check if we have any files to work with
     unless @files.include?(nil) or @files.empty?
-      #if the files are images convert them to a pdf
+      # if the files are images convert them to a pdf
       if self.attachments[0].file.content_type.include?('image')
         image_to_pdf(@files)
-        #if the files are pdfs and more than one join them
+        # if the files are pdfs and more than one join them
       elsif self.attachments[0].file.content_type.include?('pdf') && @files.count > 1
         join_pdfs
       end
@@ -21,7 +21,7 @@ module ImageConvert
 
   private
 
-  #use prawn to create pdf from multiple images
+  # use prawn to create pdf from multiple images
   def image_to_pdf(imgs)
     tmp_path = "#{Rails.root}/tmp.pdf"
     pdf = ImageToPdf.new(imgs)
@@ -33,5 +33,4 @@ module ImageConvert
   def join_pdfs
     logger.debug 'INFO: multiple pdfs' # TODO
   end
-
 end

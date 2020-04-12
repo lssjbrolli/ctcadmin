@@ -1,5 +1,4 @@
 module CreditNotesHelper
-
   def truck(cn)
     unless cn.truck.nil?
       cn.truck.registration
@@ -13,5 +12,4 @@ module CreditNotesHelper
       '<i class="glyphicon glyphicon-remove"></i>'
     end
   end
-
 end

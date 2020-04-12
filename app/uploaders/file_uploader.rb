@@ -8,7 +8,7 @@ class FileUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use:
-  #storage :aws
+  # storage :aws
   storage :file
 
   # Override the directory where uploaded files will be stored.
@@ -26,23 +26,23 @@ class FileUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  #process :test, if: :image?
+  # process :test, if: :image?
 
-  #def to_pdf
-  #temp_dir  = Rails.root.join('tmp', 'pdf')
-  #temp_path = temp_dir.join("#{model.attachable.number}.pdf")
+  # def to_pdf
+  # temp_dir  = Rails.root.join('tmp', 'pdf')
+  # temp_path = temp_dir.join("#{model.attachable.number}.pdf")
 
-  #FileUtils.mkdir_p(temp_dir)
+  # FileUtils.mkdir_p(temp_dir)
 
-  #pdf = ExpensePdf.new(current_path)
+  # pdf = ExpensePdf.new(current_path)
 
-  #pdf.render_file(temp_path)
+  # pdf.render_file(temp_path)
 
-  #File.unlink(current_path)
-  #FileUtils.cp(temp_path, current_path)
+  # File.unlink(current_path)
+  # FileUtils.cp(temp_path, current_path)
 
-  #self.file.instance_variable_set(:@content_type, 'application/pdf')
-  #end
+  # self.file.instance_variable_set(:@content_type, 'application/pdf')
+  # end
 
   def filename
     unless original_filename.nil?
@@ -89,5 +89,4 @@ class FileUploader < CarrierWave::Uploader::Base
   def cache_dir
     "#{Rails.root}/tmp/uploads"
   end
-
 end

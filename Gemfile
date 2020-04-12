@@ -39,8 +39,9 @@ end
 # Bootstrap
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-glyphicons'
-gem 'bootstrap-sass'
-gem 'bootstrap_form'
+gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap_form', '2.7.0'
+gem 'sassc-rails', '>= 2.1.0'
 gem 'will_paginate-bootstrap'
 
 # Country selector
@@ -84,11 +85,11 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'irb'
   gem 'listen'
   gem 'meta_request'
   gem 'pry'
   gem 'pry-rails'
-  gem 'solargraph'
 end
 
 group :development, :test do

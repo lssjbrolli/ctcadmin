@@ -1,6 +1,6 @@
 defaults: &defaults
   main:
-    diurna_baza: ''
+    diurna_zi: ''
     activities: ''
     vat_rate: ''
     currencies: ''

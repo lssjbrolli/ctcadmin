@@ -38,7 +38,7 @@ class EventsController < ApplicationController
     on_create(@event)
     respond_to do |format|
       if @event.save
-        format.html { redirect_to truck_events_path(@truck), flash: {success: 'Event was successfully created.'} }
+        format.html { redirect_to truck_events_path(@truck), flash: { success: 'Event was successfully created.' } }
       else
         format.html { render action: 'new' }
       end
@@ -52,7 +52,7 @@ class EventsController < ApplicationController
     on_update(@event)
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to truck_events_url(@event.truck_id), flash: {success: 'Event was successfully updated.'} }
+        format.html { redirect_to truck_events_url(@event.truck_id), flash: { success: 'Event was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -67,12 +67,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to truck_events_url(@event.truck_id), flash: {success: 'Event was successfully deleted.'} }
+      format.html { redirect_to truck_events_url(@event.truck_id), flash: { success: 'Event was successfully deleted.' } }
       format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])

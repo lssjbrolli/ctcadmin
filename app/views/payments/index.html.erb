@@ -28,15 +28,14 @@
         <% @payments.each do |payment| %>
             <tr>
               <td><%= payment.month.strftime('%B %Y') %></td>
-              <td><%= humanized_money payment.sron %></td>
-              <td><%= humanized_money_with_symbol payment.seur %></td>
-              <td><%= payment.per_day %></td>
-              <td><%= payment.avans %></td>
-              <td><%= payment.rest %></td>
-              <td><%= payment.total %></td>
+              <td><%= humanized_money payment.s_ron %></td>
+              <td><%= money_without_cents_and_with_symbol payment.s_eur %></td>
+              <td><%= humanized_money_with_symbol payment.per_day %></td>
+              <td><%= humanized_money_with_symbol payment.avans_diurna %></td>
+              <td><%= humanized_money_with_symbol payment.rest_diurna %></td>
+              <td><%= humanized_money_with_symbol payment.total_diurna %></td>
               <td class="btn-group btn-group-xm payment-group">
                 <%= gen_order(payment) %>
-                <%= link_to 'Bonus', bonus_path(payment), class: 'btn btn-info', remote: true, data: {toggle: 'modal', target: '#modal', backdrop: 'static'} %>
                 <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
                 <%= link_to 'Destroy', employee_payment_path(payment.employee, payment), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
             </tr>

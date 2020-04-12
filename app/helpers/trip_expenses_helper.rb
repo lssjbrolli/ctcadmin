@@ -1,5 +1,4 @@
 module TripExpensesHelper
-
   def card(cn)
     if cn.card
       '<i class="glyphicon glyphicon-ok"></i>'
@@ -7,5 +6,4 @@ module TripExpensesHelper
       '<i class="glyphicon glyphicon-remove"></i>'
     end
   end
-
 end

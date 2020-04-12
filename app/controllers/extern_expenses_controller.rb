@@ -64,12 +64,13 @@ class ExternExpensesController < ApplicationController
   def destroy
     @extern_expense.destroy
     respond_to do |format|
-      format.html { redirect_to extern_expenses_url, flash: {success: 'Expense was successfully deleted.'} }
+      format.html { redirect_to extern_expenses_url, flash: { success: 'Expense was successfully deleted.' } }
       format.json { head :no_content }
     end
   end
 
   private
+
   def set_companies_list
     @companies = Company.order('name ASC')
   end

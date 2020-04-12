@@ -1,6 +1,6 @@
 class Company < ActiveRecord::Base
   before_create :find_company
-  
+
   has_many :credit_invoices
   has_many :national_expenses
   has_many :extern_expenses
@@ -15,7 +15,6 @@ class Company < ActiveRecord::Base
     else
       international
     end
-
   end
 
   def national
@@ -56,7 +55,4 @@ class Company < ActiveRecord::Base
       self.vies_valid = true
       end
   end
-
 end
-
-

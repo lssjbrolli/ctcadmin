@@ -29,7 +29,6 @@ class TrucksController < ApplicationController
 
   # GET /trucks/1/edit
   def edit
-
   end
 
   # POST /trucks
@@ -39,7 +38,7 @@ class TrucksController < ApplicationController
     on_create(@truck)
     respond_to do |format|
       if @truck.save
-        format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Truck was successfully created.'} }
+        format.html { redirect_to truck_papers_path(@truck), flash: { success: 'Truck was successfully created.' } }
       else
         format.html { render action: 'new' }
       end
@@ -52,7 +51,7 @@ class TrucksController < ApplicationController
     on_update(@truck)
     respond_to do |format|
       if @truck.update(truck_params)
-        format.html { redirect_to truck_papers_path(@truck), flash: {success: 'Truck was successfully updated.'} }
+        format.html { redirect_to truck_papers_path(@truck), flash: { success: 'Truck was successfully updated.' } }
       else
         format.html { render action: 'edit' }
       end
@@ -64,7 +63,7 @@ class TrucksController < ApplicationController
   def destroy
     @truck.destroy
     respond_to do |format|
-      format.html { redirect_to trucks_url, flash: {success: 'Truck was successfully deleted.'} }
+      format.html { redirect_to trucks_url, flash: { success: 'Truck was successfully deleted.' } }
     end
   end
 
@@ -79,5 +78,4 @@ class TrucksController < ApplicationController
   def truck_params
     params.require(:truck).permit(:registration, :vin, :truck, :sold, papers_attributes: [:id, :description, :expire, :comments, :_destroy, attachments_attributes: [:id, :file, :_destroy]])
   end
-
 end

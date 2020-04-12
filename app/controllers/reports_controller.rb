@@ -13,9 +13,9 @@ class ReportsController < ApplicationController
     respond_to do |format|
       if @report.save
         set_id
-        format.html { redirect_to trip_expenses_path, flash: {success: 'Report was successfully created.'} }
+        format.html { redirect_to trip_expenses_path, flash: { success: 'Report was successfully created.' } }
       else
-        format.html { redirect_to path, flash: {error: 'An error has occured, raport was not successfully created.'} }
+        format.html { redirect_to path, flash: { error: 'An error has occured, raport was not successfully created.' } }
       end
     end
   end
@@ -26,8 +26,8 @@ class ReportsController < ApplicationController
       format.html do
         pdf = TripPdf.new(@report.ids.sort, view_context)
         send_data pdf.render, filename: "#{@report.id}.pdf",
-                  type: 'application/pdf',
-                  disposition: 'inline'
+                              type: 'application/pdf',
+                              disposition: 'inline'
       end
     end
   end
@@ -37,5 +37,4 @@ class ReportsController < ApplicationController
   def set_id
     @ids.each { |x| TripExpense.find_by_intnr(x).update(report_id: @report.id) }
   end
-
 end

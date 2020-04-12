@@ -18,5 +18,4 @@ class ImageToPdf < Prawn::Document
       end
     end
   end
-
 end

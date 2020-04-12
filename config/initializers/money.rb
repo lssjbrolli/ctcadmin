@@ -1,7 +1,6 @@
-# encoding : utf-8
+# frozen_string_literal: true
 
 MoneyRails.configure do |config|
-
   # To set the default currency
   #
   config.default_currency = :eur
@@ -47,21 +46,69 @@ MoneyRails.configure do |config|
   #
   # Example:
   # config.register_currency = {
-  #   :priority            => 1,
-  #   :iso_code            => "EU4",
-  #   :name                => "Euro with subunit of 4 digits",
-  #   :symbol              => "€",
-  #   :symbol_first        => true,
-  #   :subunit             => "Subcent",
-  #   :subunit_to_unit     => 10000,
-  #   :thousands_separator => ".",
-  #   :decimal_mark        => ","
+  #   priority:            1,
+  #   iso_code:            "EU4",
+  #   name:                "Euro with subunit of 4 digits",
+  #   symbol:              "€",
+  #   symbol_first:        true,
+  #   subunit:             "Subcent",
+  #   subunit_to_unit:     10000,
+  #   thousands_separator: ".",
+  #   decimal_mark:        ","
   # }
 
-  # Set money formatted output globally.
-  # Default value is nil meaning "ignore this option".
-  # Options are nil, true, false.
+  # Specify a rounding mode
+  # Any one of:
   #
-  # config.no_cents_if_whole = nil
-  # config.symbol = nil
+  # BigDecimal::ROUND_UP,
+  # BigDecimal::ROUND_DOWN,
+  # BigDecimal::ROUND_HALF_UP,
+  # BigDecimal::ROUND_HALF_DOWN,
+  # BigDecimal::ROUND_HALF_EVEN,
+  # BigDecimal::ROUND_CEILING,
+  # BigDecimal::ROUND_FLOOR
+  #
+  # set to BigDecimal::ROUND_HALF_EVEN by default
+  #
+  config.rounding_mode = BigDecimal::ROUND_HALF_UP
+
+  # Set default money format globally.
+  # Default value is nil meaning "ignore this option".
+  # Example:
+  #
+  # config.default_format = {
+  #   no_cents_if_whole: nil,
+  #   symbol: nil,
+  #   sign_before_symbol: nil
+  # }
+
+  # If you would like to use I18n localization (formatting depends on the
+  # locale):
+  config.locale_backend = :i18n
+  #
+  # Example (using default localization from rails-i18n):
+  #
+  # I18n.locale = :en
+  # Money.new(10_000_00, 'USD').format # => $10,000.00
+  # I18n.locale = :es
+  # Money.new(10_000_00, 'USD').format # => $10.000,00
+  #
+  # For the legacy behaviour of "per currency" localization (formatting depends
+  # only on currency):
+  # config.locale_backend = :currency
+  #
+  # Example:
+  # Money.new(10_000_00, 'USD').format # => $10,000.00
+  # Money.new(10_000_00, 'EUR').format # => €10.000,00
+  #
+  # In case you don't need localization and would like to use default values
+  # (can be redefined using config.default_format):
+  # config.locale_backend = nil
+
+  # Set default raise_error_on_money_parsing option
+  # It will be raise error if assigned different currency
+  # The default value is false
+  #
+  # Example:
+  # config.raise_error_on_money_parsing = false
 end

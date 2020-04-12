@@ -3,7 +3,7 @@ class Truck < ActiveRecord::Base
 
   validates :registration, :vin, presence: true
   validates :vin, uniqueness: true
-  #validates vin length
+  # validates vin length
 
   has_many :credit_notes
   has_many :events

@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :username, presence: true, length: {maximum: 10}, uniqueness: {case_sensitive: false}
-  validates :cnp, presence: true, uniqueness: {case_sensitive: false}
-  validates :password, length: {minimum: 6}
+  validates :username, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
+  validates :cnp, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, length: { minimum: 6 }
 
   has_secure_password
 
@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
-
 
   private
 
@@ -40,5 +39,4 @@ class User < ActiveRecord::Base
       self.activated = true
     end
   end
-
 end

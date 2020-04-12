@@ -36,7 +36,7 @@ class CreditInvoicesController < ApplicationController
     on_create(@credit_invoice)
     respond_to do |format|
       if @credit_invoice.save
-        format.html { redirect_to credit_invoices_path, flash: {success: 'Credit invoice was successfully created.'} }
+        format.html { redirect_to credit_invoices_path, flash: { success: 'Credit invoice was successfully created.' } }
       else
         format.html { render action: 'new' }
       end
@@ -49,7 +49,7 @@ class CreditInvoicesController < ApplicationController
     on_update(@credit_invoice)
     respond_to do |format|
       if @credit_invoice.update(credit_invoice_params)
-        format.html { redirect_to credit_invoices_path, flash: {success: 'Credit invoice was successfully updated.'} }
+        format.html { redirect_to credit_invoices_path, flash: { success: 'Credit invoice was successfully updated.' } }
       else
         format.html { render action: 'edit' }
       end
@@ -61,12 +61,13 @@ class CreditInvoicesController < ApplicationController
   def destroy
     @credit_invoice.destroy
     respond_to do |format|
-      format.html { redirect_to credit_invoices_url, flash: {success: 'Credit invoice was successfully deleted.'} }
+      format.html { redirect_to credit_invoices_url, flash: { success: 'Credit invoice was successfully deleted.' } }
       format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_credit_invoice
     @credit_invoice = CreditInvoice.find(params[:id])
@@ -74,6 +75,6 @@ class CreditInvoicesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_invoice_params
-    params.require(:credit_invoice).permit(:number, :date, :client_id, :currency, :tax_rate, :delegat, :ci, :eliberat, :transport, {:credit_note_ids => []})
+    params.require(:credit_invoice).permit(:number, :date, :client_id, :currency, :tax_rate, :delegat, :ci, :eliberat, :transport, { :credit_note_ids => [] })
   end
 end

@@ -1,5 +1,4 @@
 class CreditInvoice < ActiveRecord::Base
-
   before_save :set_number, :set_total, :set_paid
   after_create :make_pdf
   after_update :make_pdf
@@ -35,7 +34,7 @@ class CreditInvoice < ActiveRecord::Base
     if self.tax_rate == 'taxare inversa'
       self.total_value = self.net_value
     else
-      tax = self.tax_rate.split('%')[0].to_f/100
+      tax = self.tax_rate.split('%')[0].to_f / 100
       self.tax_value = self.net_value * tax
       self.total_value = self.net_value + self.tax_value
     end
@@ -54,5 +53,4 @@ class CreditInvoice < ActiveRecord::Base
     src_file = File.new(src)
     self.attachments.new(file: File.open(src_file))
   end
-
 end

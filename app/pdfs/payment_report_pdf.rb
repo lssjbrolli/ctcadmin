@@ -31,7 +31,6 @@ class PaymentReportPdf < Prawn::Document
     table.draw
   end
 
-
   def header
     data = ['Nume angajat', 'Avans', 'Rest', 'Total', 'Zile', 'Diurna per zi']
     table = make_table([data], header: true, width: 540, column_widths: [150, 80, 80, 80, 60, 90])
@@ -58,7 +57,6 @@ class PaymentReportPdf < Prawn::Document
     table.cells.style(size: 10)
     table.columns(0..5).style(align: :center)
 
-
     table.before_rendering_page do |page|
       page.row(0).border_top_width = 0
       page.row(-1).border_bottom_width = 2
@@ -76,6 +74,4 @@ class PaymentReportPdf < Prawn::Document
       %W(#{item.employee.name} #{item.avans} #{item.rest} #{item.total} #{item.days} #{item.per_day})
     end
   end
-
-
 end

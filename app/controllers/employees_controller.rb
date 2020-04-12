@@ -23,15 +23,15 @@ class EmployeesController < ApplicationController
   def show
   end
 
-  #generate monthly payments reports
+  # generate monthly payments reports
   def payment_report
     params['month'].empty? ? month = Date.today : month = params['month']
     respond_to do |format|
       format.html do
         pdf = PaymentReportPdf.new(month)
         send_data pdf.render, filename: "diurne #{month}.pdf",
-                  type: 'application/pdf',
-                  disposition: 'inline'
+                              type: 'application/pdf',
+                              disposition: 'inline'
       end
     end
   end
@@ -43,7 +43,7 @@ class EmployeesController < ApplicationController
 
     respond_to do |format|
       if @employee.save
-        format.html { redirect_to employees_path, flash: {success: 'Employee was successfully created.'} }
+        format.html { redirect_to employees_path, flash: { success: 'Employee was successfully created.' } }
         format.json { render action: 'show', status: :created, location: @employee }
       else
         format.html { render action: 'new' }
@@ -57,7 +57,7 @@ class EmployeesController < ApplicationController
   def update
     respond_to do |format|
       if @employee.update(employee_params)
-        format.html { redirect_to @employee, flash: {succes: 'Employee was successfully updated.'} }
+        format.html { redirect_to @employee, flash: { succes: 'Employee was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -77,6 +77,7 @@ class EmployeesController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_employee
     @employee = Employee.find(params[:id])

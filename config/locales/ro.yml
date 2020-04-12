@@ -1,55 +1,55 @@
 ro:
   date:
     abbr_day_names:
-    - Dum
-    - Lun
-    - Mar
-    - Mie
-    - Joi
-    - Vin
-    - Sâm
+      - Dum
+      - Lun
+      - Mar
+      - Mie
+      - Joi
+      - Vin
+      - Sâm
     abbr_month_names:
-    - Ian
-    - Feb
-    - Mar
-    - Apr
-    - Mai
-    - Iun
-    - Iul
-    - Aug
-    - Sep
-    - Oct
-    - Noi
-    - Dec
+      - Ian
+      - Feb
+      - Mar
+      - Apr
+      - Mai
+      - Iun
+      - Iul
+      - Aug
+      - Sep
+      - Oct
+      - Noi
+      - Dec
     day_names:
-    - Duminică
-    - Luni
-    - Marți
-    - Miercuri
-    - Joi
-    - Vineri
-    - Sâmbată
+      - Duminică
+      - Luni
+      - Marți
+      - Miercuri
+      - Joi
+      - Vineri
+      - Sâmbată
     formats:
       default: ! '%d-%m-%Y'
       long: ! '%d %B %Y'
       short: ! '%d %b'
     month_names:
-    - Ianuarie
-    - Februarie
-    - Martie
-    - Aprilie
-    - Mai
-    - Iunie
-    - Iulie
-    - August
-    - Septembrie
-    - Octombrie
-    - Noiembrie
-    - Decembrie
+      - Ianuarie
+      - Februarie
+      - Martie
+      - Aprilie
+      - Mai
+      - Iunie
+      - Iulie
+      - August
+      - Septembrie
+      - Octombrie
+      - Noiembrie
+      - Decembrie
     order:
-    - :day
-    - :month
-    - :year
+      - :day
+      - :month
+      - :year
   datetime:
     distance_in_words:
       about_x_hours:
@@ -107,11 +107,11 @@ ro:
   errors: &errors
     format: ! '%{attribute} %{message}'
     messages:
-      carrierwave_processing_error: "Imaginea nu poate fi ajustata."
-      carrierwave_integrity_error: "Nu este o imagine."
-      carrierwave_download_error: "Imaginea nu poate fi descarcata."
-      extension_white_list_error: "Nu poti trimite fisiere %{extension}, doar: %{allowed_types}."
-      extension_black_list_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+      carrierwave_processing_error: 'Imaginea nu poate fi ajustata.'
+      carrierwave_integrity_error: 'Nu este o imagine.'
+      carrierwave_download_error: 'Imaginea nu poate fi descarcata.'
+      extension_white_list_error: 'Nu poti trimite fisiere %{extension}, doar: %{allowed_types}.'
+      extension_black_list_error: 'You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}'
       accepted: trebuie dat acceptul
       blank: nu poate fi gol
       confirmation: nu este confirmat
@@ -149,12 +149,12 @@ ro:
   number:
     currency:
       format:
-        delimiter: .
+        delimiter: ''
         format: ! '%n %u'
         precision: 2
-        separator: ','
+        separator: '.'
         significant: false
-        strip_insignificant_zeros: false
+        strip_insignificant_zeros: true
         unit: RON
     format:
       delimiter: .

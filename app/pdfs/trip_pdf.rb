@@ -1,5 +1,4 @@
 class TripPdf < Prawn::Document
-
   def initialize(report, view)
     super(page_size: 'A4')
 
@@ -31,7 +30,6 @@ class TripPdf < Prawn::Document
     end
     table.draw
   end
-
 
   def header
     data = ['Nr. crt.', 'Nr. actului', 'Data', 'Descrierea', 'Card', 'Suma originala', 'Suma in EUR']
@@ -66,7 +64,6 @@ class TripPdf < Prawn::Document
     table.cells.style(size: 10)
     table.columns(0..4).style(align: :center)
     table.columns(5..6).style(align: :right)
-
 
     table.before_rendering_page do |page|
       page.row(0).border_top_width = 2

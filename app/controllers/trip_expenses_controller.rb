@@ -34,7 +34,7 @@ class TripExpensesController < ApplicationController
     on_create(@trip_expense)
     respond_to do |format|
       if @trip_expense.save
-        format.html { redirect_to trip_expenses_url, flash: {success: 'Expense was successfully created.'} }
+        format.html { redirect_to trip_expenses_url, flash: { success: 'Expense was successfully created.' } }
         format.json { render action: 'show', status: :created, location: @trip_expense }
       else
         format.html { render action: 'new' }
@@ -49,7 +49,7 @@ class TripExpensesController < ApplicationController
     on_update(@trip_expense)
     respond_to do |format|
       if @trip_expense.update(trip_expense_params)
-        format.html { redirect_to trip_expenses_path, flash: {success: 'Expense was successfully updated.'} }
+        format.html { redirect_to trip_expenses_path, flash: { success: 'Expense was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -63,7 +63,7 @@ class TripExpensesController < ApplicationController
   def destroy
     @trip_expense.destroy
     respond_to do |format|
-      format.html { redirect_to trip_expenses_url, flash: {success: 'Expense was successfully deleted.'} }
+      format.html { redirect_to trip_expenses_url, flash: { success: 'Expense was successfully deleted.' } }
       format.json { head :no_content }
     end
   end

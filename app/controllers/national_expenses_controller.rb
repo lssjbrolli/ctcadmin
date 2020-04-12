@@ -34,7 +34,7 @@ class NationalExpensesController < ApplicationController
     on_create(@national_expense)
     respond_to do |format|
       if @national_expense.save
-        format.html { redirect_to national_expenses_url, flash: {success: 'Expense was successfully created.'} }
+        format.html { redirect_to national_expenses_url, flash: { success: 'Expense was successfully created.' } }
         format.json { render action: 'show', status: :created, location: @national_expense }
       else
         format.html { render action: 'new' }
@@ -49,7 +49,7 @@ class NationalExpensesController < ApplicationController
     on_update(@national_expense)
     respond_to do |format|
       if @national_expense.update(national_expense_params)
-        format.html { redirect_to national_expenses_path, flash: {success: 'Expense was successfully updated.'} }
+        format.html { redirect_to national_expenses_path, flash: { success: 'Expense was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -63,12 +63,13 @@ class NationalExpensesController < ApplicationController
   def destroy
     @national_expense.destroy
     respond_to do |format|
-      format.html { redirect_to national_expenses_url, flash: {success: 'Expense was successfully deleted.'} }
+      format.html { redirect_to national_expenses_url, flash: { success: 'Expense was successfully deleted.' } }
       format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_national_expense
     @national_expense = NationalExpense.find(params[:id])
@@ -82,5 +83,4 @@ class NationalExpensesController < ApplicationController
   def set_companies_list
     @companies = Company.order('name ASC')
   end
-
 end

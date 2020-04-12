@@ -35,7 +35,7 @@ class CreditNotesController < ApplicationController
     on_create(@credit_note)
     respond_to do |format|
       if @credit_note.save
-        format.html { redirect_to credit_notes_url, flash: {success: 'Credit note was successfully created.'} }
+        format.html { redirect_to credit_notes_url, flash: { success: 'Credit note was successfully created.' } }
         format.json { render action: 'show', status: :created, location: @credit_note }
       else
         format.html { render action: 'new' }
@@ -50,7 +50,7 @@ class CreditNotesController < ApplicationController
     on_update(@credit_note)
     respond_to do |format|
       if @credit_note.update(credit_note_params)
-        format.html { redirect_to session[:last_page], flash: {success: 'Credit note was successfully updated.'} }
+        format.html { redirect_to session[:last_page], flash: { success: 'Credit note was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,7 +64,7 @@ class CreditNotesController < ApplicationController
   def destroy
     @credit_note.destroy
     respond_to do |format|
-      format.html { redirect_to credit_notes_url, flash: {success: 'Credit note was successfully deleted.'} }
+      format.html { redirect_to credit_notes_url, flash: { success: 'Credit note was successfully deleted.' } }
       format.json { head :no_content }
     end
   end
@@ -85,9 +85,9 @@ class CreditNotesController < ApplicationController
   def uniq_id
     unless credit_note_params[:order_nr].nil?
       unless credit_note_params[:order_nr].empty?
-        clist = CreditNote.where('truck_id = :truck and order_nr = :order', {truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+        clist = CreditNote.where('truck_id = :truck and order_nr = :order', { truck: @credit_note.truck_id, order: credit_note_params[:order_nr] })
         unless clist.empty?
-          list = CreditNote.where('truck_id = :truck and order_nr >= :order', {truck: @credit_note.truck_id, order: credit_note_params[:order_nr]})
+          list = CreditNote.where('truck_id = :truck and order_nr >= :order', { truck: @credit_note.truck_id, order: credit_note_params[:order_nr] })
           list.each { |x| x.update_attribute('order_nr', x.order_nr + 1) }
         end
       end

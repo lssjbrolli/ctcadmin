@@ -1,6 +1,6 @@
-Rails.application.routes.draw do
-    
+# frozen_string_literal: true
 
+Rails.application.routes.draw do
   resources :extern_expenses, :companies, :credit_invoices, :credit_notes, :national_expenses, :trip_expenses,
             :employees, :payments
 
@@ -8,16 +8,14 @@ Rails.application.routes.draw do
 
   get 'payment_report', to: 'employees#payment_report'
 
-  get '/payments/:id/bonus', to: 'payments#bonus', as: :bonus
-
   get '/payments/:id/order', to: 'orders#new', as: :new_order
 
   get 'restart', to: 'site_configs#restart'
 
   resources :reports, only: :show
-  resources :site_configs, only: [:index, :update]
+  resources :site_configs, only: %i[index update]
 
-  resources :orders, only: [:show, :create]
+  resources :orders, only: %i[show create]
 
   resources :employees do
     resources :payments
@@ -31,9 +29,9 @@ Rails.application.routes.draw do
 
   resources :users, except: :show
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: %i[new create destroy]
 
-  #get 'profile', to: 'users#show'
+  # get 'profile', to: 'users#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

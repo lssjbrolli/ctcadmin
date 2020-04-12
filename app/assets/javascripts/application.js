@@ -13,38 +13,38 @@
 //= require jquery
 //= require jquery_ujs
 //= require best_in_place
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.ro.js
 //= require jquery_nested_form
 //= require_tree .
 
 $(document).ready(function () {
-    $('[data-behaviour~=datepicker]').datepicker({
-        format: "yyyy-mm-dd",
-        todayBtn: "linked",
-        orientation: "top left",
-        autoclose: true,
-        todayHighlight: true
-    });
+  $('[data-behaviour~=datepicker]').datepicker({
+    format: 'yyyy-mm-dd',
+    todayBtn: 'linked',
+    orientation: 'top left',
+    autoclose: true,
+    todayHighlight: true,
+  });
 });
 
 $(document).ready(function () {
-    $(".alert").delay(3000).hide('fast');
+  $('.alert').delay(3000).hide('fast');
 });
 
 $(document).ready(function () {
-    return $("[data-provide=monthpicker]").datepicker({
-        format: "M yyyy",
-        minViewMode: 1,
-        discard_day: true,
-        autoclose: true
-    });
+  return $('[data-provide=monthpicker]').datepicker({
+    format: 'M yyyy',
+    minViewMode: 1,
+    discard_day: true,
+    autoclose: true,
+  });
 });
 
 $(document).ready(function () {
-    $("#storage_modal").modal({
-        keyboard: false,
-        backdrop: "static"
-    });
+  $('#storage_modal').modal({
+    keyboard: false,
+    backdrop: 'static',
+  });
 });
