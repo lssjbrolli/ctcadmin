@@ -62,7 +62,7 @@ gem 'prawn'
 gem 'prawn-table'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt'
+gem 'bcrypt', '3.1.12'
 
 # server
 gem 'passenger'
