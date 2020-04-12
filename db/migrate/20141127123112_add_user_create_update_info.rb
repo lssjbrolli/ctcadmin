@@ -1,4 +1,6 @@
-class AddUserCreateUpdateInfo < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddUserCreateUpdateInfo < ActiveRecord::Migration[4.2]
   def change
     add_column :attachments, :create_id, :integer
     add_column :attachments, :update_id, :integer

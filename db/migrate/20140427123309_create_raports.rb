@@ -1,4 +1,6 @@
-class CreateRaports < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreateRaports < ActiveRecord::Migration[4.2]
   def change
     create_table :reports do |t|
       t.string :name

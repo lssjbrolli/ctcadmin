@@ -1,4 +1,6 @@
-class AddPropsToCardExpenses < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddPropsToCardExpenses < ActiveRecord::Migration[4.2]
   def change
     # noinspection RailsParamDefResolve
     add_column :card_expenses, :number, :string
@@ -7,9 +9,9 @@ class AddPropsToCardExpenses < ActiveRecord::Migration
     # noinspection RailsParamDefResolve
     add_column :card_expenses, :description, :text
     # noinspection RailsParamDefResolve
-    add_column :card_expenses, :value, :decimal, :precision => 8, :scale => 2
+    add_column :card_expenses, :value, :decimal, precision: 8, scale: 2
     # noinspection RailsParamDefResolve
-    add_column :card_expenses, :value_eur, :decimal, :precision => 8, :scale => 2
+    add_column :card_expenses, :value_eur, :decimal, precision: 8, scale: 2
     # noinspection RailsParamDefResolve
     add_column :card_expenses, :currency, :string
   end

@@ -1,4 +1,6 @@
-class EditNationalExpenses < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class EditNationalExpenses < ActiveRecord::Migration[4.2]
   def change
     remove_column :national_expenses, :currency
     remove_column :national_expenses, :value_ron

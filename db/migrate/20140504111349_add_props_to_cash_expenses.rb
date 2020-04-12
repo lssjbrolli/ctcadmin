@@ -1,4 +1,6 @@
-class AddPropsToCashExpenses < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddPropsToCashExpenses < ActiveRecord::Migration[4.2]
   def change
     # noinspection RailsParamDefResolve
     add_column :cash_expenses, :number, :string
@@ -14,6 +16,5 @@ class AddPropsToCashExpenses < ActiveRecord::Migration
     add_column :cash_expenses, :value_ron, :decimal, precision: 8, scale: 2
     # noinspection RailsParamDefResolve
     add_column :cash_expenses, :raport_id, :integer
-
   end
 end

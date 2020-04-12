@@ -1,4 +1,6 @@
-class ModifyExpenses < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class ModifyExpenses < ActiveRecord::Migration[4.2]
   def change
     # noinspection RailsParamDefResolve
     remove_column :expenses, :internal_number

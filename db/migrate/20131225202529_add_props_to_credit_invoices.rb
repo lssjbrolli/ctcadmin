@@ -1,4 +1,6 @@
-class AddPropsToCreditInvoices < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddPropsToCreditInvoices < ActiveRecord::Migration[4.2]
   def change
     add_column :credit_invoices, :number, :string
     add_column :credit_invoices, :date, :date

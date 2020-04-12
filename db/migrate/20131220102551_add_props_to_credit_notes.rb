@@ -1,4 +1,6 @@
-class AddPropsToCreditNotes < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddPropsToCreditNotes < ActiveRecord::Migration[4.2]
   def change
     add_column :credit_notes, :number, :string
     add_column :credit_notes, :start, :string

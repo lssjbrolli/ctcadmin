@@ -1,4 +1,6 @@
-class RemoveFileFields < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class RemoveFileFields < ActiveRecord::Migration[4.2]
   def change
     remove_column :credit_invoices, :file
     remove_column :credit_notes, :file

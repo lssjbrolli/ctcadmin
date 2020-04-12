@@ -1,4 +1,6 @@
-class CreateSettings < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreateSettings < ActiveRecord::Migration[4.2]
   def self.up
     create_table :settings do |t|
       t.string  :var,        null: false
@@ -8,7 +10,7 @@ class CreateSettings < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :settings, %i(thing_type thing_id var), unique: true
+    add_index :settings, %i[thing_type thing_id var], unique: true
   end
 
   def self.down

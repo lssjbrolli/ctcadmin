@@ -1,8 +1,7 @@
-class CreateDebitInvoices < ActiveRecord::Migration
-  def change
-    create_table :debit_invoices do |t|
+# frozen_string_literal: true
 
-      t.timestamps
-    end
+class CreateDebitInvoices < ActiveRecord::Migration[4.2]
+  def change
+    create_table :debit_invoices, &:timestamps
   end
 end

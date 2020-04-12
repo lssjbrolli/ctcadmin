@@ -1,4 +1,6 @@
-class CreatePapers < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreatePapers < ActiveRecord::Migration[4.2]
   def change
     create_table :papers do |t|
       t.string :description

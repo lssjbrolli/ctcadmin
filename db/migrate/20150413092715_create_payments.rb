@@ -1,8 +1,7 @@
-class CreatePayments < ActiveRecord::Migration
-  def change
-    create_table :payments do |t|
+# frozen_string_literal: true
 
-      t.timestamps
-    end
+class CreatePayments < ActiveRecord::Migration[4.2]
+  def change
+    create_table :payments, &:timestamps
   end
 end

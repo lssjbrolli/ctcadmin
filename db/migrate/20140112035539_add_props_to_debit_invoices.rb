@@ -1,4 +1,6 @@
-class AddPropsToDebitInvoices < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddPropsToDebitInvoices < ActiveRecord::Migration[4.2]
   def change
     # noinspection RailsParamDefResolve
     add_column :debit_invoices, :number, :string

@@ -1,12 +1,17 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
-ruby '2.6.0'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.11'
+gem 'rails', '5.2.4.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
@@ -15,16 +20,16 @@ gem 'uglifier'
 gem 'coffee-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-#gem 'turbolinks'
+# gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-#gem 'jbuilder', '~> 1.2'
+# gem 'jbuilder', '~> 1.2'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -32,27 +37,27 @@ group :doc do
 end
 
 # Bootstrap
-gem 'bootstrap-sass'
-gem 'will_paginate-bootstrap'
-gem 'bootstrap_form'
-gem 'bootstrap-glyphicons'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-glyphicons'
+gem 'bootstrap-sass'
+gem 'bootstrap_form'
+gem 'will_paginate-bootstrap'
 
 # Country selector
-gem 'country_select'
 gem 'countries'
+gem 'country_select'
 
 # vies checker
 gem 'valvat'
 
 # nested forms
-gem 'nested_form', github: 'ryanb/nested_form'
+gem 'nested_form'
 
 # upload
 gem 'carrierwave'
 gem 'carrierwave-aws'
 
-#pdfs
+# pdfs
 gem 'prawn'
 gem 'prawn-table'
 
@@ -64,7 +69,7 @@ gem 'passenger'
 gem 'puma'
 
 # database
-gem 'pg', '~> 1.1.4'
+gem 'pg'
 
 # search
 gem 'ransack'
@@ -79,35 +84,35 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'listen'
   gem 'meta_request'
   gem 'pry'
   gem 'pry-rails'
+  gem 'solargraph'
 end
 
 group :development, :test do
   gem 'byebug'
-  gem 'rspec-rails', '~> 3.8'
-  gem 'capybara', '~> 2.5'
-  gem 'factory_girl_rails', '~> 4.9.0'
+  gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
 end
 
 group :test do
-  gem 'shoulda-matchers', '~> 3.0', require: false
-  gem 'database_cleaner', '~> 1.5'
-  gem 'faker', '~> 1.6.1'
-  gem 'simplecov', :require => false
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
 end
 
 gem 'best_in_place'
 
 gem 'money-rails'
 
-gem 'eu_central_bank', '~>1.3.1'
+gem 'eu_central_bank'
 
 # use rest services
 gem 'httparty'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
-
-

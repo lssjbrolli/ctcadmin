@@ -1,8 +1,7 @@
-class CreateCardExpenses < ActiveRecord::Migration
-  def change
-    create_table :card_expenses do |t|
+# frozen_string_literal: true
 
-      t.timestamps
-    end
+class CreateCardExpenses < ActiveRecord::Migration[4.2]
+  def change
+    create_table :card_expenses, &:timestamps
   end
 end
