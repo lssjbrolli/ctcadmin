@@ -1,23 +1,24 @@
+# frozen_string_literal: true
+
 class ExternExpensesController < ApplicationController
   include UserInfo
 
-  before_action :set_extern_expense, only: [:show, :edit, :update, :destroy]
-  before_action :set_companies_list, only: [:new, :edit, :create]
+  before_action :set_extern_expense, only: %i[show edit update destroy]
+  before_action :set_companies_list, only: %i[new edit create]
   before_action :signed_in_user
   before_action :user_activated
-  before_filter :format_date_time, :only => [:create, :update]
+  before_action :format_date_time, only: %i[create update]
 
   # GET /extern_expenses
   # GET /extern_expenses.json
   def index
     @q = ExternExpense.ransack(params[:q])
-    @extern_expenses = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+    @extern_expenses = @q.result(distinct: true).paginate(page: params[:page], per_page: 8)
   end
 
   # GET /extern_expenses/1
   # GET /extern_expenses/1.json
-  def show
-  end
+  def show; end
 
   # GET /extern_expenses/new
   def new
@@ -25,8 +26,7 @@ class ExternExpensesController < ApplicationController
   end
 
   # GET /extern_expenses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /extern_expenses
   # POST /extern_expenses.json
@@ -90,6 +90,6 @@ class ExternExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def extern_expense_params
-    params.require(:extern_expense).permit(:number, :date, :description, :value, :currency, :supplier_id, attachments_attributes: [:id, :file, :_destroy, :file_cache])
+    params.require(:extern_expense).permit(:number, :date, :description, :value, :currency, :supplier_id, attachments_attributes: %i[id file _destroy file_cache])
   end
 end
