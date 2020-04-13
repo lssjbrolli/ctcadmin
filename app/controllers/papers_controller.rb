@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class PapersController < ApplicationController
   include UserInfo
 
-  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_paper, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
   before_action :update_file, only: :update
@@ -10,7 +12,7 @@ class PapersController < ApplicationController
   # GET /papers
   # GET /papers.json
   def index
-    @papers = @document.papers.paginate(:page => params[:page], :per_page => 14).order('expire ASC').order('description ASC')
+    @papers = @document.papers.paginate(page: params[:page], per_page: 14).order('expire ASC').order('description ASC')
   end
 
   # GET /papers/1
@@ -88,16 +90,16 @@ class PapersController < ApplicationController
   # replace file on update
   def update_file
     # check to see if there is a file to replace or just create a new record
-    unless Paper.find(params[:id]).attachments.empty?
-      # check to see if the user wants to replace the file or just edit paper attributes
-      unless paper_params[:attachments_attributes]['0'][:id].nil?
-        # Destroy the old record and create a new one with the same id
-        # because carrier doesn't support editing file attribute
-        Paper.find(params[:id]).attachments.destroy_all
-        a = @paper.attachments.new
-        a.update(id: paper_params[:attachments_attributes]['0'][:id])
-      end
-    end
+    return if Paper.find(params[:id]).attachments.empty?
+
+    # check to see if the user wants to replace the file or just edit paper attributes
+    return if paper_params[:attachments_attributes]['0'][:id].nil?
+
+    # Destroy the old record and create a new one with the same id
+    # because carrier doesn't support editing file attribute
+    Paper.find(params[:id]).attachments.destroy_all
+    a = @paper.attachments.new
+    a.update(id: paper_params[:attachments_attributes]['0'][:id])
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -107,6 +109,6 @@ class PapersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def paper_params
-    params.require(:paper).permit(:description, :expire, :is_info, :comments, attachments_attributes: [:id, :file, :_destroy])
+    params.require(:paper).permit(:description, :expire, :is_info, :comments, attachments_attributes: %i[id file _destroy])
   end
 end

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class EmployeesController < ApplicationController
   include UserInfo
 
-  before_action :set_employee, only: [:show, :edit, :update, :destroy]
+  before_action :set_employee, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
 
   # GET /employees
   # GET /employees.json
   def index
-    @employees = Employee.all.paginate(:page => params[:page], :per_page => 8).order('cnp ASC')
+    @employees = Employee.all.paginate(page: params[:page], per_page: 8).order('cnp ASC')
   end
 
   # GET /employees/new
@@ -17,15 +19,13 @@ class EmployeesController < ApplicationController
   end
 
   # GET /employees/1/edit
-  def edit
-  end
+  def edit; end
 
-  def show
-  end
+  def show; end
 
   # generate monthly payments reports
   def payment_report
-    params['month'].empty? ? month = Date.today : month = params['month']
+    month = params['month'].empty? ? Date.today : params['month']
     respond_to do |format|
       format.html do
         pdf = PaymentReportPdf.new(month)

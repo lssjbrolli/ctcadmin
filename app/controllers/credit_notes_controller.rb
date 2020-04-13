@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreditNotesController < ApplicationController
   include UserInfo
 
-  before_action :set_credit_note, only: [:show, :edit, :update, :destroy]
+  before_action :set_credit_note, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
   before_action :uniq_id, only: :update
@@ -10,13 +12,12 @@ class CreditNotesController < ApplicationController
   # GET /credit_notes.json
   def index
     @q = CreditNote.ransack(params[:q])
-    @cnotes = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
+    @cnotes = @q.result(distinct: true).paginate(page: params[:page], per_page: 8)
   end
 
   # GET /credit_notes/1
   # GET /credit_notes/1.json
-  def show
-  end
+  def show; end
 
   # GET /credit_notes/new
   def new
@@ -78,7 +79,7 @@ class CreditNotesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def credit_note_params
-    params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :order_nr, attachments_attributes: [:id, :file, :_destroy, :file_cache])
+    params.require(:credit_note).permit(:number, :start, :stop, :week, :value, :paid, :currency, :notes, :truck_id, :order_nr, attachments_attributes: %i[id file _destroy file_cache])
   end
 
   # mass update if order_nr already exists

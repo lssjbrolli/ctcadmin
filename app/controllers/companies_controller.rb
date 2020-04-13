@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CompaniesController < ApplicationController
   include UserInfo
 
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
 
@@ -9,7 +11,9 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @q = Company.ransack(params[:q])
-    @companies = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 8).order('name ASC')
+    @companies = @q.result(distinct: true)
+                   .paginate(page: params[:page], per_page: 8)
+                   .order('name ASC')
   end
 
   # GET /companies/1
@@ -24,8 +28,7 @@ class CompaniesController < ApplicationController
   end
 
   # GET /companies/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /companies
   # POST /companies.json
@@ -34,11 +37,20 @@ class CompaniesController < ApplicationController
     on_create(@company)
     respond_to do |format|
       if @company.save
-        format.html { redirect_to companies_url, flash: { success: 'Company was successfully created.' } }
-        format.json { render action: 'show', status: :created, location: @company }
+        format.html do
+          redirect_to companies_url,
+                      flash: { success: 'Company was successfully created.' }
+        end
+        format.json do
+          render action: 'show',
+                 status: :created, location: @company
+        end
       else
         format.html { render action: 'new' }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @company.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -49,11 +61,17 @@ class CompaniesController < ApplicationController
     on_update(@company)
     respond_to do |format|
       if @company.update(company_params)
-        format.html { redirect_to companies_url, flash: { success: 'Company was successfully updated.' } }
+        format.html do
+          redirect_to companies_url,
+                      flash: { success: 'Company was successfully updated.' }
+        end
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @company.errors,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -63,7 +81,10 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     respond_to do |format|
-      format.html { redirect_to companies_url, flash: { success: 'Company was successfully deleted.' } }
+      format.html do
+        redirect_to companies_url,
+                    flash: { success: 'Company was successfully deleted.' }
+      end
       format.json { head :no_content }
     end
   end
@@ -75,8 +96,13 @@ class CompaniesController < ApplicationController
     @company = Company.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  # only allow the white list through.
   def company_params
-    params.require(:company).permit(:name, :registration, :vat, :country, :vies_valid, :address, :acc_ron, :acc_eur, :bank, :capital, :phone)
+    params.require(:company).permit(
+      :name, :registration, :vat, :country,
+      :vies_valid, :address, :acc_ron,
+      :acc_eur, :bank, :capital, :phone
+    )
   end
 end

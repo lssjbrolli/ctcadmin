@@ -1,20 +1,21 @@
+# frozen_string_literal: true
+
 class User < ActiveRecord::Base
   before_save :username_downcase
   before_create :create_remember_token, :set_first_user
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
-  validates :username, presence: true, length: { maximum: 10 }, uniqueness: { case_sensitive: false }
-  validates :cnp, presence: true, uniqueness: { case_sensitive: false }
+  validates :first_name, :last_name, :username, :cnp, presence: true
+  validates :cnp, :username, uniqueness: { case_sensitive: false }
+  validates :username, length: { maximum: 10 }
   validates :password, length: { minimum: 6 }
 
   has_secure_password
 
-  def User.new_remember_token
+  def self.new_remember_token
     SecureRandom.urlsafe_base64
   end
 
-  def User.encrypt(token)
+  def self.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
@@ -34,9 +35,9 @@ class User < ActiveRecord::Base
   end
 
   def set_first_user
-    if User.count == 0
-      self.admin = true
-      self.activated = true
-    end
+    return unless User.count.zero?
+
+    self.admin = true
+    self.activated = true
   end
 end

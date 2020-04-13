@@ -1,25 +1,26 @@
+# frozen_string_literal: true
+
 class TrucksController < ApplicationController
   include UserInfo
 
-  before_action :set_truck, only: [:show, :edit, :update, :destroy]
+  before_action :set_truck, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
 
   # GET /trucks
   # GET /trucks.json
   def index
-    @trucks = Truck.order('sold ASC, truck DESC').paginate(:page => params[:page], :per_page => 8)
+    @trucks = Truck.order('sold ASC, truck DESC').paginate(page: params[:page], per_page: 8)
   end
 
   # GET /trucks/1
   # GET /trucks/1.json
-  def show
-  end
+  def show; end
 
   def cnotes
     @truck = Truck.find(params[:id])
     @q = @truck.credit_notes.ransack(params[:q])
-    @cn = @q.result(distinct: true).order('order_nr ASC').paginate(:page => params[:page], :per_page => 8)
+    @cn = @q.result(distinct: true).order('order_nr ASC').paginate(page: params[:page], per_page: 8)
   end
 
   # GET /trucks/new
@@ -28,8 +29,7 @@ class TrucksController < ApplicationController
   end
 
   # GET /trucks/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /trucks
   # POST /trucks.json
@@ -76,6 +76,6 @@ class TrucksController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def truck_params
-    params.require(:truck).permit(:registration, :vin, :truck, :sold, papers_attributes: [:id, :description, :expire, :comments, :_destroy, attachments_attributes: [:id, :file, :_destroy]])
+    params.require(:truck).permit(:registration, :vin, :truck, :sold, papers_attributes: [:id, :description, :expire, :comments, :_destroy, attachments_attributes: %i[id file _destroy]])
   end
 end

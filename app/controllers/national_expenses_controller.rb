@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class NationalExpensesController < ApplicationController
   include UserInfo
 
-  before_action :set_national_expense, only: [:show, :edit, :update, :destroy]
-  before_action :set_companies_list, only: [:new, :edit, :create]
+  before_action :set_national_expense, only: %i[show edit update destroy]
+  before_action :set_companies_list, only: %i[new edit create]
   before_action :signed_in_user
   before_action :user_activated
 
@@ -10,13 +12,12 @@ class NationalExpensesController < ApplicationController
   # GET /national_expenses.json
   def index
     @q = NationalExpense.ransack(params[:q])
-    @national_expenses = @q.result(distinct: true).includes(:supplier).paginate(:page => params[:page], :per_page => 8)
+    @national_expenses = @q.result(distinct: true).includes(:supplier).paginate(page: params[:page], per_page: 8)
   end
 
   # GET /national_expenses/1
   # GET /national_expenses/1.json
-  def show
-  end
+  def show; end
 
   # GET /national_expenses/new
   def new
@@ -24,8 +25,7 @@ class NationalExpensesController < ApplicationController
   end
 
   # GET /national_expenses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /national_expenses
   # POST /national_expenses.json
@@ -77,7 +77,7 @@ class NationalExpensesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def national_expense_params
-    params.require(:national_expense).permit(:currency, :number, :date, :value, :description, :supplier_id, :paid_by, attachments_attributes: [:id, :file, :_destroy])
+    params.require(:national_expense).permit(:currency, :number, :date, :value, :description, :supplier_id, :paid_by, attachments_attributes: %i[id file _destroy])
   end
 
   def set_companies_list

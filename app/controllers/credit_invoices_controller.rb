@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreditInvoicesController < ApplicationController
   include UserInfo
 
-  before_action :set_credit_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_credit_invoice, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
 
@@ -9,13 +11,14 @@ class CreditInvoicesController < ApplicationController
   # GET /credit_invoices.json
   def index
     @q = CreditInvoice.ransack(params[:q])
-    @cinvoices = @q.result(distinct: true).order('number DESC').paginate(:page => params[:page], :per_page => 8)
+    @cinvoices = @q.result(distinct: true)
+                   .order('number DESC')
+                   .paginate(page: params[:page], per_page: 8)
   end
 
   # GET /credit_invoices/1
   # GET /credit_invoices/1.json
-  def show
-  end
+  def show; end
 
   # GET /credit_invoices/new
   def new
@@ -36,7 +39,10 @@ class CreditInvoicesController < ApplicationController
     on_create(@credit_invoice)
     respond_to do |format|
       if @credit_invoice.save
-        format.html { redirect_to credit_invoices_path, flash: { success: 'Credit invoice was successfully created.' } }
+        format.html do
+          redirect_to credit_invoices_path,
+                      flash: { success: 'Credit invoice was successfully created.' }
+        end
       else
         format.html { render action: 'new' }
       end
@@ -49,7 +55,10 @@ class CreditInvoicesController < ApplicationController
     on_update(@credit_invoice)
     respond_to do |format|
       if @credit_invoice.update(credit_invoice_params)
-        format.html { redirect_to credit_invoices_path, flash: { success: 'Credit invoice was successfully updated.' } }
+        format.html do
+          redirect_to credit_invoices_path,
+                      flash: { success: 'Credit invoice was successfully updated.' }
+        end
       else
         format.html { render action: 'edit' }
       end
@@ -61,7 +70,10 @@ class CreditInvoicesController < ApplicationController
   def destroy
     @credit_invoice.destroy
     respond_to do |format|
-      format.html { redirect_to credit_invoices_url, flash: { success: 'Credit invoice was successfully deleted.' } }
+      format.html do
+        redirect_to credit_invoices_url,
+                    flash: { success: 'Credit invoice was successfully deleted.' }
+      end
       format.json { head :no_content }
     end
   end
@@ -73,8 +85,13 @@ class CreditInvoicesController < ApplicationController
     @credit_invoice = CreditInvoice.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet,
+  #  only allow the white list through.
   def credit_invoice_params
-    params.require(:credit_invoice).permit(:number, :date, :client_id, :currency, :tax_rate, :delegat, :ci, :eliberat, :transport, { :credit_note_ids => [] })
+    params.require(:credit_invoice).permit(
+      :number, :date, :client_id, :currency,
+      :tax_rate, :delegat, :ci, :eliberat,
+      :transport, { credit_note_ids: [] }
+    )
   end
 end

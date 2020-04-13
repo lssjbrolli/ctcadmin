@@ -1,6 +1,6 @@
 module TripExpensesHelper
-  def card(cn)
-    if cn.card
+  def card(trip_expense)
+    if trip_expense.card
       '<i class="glyphicon glyphicon-ok"></i>'
     else
       '<i class="glyphicon glyphicon-remove"></i>'

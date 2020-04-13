@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
   include UserInfo
 
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
   before_action :signed_in_user
   before_action :user_activated
 
@@ -10,13 +12,12 @@ class EventsController < ApplicationController
   def index
     @truck = Truck.find(params[:truck_id])
     @q = @truck.events.ransack(params[:q])
-    @events = @q.result(distinct: true).order('date DESC').paginate(:page => params[:page], :per_page => 8)
+    @events = @q.result(distinct: true).order('date DESC').paginate(page: params[:page], per_page: 8)
   end
 
   # GET /events/1
   # GET /events/1.json
-  def show
-  end
+  def show; end
 
   # GET /events/new
   def new

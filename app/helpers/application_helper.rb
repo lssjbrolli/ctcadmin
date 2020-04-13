@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def file_uploaded(file)
     @file = file.attachments[0]
@@ -11,9 +13,9 @@ module ApplicationHelper
   def file_state(file, text)
     @file = file.attachments[0]
     if @file.nil? || @file.file.file.nil?
-      button_tag "#{text}", html_options = { disabled: 'disabled', class: 'btn btn-info' }
+      button_tag(text.to_s, { disabled: 'disabled', class: 'btn btn-info' })
     else
-      link_to "#{text}", @file.file_url, html_options = { class: 'btn btn-info' }
+      link_to(text.to_s, @file.file_url, { class: 'btn btn-info' })
     end
   end
 
@@ -29,6 +31,6 @@ module ApplicationHelper
   end
 
   def check_mounted
-    !ENV['AWS_ACCESS_KEY_ID'].empty? || ENV['AWS_ACCESS_KEY_ID'].empty? && File.file?("#{Rails.root}/public/uploads/mounted")
+    File.file?("#{Rails.root}/public/uploads/mounted")
   end
 end

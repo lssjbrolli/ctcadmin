@@ -1,12 +1,12 @@
+# frozen_string_literal: true
+
 module CreditNotesHelper
-  def truck(cn)
-    unless cn.truck.nil?
-      cn.truck.registration
-    end
+  def truck(credit_note)
+    credit_note.truck&.registration
   end
 
-  def paid(cn)
-    if cn.paid?
+  def paid(credit_note)
+    if credit_note.paid?
       '<i class="glyphicon glyphicon-ok"></i>'
     else
       '<i class="glyphicon glyphicon-remove"></i>'

@@ -56,7 +56,6 @@ gem 'nested_form'
 
 # upload
 gem 'carrierwave'
-gem 'carrierwave-aws'
 
 # pdfs
 gem 'prawn'

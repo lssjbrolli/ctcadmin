@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class SiteConfigsController < ApplicationController
   before_action :set_setting, only: :update
   before_action :signed_in_user
   before_action :user_activated
 
   def index
-    # TODO dry settings list
+    # TODO: dry settings list
   end
 
   def restart

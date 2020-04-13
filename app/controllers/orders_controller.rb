@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class OrdersController < ApplicationController
   include UserInfo
 
@@ -9,17 +11,12 @@ class OrdersController < ApplicationController
     @payment = Payment.find(params[:id])
   end
 
-  def show
-  end
+  def show; end
 
   def create
     @payment = Payment.find(params[:payment])
 
-    if @payment.order.nil?
-      @order = Order.new
-    else
-      @order = @payment.order
-    end
+    @order = @payment.order.nil? ? Order.new : @payment.order
 
     pdf = GenOrderPdf.new(params, @order.id)
     src = File.join(Rails.root, 'tmp/tmp.pdf')
