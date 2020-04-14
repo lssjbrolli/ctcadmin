@@ -27,13 +27,13 @@
     <% unless @employee.nil? %>
         <% @payments.each do |payment| %>
             <tr>
-              <td><%= payment.month.strftime('%B %Y') %></td>
-              <td><%= payment.s_ron.format %></td>
-              <td><%= payment.s_eur.format %></td>
-              <td><%= "#{payment.per_day} EUR" %></td>
-              <td><%= payment.avans_diurna.format %></td>
-              <td><%= payment.rest_diurna.format %></td>
-              <td><%= payment.total_diurna.format %></td>
+              <td><%= payment.month&.strftime('%B %Y') %></td>
+              <td><%= payment.s_ron&.format %></td>
+              <td><%= payment.s_eur&.format %></td>
+              <td><%= "#{payment.per_day} EUR" if payment.per_day? %></td>
+              <td><%= payment.avans_diurna&.format %></td>
+              <td><%= payment.rest_diurna&.format %></td>
+              <td><%= payment.total_diurna&.format %></td>
               <td class="btn-group btn-group-xm payment-group">
                 <%= gen_order(payment) %>
                 <%= link_to 'Edit', edit_payment_path(payment), class: 'btn btn-info' %>
