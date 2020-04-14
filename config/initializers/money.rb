@@ -76,15 +76,15 @@ MoneyRails.configure do |config|
   # Default value is nil meaning "ignore this option".
   # Example:
   #
-  # config.default_format = {
-  #   no_cents_if_whole: nil,
-  #   symbol: nil,
-  #   sign_before_symbol: nil
-  # }
+  config.default_format = {
+    with_currency: true,
+    no_cents_if_whole: true,
+    symbol: false
+  }
 
   # If you would like to use I18n localization (formatting depends on the
   # locale):
-  config.locale_backend = :i18n
+  # config.locale_backend = :i18n
   #
   # Example (using default localization from rails-i18n):
   #
@@ -103,7 +103,7 @@ MoneyRails.configure do |config|
   #
   # In case you don't need localization and would like to use default values
   # (can be redefined using config.default_format):
-  # config.locale_backend = nil
+  config.locale_backend = nil
 
   # Set default raise_error_on_money_parsing option
   # It will be raise error if assigned different currency

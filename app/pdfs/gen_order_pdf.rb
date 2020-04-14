@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A4(landscape) pdf points dimensions = 595 × 842
 class GenOrderPdf < Prawn::Document
   def initialize(params, order_id)
@@ -7,17 +9,17 @@ class GenOrderPdf < Prawn::Document
 
     @order_id = order_id
 
-    if params[:begin]
-      @first_day = Date.parse(params[:begin])
-    else
-      @first_day = @payment.month.at_beginning_of_month
-    end
+    @first_day = if params[:begin]
+                   Date.parse(params[:begin])
+                 else
+                   @payment.month.at_beginning_of_month
+                 end
 
-    if @payment.days < @payment.month.at_end_of_month.day
-      @last_day = @first_day.next_day(@payment.days - 1)
-    else
-      @last_day = @payment.month.at_end_of_month
-    end
+    @last_day = if @payment.days < @payment.month.at_end_of_month.day
+                  @first_day.next_day(@payment.days - 1)
+                else
+                  @payment.month.at_end_of_month
+                end
 
     strike_negative
 
@@ -41,8 +43,8 @@ class GenOrderPdf < Prawn::Document
             [{ content: "Domnul (a) #{'. ' * 3}#{@payment.employee.name}#{'. ' * 50}", colspan: 3 }],
             [{ content: "avand functia de #{'. ' * 5} conducator auto #{'. ' * 50}", colspan: 3 }],
             [{ content: "este delegat pentru #{'. ' * 5}transport marfa #{'. ' * 50}", colspan: 3 }],
-            [{ content: "#{'. ' * 200}", colspan: 3 }],
-            [{ content: "#{'. ' * 200}", colspan: 3 }],
+            [{ content: ('. ' * 200).to_s, colspan: 3 }],
+            [{ content: ('. ' * 200).to_s, colspan: 3 }],
             [{ content: " la #{'. ' * 5}NTG Nordic A/S #{'. ' * 100}", colspan: 3 }],
             [{ content: "#{'. ' * 5}Danemarca#{'. ' * 100}", colspan: 3 }],
             [{ content: "Durata deplasarii de la #{'. ' * 3}#{@first_day.strftime('%d/%m/%Y')}#{'. ' * 15}", colspan: 2 }, "la #{'. ' * 3}#{@last_day.strftime('%d/%m/%Y')}#{'. ' * 15}"],
@@ -101,12 +103,12 @@ class GenOrderPdf < Prawn::Document
     data3 = [["Ziua si ora plecarii #{'. ' * 50}"],
              ["Ziua si ora sosirii #{'. ' * 50}"],
              ["Data depunerii #{'. ' * 50}"],
-             ["Penalizari calculate #{'. ' * 50}"],]
+             ["Penalizari calculate #{'. ' * 50}"]]
 
     data4 = [['Avans spre decontare'],
              ["Primit la plecare #{'. ' * 50}"],
-             ["Primit in timpul deplasarii #{'. ' * 3}#{@payment.avans}#{'. ' * 30}"],
-             ["TOTAL #{'. ' * 3}#{@payment.avans} EUR#{'. ' * 30}"]]
+             ["Primit in timpul deplasarii: #{@payment.avans_diurna.format}"],
+             ["TOTAL #{'. ' * 3}#{@payment.avans_diurna.format}#{'. ' * 30}"]]
 
     table3 = make_table(data3, width: 183.5) do |t|
       t.cells.border_width = 0
@@ -141,7 +143,7 @@ class GenOrderPdf < Prawn::Document
   def table5
     data5 = [[{ content: 'Cheltuieli efectuate conform documentelor anexate', colspan: 3 }],
              ['Felul actului', 'Nr. si data actului', 'Suma'],
-             ['Diurna externa', "#{@payment.days} zile x #{@payment.per_day} EUR", "#{@payment.total} EUR"],
+             ['Diurna externa', "#{@payment.days} zile x #{@payment.per_day} EUR", @payment.total_diurna.format.to_s],
              ['', '', ''],
              ['', '', ''],
              ['', '', ''],
@@ -153,7 +155,7 @@ class GenOrderPdf < Prawn::Document
              ['', '', ''],
              ['', '', ''],
              ['', '', ''],
-             [{ content: 'TOTAL CHELTUIELI: ', colspan: 2 }, "#{@payment.total} EUR"]]
+             [{ content: 'TOTAL CHELTUIELI: ', colspan: 2 }, @payment.total_diurna.format.to_s]]
     table5 = make_table(data5, width: 367) do |t|
       t.cells.border_width = 1
       t.cells.style(size: 10, height: 20)
@@ -177,9 +179,9 @@ class GenOrderPdf < Prawn::Document
   end
 
   def table6
-    data6 = [['Diferenta de restituit ', { content: "#{@neg_switch[0]}", inline_format: true }],
-             ['s-a depus cu chitanta', { content: "Diferenta de #{'. ' * 10}<b>#{@payment.rest.abs} EUR</b>#{'. ' * 20}", inline_format: true }],
-             ["nr. #{'. ' * 5}din #{'. ' * 5} ", { content: "#{@neg_switch[1]}", inline_format: true }]]
+    data6 = [['Diferenta de restituit ', { content: (@neg_switch[0]).to_s, inline_format: true }],
+             ['s-a depus cu chitanta', { content: "Diferenta de #{'. ' * 10}<b>#{@payment.rest_diurna.format}</b>#{'. ' * 20}", inline_format: true }],
+             ["nr. #{'. ' * 5}din #{'. ' * 5} ", { content: (@neg_switch[1]).to_s, inline_format: true }]]
 
     table = make_table(data6, width: 367) do |t|
       t.cells.border_top_width = 0
@@ -231,7 +233,7 @@ class GenOrderPdf < Prawn::Document
     bb = 'restituit'
     @neg_switch = []
 
-    if @payment.rest < 0
+    if @payment.rest_diurna.negative?
       @neg_switch.push a
       @neg_switch.push bb
     else
@@ -242,11 +244,7 @@ class GenOrderPdf < Prawn::Document
 
   def generate_number
     if @order_id.nil?
-      if Order.last.nil?
-        return 1
-      else
-        Order.last.id.next
-      end
+      Order.last.nil? ? 1 : Order.last.id.next
     else
       @order_id
     end
