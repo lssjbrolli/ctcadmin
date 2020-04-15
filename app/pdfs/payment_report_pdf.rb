@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PaymentReportPdf < Prawn::Document
   def initialize(month)
     super(page_size: 'A4')
@@ -71,7 +73,11 @@ class PaymentReportPdf < Prawn::Document
 
   def line_items
     @payments.map do |item|
-      %W(#{item.employee.name} #{item.avans} #{item.rest} #{item.total} #{item.days} #{item.per_day})
+      %W[
+        #{item.employee.name} #{item.avans_diurna&.format}
+        #{item.rest_diurna&.format} #{item.total_diurna.format}
+        #{item.days} #{item.per_day EUR}
+      ]
     end
   end
 end
