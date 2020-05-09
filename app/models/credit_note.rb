@@ -5,8 +5,8 @@ class CreditNote < ActiveRecord::Base
 
   before_save :convert
 
-  belongs_to :truck
-  belongs_to :credit_invoice
+  belongs_to :truck, optional: true
+  belongs_to :credit_invoice, optional: true
   belongs_to :created_by, foreign_key: 'create_id', class_name: 'User', optional: true
   belongs_to :updated_by, foreign_key: 'update_id', class_name: 'User', optional: true
 
