@@ -73,11 +73,11 @@ class PaymentReportPdf < Prawn::Document
 
   def line_items
     @payments.map do |item|
-      %W[
-        #{item.employee.name} #{item.avans_diurna&.format}
-        #{item.rest_diurna&.format} #{item.total_diurna.format}
-        #{item.days} #{item.per_day EUR}
-      ]
+        [
+          "#{item.employee.name}", "#{item.avans_diurna&.format}",
+          "#{item.rest_diurna&.format}", "#{item.total_diurna.format}",
+          "#{item.days}", "#{item.per_day} EUR"
+        ]
     end
   end
 end
