@@ -38,11 +38,9 @@ class PaymentReportPdf < Prawn::Document
     table = make_table([data], header: true, width: 540, column_widths: [150, 80, 80, 80, 60, 90])
 
     table.cells.style(size: 12, font_style: :bold)
-    table.cells[0, 1].style(align: :center)
-    table.cells[0, 2].style(align: :center)
-    table.cells[0, 3].style(align: :center)
-    table.cells[0, 4].style(align: :center)
-    table.cells[0, 5].style(align: :center)
+    for i in 0..5 do
+      table.cells[0, i].style(align: :center)
+    end
 
     table.before_rendering_page do |page|
       page.row(0).border_top_width = 2
