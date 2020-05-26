@@ -20,19 +20,21 @@ class Company < ActiveRecord::Base
   end
 
   def national
-    response = HTTParty.get("http://openapi.ro/api/companies/#{vat}.json")
+    response = HTTParty.get(
+      "https://api.openapi.ro/api/companies/#{vat}",
+      { headers: { 'x-api-key': ENV['OPENAPI_KEY'] } }
+    )
 
     if response.code == 200
-      self.name = response['name']
-      self.registration = response['registration_id']
-      self.vat = if response['vat'] == '1'
-                   "RO#{response['cif']}"
-                 else
+      self.name = response['denumire']
+      self.registration = response['numar_reg_com']
+      self.vat = if response['tva'].empty?
                    response['cif']
+                 else
+                   "RO#{response['cif']}"
                  end
-      self.address = "#{response['address']}, #{response['city']}, #{response['zip']}, #{response['state']}, Romania"
-      self.phone = response['phone']
-      self.vies_valid = Valvat::Lookup.validate(vat.to_s)
+      self.address = "#{response['adresa']}, #{response['cod_postal']}, #{response['judet']}, Romania"
+      self.phone = response['telefon']
     else
       self.name = '#'
     end
