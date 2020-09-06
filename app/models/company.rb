@@ -28,7 +28,7 @@ class Company < ActiveRecord::Base
     if response.code == 200
       self.name = response['denumire']
       self.registration = response['numar_reg_com']
-      self.vat = if response['tva'].empty?
+      self.vat = if response['tva'].nil?
                    response['cif']
                  else
                    "RO#{response['cif']}"
