@@ -5,6 +5,17 @@ class GenOrderPdf < Prawn::Document
   def initialize(params, order_id)
     super(page_size: 'A4', page_layout: :landscape)
 
+    # Register Roboto Slab font
+    self.font_families.update(
+      'RobotoSlab' => {
+        normal: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf"),
+        italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Italic.ttf"),
+        bold: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
+        bold_italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-BoldItalic.ttf")
+      }
+    )
+    font 'RobotoSlab'
+
     @payment = Payment.find(params[:payment])
 
     @order_id = order_id

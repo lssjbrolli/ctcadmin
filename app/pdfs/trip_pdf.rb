@@ -2,6 +2,17 @@ class TripPdf < Prawn::Document
   def initialize(report, view)
     super(page_size: 'A4')
 
+    # Register Roboto Slab font
+    self.font_families.update(
+      'RobotoSlab' => {
+        normal: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf"),
+        italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Italic.ttf"),
+        bold: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
+        bold_italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-BoldItalic.ttf")
+      }
+    )
+    font 'RobotoSlab'
+
     @report = report
     @view = view
     @trip_expenses = []

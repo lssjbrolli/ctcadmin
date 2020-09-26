@@ -33,7 +33,7 @@ class Company < ActiveRecord::Base
                  else
                    "RO#{response['cif']}"
                  end
-      self.address = "#{response['adresa']}, #{response['cod_postal']}, #{response['judet']}, Romania"
+      self.address = "#{response['adresa']}, #{response['judet']}, Romania"
       self.phone = response['telefon']
     else
       self.name = '#'
