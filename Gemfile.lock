@@ -319,6 +319,8 @@ GEM
     ttfunk (1.6.2.1)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2020.1)
+      tzinfo (>= 1.0.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode_utils (1.4.0)
@@ -383,6 +385,7 @@ DEPENDENCIES
   sdoc
   shoulda-matchers
   simplecov
+  tzinfo-data
   uglifier
   valvat
   will_paginate-bootstrap
