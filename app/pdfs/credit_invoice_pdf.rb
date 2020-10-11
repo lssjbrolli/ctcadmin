@@ -2,12 +2,12 @@ class CreditInvoicePdf < Prawn::Document
   def initialize(ci, view)
     super(page_size: 'A4')
     # Register Roboto Slab font
-    self.font_families.update(
+    font_families.update(
       'RobotoSlab' => {
-        normal: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf"),
-        italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Italic.ttf"),
-        bold: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
-        bold_italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-BoldItalic.ttf")
+        normal: Rails.root.join('vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf'),
+        italic: Rails.root.join('vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Italic.ttf'),
+        bold: Rails.root.join('vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf'),
+        bold_italic: Rails.root.join('vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-BoldItalic.ttf')
       }
     )
     font 'RobotoSlab'
@@ -53,7 +53,7 @@ class CreditInvoicePdf < Prawn::Document
       row1_9,
       row1_10,
       row1_11
-    ], width: 540, column_widths: [120, 120, 90, 100, 110], cell_style: { borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, padding: 1, padding_left: 5, character_spacing: 1 }
+    ], width: 540, column_widths: [120, 120, 90, 100, 110], cell_style: { borders: %i[top left bottom right], border_width: 0, size: 12, padding: 1, padding_left: 5, character_spacing: 1 }
 
     table.cells[0, 3].style(align: :center, size: 12, font_style: :bold)
     table.cells[1, 3].style(align: :center, size: 12, font_style: :bold)
@@ -74,7 +74,7 @@ class CreditInvoicePdf < Prawn::Document
   def table2
     table = make_table [
       ['Denumire servicii sau produs', 'Cant', 'Pret unitar', 'Valoare', 'Valoare TVA']
-    ], width: 540, cell_style: { borders: [:top, :left, :right, :bottom], size: 12, padding: 5, character_spacing: 1, align: :center }, column_widths: [190, 50, 100, 100, 100]
+    ], width: 540, cell_style: { borders: %i[top left right bottom], size: 12, padding: 5, character_spacing: 1, align: :center }, column_widths: [190, 50, 100, 100, 100]
 
     table.draw
   end
@@ -82,13 +82,13 @@ class CreditInvoicePdf < Prawn::Document
   def table3
     table = make_table [
       [{ content: 'Transport conform contract:', colspan: 5 }]
-    ], width: 540, cell_style: { borders: [:top, :left, :right], border_width: 1, size: 12, character_spacing: 1 }
+    ], width: 540, cell_style: { borders: %i[top left right], border_width: 1, size: 12, character_spacing: 1 }
 
     table.draw
   end
 
   def table4
-    table line_items, width: 540, column_widths: [190, 50, 100, 100, 100], cell_style: { borders: [:top, :left, :bottom, :right], border_width: 0, size: 12, character_spacing: 1 } do
+    table line_items, width: 540, column_widths: [190, 50, 100, 100, 100], cell_style: { borders: %i[top left bottom right], border_width: 0, size: 12, character_spacing: 1 } do
       columns(2..4).align = :right
       columns(1).align = :center
     end

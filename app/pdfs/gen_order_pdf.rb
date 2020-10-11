@@ -1,36 +1,15 @@
 # frozen_string_literal: true
 
-# A4(landscape) pdf points dimensions = 595 × 842
+# A4(landscape) pdf points dimensions = 595x842
 class GenOrderPdf < Prawn::Document
   def initialize(params, order_id)
     super(page_size: 'A4', page_layout: :landscape)
-
-    # Register Roboto Slab font
-    self.font_families.update(
-      'RobotoSlab' => {
-        normal: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf"),
-        italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Italic.ttf"),
-        bold: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
-        bold_italic: Rails.root.join("vendor/assets/fonts/Roboto_Slab/static/RobotoSlab-BoldItalic.ttf")
-      }
-    )
-    font 'RobotoSlab'
 
     @payment = Payment.find(params[:payment])
 
     @order_id = order_id
 
-    @first_day = if params[:begin]
-                   Date.parse(params[:begin])
-                 else
-                   @payment.month.at_beginning_of_month
-                 end
-
-    @last_day = if @payment.days < @payment.month.at_end_of_month.day
-                  @first_day.next_day(@payment.days - 1)
-                else
-                  @payment.month.at_end_of_month
-                end
+    @params = params
 
     strike_negative
 
@@ -49,19 +28,19 @@ class GenOrderPdf < Prawn::Document
 
   def table1
     data = [['Unitatea', { content: 'Depus decontul (numarul si data)', colspan: 2 }],
-            [{ content: 'SC. Cozma Transport 2005 SRL', colspan: 2 }, "#{'. ' * 5}#{generate_number} din #{@last_day.strftime('%d/%m/%Y')}#{'. ' * 5}"],
-            [{ content: 'Ordin de deplasare nr. ', colspan: 3 }],
-            [{ content: "Domnul (a) #{'. ' * 3}#{@payment.employee.name}#{'. ' * 50}", colspan: 3 }],
-            [{ content: "avand functia de #{'. ' * 5} conducator auto #{'. ' * 50}", colspan: 3 }],
-            [{ content: "este delegat pentru #{'. ' * 5}transport marfa #{'. ' * 50}", colspan: 3 }],
-            [{ content: ('. ' * 200).to_s, colspan: 3 }],
-            [{ content: ('. ' * 200).to_s, colspan: 3 }],
-            [{ content: " la #{'. ' * 5}NTG Nordic A/S #{'. ' * 100}", colspan: 3 }],
-            [{ content: "#{'. ' * 5}Danemarca#{'. ' * 100}", colspan: 3 }],
-            [{ content: "Durata deplasarii de la #{'. ' * 3}#{@first_day.strftime('%d/%m/%Y')}#{'. ' * 15}", colspan: 2 }, "la #{'. ' * 3}#{@last_day.strftime('%d/%m/%Y')}#{'. ' * 15}"],
-            [{ content: "se legitimeaza cu #{'. ' * 50} ", colspan: 3 }],
+            [{ content: 'SC. Cozma Transport 2005 SRL', colspan: 2 }, "#{'. ' * 3}#{generate_number} din #{last_day.strftime('%d/%m/%Y')} #{'. ' * 4}"],
+            [{ content: 'Ordin de deplasare', colspan: 3 }],
+            [{ content: build_entry('Domnul (a)', @payment.employee.name), colspan: 3 }],
+            [{ content: build_entry('avand functia de', 'conducator auto'), colspan: 3 }],
+            [{ content: build_entry('este delegat pentru', 'transport marfa'), colspan: 3 }],
+            [{ content: build_entry('', ''), colspan: 3 }],
+            [{ content: build_entry('', ''), colspan: 3 }],
+            [{ content: build_entry('la', 'NTG Nordic A/S'), colspan: 3 }],
+            [{ content: build_entry('Tara', 'Danemarca'), colspan: 3 }],
+            [{ content: "Durata deplasarii de la #{'. ' * 3}#{first_day.strftime('%d/%m/%Y')}#{'. ' * 11}", colspan: 2 }, "la #{'. ' * 3}#{last_day.strftime('%d/%m/%Y')}#{'. ' * 11}"],
+            [{ content: build_entry('se legitimeaza cu', ''), colspan: 3 }],
             [{ content: 'Stampila unitatii si semnatura.', colspan: 3 }],
-            [{ content: "Data #{'. ' * 5}#{@last_day.strftime('%d/%m/%Y')}#{'. ' * 5}", colspan: 3 }]]
+            [{ content: build_entry('Data', last_day.strftime('%d/%m/%Y')), colspan: 3 }]]
 
     table1 = make_table(data, width: 366) do |t|
       t.cells.border_width = 0
@@ -259,5 +238,25 @@ class GenOrderPdf < Prawn::Document
     else
       @order_id
     end
+  end
+
+  def first_day
+    @params[:begin] ? Date.parse(params[:begin]) : @payment.month.at_beginning_of_month
+  end
+
+  def last_day
+    @payment.days < @payment.month.at_end_of_month.day ? first_day.next_day(@payment.days - 1) : @payment.month.at_end_of_month
+  end
+
+  def build_entry(left_text, right_text, text_size = 8)
+    left_text_width = font.compute_width_of(left_text, size: text_size)
+    right_text_width = font.compute_width_of(right_text, size: text_size)
+    dot_width = font.compute_width_of('. ', size: text_size)
+    space_width = font.compute_width_of(' ', size: text_size)
+
+    space_for_dots = 286 - left_text_width - right_text_width - dot_width * 5 - space_width * 2
+    dots = '. ' * (space_for_dots / dot_width)
+
+    "#{left_text} #{'. ' * 5}#{right_text} #{dots}"
   end
 end
