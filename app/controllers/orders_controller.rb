@@ -2,6 +2,7 @@
 
 class OrdersController < ApplicationController
   include UserInfo
+  before_action :set_cache_headers, only: :show
 
   before_action :signed_in_user
   before_action :user_activated
@@ -41,5 +42,11 @@ class OrdersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
     params.require(:order).permit(:payment_id)
+  end
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-cache, no-store'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = Time.now
   end
 end

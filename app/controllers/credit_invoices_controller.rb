@@ -4,6 +4,7 @@ class CreditInvoicesController < ApplicationController
   include UserInfo
 
   before_action :set_credit_invoice, only: %i[show edit update destroy]
+  before_action :set_cache_headers, only: :show
   before_action :signed_in_user
   before_action :user_activated
 
@@ -79,6 +80,12 @@ class CreditInvoicesController < ApplicationController
   end
 
   private
+
+  def set_cache_headers
+    response.headers['Cache-Control'] = 'no-cache, no-store'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = Time.now
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_credit_invoice
