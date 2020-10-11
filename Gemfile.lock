@@ -187,7 +187,7 @@ GEM
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
-    passenger (6.0.4)
+    passenger (6.0.6)
       rack
       rake (>= 0.8.1)
     pdf-core (0.7.0)
@@ -207,7 +207,7 @@ GEM
     public_suffix (4.0.4)
     puma (4.3.3)
       nio4r (~> 2.0)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-contrib (2.2.0)
       rack (~> 2.0)
     rack-test (1.1.0)
