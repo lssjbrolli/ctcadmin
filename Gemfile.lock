@@ -51,7 +51,7 @@ GEM
     ast (2.4.1)
     autoprefixer-rails (9.7.6)
       execjs
-    bcrypt (3.1.12)
+    bcrypt (3.1.16)
     best_in_place (3.1.1)
       actionpack (>= 3.2)
       railties (>= 3.2)
@@ -361,7 +361,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (= 3.1.12)
+  bcrypt (= 3.1.16)
   best_in_place
   better_errors
   binding_of_caller
