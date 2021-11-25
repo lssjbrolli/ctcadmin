@@ -2,10 +2,10 @@
 
 source 'https://rubygems.org'
 
-ruby '2.7.2'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.2.4.2'
+gem 'rails', '6.1.4.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -67,7 +67,6 @@ gem 'prawn-table'
 gem 'bcrypt', '3.1.12'
 
 # server
-gem 'passenger'
 gem 'puma'
 
 # database
@@ -108,7 +107,7 @@ group :test do
   gem 'simplecov', require: false
 end
 
-gem 'best_in_place'
+gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
 
 gem 'money-rails'
 
