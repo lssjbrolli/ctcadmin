@@ -34,7 +34,7 @@ class PaymentsController < ApplicationController
   # POST /payments.json
   def create
     @payment = @employee.payments.build
-    @payment.update_attributes(payment_params)
+    @payment.update(payment_params)
     respond_to do |format|
       if @payment.save
         format.html { redirect_to employee_payments_path(@employee), flash: { success: 'Payment was successfully created.' } }

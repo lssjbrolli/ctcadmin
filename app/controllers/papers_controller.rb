@@ -36,7 +36,7 @@ class PapersController < ApplicationController
   # POST /papers.json
   def create
     @paper = @document.papers.build
-    @paper.update_attributes(paper_params)
+    @paper.update(paper_params)
     on_create(@paper)
     respond_to do |format|
       if @document.save
