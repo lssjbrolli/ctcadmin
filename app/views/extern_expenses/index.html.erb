@@ -24,7 +24,7 @@
         <tr>
           <td><%= ee.number %></td>
           <td class="t_middle"><%= ee.date.strftime('%b %Y') unless ee.date.nil? %></td>
-          <td class="t_value"><%= number_to_currency(ee.value, :unit => ee.currency) %></td>
+          <td class="t_value"><%= number_to_currency(ee.value, unit: ee.currency, locale: 'ro') %></td>
           <td class="t_middle"><%= ee.supplier.name %></td>
           <td class="t_middle"><%= ee.description %></td>
           <td class="btn-group btn-group-xm">

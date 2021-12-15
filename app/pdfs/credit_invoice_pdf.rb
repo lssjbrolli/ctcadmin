@@ -121,11 +121,7 @@ class CreditInvoicePdf < Prawn::Document
   end
 
   def sel_currency(cur, value)
-    if cur == 'RON'
-      @view.number_to_currency(value, locale: :ro)
-    else
-      @view.number_to_currency(value)
-    end
+      @view.number_to_currency(value, unit: cur, locale: :ro)
   end
 
   def sel_taxrate(cur, tax, value)

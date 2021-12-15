@@ -29,7 +29,7 @@
           <td class="t_center"><%= cn.start %></td>
           <td class="t_center"><%= cn.stop %></td>
           <td class="t_center"><%= cn.week %></td>
-          <td class="t_value"><%= number_to_currency(cn.value, :unit => cn.currency) %></td>
+          <td class="t_value"><%= number_to_currency(cn.value, unit: cn.currency, locale: 'ro') %></td>
           <td class="t_center"><%= raw paid(cn) %></td>
           <td class="t_center"><%= truck(cn) %></td>
           <td class="t_center"><%= cn.notes %></td>

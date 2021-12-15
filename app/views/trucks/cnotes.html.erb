@@ -30,7 +30,7 @@
           <td><%= cn.start %></td>
           <td><%= cn.stop %></td>
           <td class="t_middle"><%= cn.week %></td>
-          <td class="t_value"><%= number_to_currency(cn.value, :unit => cn.currency) %></td>
+          <td class="t_value"><%= number_to_currency(cn.value, unit: cn.currency, locale: 'ro') %></td>
           <td class="t_middle"><%= raw paid(cn) %></td>
           <td class="t_middle"><%= cn.notes %></td>
           <td class="btn-group btn-group-xm">

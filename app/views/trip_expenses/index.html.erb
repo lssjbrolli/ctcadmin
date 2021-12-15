@@ -28,8 +28,8 @@
           <td><%= te.number %></td>
           <td class="t_middle"><%= te.date.strftime('%d/%m/%Y') unless te.date.nil? %></td>
           <td class="t_middle"><%= te.description %></td>
-          <td class="t_value"><%= number_to_currency(te.value, :unit => te.currency) %></td>
-          <td class="t_value"><%= number_to_currency(te.value_eur, :unit => 'EUR') %></td>
+          <td class="t_value"><%= number_to_currency(te.value, unit: te.currency, locale: 'ro') %></td>
+          <td class="t_value"><%= number_to_currency(te.value_eur, unit: 'EUR', locale: 'ro') %></td>
           <td class="t_middle"><%= raw card(te) %></td>
           <td class="btn-group btn-group-xm">
             <%= file_state(te, 'Show') %>

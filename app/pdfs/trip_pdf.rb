@@ -65,7 +65,7 @@ class TripPdf < Prawn::Document
 
   def line_items
     @trip_expenses.map do |item|
-      ["#{item.intnr}", "#{item.number}", item.date.strftime('%d.%m.%y'), "#{item.description}", card(item), @view.number_to_currency(item.value, :unit => item.currency), @view.number_to_currency(item.value_eur, unit: 'EUR')]
+      ["#{item.intnr}", "#{item.number}", item.date.strftime('%d.%m.%y'), "#{item.description}", card(item), @view.number_to_currency(item.value, unit: item.currency, locale: 'ro'), @view.number_to_currency(item.value_eur, unit: 'EUR', locale: 'ro')]
     end
   end
 
@@ -91,7 +91,7 @@ class TripPdf < Prawn::Document
     @trip_expenses.each { |x| value_a << x.value_eur }
     total = value_a.inject(0) { |r, e| r + e }
 
-    table = make_table [['', 'Total:', @view.number_to_currency(total, unit: 'EUR')]], width: 540, column_widths: [350, 100, 90]
+    table = make_table [['', 'Total:', @view.number_to_currency(total, unit: 'EUR', locale: 'ro')]], width: 540, column_widths: [350, 100, 90]
 
     table.cells.style(size: 12, font_style: :bold)
     table.cells[0, 1].style(align: :center)

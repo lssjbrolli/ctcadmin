@@ -22,7 +22,7 @@
         <tr>
           <td><%= ci.number %></td>
           <td class="t_middle"><%= ci.date %></td>
-          <td class="t_value"><%= number_to_currency(ci.total_value, :unit => ci.currency) %></td>
+          <td class="t_value"><%= number_to_currency(ci.total_value, unit: ci.currency, locale: 'ro') %></td>
           <td class="btn-group btn-group-xm">
             <%= file_state(ci, 'Show') %>
             <%= link_to 'Edit', edit_credit_invoice_path(ci), class: 'btn btn-info' %>
