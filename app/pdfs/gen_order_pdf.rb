@@ -241,7 +241,7 @@ class GenOrderPdf < Prawn::Document
   end
 
   def first_day
-    @params[:begin] ? Date.parse(params[:begin]) : @payment.month.at_beginning_of_month
+    @params[:begin] ? Date.parse(@params[:begin]) : @payment.month.at_beginning_of_month
   end
 
   def last_day
