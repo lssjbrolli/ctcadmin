@@ -16,7 +16,7 @@ class PaymentReportPdf < Prawn::Document
     font 'RobotoSlab'
 
     @month = Date.parse(month.to_s)
-
+    
     @payments_ids = []
     Payment.where('DATE(month) = ?', @month).where(diurna: true).each { |x| @payments_ids << x.id }
 
@@ -33,8 +33,8 @@ class PaymentReportPdf < Prawn::Document
   end
 
   def head
-    table = make_table([["Diurne deplasare externa #{@month.strftime('%B %Y')}"]], width: 540, column_widths: [540])
-    table.cells.style(size: 14, font_style: :bold, align: :center)
+    table = make_table([["Indemnizatii detasare transnationala #{@month.strftime('%B %Y')}"]], width: 540, column_widths: [540])
+    table.cells.style(size: 12, font_style: :bold, align: :center)
 
     table.before_rendering_page do |page|
       page.row(0).border_top_width = 2
@@ -46,7 +46,7 @@ class PaymentReportPdf < Prawn::Document
   end
 
   def header
-    data = ['Nume angajat', 'Avans', 'Rest', 'Total', 'Zile', 'Diurna per zi']
+    data = ['Nume angajat', 'Avans', 'Rest', 'Total', 'Zile', 'Indemnizatie per zi']
     table = make_table([data], header: true, width: 540, column_widths: [150, 80, 80, 80, 60, 90])
 
     table.cells.style(size: 12, font_style: :bold)
