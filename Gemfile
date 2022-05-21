@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.0.3'
+ruby '3.0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.1.4.1'
