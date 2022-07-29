@@ -30,7 +30,7 @@ class CreditInvoicePdf < Prawn::Document
 
   def table1
     row1_1 = [{ content: "Furnizor: #{SiteConfig['company.name']}", colspan: 2 }, '', { content: 'FACTURA', colspan: 2 }]
-    row1_2 = [{ content: "Nr.ord.Reg.Com/an: #{SiteConfig['company.registration']} ", colspan: 2 }, '', { content: "Seria NT BCT Nr. #{'%07d' % @ci.number}", colspan: 2 }]
+    row1_2 = [{ content: "Nr.ord.Reg.Com/an: #{SiteConfig['company.registration']} ", colspan: 2 }, '', { content: "Seria NT #{@ci.client.country == 'RO' ? "BCT" : "ACT"} Nr. #{'%07d' % @ci.number}", colspan: 2 }]
     row1_3 = [{ content: "C.U.I. #{SiteConfig['company.vat']}", colspan: 2 }, '', { content: "Din data de #{@ci.date}", colspan: 2 }]
     row1_4 = [{ content: "Adresa: #{SiteConfig['company.address']}", colspan: 2, rowspan: 2 }, { content: '', rowspan: 2 }, { content: "Cumparator: #{@ci.client.name}", colspan: 2, rowspan: 2 }]
     row1_5 = []
