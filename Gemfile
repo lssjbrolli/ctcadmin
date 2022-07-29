@@ -35,7 +35,7 @@ gem 'tzinfo-data'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  gem 'rdoc', require: false
 end
 
 # Bootstrap
@@ -78,6 +78,9 @@ gem 'ransack'
 
 # site settings
 gem 'rails-settings-cached', '0.7.2'
+
+# set psych to v3
+gem 'psych', '< 4'
 
 group :production do
   gem 'rails_12factor'
