@@ -6,8 +6,8 @@
         <%= f.text_field :date, :value => "#{f.object.date.strftime('%d/%m/%Y') unless f.object.new_record?}", 'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy', 'data-date-autoclose' => 'true' %>
         <%= f.number_field :value, step: 'any' %>
         <%= f.collection_select :supplier_id, @companies, :id, :name, include_blank: true %>
-        <%= f.select :description, SiteConfig.activities.split(', ').sort, include_blank: true %>
-        <%= f.select :paid_by, SiteConfig.paid_by.split(', ').sort, include_blank: true %>
+        <%= f.select :description, SiteConfig.activities.sort, include_blank: true %>
+        <%= f.select :paid_by, SiteConfig.paid_by.sort, include_blank: true %>
       </div>
       <div class="col-md-4 col-md-offset3">
         <fieldset>
