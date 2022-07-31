@@ -29,17 +29,25 @@ class CreditInvoicePdf < Prawn::Document
   end
 
   def table1
-    row1_1 = [{ content: "Furnizor: #{SiteConfig['company.name']}", colspan: 2 }, '', { content: 'FACTURA', colspan: 2 }]
-    row1_2 = [{ content: "Nr.ord.Reg.Com/an: #{SiteConfig['company.registration']} ", colspan: 2 }, '', { content: "Seria NT #{@ci.client.country == 'RO' ? "BCT" : "ACT"} Nr. #{'%07d' % @ci.number}", colspan: 2 }]
-    row1_3 = [{ content: "C.U.I. #{SiteConfig['company.vat']}", colspan: 2 }, '', { content: "Din data de #{@ci.date}", colspan: 2 }]
-    row1_4 = [{ content: "Adresa: #{SiteConfig['company.address']}", colspan: 2, rowspan: 2 }, { content: '', rowspan: 2 }, { content: "Cumparator: #{@ci.client.name}", colspan: 2, rowspan: 2 }]
+    row1_1 = [{ content: "Furnizor: #{SiteConfig.company_name}", colspan: 2 }, '', { content: 'FACTURA', colspan: 2 }]
+    row1_2 = [{ content: "Nr.ord.Reg.Com/an: #{SiteConfig.registration} ", colspan: 2 }, '',
+              { content: "Seria NT #{@ci.client.country == 'RO' ? 'BCT' : 'ACT'} Nr. #{'%07d' % @ci.number}", colspan: 2 }]
+    row1_3 = [{ content: "C.U.I. #{SiteConfig.vat}", colspan: 2 }, '',
+              { content: "Din data de #{@ci.date}", colspan: 2 }]
+    row1_4 = [{ content: "Adresa: #{SiteConfig.address}", colspan: 2, rowspan: 2 }, { content: '', rowspan: 2 },
+              { content: "Cumparator: #{@ci.client.name}", colspan: 2, rowspan: 2 }]
     row1_5 = []
-    row1_6 = [{ content: "Cont Lei: #{SiteConfig['company.acc_ron']}", colspan: 2 }, '', { content: "Nr ord Reg.Com/an: #{@ci.client.registration}", colspan: 2 }]
-    row1_7 = [{ content: "Cont Euro: #{SiteConfig['company.acc_eur']}", colspan: 2 }, '', { content: "C.U.I. #{@ci.client.vat}", colspan: 2 }]
-    row1_8 = [{ content: "Banca: #{SiteConfig['company.bank']}", colspan: 2 }, '', { content: "Adresa: #{@ci.client.address}", rowspan: 2, colspan: 2 }]
-    row1_9 = [{ content: "Capital social: #{SiteConfig['company.capital']}", colspan: 2 }, '']
-    row1_10 = [{ content: "Tel: #{SiteConfig['company.phone']}", colspan: 2 }, '', { content: "Banca: #{@ci.client.bank}", colspan: 2 }]
-    row1_11 = [{ content: "Cota TVA: #{@ci.tax_rate}", colspan: 2 }, '', { content: "Cont: #{@ci.client.acc_ron}", colspan: 2 }]
+    row1_6 = [{ content: "Cont Lei: #{SiteConfig.acc_ron}", colspan: 2 }, '',
+              { content: "Nr ord Reg.Com/an: #{@ci.client.registration}", colspan: 2 }]
+    row1_7 = [{ content: "Cont Euro: #{SiteConfig.acc_eur}", colspan: 2 }, '',
+              { content: "C.U.I. #{@ci.client.vat}", colspan: 2 }]
+    row1_8 = [{ content: "Banca: #{SiteConfig.bank}", colspan: 2 }, '',
+              { content: "Adresa: #{@ci.client.address}", rowspan: 2, colspan: 2 }]
+    row1_9 = [{ content: "Capital social: #{SiteConfig.capital}", colspan: 2 }, '']
+    row1_10 = [{ content: "Tel: #{SiteConfig.phone}", colspan: 2 }, '',
+               { content: "Banca: #{@ci.client.bank}", colspan: 2 }]
+    row1_11 = [{ content: "Cota TVA: #{@ci.tax_rate}", colspan: 2 }, '',
+               { content: "Cont: #{@ci.client.acc_ron}", colspan: 2 }]
 
     table = make_table [
       row1_1,
@@ -88,7 +96,8 @@ class CreditInvoicePdf < Prawn::Document
   end
 
   def table4
-    table line_items, width: 540, column_widths: [190, 50, 100, 100, 100], cell_style: { borders: %i[top left bottom right], border_width: 0, size: 12, character_spacing: 1 } do
+    table line_items, width: 540, column_widths: [190, 50, 100, 100, 100],
+                      cell_style: { borders: %i[top left bottom right], border_width: 0, size: 12, character_spacing: 1 } do
       columns(2..4).align = :right
       columns(1).align = :center
     end
@@ -103,11 +112,13 @@ class CreditInvoicePdf < Prawn::Document
 
   def table6
     table = make_table [
-      [{ content: 'Semnatura si stampila furnizorului', rowspan: 6 }, { content: 'Date privind expeditia', colspan: 4 }],
+      [{ content: 'Semnatura si stampila furnizorului', rowspan: 6 },
+       { content: 'Date privind expeditia', colspan: 4 }],
       [{ content: "Nume delegat: #{@ci.delegat}", colspan: 4 }],
       [{ content: "Act identitate: #{@ci.ci}", colspan: 4 }],
       [{ content: "Eliberat de: #{@ci.eliberat}", colspan: 4 }],
-      [{ content: "Mijloc de transport: #{@ci.transport}", colspan: 2 }, { content: 'Semnatura de primire', rowspan: 2 }, { content: "Total factura: #{sel_currency(@ci.currency, @ci.total_value)}", rowspan: 2 }],
+      [{ content: "Mijloc de transport: #{@ci.transport}", colspan: 2 },
+       { content: 'Semnatura de primire', rowspan: 2 }, { content: "Total factura: #{sel_currency(@ci.currency, @ci.total_value)}", rowspan: 2 }],
       [{ content: 'Semnatura', colspan: 2 }]
     ], width: 540, column_widths: [80], cell_style: { size: 12, padding: 1, padding_left: 5, character_spacing: 1 }
 
@@ -116,12 +127,13 @@ class CreditInvoicePdf < Prawn::Document
 
   def line_items
     @ci.credit_notes.map do |item|
-      ["nr: #{item.number}", '1', sel_currency(@ci.currency, item.value), sel_currency(@ci.currency, item.value), sel_taxrate(@ci.currency, @ci.tax_rate, item.value)]
+      ["nr: #{item.number}", '1', sel_currency(@ci.currency, item.value), sel_currency(@ci.currency, item.value),
+       sel_taxrate(@ci.currency, @ci.tax_rate, item.value)]
     end
   end
 
   def sel_currency(cur, value)
-      @view.number_to_currency(value, unit: cur, locale: :ro)
+    @view.number_to_currency(value, unit: cur, locale: :ro)
   end
 
   def sel_taxrate(cur, tax, value)

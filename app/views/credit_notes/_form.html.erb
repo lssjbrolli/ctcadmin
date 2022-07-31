@@ -9,7 +9,7 @@
         <%= f.text_field :stop, label: 'Trip finish location' %>
         <%= f.number_field :week %>
         <%= f.text_area :notes %>
-        <%= f.select :currency, SiteConfig['main.currencies'].split(', ').sort %>
+        <%= f.select :currency, SiteConfig.currencies.split(', ').sort %>
         <% if @current_user.admin? %>
             <%= f.form_group :paid, label: {text: 'Paid?'} do %>
                 <%= f.check_box :paid, label: '' %>

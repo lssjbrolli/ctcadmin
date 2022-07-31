@@ -1,6 +1,6 @@
 <%= bootstrap_form_for([@employee, @payment], layout: :horizontal, label_col: 'col-sm-1', control_col: 'col-sm-5') do |f| %>
     <%= f.alert_message 'Please fix the errors below.', error_summary: false %>
-    <%= f.text_field :s_ron, value: "#{@payment.s_ron || SiteConfig['main.salar_baza']}", label: 'Salariu RON' %>
+    <%= f.text_field :s_ron, value: "#{@payment.s_ron || SiteConfig.salar_baza}", label: 'Salariu RON' %>
     <%= f.text_field :month, 'data-provide' => 'monthpicker', value: "#{f.object.new_record? ? (Time.now - 1.month).strftime('%b %Y') : f.object.month.strftime('%b %Y')}" %>
     <%= f.form_group :diurna, label: {text: 'Diurna?'} do |c|%>
         <%= f.check_box :diurna, label: '' %>

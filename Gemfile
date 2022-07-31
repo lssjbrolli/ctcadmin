@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '3.0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.1.4.1'
+gem 'rails', '6.1.6.1'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -35,7 +35,7 @@ gem 'tzinfo-data'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'rdoc', require: false
+  gem 'sdoc', require: false
 end
 
 # Bootstrap
@@ -64,11 +64,11 @@ gem 'prawn'
 gem 'prawn-table'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '3.1.12'
+gem 'bcrypt'
 
 # server
-gem 'puma'
 gem 'passenger'
+gem 'puma'
 
 # database
 gem 'pg'
@@ -77,10 +77,7 @@ gem 'pg'
 gem 'ransack'
 
 # site settings
-gem 'rails-settings-cached', '0.7.2'
-
-# set psych to v3
-gem 'psych', '< 4'
+gem 'rails-settings-cached'
 
 group :production do
   gem 'rails_12factor'
@@ -111,7 +108,7 @@ group :test do
   gem 'simplecov', require: false
 end
 
-gem "best_in_place", git: "https://github.com/mmotherwell/best_in_place"
+gem 'best_in_place', git: 'https://github.com/mmotherwell/best_in_place'
 
 gem 'money-rails'
 
